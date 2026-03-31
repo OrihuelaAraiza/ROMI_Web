@@ -63,10 +63,11 @@ export default function Nav() {
     setOpen(false);
   };
 
-  // 👇 Ajusta aquí si tu campo no se llama "role"
-  const role = user?.roles?.[0] ?? null;
-  const isDoctor = role === "DOCTOR";
-  const isPatient = role === "PATIENT";
+  const roles = (user?.roles ?? []).map((r) =>
+    String(r).toUpperCase().replace(/^ROLE_/, "")
+  );
+  const isPatient = roles.includes("PATIENT");
+  const isAdmin = roles.includes("ADMIN");
 
   const doctorDashboardHref = "/dashboard";
   const patientDashboardHref = "/appointments";
@@ -106,14 +107,13 @@ export default function Nav() {
 
           {/* DESKTOP */}
           <div className="hidden md:flex items-center gap-3">
-            {/*  Panel según rol */}
-            {isLoggedIn && isDoctor && (
+            {isLoggedIn && isAdmin && (
               <Link
                 href={doctorDashboardHref}
                 className="inline-flex items-center gap-1.5 rounded-md border border-primary/30 bg-white px-3 py-2 text-sm font-medium text-primary hover:bg-primary/5 whitespace-nowrap"
               >
                 <LayoutDashboard className="h-4 w-4" />
-                <span>Solicitudes</span>
+                <span>Dashboard</span>
               </Link>
             )}
 
@@ -187,15 +187,14 @@ export default function Nav() {
                 </Link>
               ))}
 
-              {/*  Panel según rol (mobile) */}
-              {isLoggedIn && isDoctor && (
+              {isLoggedIn && isAdmin && (
                 <Link
                   href={doctorDashboardHref}
                   onClick={() => setOpen(false)}
                   className="mt-1 px-3 py-2 rounded-md text-sm border border-primary/30 bg-white text-primary flex items-center gap-2 hover:bg-primary/5 whitespace-nowrap"
                 >
                   <LayoutDashboard className="h-4 w-4" />
-                  <span>Panel médico</span>
+                  <span>Dashboard</span>
                 </Link>
               )}
 

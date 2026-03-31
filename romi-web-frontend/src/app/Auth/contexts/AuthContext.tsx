@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { decodeJwt, getToken, clearToken, setToken } from "@/lib/auth";
 import { useRouter, usePathname } from "next/navigation";
 
-type Role = "DOCTOR" | "PATIENT";
+type Role = "DOCTOR" | "PATIENT" | "ADMIN";
 type Decoded = { sub: string; role?: Role | Role[]; roles?: (Role | string)[]; exp?: number };
 
 type User = { id: string; roles: Role[] };
@@ -41,14 +41,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const rolesArr = rawRoles
       ? (Array.isArray(rawRoles) ? rawRoles : [rawRoles]).map((r) => String(r).toUpperCase() as Role)
       : [];
-    if (!decoded || (decoded.exp && decoded.exp < now) || rolesArr.length === 0) {
+    if (!decoded || (decoded.exp && decoded.exp < now)) {
       clearToken();
       setUser(null);
       setReady(true);
       if (!pathname?.startsWith("/Auth")) router.replace("/Auth/Login");
       return;
     }
-    setUser({ id: decoded.sub, roles: rolesArr as Role[] });
+    setUser({ id: String(decoded.sub), roles: rolesArr as Role[] });
     setReady(true);
   };
 
@@ -63,8 +63,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const rolesArr = rawRoles
       ? (Array.isArray(rawRoles) ? rawRoles : [rawRoles]).map((r) => String(r).toUpperCase() as Role)
       : [];
-    if (d?.sub && rolesArr.length > 0) {
-      setUser({ id: d.sub, roles: rolesArr as Role[] });
+    if (d?.sub) {
+      setUser({ id: String(d.sub), roles: rolesArr as Role[] });
     } else {
       // Descarta tokens inválidos y reinicia el estado
       clearToken();
