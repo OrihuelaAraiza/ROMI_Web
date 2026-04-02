@@ -1,7 +1,7 @@
-﻿import { getToken } from "./auth";
+import { getToken } from "./auth";
 
 export const API_BASE =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+  process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:3001";
 
 export async function apiFetch(path: string, init: RequestInit = {}) {
   const url = `${API_BASE}${path}`;
@@ -15,6 +15,7 @@ export async function apiFetch(path: string, init: RequestInit = {}) {
     headers.set("Authorization", `Bearer ${token}`);
   }
 
+  // Default to POST for mutation calls; GET requests should pass { method: "GET" } explicitly.
   const method = init.method ?? "POST";
 
   const res = await fetch(url, {

@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query, Req, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, Req, UseGuards } from '@nestjs/common';
 import { Request } from 'express';
 import { UsersService } from './users.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
@@ -11,11 +11,11 @@ export class UsersController {
   constructor(private readonly users: UsersService) {}
 
   @Get()
-  ping(@Query('email') email?: string) {
-    if (email) return this.users.findByEmail(email);
+  ping() {
     return { ok: true };
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get('by-external/:sub')
   findByExternal(@Param('sub') sub: string) {
     return this.users.findByExternalId(sub);

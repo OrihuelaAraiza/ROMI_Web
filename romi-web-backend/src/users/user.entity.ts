@@ -41,6 +41,4 @@ export class User {
   
   @CreateDateColumn({ type: 'timestamptz' })
   created_at!: Date;
-  appointmentsAsDoctor: any;
-  appointmentsAsPatient: any;
 }
