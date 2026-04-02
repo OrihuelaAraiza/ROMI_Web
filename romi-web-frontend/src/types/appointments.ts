@@ -1,4 +1,4 @@
-﻿export enum AppointmentStatus {
+export enum AppointmentStatus {
   PENDING = 'PENDING',
   ACCEPTED = 'ACCEPTED',
   REJECTED = 'REJECTED',
@@ -18,6 +18,6 @@ export type AppointmentEvent = {
   kind: EventKind;
   message: string;
   createdAt: string;
-  payload?: Record<string, any> | null;
+  payload?: Record<string, unknown> | null;
 };
 

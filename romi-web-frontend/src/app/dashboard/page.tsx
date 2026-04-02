@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { apiFetch, apiFetchAuth, endpoints } from "@/lib/api";
@@ -38,7 +38,7 @@ export default function DashboardPage() {
   useEffect(() => {
     (async () => {
       try {
-        const m = await apiFetch("/auth/me", { method: "GET" });
+        const m = (await apiFetch("/auth/me", { method: "GET" })) as Me;
         setMe(m);
         setDoctorId(m?.sub || "");
       } catch { }

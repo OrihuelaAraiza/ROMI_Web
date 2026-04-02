@@ -8,6 +8,7 @@ import { useAuth } from "@/app/Auth/contexts/AuthContext";
 import Image from "next/image";
 import { useRealtime } from "@/hooks/useRealtime";
 import { apiFetchAuth, endpoints } from "@/lib/api";
+import type { NotificationDTO } from "@/types/notifications";
 
 const LINKS = [
   { href: "/", label: "Inicio" },
@@ -35,15 +36,11 @@ export default function Nav() {
     }
     (async () => {
       try {
-        const data = await apiFetchAuth(
-  endpoints.notifications.list(), 
-  { method: "GET" },
-);
+        const data = await apiFetchAuth<NotificationDTO[]>(endpoints.notifications.list(), {
+          method: "GET",
+        });
 
-
-        setUnread(
-          Array.isArray(data) ? data.filter((n: any) => !n.readAt).length : 0
-        );
+        setUnread(Array.isArray(data) ? data.filter((n) => !n.readAt).length : 0);
       } catch {
         setUnread(0);
       }
@@ -68,6 +65,8 @@ export default function Nav() {
   );
   const isPatient = roles.includes("PATIENT");
   const isAdmin = roles.includes("ADMIN");
+  const isDoctor = roles.includes("DOCTOR");
+  const showDoctorArea = isDoctor || isAdmin;
 
   const doctorDashboardHref = "/dashboard";
   const patientDashboardHref = "/appointments";
@@ -107,7 +106,7 @@ export default function Nav() {
 
           {/* DESKTOP */}
           <div className="hidden md:flex items-center gap-3">
-            {isLoggedIn && isAdmin && (
+            {isLoggedIn && showDoctorArea && (
               <Link
                 href={doctorDashboardHref}
                 className="inline-flex items-center gap-1.5 rounded-md border border-primary/30 bg-white px-3 py-2 text-sm font-medium text-primary hover:bg-primary/5 whitespace-nowrap"
@@ -187,7 +186,7 @@ export default function Nav() {
                 </Link>
               ))}
 
-              {isLoggedIn && isAdmin && (
+              {isLoggedIn && showDoctorArea && (
                 <Link
                   href={doctorDashboardHref}
                   onClick={() => setOpen(false)}

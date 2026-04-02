@@ -1,19 +1,20 @@
 "use client";
 import { useState, useEffect } from "react";
 import { apiFetchAuth, endpoints } from "@/lib/api";
-import { getToken } from "@/lib/auth";
-import { useRouter } from "next/navigation";
+
+type DoctorListItem = { id: string; name?: string; email?: string; specialty?: string };
 
 export default function PatientDashboard() {
-  const router = useRouter();
-  const [doctors, setDoctors] = useState<any[]>([]);
+  const [doctors, setDoctors] = useState<DoctorListItem[]>([]);
   const [selected, setSelected] = useState("");
   const [reason, setReason] = useState("");
   const [date, setDate] = useState("");
 
   async function loadDoctors() {
     try {
-      const res = await apiFetchAuth<any[]>(endpoints.users.listDoctors, { method: "GET" });
+      const res = await apiFetchAuth<DoctorListItem[]>(endpoints.users.listDoctors, {
+        method: "GET",
+      });
       setDoctors(res ?? []);
     } catch (err) {
       console.error("Error loading doctors:", err);
@@ -41,9 +42,9 @@ export default function PatientDashboard() {
     }
   }
 
-useEffect(() => {
-  loadDoctors();
-}, []);
+  useEffect(() => {
+    loadDoctors();
+  }, []);
 
   return (
     <div className="p-8">
@@ -59,7 +60,7 @@ useEffect(() => {
             <option value="">Selecciona un médico</option>
             {doctors.map((d) => (
               <option key={d.id} value={d.id}>
-                {d.name} — {d.specialty}
+                {d.name ?? d.email ?? d.id} — {d.specialty ?? "General"}
               </option>
             ))}
           </select>

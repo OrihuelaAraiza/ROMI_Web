@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { decodeJwt, getToken, clearToken, setToken } from "@/lib/auth";
 import { useRouter, usePathname } from "next/navigation";
 
@@ -28,7 +28,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
 
-  const boot = () => {
+  const boot = useCallback(() => {
     const t = getToken();
     if (!t) {
       setUser(null);
@@ -50,13 +50,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
     setUser({ id: String(decoded.sub), roles: rolesArr as Role[] });
     setReady(true);
-  };
+  }, [pathname, router]);
 
   useEffect(() => {
     boot();
-  }, [pathname]);
+  }, [boot]);
 
-  const login = (accessToken: string) => {
+  const login = useCallback((accessToken: string) => {
     setToken(accessToken);
     const d = decodeJwt<Decoded>(accessToken);
     const rawRoles = (d?.roles ?? d?.role) as (Role | string)[] | undefined;
@@ -66,19 +66,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (d?.sub) {
       setUser({ id: String(d.sub), roles: rolesArr as Role[] });
     } else {
-      // Descarta tokens inválidos y reinicia el estado
       clearToken();
       setUser(null);
     }
-  };
+  }, []);
 
-  const logout = () => {
+  const logout = useCallback(() => {
     clearToken();
     setUser(null);
     router.replace("/Auth/Login");
-  };
+  }, [router]);
 
-  const value = useMemo(() => ({ user, ready, login, logout }), [user, ready]);
+  const value = useMemo(() => ({ user, ready, login, logout }), [user, ready, login, logout]);
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }
 

@@ -10,7 +10,8 @@ import IntakePreview from "@/components/appointments/IntakePreview";
 import AltSlots from "@/components/appointments/AltSlots";
 import { apiFetchAuth, endpoints } from "@/lib/api";
 import { formatLocal } from "@/lib/time";
-import type { AppointmentStatus } from "@/lib/types";
+import type { AppointmentStatus, AiIntakeSummary } from "@/lib/types";
+import { errMsg } from "@/lib/errors";
 
 type AppointmentDetail = {
   id: string;
@@ -55,7 +56,7 @@ export default function PatientAppointmentPage() {
   const id = String(params?.id ?? "");
 
   const [appt, setAppt] = useState<AppointmentDetail | null>(null);
-  const [aiSummary, setAiSummary] = useState<any | null>(null);
+  const [aiSummary] = useState<AiIntakeSummary | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [notes, setNotes] = useState<Note[]>([]);
@@ -67,14 +68,33 @@ export default function PatientAppointmentPage() {
       setLoading(true);
       setError(null);
       try {
-        const raw = await apiFetchAuth<any>(
-          endpoints.appointments.byId(id),
-          { method: "GET" }
-        );
+        const raw = (await apiFetchAuth(endpoints.appointments.byId(id), {
+          method: "GET",
+        })) as Record<string, unknown>;
 
+        const doctorRaw = raw.doctor as Record<string, unknown> | undefined;
+        const start =
+          typeof raw.scheduledAt === "string"
+            ? raw.scheduledAt
+            : typeof raw.startUTC === "string"
+              ? raw.startUTC
+              : new Date().toISOString();
         const data: AppointmentDetail = {
-          ...raw,
-          status: normalizeStatus(raw.status),
+          id: String(raw.id ?? id),
+          status: normalizeStatus(String(raw.status ?? "PENDING")),
+          startUTC: start,
+          tz: typeof raw.tz === "string" ? raw.tz : "America/Mexico_City",
+          doctor: {
+            id: String(doctorRaw?.id ?? ""),
+            name: doctorRaw?.name != null ? String(doctorRaw.name) : undefined,
+            email: doctorRaw?.email != null ? String(doctorRaw.email) : undefined,
+          },
+          specialty: raw.specialty != null ? String(raw.specialty) : undefined,
+          reasonRejection:
+            raw.reasonRejection != null ? String(raw.reasonRejection) : null,
+          altSlots: Array.isArray(raw.altSlots)
+            ? (raw.altSlots as string[])
+            : undefined,
         };
 
         setAppt(data);
@@ -84,9 +104,9 @@ export default function PatientAppointmentPage() {
           { method: "GET" }
         );
         setNotes(Array.isArray(notesRes) ? notesRes : []);
-      } catch (e: any) {
+      } catch (e: unknown) {
         console.error(e);
-        setError(e?.message ?? "Error al cargar la cita");
+        setError(errMsg(e, "Error al cargar la cita"));
         setAppt(null);
       } finally {
         setLoading(false);
