@@ -20,13 +20,11 @@ import { HealthModule } from "./health/health.module";
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.DB_HOST,
-      port: Number(process.env.DB_PORT),
+      host: process.env.DB_HOST ?? 'localhost',
+      port: parseInt(process.env.DB_PORT ?? '5432', 10),
       username: process.env.DB_USER,
       password: process.env.DB_PASS,
       database: process.env.DB_NAME,
-
-      // Enable SSL only when explicitly requested
       ssl:
         (process.env.DB_SSL ?? 'false').toLowerCase() === 'true'
           ? { rejectUnauthorized: false }
@@ -36,7 +34,8 @@ import { HealthModule } from "./health/health.module";
           ? { sslmode: 'require' }
           : undefined,
       autoLoadEntities: true,
-      synchronize: true,
+      // Never auto-sync schema in production – run migrations instead
+      synchronize: process.env.NODE_ENV !== 'production',
     }),
     RolesModule,
     UsersModule,

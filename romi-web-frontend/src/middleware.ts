@@ -15,7 +15,7 @@ export function middleware(req: NextRequest) {
     }
   }
 
-  const protectedPrefixes = ['/appointments', '/dashboard', '/chat', '/doctor','/Seguimiento']; // ajusta a tus privadas
+  const protectedPrefixes = ['/appointments', '/dashboard', '/chat', '/doctor', '/patient', '/Seguimiento'];
 
   if (protectedPrefixes.some(p => pathname.startsWith(p)) && !token) {
     const url = req.nextUrl.clone();

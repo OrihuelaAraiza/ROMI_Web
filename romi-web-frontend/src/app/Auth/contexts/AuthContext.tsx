@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { decodeJwt, getToken, clearToken, setToken } from "@/lib/auth";
 import { useRouter, usePathname } from "next/navigation";
 
@@ -22,13 +22,20 @@ const Ctx = createContext<AuthCtx>({
   logout: () => {},
 });
 
+function parseRoles(decoded: Decoded | null): Role[] {
+  if (!decoded) return [];
+  const raw = (decoded.roles ?? decoded.role) as (Role | string)[] | Role | string | undefined;
+  if (!raw) return [];
+  return (Array.isArray(raw) ? raw : [raw]).map((r) => String(r).toUpperCase() as Role);
+}
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [ready, setReady] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
-  const boot = () => {
+  const boot = useCallback(() => {
     const t = getToken();
     if (!t) {
       setUser(null);
@@ -37,48 +44,42 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
     const decoded = decodeJwt<Decoded>(t);
     const now = Math.floor(Date.now() / 1000);
-    const rawRoles = (decoded?.roles ?? decoded?.role) as (Role | string)[] | undefined;
-    const rolesArr = rawRoles
-      ? (Array.isArray(rawRoles) ? rawRoles : [rawRoles]).map((r) => String(r).toUpperCase() as Role)
-      : [];
-    if (!decoded || (decoded.exp && decoded.exp < now)) {
+    const roles = parseRoles(decoded);
+
+    if (!decoded || (decoded.exp && decoded.exp < now) || roles.length === 0) {
       clearToken();
       setUser(null);
       setReady(true);
       if (!pathname?.startsWith("/Auth")) router.replace("/Auth/Login");
       return;
     }
-    setUser({ id: String(decoded.sub), roles: rolesArr as Role[] });
+    setUser({ id: decoded.sub, roles });
     setReady(true);
-  };
+  }, [pathname, router]);
 
   useEffect(() => {
     boot();
-  }, [pathname]);
+  }, [boot]);
 
-  const login = (accessToken: string) => {
+  const login = useCallback((accessToken: string) => {
     setToken(accessToken);
-    const d = decodeJwt<Decoded>(accessToken);
-    const rawRoles = (d?.roles ?? d?.role) as (Role | string)[] | undefined;
-    const rolesArr = rawRoles
-      ? (Array.isArray(rawRoles) ? rawRoles : [rawRoles]).map((r) => String(r).toUpperCase() as Role)
-      : [];
-    if (d?.sub) {
-      setUser({ id: String(d.sub), roles: rolesArr as Role[] });
+    const decoded = decodeJwt<Decoded>(accessToken);
+    const roles = parseRoles(decoded);
+    if (decoded?.sub && roles.length > 0) {
+      setUser({ id: decoded.sub, roles });
     } else {
-      // Descarta tokens inválidos y reinicia el estado
       clearToken();
       setUser(null);
     }
-  };
+  }, []);
 
-  const logout = () => {
+  const logout = useCallback(() => {
     clearToken();
     setUser(null);
     router.replace("/Auth/Login");
-  };
+  }, [router]);
 
-  const value = useMemo(() => ({ user, ready, login, logout }), [user, ready]);
+  const value = useMemo(() => ({ user, ready, login, logout }), [user, ready, login, logout]);
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }
 
