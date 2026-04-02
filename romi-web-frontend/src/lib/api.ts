@@ -3,7 +3,7 @@ import { getToken } from "./auth";
 export const API_BASE =
   process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:3001";
 
-export async function apiFetch(path: string, init: RequestInit = {}) {
+export async function apiFetch(path: string, init: RequestInit = {}): Promise<unknown> {
   const url = `${API_BASE}${path}`;
   const headers = new Headers(init.headers ?? {});
   if (!headers.has("Content-Type")) {
@@ -35,7 +35,7 @@ export async function apiFetch(path: string, init: RequestInit = {}) {
   return res.json();
 }
 
-export async function apiFetchAuth<T = any>(
+export async function apiFetchAuth<T = unknown>(
   path: string,
   init: RequestInit = {},
 ) {

@@ -3,6 +3,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { apiFetchAuth, endpoints } from "@/lib/api";
+import { errMsg } from "@/lib/errors";
+
+type AppointmentDetailData = {
+  patient?: { email?: string };
+  doctor?: { email?: string };
+  scheduledAt?: string;
+  status?: string;
+  reason?: string | null;
+};
 
 type Note = {
   id: string;
@@ -28,7 +37,7 @@ export default function AppointmentDetailPage() {
   const params = useParams<{ id: string }>();
   const router = useRouter();
 
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<AppointmentDetailData | null>(null);
   const [notes, setNotes] = useState<Note[]>([]);
   const [pre, setPre] = useState<Preconsultation | null>(null);
 
@@ -44,7 +53,7 @@ export default function AppointmentDetailPage() {
   const loadAll = async (appointmentId: string) => {
 
     try {
-      const res = await apiFetchAuth(endpoints.appointments.byId(appointmentId));
+      const res = (await apiFetchAuth(endpoints.appointments.byId(appointmentId))) as AppointmentDetailData;
       console.log("✅ Cita recibida:", res);
       setData(res);
 
@@ -61,10 +70,10 @@ export default function AppointmentDetailPage() {
           { method: "GET" }
         );
         setPre(preRes ?? null);
-      } catch (e) {
+      } catch {
         setPre(null);
       }
-    } catch (e) {
+    } catch {
       // si falla algo fuerte, dejamos data en null para que se vea "Loading…"
       setData(null);
       setNotes([]);
@@ -108,9 +117,9 @@ export default function AppointmentDetailPage() {
         { method: "GET" }
       );
       setNotes(Array.isArray(notesRes) ? notesRes : []);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("❌ Error al guardar nota:", err);
-      alert(err?.message ?? "Error al guardar la nota");
+      alert(errMsg(err, "Error al guardar la nota"));
     } finally {
       setSaving(false);
     }

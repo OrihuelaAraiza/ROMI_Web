@@ -4,6 +4,23 @@ import { useEffect, useMemo, useState } from "react";
 import DoctorsHero from "./DoctorHero";
 import DoctorCard, { Doctor } from "./DoctorCard";
 import { apiFetchAuth, endpoints } from "@/lib/api";
+import { errMsg } from "@/lib/errors";
+
+type ApiDoctorRow = {
+  id: number | string;
+  name?: string;
+  fullName?: string;
+  specialty?: string;
+  role?: string;
+  city?: string;
+  location?: string;
+  price?: number;
+  rating?: number;
+  years_exp?: number;
+  next_available?: string;
+  languages?: string[];
+  is_available?: boolean;
+};
 
 function normalize(s?: string) {
   if (!s) return "";
@@ -36,11 +53,11 @@ export default function DoctorsBrowser() {
         setLoading(true);
         setError(null);
 
-        const data = await apiFetchAuth<Doctor[]>(endpoints.users.listDoctors, { method: "GET" });
+        const data = await apiFetchAuth<ApiDoctorRow[]>(endpoints.users.listDoctors, { method: "GET" });
 
         if (!alive) return;
         setDoctors(
-          (data ?? []).map((x: any) => ({
+          (data ?? []).map((x) => ({
             id: x.id,
             name: x.name ?? x.fullName ?? "Dr. Sin Nombre",
             specialty: x.specialty ?? x.role ?? "General",
@@ -53,8 +70,8 @@ export default function DoctorsBrowser() {
             is_available: x.is_available ?? true,
           }))
         );
-      } catch (e: any) {
-        setError(e?.message || "No se pudieron cargar los doctores.");
+      } catch (e: unknown) {
+        setError(errMsg(e, "No se pudieron cargar los doctores."));
       } finally {
         setLoading(false);
       }

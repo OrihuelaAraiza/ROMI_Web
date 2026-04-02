@@ -2,14 +2,15 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { getToken } from "@/lib/auth";
+import { errMsg } from "@/lib/errors";
 
 type Role = "doctor" | "patient";
 
 type Incoming =
   | { type: "system"; text: string }
-  | { type: "sdp-offer"; sdp: any }
-  | { type: "sdp-answer"; sdp: any }
-  | { type: "ice-candidate"; candidate: any }
+  | { type: "sdp-offer"; sdp: RTCSessionDescriptionInit }
+  | { type: "sdp-answer"; sdp: RTCSessionDescriptionInit }
+  | { type: "ice-candidate"; candidate: RTCIceCandidateInit }
   | { type: "alert"; level: "info" | "warn" | "critical"; text: string }
   | { type: "details"; diagnosis: string; prescription: string[]; followUp: string }
   | { type: "call_link"; url: string; from?: Role }
@@ -208,7 +209,7 @@ export function useWebRTCCall(appointmentId: string, role: Role) {
         };
 
         ws.onclose = (e) => {
-          if (!cancelled && !error) {
+          if (!cancelled) {
             setError(
               `Conexión cerrada (${e.code})${e.reason ? ": " + e.reason : ""}`
             );
@@ -264,11 +265,10 @@ export function useWebRTCCall(appointmentId: string, role: Role) {
             push(`Paciente: listo ✅`);
           }
         };
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error("Error iniciando WebRTC:", err);
         setError(
-          err?.message ??
-            "Ocurrió un error al iniciar la videollamada. Intenta recargar."
+          errMsg(err, "Ocurrió un error al iniciar la videollamada. Intenta recargar.")
         );
       }
     };

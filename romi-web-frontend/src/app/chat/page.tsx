@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { Suspense, useEffect, useRef, useState } from "react";
 import Image from "next/image";
@@ -22,7 +22,7 @@ function ChatPageInner() {
   useEffect(() => {
     (async () => {
       try {
-        const me = await apiFetch("/auth/me", { method: "GET" });
+        const me = (await apiFetch("/auth/me", { method: "GET" })) as { sub?: string };
         setUserId(me?.sub || null);
       } catch {}
     })();
@@ -59,9 +59,13 @@ function ChatPageInner() {
 
     ws.onmessage = (ev) => {
       try {
-        const payload = JSON.parse(ev.data as any);
+        const payload = JSON.parse(typeof ev.data === "string" ? ev.data : String(ev.data)) as {
+          type?: string;
+          text?: string;
+          on?: boolean;
+        };
         if (payload.type === "bot_message") {
-          setMessages((p) => [...p, { from: "bot", text: payload.text }]);
+          setMessages((p) => [...p, { from: "bot", text: payload.text ?? "" }]);
         } else if (payload.type === "typing") {
           setTyping(!!payload.on);
         }

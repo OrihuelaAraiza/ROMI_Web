@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { getToken } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 import { apiFetch, endpoints } from "@/lib/api";
+import { errMsg } from "@/lib/errors";
 const numberInput = z
   .string()
   .optional()
@@ -49,7 +50,19 @@ export default function RegisterPage() {
   const watchRole = watch("role", "patient");
   const onSubmit = async (data: FormData) => {
     try {
-      const payload: any = {
+      type RegisterPayload = {
+        name?: string;
+        email: string;
+        password: string;
+        role: string;
+        specialty?: string;
+        city?: string;
+        languages?: string[];
+        price?: number;
+        yearsExp?: number;
+        nextAvailable?: string;
+      };
+      const payload: RegisterPayload = {
         name: data.name,
         email: data.email,
         password: data.password,
@@ -72,12 +85,9 @@ export default function RegisterPage() {
         body: JSON.stringify(payload),
       });
       router.replace("/Auth/Login");
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Register error:", err);
-      const raw = err?.message ?? "Ocurrió un error inesperado.";
-      const message =
-        Array.isArray(raw) ? raw.join(" • ") : String(raw);
-      setError("root", { message });
+      setError("root", { message: errMsg(err, "Ocurrió un error inesperado.") });
     }
   };
   useEffect(() => {

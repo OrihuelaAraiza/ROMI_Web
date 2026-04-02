@@ -5,6 +5,7 @@ import { CalendarDays, User, Star } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { apiFetchAuth, endpoints } from "@/lib/api";
+import { errMsg } from "@/lib/errors";
 import { getToken } from "@/lib/auth";
 
 export default function NewAppointment({ doctorId }: { doctorId: string }) {
@@ -13,7 +14,14 @@ export default function NewAppointment({ doctorId }: { doctorId: string }) {
   const [hydrated, setHydrated] = useState(false);
   const [token, setToken] = useState<string | null>(null);
 
-  const [doctor, setDoctor] = useState<any>(null);
+  type DoctorRow = {
+    id: string;
+    name?: string;
+    fullName?: string;
+    specialty?: string;
+    years_exp?: number;
+  };
+  const [doctor, setDoctor] = useState<DoctorRow | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [date, setDate] = useState("");
@@ -36,13 +44,13 @@ export default function NewAppointment({ doctorId }: { doctorId: string }) {
     (async () => {
       try {
         setLoading(true);
-        const list = await apiFetchAuth<any[]>(endpoints.users.listDoctors, {
+        const list = await apiFetchAuth<DoctorRow[]>(endpoints.users.listDoctors, {
           method: "GET",
         });
         const d = list.find((x) => String(x.id) === String(doctorId));
         setDoctor(d || null);
-      } catch (e: any) {
-        setError(e?.message ?? "Error al cargar el doctor");
+      } catch (e: unknown) {
+        setError(errMsg(e, "Error al cargar el doctor"));
       } finally {
         setLoading(false);
       }
@@ -69,8 +77,8 @@ export default function NewAppointment({ doctorId }: { doctorId: string }) {
         body: JSON.stringify(payload),
       });
       router.push(`/appointments/success?id=${res.id}`);
-    } catch (err: any) {
-      setFormMsg(err.message ?? "Ocurrió un error al agendar la cita");
+    } catch (err: unknown) {
+      setFormMsg(errMsg(err, "Ocurrió un error al agendar la cita"));
     } finally {
       setSending(false);
     }

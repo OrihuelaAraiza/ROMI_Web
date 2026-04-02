@@ -10,7 +10,7 @@ export function useAppointments() {
 
   const accept = useCallback((id: string) => {
     const a = acceptAppointment(id);
-    simulateReminders(a!);
+    simulateReminders();
     setItems(listAppointments());
     return a;
   }, []);

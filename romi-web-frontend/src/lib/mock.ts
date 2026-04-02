@@ -38,12 +38,12 @@ export function rejectAppointment(id: string, reason: string) {
   const a = setStatus(id, 'rejected');
   if (a) {
     a.reasonRejection = reason || 'No disponible';
-    a.altSlots = getAltSlots(a.startUTC, a.tz);
+    a.altSlots = getAltSlots(a.startUTC);
   }
   return a;
 }
 
-export function getAltSlots(startUTC: string, tz: string) {
+export function getAltSlots(startUTC: string) {
   const base = new Date(startUTC).getTime();
   const opts = [6, 12, 24, 48].map(h => new Date(base + h * 3600000).toISOString());
   return opts;
@@ -53,7 +53,7 @@ const PRE_KEY = 'romi_pre_consult';
 export function savePreConsult(data: PreConsultAnswers) {
   try {
     const all = JSON.parse(localStorage.getItem(PRE_KEY) || '[]');
-    const without = all.filter((x: any) => x.appointmentId !== data.appointmentId);
+    const without = (all as PreConsultAnswers[]).filter((x) => x.appointmentId !== data.appointmentId);
     without.push(data);
     localStorage.setItem(PRE_KEY, JSON.stringify(without));
     return true;
@@ -65,11 +65,11 @@ export function savePreConsult(data: PreConsultAnswers) {
 export function getPreConsult(appointmentId: string): PreConsultAnswers | null {
   try {
     const all = JSON.parse(localStorage.getItem(PRE_KEY) || '[]');
-    return all.find((x: any) => x.appointmentId === appointmentId) || null;
+    return (all as PreConsultAnswers[]).find((x) => x.appointmentId === appointmentId) || null;
   } catch { return null; }
 }
 
-export function simulateReminders(_appointment: Appointment) {
+export function simulateReminders() {
   // no-op in mock; UI will compute banners from time
 }
 
@@ -89,11 +89,8 @@ export function getAiIntakeSummary(appointmentId: string): AiIntakeSummary {
 
 export function toast(msg: string) {
   if (typeof window !== 'undefined') {
-    // simple shim; replace with shadcn toast if available
-    // eslint-disable-next-line no-alert
     window.alert(msg);
   } else {
-    // eslint-disable-next-line no-console
     console.log('[toast]', msg);
   }
 }

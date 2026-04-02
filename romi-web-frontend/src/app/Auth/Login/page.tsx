@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { apiFetch } from "@/lib/api";
 import { setAuthToken } from "@/lib/authToken";
 import { useAuth } from "@/app/Auth/contexts/AuthContext";
+import { errMsg } from "@/lib/errors";
 
 const schema = z.object({
   email: z.string().email("Correo inválido"),
@@ -23,17 +24,17 @@ function LoginInner() {
 
   async function onSubmit(data: FormData) {
     try {
-      const res = await apiFetch('/auth/login', {
-        body: JSON.stringify({ email: data.email, password: data.password })
-      });
+      const res = (await apiFetch("/auth/login", {
+        body: JSON.stringify({ email: data.email, password: data.password }),
+      })) as { access_token?: string };
       if (!res?.access_token) throw new Error("No access_token");
 
       setAuthToken(res.access_token);
       login(res.access_token);
 
       try {
-        const me = await apiFetch('/auth/me', { method: 'GET' });
-        const roles: string[] = (me?.roles ?? []).map((r: any) => String(r).toUpperCase());
+        const me = (await apiFetch("/auth/me", { method: "GET" })) as { roles?: unknown[] };
+        const roles: string[] = (me?.roles ?? []).map((r) => String(r).toUpperCase());
         const dest = roles.includes('DOCTOR')
           ? '/dashboard'
           : roles.includes('PATIENT')
@@ -44,8 +45,8 @@ function LoginInner() {
       } catch {}
 
       window.location.href = '/dashboard';
-    } catch (err: any) {
-      const message = err?.message || 'Correo o contraseña incorrectos.';
+    } catch (err: unknown) {
+      const message = errMsg(err, "Correo o contraseña incorrectos.");
       setError("root", { message });
     }
   }

@@ -1,8 +1,9 @@
-﻿"use client";
+"use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { apiFetchAuth, endpoints } from "@/lib/api";
+import { errMsg } from "@/lib/errors";
 import {
   Trash2,
   CalendarDays,
@@ -42,8 +43,8 @@ export default function PatientAppointmentsPage() {
       );
       const data = Array.isArray(res) ? res : res.items ?? [];
       setItems(data);
-    } catch (e: any) {
-      setError(e?.message ?? "Error al cargar citas");
+    } catch (e: unknown) {
+      setError(errMsg(e, "Error al cargar citas"));
     } finally {
       setLoading(false);
     }
@@ -62,35 +63,31 @@ export default function PatientAppointmentsPage() {
         method: "DELETE",
       });
       fetchData();
-    } catch (err: any) {
-      alert("Error al eliminar la cita: " + err.message);
+    } catch (err: unknown) {
+      alert("Error al eliminar la cita: " + errMsg(err));
     }
   };
 
-  const now = new Date();
+  const upcoming = useMemo(() => {
+    const now = new Date();
+    return items.filter((ap) => {
+      const d = new Date(ap.scheduledAt);
+      return d >= now && (ap.status === "PENDING" || ap.status === "ACCEPTED");
+    });
+  }, [items]);
 
-  const upcoming = useMemo(
-    () =>
-      items.filter((ap) => {
-        const d = new Date(ap.scheduledAt);
-        return d >= now && (ap.status === "PENDING" || ap.status === "ACCEPTED");
-      }),
-    [items, now]
-  );
-
-  const history = useMemo(
-    () =>
-      items.filter((ap) => {
-        const d = new Date(ap.scheduledAt);
-        return (
-          d < now ||
-          ap.status === "ATTENDED" ||
-          ap.status === "CANCELLED" ||
-          ap.status === "REJECTED"
-        );
-      }),
-    [items, now]
-  );
+  const history = useMemo(() => {
+    const now = new Date();
+    return items.filter((ap) => {
+      const d = new Date(ap.scheduledAt);
+      return (
+        d < now ||
+        ap.status === "ATTENDED" ||
+        ap.status === "CANCELLED" ||
+        ap.status === "REJECTED"
+      );
+    });
+  }, [items]);
 
   const stats = useMemo(
     () => ({

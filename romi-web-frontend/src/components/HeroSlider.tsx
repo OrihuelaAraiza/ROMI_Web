@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useRef, useState } from "react";
 
@@ -12,24 +12,24 @@ type Slide = {
 
 const slides: Slide[] = [
   {
-    title: "ROMI - Tu Asistente MÃ©dico Inteligente",
+    title: "ROMI - Tu Asistente Médico Inteligente",
     subtitle: "Inteligencia artificial al servicio de la medicina",
-    description: "ObtÃ©n respuestas mÃ©dicas precisas y actualizadas las 24 horas del dÃ­a",
+    description: "Obtén respuestas médicas precisas y actualizadas las 24 horas del día",
     ctaText: "Probar ROMI",
     ctaHref: "/chat",
   },
   {
     title: "Telemedicina integrada",
-    subtitle: "Agenda, videollamadas y notas clÃ­nicas",
-    description: "Todo en un solo lugar, seguro y rÃ¡pido",
+    subtitle: "Agenda, videollamadas y notas clínicas",
+    description: "Todo en un solo lugar, seguro y rápido",
     ctaText: "Ver funciones",
     ctaHref: "/Presentation",
   },
   {
     title: "Cumplimiento y seguridad",
-    subtitle: "Roles, auditorÃ­a y respaldos",
-    description: "Mejores prÃ¡cticas para proteger a tus pacientes",
-    ctaText: "ConÃ³cenos",
+    subtitle: "Roles, auditoría y respaldos",
+    description: "Mejores prácticas para proteger a tus pacientes",
+    ctaText: "Conócenos",
     ctaHref: "/AboutUs",
   },
 ];
@@ -41,7 +41,7 @@ export default function HeroSlider() {
 
   // Autoplay (cambia cada 6s). Se pausa al interactuar con dots.
   useEffect(() => {
-    timer.current && clearInterval(timer.current);
+    if (timer.current) clearInterval(timer.current);
     timer.current = setInterval(() => setI((v) => (v + 1) % total), 6000);
     return () => {
       if (timer.current) clearInterval(timer.current);
