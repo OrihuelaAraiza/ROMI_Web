@@ -1,10 +1,16 @@
 {
-  "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.1",
-    "@heroicons/react": "^2.2.0",
-    "@material-tailwind/react": "^2.1.10",
-    "@mui/material": "^7.3.1",
-    "lucide-react": "^0.542.0"
+  "name": "romi-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ROMI telehealth platform – monorepo root",
+  "workspaces": [
+    "romi-web-frontend",
+    "romi-web-backend"
+  ],
+  "scripts": {
+    "dev:frontend": "npm run dev --workspace=romi-web-frontend",
+    "dev:backend": "npm run start:dev --workspace=romi-web-backend",
+    "build:frontend": "npm run build --workspace=romi-web-frontend",
+    "build:backend": "npm run build --workspace=romi-web-backend"
   }
 }
