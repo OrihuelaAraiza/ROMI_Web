@@ -2,6 +2,7 @@ import "./globals.css";
 import Navbar from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { AuthProvider } from "./Auth/contexts/AuthContext";
+import MedicalBg from "@/components/MedicalBg";
 import { Fredoka, Poppins } from "next/font/google";
 
 const fredoka = Fredoka({
@@ -34,9 +35,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es" className={`${fredoka.className} ${fredoka.variable} ${poppins.variable}`}>
       <body className="bg-gradient-to-b from-[#D58B88] to-[#EBD9D8] overflow-x-hidden">
+        <MedicalBg />
         <AuthProvider>
           <Navbar />
-          <main className="max-w-6xl mx-auto px-4">{children}</main>
+          <main className="relative z-10 max-w-6xl mx-auto px-4">{children}</main>
           <Footer />
         </AuthProvider>
       </body>
