@@ -195,7 +195,7 @@ export default function Nav() {
                   style={{ animationDelay: `${i * 35}ms` }}
                   className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
                     isActive(l.href)
-                      ? "text-primary bg-primary/8 font-semibold"
+                      ? "text-primary bg-[#d58b88]/10 font-semibold"
                       : "text-gray-700 hover:text-gray-900 hover:bg-gray-50 active:scale-[0.98]"
                   }`}
                 >

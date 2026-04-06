@@ -9,12 +9,12 @@ export default function Home() {
       <section className="relative overflow-hidden pt-4 pb-8 mt-8 sm:mt-14 lg:mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          {/* Mobile: stacked ROMI */}
-          <div className="flex flex-col items-center gap-2 md:hidden animate-fade-in-up">
-            <h1 className="text-[72px] xs:text-[86px] font-bold text-white tracking-widest leading-none font-fredoka-one">
+          {/* Mobile: stacked ROMI (< 768px) */}
+          <div className="flex flex-col items-center gap-0 md:hidden">
+            <h1 className="text-[68px] font-bold text-white tracking-widest leading-none font-fredoka-one drop-shadow-lg animate-fade-in-up">
               ROMI
             </h1>
-            <div className="relative w-64 aspect-square">
+            <div className="relative w-56 aspect-square">
               <Image
                 src="/images/imagen_bienvenida.png"
                 alt="ROMI - Asistente Médico"
@@ -26,7 +26,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Desktop: flanked letters layout */}
+          {/* Desktop: flanked letters layout (≥ 768px) */}
           <div className="hidden md:grid grid-cols-3 gap-0 items-center min-h-[340px] lg:min-h-[380px]">
             <div className="flex items-center justify-end">
               <h1 className="text-[80px] lg:text-[100px] font-bold text-white tracking-widest leading-none -mr-10 lg:-mr-11 font-fredoka-one animate-fade-in-up drop-shadow-lg">
@@ -52,7 +52,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="text-center mt-2 md:-mt-4 animate-fade-in-up" style={{ animationDelay: "200ms" }}>
+          <div className="text-center mt-4 md:-mt-4 animate-fade-in-up" style={{ animationDelay: "200ms" }}>
             <h2 className="text-2xl sm:text-3xl md:text-4xl text-white mb-3 font-fredoka-one">
               Formación Médica Integral
             </h2>
@@ -217,7 +217,10 @@ export default function Home() {
               </Reveal>
 
               <div className="relative max-w-3xl mx-auto">
-                <div className="pointer-events-none absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-[#d58b88]/30" />
+                {/* Desktop: center vertical line */}
+                <div className="pointer-events-none absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-[#d58b88]/30 hidden md:block" />
+                {/* Mobile: left vertical line */}
+                <div className="pointer-events-none absolute left-5 top-0 h-full w-px bg-[#d58b88]/30 md:hidden" />
 
                 {[
                   { year: "2020", side: "left",  title: "Fundación de HubROMI",    desc: "Inicio de la plataforma con enfoque en telemedicina." },
@@ -227,11 +230,14 @@ export default function Home() {
                   { year: "2024", side: "left",  title: "Portal Premium",          desc: "Lanzamiento de servicios especializados." },
                 ].map(({ year, side, title, desc }, i) => (
                   <Reveal key={year} type={side === "left" ? "left" : "right"} delay={i * 80}>
-                    <div className="relative grid grid-cols-1 md:grid-cols-2 gap-6 mb-10 sm:mb-12 items-center">
-                      <span className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d58b88] ring-8 ring-white z-10 transition-transform hover:scale-125" />
-                      <div className={side === "left" ? "md:text-right md:pr-8 pl-6 md:pl-0" : "md:col-start-2 md:pl-8 pl-6 md:pl-0"}>
+                    <div className="relative grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-12 items-start md:items-center">
+                      {/* Mobile: dot on left rail */}
+                      <span className="md:hidden absolute left-5 top-1 h-3 w-3 -translate-x-1/2 rounded-full bg-[#d58b88] ring-4 ring-white z-10" />
+                      {/* Desktop: dot at center */}
+                      <span className="hidden md:block absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d58b88] ring-8 ring-white z-10 transition-transform hover:scale-125" />
+                      <div className={`pl-12 md:pl-0 ${side === "left" ? "md:text-right md:pr-8" : "md:col-start-2 md:pl-8"}`}>
                         <p className="text-[#d58b88] font-bold text-base sm:text-lg">{year}</p>
-                        <h4 className="text-lg sm:text-xl font-semibold text-gray-900">{title}</h4>
+                        <h4 className="text-base sm:text-xl font-semibold text-gray-900">{title}</h4>
                         <p className="text-gray-600 text-xs sm:text-sm mt-1 sm:mt-2">{desc}</p>
                       </div>
                     </div>
