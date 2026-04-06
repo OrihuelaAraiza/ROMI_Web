@@ -53,11 +53,11 @@ export default function Footer() {
   return (
     <footer className="bg-[#2d2d2d] text-white">
       {/* Main grid */}
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-14 grid gap-10 md:grid-cols-3">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14 grid gap-8 sm:gap-10 sm:grid-cols-2 md:grid-cols-3">
 
         {/* Column 1 — Horario + contacto */}
         <div className="space-y-4">
-          <h3 className="text-lg font-fredoka-one text-[#dabebd]">Horario de Atención</h3>
+          <h3 className="text-base sm:text-lg font-fredoka-one text-[#dabebd]">Horario de Atención</h3>
           <ul className="space-y-2 text-sm font-poppins text-gray-300">
             <li className="flex items-center gap-2">
               <Clock className="h-4 w-4 text-[#d58b88] flex-shrink-0" />
@@ -72,16 +72,16 @@ export default function Footer() {
           <div className="pt-2 space-y-2 text-sm font-poppins text-gray-300">
             <a
               href="mailto:contacto@romiai.com.mx"
-              className="flex items-center gap-2 hover:text-[#d58b88] transition"
+              className="flex items-center gap-2 hover:text-[#d58b88] transition-colors duration-200 group"
             >
-              <Mail className="h-4 w-4 text-[#d58b88] flex-shrink-0" />
+              <Mail className="h-4 w-4 text-[#d58b88] flex-shrink-0 group-hover:scale-110 transition-transform duration-200" />
               contacto@romiai.com.mx
             </a>
             <a
               href="tel:+522224335093"
-              className="flex items-center gap-2 hover:text-[#d58b88] transition"
+              className="flex items-center gap-2 hover:text-[#d58b88] transition-colors duration-200 group"
             >
-              <Phone className="h-4 w-4 text-[#d58b88] flex-shrink-0" />
+              <Phone className="h-4 w-4 text-[#d58b88] flex-shrink-0 group-hover:scale-110 transition-transform duration-200" />
               22 24 33 50 93
             </a>
           </div>
@@ -89,11 +89,11 @@ export default function Footer() {
 
         {/* Column 2 — Redes sociales */}
         <div className="space-y-4">
-          <h3 className="text-lg font-fredoka-one text-[#dabebd]">Síguenos</h3>
+          <h3 className="text-base sm:text-lg font-fredoka-one text-[#dabebd]">Síguenos</h3>
           <p className="text-xs text-gray-400 font-poppins leading-relaxed">
             Entérate de nuestras novedades, próximas actualizaciones y datos curiosos.
           </p>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2.5 sm:gap-3">
             {SOCIAL_LINKS.map((s) => (
               <a
                 key={s.label}
@@ -101,7 +101,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`ROMI en ${s.label}`}
-                className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-white/10 hover:bg-[#d58b88] transition text-gray-300 hover:text-white"
+                className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-white/10 hover:bg-[#d58b88] hover:scale-110 hover:shadow-lg hover:shadow-[#d58b88]/30 transition-all duration-200 text-gray-300 hover:text-white active:scale-95"
               >
                 {s.icon}
               </a>
@@ -110,8 +110,8 @@ export default function Footer() {
         </div>
 
         {/* Column 3 — Dirección */}
-        <div className="space-y-4">
-          <h3 className="text-lg font-fredoka-one text-[#dabebd]">Dirección</h3>
+        <div className="space-y-4 sm:col-span-2 md:col-span-1">
+          <h3 className="text-base sm:text-lg font-fredoka-one text-[#dabebd]">Dirección</h3>
           <address className="not-italic text-sm font-poppins text-gray-300 flex items-start gap-2 leading-relaxed">
             <MapPin className="h-4 w-4 text-[#d58b88] flex-shrink-0 mt-0.5" />
             <span>
@@ -127,9 +127,12 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-400 font-poppins">
-          <p>© 2026 Red de Optimización Médica Inteligente. Todos los derechos reservados.</p>
-          <Link href="/aviso-privacidad" className="hover:text-[#d58b88] transition">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-400 font-poppins">
+          <p className="text-center sm:text-left">© 2026 Red de Optimización Médica Inteligente. Todos los derechos reservados.</p>
+          <Link
+            href="/aviso-privacidad"
+            className="hover:text-[#d58b88] transition-colors duration-200 whitespace-nowrap"
+          >
             Aviso de Privacidad
           </Link>
         </div>

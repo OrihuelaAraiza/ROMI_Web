@@ -1,25 +1,15 @@
 import Link from "next/link";
 import {
-  Mail,
-  Phone,
-  MapPin,
-  HelpCircle,
-  MessageCircle,
-  Headphones,
-  Compass,
-  Send,
-  Clock,
-  ExternalLink,
+  Mail, Phone, MapPin, HelpCircle, MessageCircle, Headphones,
+  Compass, Send, Clock, ExternalLink,
 } from "lucide-react";
+import Reveal from "@/components/Reveal";
 
-export const metadata = {
-  title: "ROMI — Contacto",
-};
+export const metadata = { title: "ROMI — Contacto" };
 
 const SOCIAL_LINKS = [
   {
-    label: "Instagram",
-    handle: "@ajolomed.romi",
+    label: "Instagram", handle: "@ajolomed.romi",
     href: "https://www.instagram.com/ajolomed.romi?igsh=MWdzaXZsbGVnb21uMA==",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden="true">
@@ -28,8 +18,7 @@ const SOCIAL_LINKS = [
     ),
   },
   {
-    label: "Facebook",
-    handle: "ROMI Asistente Inteligente",
+    label: "Facebook", handle: "ROMI Asistente Inteligente",
     href: "https://www.facebook.com/people/ROMI-asistente-inteligente/61573823379860/",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden="true">
@@ -38,8 +27,7 @@ const SOCIAL_LINKS = [
     ),
   },
   {
-    label: "LinkedIn",
-    handle: "ROMI Asistente Médico",
+    label: "LinkedIn", handle: "ROMI Asistente Médico",
     href: "https://mx.linkedin.com/company/romiasistentemedicovirtualinteligente",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden="true">
@@ -48,8 +36,7 @@ const SOCIAL_LINKS = [
     ),
   },
   {
-    label: "TikTok",
-    handle: "@romi_ajolomedico",
+    label: "TikTok", handle: "@romi_ajolomedico",
     href: "https://www.tiktok.com/@romi_ajolomedico",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden="true">
@@ -58,8 +45,7 @@ const SOCIAL_LINKS = [
     ),
   },
   {
-    label: "X (Twitter)",
-    handle: "@Romi_Ajolomed",
+    label: "X (Twitter)", handle: "@Romi_Ajolomed",
     href: "https://x.com/Romi_Ajolomed",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden="true">
@@ -73,14 +59,17 @@ function SideLink({ href, title, active = false }: { href: string; title: string
   return (
     <Link
       href={href}
-      className={`flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-medium transition ${
-        active ? "bg-[#d58b88]/10 text-[#d58b88]" : "text-gray-700 hover:bg-gray-100"
+      className={`flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-200 active:scale-[0.98] ${
+        active ? "bg-[#d58b88]/10 text-[#d58b88] font-semibold" : "text-gray-700 hover:bg-gray-100"
       }`}
     >
       {title}
     </Link>
   );
 }
+
+const inputClass =
+  "w-full rounded-xl border border-[#d58b88]/30 bg-white px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#d58b88]/60 focus:border-[#d58b88]/60 font-poppins transition-all duration-200 hover:border-[#d58b88]/50 placeholder:text-gray-400";
 
 export default function ContactPage() {
   return (
@@ -89,47 +78,38 @@ export default function ContactPage() {
       {/* HERO */}
       <section className="relative left-1/2 -translate-x-1/2 w-screen overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-[#d58b88] via-[#d79c9c] to-[#dabebd]" />
-        <div className="absolute -top-24 -left-24 w-72 h-72 bg-[#edcccc]/40 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#dabebd]/40 rounded-full blur-3xl" />
+        <div className="absolute -top-24 -left-24 w-64 sm:w-72 h-64 sm:h-72 bg-[#edcccc]/40 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-72 sm:w-80 h-72 sm:h-80 bg-[#dabebd]/40 rounded-full blur-3xl" />
 
-        <div className="relative mx-auto max-w-7xl px-6 pt-28 pb-24">
-          <div className="grid md:grid-cols-5 gap-10 items-center">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 lg:pt-28 pb-16 sm:pb-20 lg:pb-24">
+          <div className="grid md:grid-cols-5 gap-8 lg:gap-10 items-center">
             <div className="md:col-span-3 text-white">
-              <p className="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur px-4 py-1.5 text-xs font-medium mb-6">
-                <MessageCircle className="h-4 w-4" />
-                Estamos aquí para ayudarte
+              <p className="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur px-4 py-1.5 text-xs font-medium mb-5 sm:mb-6">
+                <MessageCircle className="h-4 w-4" /> Estamos aquí para ayudarte
               </p>
-              <h1 className="text-5xl md:text-6xl font-fredoka-one drop-shadow-sm mb-6">
-                Contáctanos
-              </h1>
-              <p className="text-lg md:text-xl text-white/90 mb-8 font-poppins">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-fredoka-one drop-shadow-sm mb-5 sm:mb-6">Contáctanos</h1>
+              <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6 sm:mb-8 font-poppins">
                 Envíanos tus preguntas, comentarios o solicitudes. Nuestro equipo se pondrá en contacto contigo a la brevedad.
               </p>
-              <div className="grid grid-cols-3 gap-6 mb-8">
-                <div>
-                  <div className="text-3xl font-bold font-fredoka-one">24h</div>
-                  <div className="text-sm text-white/80 font-poppins">Respuesta</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold font-fredoka-one">24/7</div>
-                  <div className="text-sm text-white/80 font-poppins">Chat ROMI</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold font-fredoka-one">100%</div>
-                  <div className="text-sm text-white/80 font-poppins">Atención</div>
-                </div>
+              <div className="grid grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
+                {[["24h","Respuesta"],["24/7","Chat ROMI"],["100%","Atención"]].map(([v,l]) => (
+                  <div key={l}>
+                    <div className="text-2xl sm:text-3xl font-bold font-fredoka-one">{v}</div>
+                    <div className="text-xs sm:text-sm text-white/80 font-poppins">{l}</div>
+                  </div>
+                ))}
               </div>
             </div>
 
             <aside className="md:col-span-2">
-              <nav className="rounded-3xl bg-white/80 backdrop-blur border border-white/50 p-6 flex flex-col gap-4 shadow-lg">
+              <nav className="rounded-3xl bg-white/80 backdrop-blur border border-white/50 p-5 sm:p-6 flex flex-col gap-3 sm:gap-4 shadow-lg">
                 <h2 className="text-[#d58b88] font-fredoka-one text-xl flex items-center gap-2">
                   <Compass className="h-5 w-5" /> Navegación
                 </h2>
                 <SideLink href="#formulario" title="Enviar Mensaje" active />
-                <SideLink href="#info" title="Información de Contacto" />
-                <SideLink href="#redes" title="Redes Sociales" />
-                <SideLink href="#soporte" title="Opciones de Soporte" />
+                <SideLink href="#info"       title="Información de Contacto" />
+                <SideLink href="#redes"      title="Redes Sociales" />
+                <SideLink href="#soporte"    title="Opciones de Soporte" />
               </nav>
             </aside>
           </div>
@@ -138,174 +118,107 @@ export default function ContactPage() {
 
       {/* FORM + CONTACT INFO */}
       <section id="formulario" className="relative left-1/2 -translate-x-1/2 w-screen scroll-mt-24 bg-white">
-        <div className="mx-auto max-w-7xl px-8 py-20 grid gap-8 md:grid-cols-[1.3fr,1fr]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 grid gap-6 sm:gap-8 md:grid-cols-[1.3fr,1fr]">
 
-          {/* FORMULARIO */}
-          <article className="rounded-3xl border border-[#d58b88]/20 bg-gradient-to-br from-white to-[#f8f6f6] shadow-sm p-6 sm:p-7">
-            <h2 className="text-xl sm:text-2xl font-semibold text-[#2d2d2d] font-fredoka-one mb-4">
-              Envíanos un Mensaje
-            </h2>
-
-            <form className="space-y-4" noValidate>
-              <div>
-                <label htmlFor="nombre" className="block text-sm font-medium text-[#2d2d2d] font-poppins mb-1">
-                  Nombre Completo
-                </label>
-                <input
-                  id="nombre"
-                  type="text"
-                  autoComplete="name"
-                  className="w-full rounded-xl border border-[#d58b88]/30 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#d58b88]/60 font-poppins"
-                  placeholder="Escribe tu nombre"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-[#2d2d2d] font-poppins mb-1">
-                  Correo Electrónico
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  autoComplete="email"
-                  className="w-full rounded-xl border border-[#d58b88]/30 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#d58b88]/60 font-poppins"
-                  placeholder="tucorreo@ejemplo.com"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="asunto" className="block text-sm font-medium text-[#2d2d2d] font-poppins mb-1">
-                  Asunto
-                </label>
-                <input
-                  id="asunto"
-                  type="text"
-                  className="w-full rounded-xl border border-[#d58b88]/30 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#d58b88]/60 font-poppins"
-                  placeholder="¿Sobre qué te gustaría hablar?"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="mensaje" className="block text-sm font-medium text-[#2d2d2d] font-poppins mb-1">
-                  Mensaje
-                </label>
-                <textarea
-                  id="mensaje"
-                  rows={5}
-                  className="w-full rounded-xl border border-[#d58b88]/30 bg-white px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#d58b88]/60 font-poppins"
-                  placeholder="Cuéntanos con más detalle en qué podemos ayudarte."
-                />
-              </div>
-
-              <div className="pt-2">
-                <button
-                  type="submit"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-[#d58b88] px-6 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-[#c47a77] transition font-fredoka-one focus:outline-none focus:ring-2 focus:ring-[#d58b88]"
-                >
-                  <Send className="h-4 w-4" />
-                  Enviar Mensaje
-                </button>
-              </div>
-            </form>
-          </article>
-
-          {/* INFO + HORARIO */}
-          <div id="info" className="space-y-6 scroll-mt-24">
-            <article className="rounded-3xl border border-[#d58b88]/20 bg-white shadow-sm p-6 sm:p-7">
-              <h2 className="text-lg sm:text-xl font-semibold text-[#2d2d2d] font-fredoka-one mb-4">
-                Información de Contacto
-              </h2>
-              <ul className="space-y-4 text-sm text-gray-600 font-poppins">
-                <li className="flex items-start gap-3">
-                  <span className="mt-0.5 inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#d58b88]/10 flex-shrink-0">
-                    <Mail className="h-4 w-4 text-[#d58b88]" />
-                  </span>
-                  <div>
-                    <p className="font-medium text-[#2d2d2d]">Correo</p>
-                    <a href="mailto:contacto@romiai.com.mx" className="text-[#d58b88] hover:underline">
-                      contacto@romiai.com.mx
-                    </a>
-                  </div>
-                </li>
-
-                <li className="flex items-start gap-3">
-                  <span className="mt-0.5 inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#d58b88]/10 flex-shrink-0">
-                    <Phone className="h-4 w-4 text-[#d58b88]" />
-                  </span>
-                  <div>
-                    <p className="font-medium text-[#2d2d2d]">Teléfono</p>
-                    <a href="tel:+522224335093" className="text-[#d58b88] hover:underline">
-                      22 24 33 50 93
-                    </a>
-                  </div>
-                </li>
-
-                <li className="flex items-start gap-3">
-                  <span className="mt-0.5 inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#d58b88]/10 flex-shrink-0">
-                    <MapPin className="h-4 w-4 text-[#d58b88]" />
-                  </span>
-                  <div>
-                    <p className="font-medium text-[#2d2d2d]">Dirección</p>
-                    <p className="leading-relaxed">
-                      Hospital Ángeles Puebla<br />
-                      Av. Kepler No. 2143, Torre de Especialidades IV<br />
-                      Consultorio 3800, CP 72820<br />
-                      Reserva Territorial Atlixcáyotl, Puebla, Pue.
-                    </p>
-                  </div>
-                </li>
-              </ul>
+          <Reveal type="left">
+            <article className="rounded-3xl border border-[#d58b88]/20 bg-gradient-to-br from-white to-[#f8f6f6] shadow-sm p-6 sm:p-7 card-premium">
+              <h2 className="text-xl sm:text-2xl font-semibold text-[#2d2d2d] font-fredoka-one mb-4 sm:mb-5">Envíanos un Mensaje</h2>
+              <form className="space-y-4" noValidate>
+                <div>
+                  <label htmlFor="nombre" className="block text-sm font-medium text-[#2d2d2d] font-poppins mb-1">Nombre Completo</label>
+                  <input id="nombre" type="text" autoComplete="name" className={inputClass} placeholder="Escribe tu nombre" />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-[#2d2d2d] font-poppins mb-1">Correo Electrónico</label>
+                  <input id="email" type="email" autoComplete="email" className={inputClass} placeholder="tucorreo@ejemplo.com" />
+                </div>
+                <div>
+                  <label htmlFor="asunto" className="block text-sm font-medium text-[#2d2d2d] font-poppins mb-1">Asunto</label>
+                  <input id="asunto" type="text" className={inputClass} placeholder="¿Sobre qué te gustaría hablar?" />
+                </div>
+                <div>
+                  <label htmlFor="mensaje" className="block text-sm font-medium text-[#2d2d2d] font-poppins mb-1">Mensaje</label>
+                  <textarea id="mensaje" rows={5} className={`${inputClass} resize-none`} placeholder="Cuéntanos con más detalle en qué podemos ayudarte." />
+                </div>
+                <div className="pt-1">
+                  <button
+                    type="submit"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-[#d58b88] px-6 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-[#c47a77] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 font-fredoka-one active:scale-95"
+                  >
+                    <Send className="h-4 w-4" />
+                    Enviar Mensaje
+                  </button>
+                </div>
+              </form>
             </article>
+          </Reveal>
 
-            <article className="rounded-3xl border border-[#d58b88]/20 bg-gradient-to-br from-[#EBD9D8]/20 to-white shadow-sm p-6 sm:p-7 text-sm text-gray-600 font-poppins">
-              <h2 className="text-lg sm:text-xl font-semibold text-[#2d2d2d] font-fredoka-one mb-3 flex items-center gap-2">
-                <Clock className="h-5 w-5 text-[#d58b88]" />
-                Horario de Atención
-              </h2>
-              <p><span className="font-semibold text-[#2d2d2d]">Lunes a Viernes:</span> 9:00 AM – 6:00 PM (GMT-6)</p>
-              <p><span className="font-semibold text-[#2d2d2d]">Sábados:</span> 10:00 AM – 2:00 PM (GMT-6)</p>
-              <p><span className="font-semibold text-[#2d2d2d]">Domingos y Feriados:</span> Cerrado</p>
-              <p className="mt-3 text-xs">
-                Nuestro asistente virtual ROMI está disponible 24/7 para resolver tus dudas.
-              </p>
-            </article>
+          <div id="info" className="space-y-5 sm:space-y-6 scroll-mt-24">
+            <Reveal type="right">
+              <article className="rounded-3xl border border-[#d58b88]/20 bg-white shadow-sm p-5 sm:p-7 card-premium">
+                <h2 className="text-base sm:text-xl font-semibold text-[#2d2d2d] font-fredoka-one mb-4">Información de Contacto</h2>
+                <ul className="space-y-4 text-sm text-gray-600 font-poppins">
+                  {[
+                    { icon: Mail,   label: "Correo",    content: <a href="mailto:contacto@romiai.com.mx" className="text-[#d58b88] hover:underline transition-colors">contacto@romiai.com.mx</a> },
+                    { icon: Phone,  label: "Teléfono",  content: <a href="tel:+522224335093" className="text-[#d58b88] hover:underline transition-colors">22 24 33 50 93</a> },
+                    { icon: MapPin, label: "Dirección", content: <p className="leading-relaxed">Hospital Ángeles Puebla<br />Av. Kepler No. 2143, Torre de Especialidades IV<br />Consultorio 3800, CP 72820<br />Reserva Territorial Atlixcáyotl, Puebla, Pue.</p> },
+                  ].map(({ icon: Icon, label, content }) => (
+                    <li key={label} className="flex items-start gap-3">
+                      <span className="mt-0.5 inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#d58b88]/10 flex-shrink-0 icon-lift">
+                        <Icon className="h-4 w-4 text-[#d58b88]" />
+                      </span>
+                      <div><p className="font-medium text-[#2d2d2d]">{label}</p>{content}</div>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            </Reveal>
+
+            <Reveal type="right" delay={100}>
+              <article className="rounded-3xl border border-[#d58b88]/20 bg-gradient-to-br from-[#EBD9D8]/20 to-white shadow-sm p-5 sm:p-7 text-sm text-gray-600 font-poppins card-premium">
+                <h2 className="text-base sm:text-xl font-semibold text-[#2d2d2d] font-fredoka-one mb-3 flex items-center gap-2">
+                  <Clock className="h-5 w-5 text-[#d58b88]" /> Horario de Atención
+                </h2>
+                <p><span className="font-semibold text-[#2d2d2d]">Lunes a Viernes:</span> 9:00 AM – 6:00 PM (GMT-6)</p>
+                <p><span className="font-semibold text-[#2d2d2d]">Sábados:</span> 10:00 AM – 2:00 PM (GMT-6)</p>
+                <p><span className="font-semibold text-[#2d2d2d]">Domingos y Feriados:</span> Cerrado</p>
+                <p className="mt-3 text-xs">Nuestro asistente virtual ROMI está disponible 24/7 para resolver tus dudas.</p>
+              </article>
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* REDES SOCIALES */}
       <section id="redes" className="relative left-1/2 -translate-x-1/2 w-screen scroll-mt-24 bg-gradient-to-br from-[#d58b88]/5 to-[#dabebd]/10 border-t border-[#d58b88]/20">
-        <div className="mx-auto max-w-7xl px-8 py-20">
-          <header className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl sm:text-4xl font-fredoka-one text-[#d58b88] mb-3">
-              Síguenos en Redes Sociales
-            </h2>
-            <p className="text-sm sm:text-base text-gray-600 font-poppins">
-              Síguenos para enterarte de nuestras novedades, próximas actualizaciones y datos curiosos.
-            </p>
-          </header>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+          <Reveal className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-fredoka-one text-[#d58b88] mb-3">Síguenos en Redes Sociales</h2>
+            <p className="text-sm sm:text-base text-gray-600 font-poppins">Síguenos para enterarte de nuestras novedades, próximas actualizaciones y datos curiosos.</p>
+          </Reveal>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {SOCIAL_LINKS.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Seguir a ROMI en ${s.label}`}
-                className="flex flex-col items-center gap-3 rounded-2xl border border-[#d58b88]/20 bg-white p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition text-center"
-              >
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#d58b88]/10 text-[#d58b88]">
-                  {s.icon}
-                </span>
-                <div>
-                  <p className="font-semibold text-sm text-[#2d2d2d] font-poppins">{s.label}</p>
-                  <p className="text-xs text-gray-500 font-poppins mt-0.5">{s.handle}</p>
-                </div>
-                <span className="inline-flex items-center gap-1 text-xs text-[#d58b88] font-medium">
-                  Seguir <ExternalLink className="h-3 w-3" />
-                </span>
-              </a>
+          <div className="grid gap-3 sm:gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
+            {SOCIAL_LINKS.map((s, i) => (
+              <Reveal key={s.label} type="scale" delay={i * 60}>
+                <a
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Seguir a ROMI en ${s.label}`}
+                  className="flex flex-col items-center gap-3 rounded-2xl border border-[#d58b88]/20 bg-white p-4 sm:p-5 shadow-sm card-premium text-center group"
+                >
+                  <span className="inline-flex h-11 sm:h-12 w-11 sm:w-12 items-center justify-center rounded-full bg-[#d58b88]/10 text-[#d58b88] group-hover:bg-[#d58b88] group-hover:text-white transition-all duration-300 icon-lift">
+                    {s.icon}
+                  </span>
+                  <div>
+                    <p className="font-semibold text-sm text-[#2d2d2d] font-poppins">{s.label}</p>
+                    <p className="text-xs text-gray-500 font-poppins mt-0.5">{s.handle}</p>
+                  </div>
+                  <span className="inline-flex items-center gap-1 text-xs text-[#d58b88] font-medium group-hover:gap-2 transition-all duration-200">
+                    Seguir <ExternalLink className="h-3 w-3" />
+                  </span>
+                </a>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -313,101 +226,68 @@ export default function ContactPage() {
 
       {/* SOPORTE */}
       <section id="soporte" className="relative left-1/2 -translate-x-1/2 w-screen scroll-mt-24 border-t border-[#d58b88]/20 bg-[#f8f6f6]">
-        <div className="mx-auto max-w-7xl px-8 py-20">
-          <header className="text-center max-w-2xl mx-auto mb-8">
-            <h2 className="text-3xl sm:text-4xl font-fredoka-one text-[#d58b88] mb-4">
-              Opciones de Soporte
-            </h2>
-            <p className="mt-2 text-sm sm:text-base text-gray-600 font-poppins">
-              Encuentra la ayuda que necesitas a través de nuestros canales de soporte.
-            </p>
-          </header>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+          <Reveal className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-fredoka-one text-[#d58b88] mb-4">Opciones de Soporte</h2>
+            <p className="text-sm sm:text-base text-gray-600 font-poppins">Encuentra la ayuda que necesitas a través de nuestros canales de soporte.</p>
+          </Reveal>
 
-          <div className="grid gap-6 md:grid-cols-3">
-            {/* Preguntas frecuentes */}
-            <article className="rounded-2xl border border-[#d58b88]/20 bg-white p-6 shadow-sm text-center hover:shadow-md transition">
-              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[#d58b88]/10">
-                <HelpCircle className="h-6 w-6 text-[#d58b88]" />
-              </div>
-              <h3 className="text-base sm:text-lg font-semibold text-[#2d2d2d] font-fredoka-one">
-                Preguntas Frecuentes
-              </h3>
-              <p className="mt-2 text-sm text-gray-600 font-poppins">
-                Encuentra respuestas rápidas a tus dudas más comunes.
-              </p>
-              <a
-                href="#formulario"
-                className="mt-4 inline-flex items-center justify-center rounded-full border border-[#d58b88]/30 px-4 py-1.5 text-xs font-medium text-[#d58b88] hover:bg-[#d58b88]/5 transition font-poppins focus:outline-none focus:ring-2 focus:ring-[#d58b88]"
-              >
-                Enviar pregunta
-              </a>
-            </article>
-
-            {/* Chat ROMI — WhatsApp */}
-            <article className="rounded-2xl border border-[#d58b88]/20 bg-white p-6 shadow-sm text-center hover:shadow-md transition">
-              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[#d58b88]/10">
-                <MessageCircle className="h-6 w-6 text-[#d58b88]" />
-              </div>
-              <h3 className="text-base sm:text-lg font-semibold text-[#2d2d2d] font-fredoka-one">
-                Chat ROMI
-              </h3>
-              <p className="mt-2 text-sm text-gray-600 font-poppins">
-                Comunícate con ROMI por WhatsApp.
-              </p>
-              <a
-                href="https://wa.me/522224335093"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Abrir WhatsApp de ROMI"
-                className="mt-4 inline-flex items-center justify-center gap-1.5 rounded-full bg-[#25D366] px-4 py-1.5 text-xs font-medium text-white hover:bg-[#1ebe5d] transition font-poppins focus:outline-none focus:ring-2 focus:ring-[#25D366]"
-              >
-                <svg viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5" aria-hidden="true">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                </svg>
-                Abrir WhatsApp
-              </a>
-            </article>
-
-            {/* Soporte técnico */}
-            <article className="rounded-2xl border border-[#d58b88]/20 bg-white p-6 shadow-sm text-center hover:shadow-md transition">
-              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[#d58b88]/10">
-                <Headphones className="h-6 w-6 text-[#d58b88]" />
-              </div>
-              <h3 className="text-base sm:text-lg font-semibold text-[#2d2d2d] font-fredoka-one">
-                Soporte Técnico
-              </h3>
-              <p className="mt-2 text-sm text-gray-600 font-poppins">
-                Asistencia especializada para profesionales.
-              </p>
-              <a
-                href="tel:+522224335093"
-                className="mt-3 block text-sm font-semibold text-[#d58b88] font-poppins hover:underline"
-              >
-                22 24 33 50 93
-              </a>
-              <a
-                href="tel:+522224335093"
-                className="mt-2 inline-flex items-center justify-center rounded-full border border-[#d58b88]/30 px-4 py-1.5 text-xs font-medium text-[#d58b88] hover:bg-[#d58b88]/5 transition font-poppins focus:outline-none focus:ring-2 focus:ring-[#d58b88]"
-              >
-                Llamar ahora
-              </a>
-            </article>
+          <div className="grid gap-4 sm:gap-6 sm:grid-cols-3">
+            {[
+              {
+                icon: HelpCircle,
+                title: "Preguntas Frecuentes",
+                desc: "Encuentra respuestas rápidas a tus dudas más comunes.",
+                cta: { href: "#formulario", label: "Enviar pregunta", external: false },
+              },
+              {
+                icon: MessageCircle,
+                title: "Chat ROMI",
+                desc: "Comunícate con ROMI por WhatsApp.",
+                cta: { href: "https://wa.me/522224335093", label: "Abrir WhatsApp", external: true },
+              },
+              {
+                icon: Headphones,
+                title: "Soporte Técnico",
+                desc: "Asistencia especializada para profesionales.",
+                cta: { href: "tel:+522224335093", label: "Llamar ahora", external: false },
+              },
+            ].map(({ icon: Icon, title, desc, cta }, i) => (
+              <Reveal key={title} type="scale" delay={i * 80}>
+                <article className="rounded-2xl border border-[#d58b88]/20 bg-white p-5 sm:p-6 shadow-sm text-center card-premium">
+                  <div className="mx-auto mb-3 flex h-11 sm:h-12 w-11 sm:w-12 items-center justify-center rounded-full bg-[#d58b88]/10 icon-lift">
+                    <Icon className="h-5 sm:h-6 w-5 sm:w-6 text-[#d58b88]" />
+                  </div>
+                  <h3 className="text-base sm:text-lg font-semibold text-[#2d2d2d] font-fredoka-one">{title}</h3>
+                  <p className="mt-2 text-sm text-gray-600 font-poppins">{desc}</p>
+                  <a
+                    href={cta.href}
+                    {...(cta.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    className="mt-4 inline-flex items-center justify-center rounded-full border border-[#d58b88]/30 px-4 py-1.5 text-xs font-medium text-[#d58b88] hover:bg-[#d58b88] hover:text-white hover:border-[#d58b88] transition-all duration-200 font-poppins active:scale-95"
+                  >
+                    {cta.label}
+                  </a>
+                </article>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
       {/* MAPA */}
       <section className="relative left-1/2 -translate-x-1/2 w-screen bg-white">
-        <div className="mx-auto max-w-7xl px-8 py-16">
-          <div className="rounded-3xl overflow-hidden border border-[#d58b88]/20 shadow-sm h-72">
-            <iframe
-              title="Ubicación Hospital Ángeles Puebla"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.4!2d-98.2523!3d19.0245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cfc0e392b1d97d%3A0x7e5af4f88736e5a2!2sHospital%20%C3%81ngeles%20Puebla!5e0!3m2!1ses!2smx!4v1680000000000!5m2!1ses!2smx"
-              className="w-full h-full border-0"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+          <Reveal type="scale">
+            <div className="rounded-3xl overflow-hidden border border-[#d58b88]/20 shadow-sm h-56 sm:h-72 hover:shadow-md transition-shadow duration-300">
+              <iframe
+                title="Ubicación Hospital Ángeles Puebla"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.4!2d-98.2523!3d19.0245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cfc0e392b1d97d%3A0x7e5af4f88736e5a2!2sHospital%20%C3%81ngeles%20Puebla!5e0!3m2!1ses!2smx!4v1680000000000!5m2!1ses!2smx"
+                className="w-full h-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </Reveal>
           <p className="mt-3 text-xs text-gray-400 text-center font-poppins">
             Av. Kepler No. 2143, Torre de Especialidades IV, Consultorio 3800 — Hospital Ángeles Puebla
           </p>

@@ -3,107 +3,137 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom animations for Auth pages */
+/* ─── Custom animations for Auth pages ─── */
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-20px); }
 }
-
 @keyframes float-delayed {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(20px);
-  }
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(20px); }
 }
-
 @keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes bounce-slow {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
 }
-
 @keyframes pulse-slow {
-  0%, 100% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 0.6;
-  }
+  0%, 100% { opacity: 0.3; }
+  50%       { opacity: 0.6; }
 }
-
 @keyframes slide-down {
-  from {
-    opacity: 0;
-    max-height: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    max-height: 1000px;
-    transform: translateY(0);
-  }
+  from { opacity: 0; max-height: 0; transform: translateY(-10px); }
+  to   { opacity: 1; max-height: 1000px; transform: translateY(0); }
 }
-
 @keyframes gradient-slow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+.animate-float          { animation: float 6s ease-in-out infinite; }
+.animate-float-delayed  { animation: float-delayed 8s ease-in-out infinite; }
+.animate-fade-in-up     { animation: fade-in-up 0.6s ease-out forwards; }
+.animate-bounce-slow    { animation: bounce-slow 3s ease-in-out infinite; }
+.animate-pulse-slow     { animation: pulse-slow 4s ease-in-out infinite; }
+.animate-slide-down     { animation: slide-down 0.4s ease-out forwards; }
+.animate-gradient-slow  { background-size: 200% 200%; animation: gradient-slow 15s ease infinite; }
+
+/* ─── Premium scroll-reveal system ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+/* ─── Premium card hover ─── */
+.card-premium {
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.32s ease;
+}
+.card-premium:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 64px rgba(213, 139, 136, 0.18), 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-color: rgba(213, 139, 136, 0.45);
 }
 
-.animate-float-delayed {
-  animation: float-delayed 8s ease-in-out infinite;
+/* ─── Icon lift on card hover ─── */
+.icon-lift {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-premium:hover .icon-lift { transform: translateY(-3px) scale(1.1); }
+
+/* ─── Button glow ─── */
+.btn-glow {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s ease;
+}
+.btn-glow:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 28px rgba(213, 139, 136, 0.4);
 }
 
-.animate-fade-in-up {
-  animation: fade-in-up 0.6s ease-out forwards;
+/* ─── Nav link underline slide ─── */
+.nav-underline {
+  position: relative;
+}
+.nav-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 8px;
+  right: 8px;
+  height: 2px;
+  border-radius: 9999px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-underline:hover::after { transform: scaleX(1); }
+.nav-underline.nav-active::after { transform: scaleX(1); }
+
+/* ─── Mobile nav slide-in ─── */
+@keyframes mobile-nav-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-mobile-nav-in {
+  animation: mobile-nav-in 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.animate-bounce-slow {
-  animation: bounce-slow 3s ease-in-out infinite;
-}
-
-.animate-pulse-slow {
-  animation: pulse-slow 4s ease-in-out infinite;
-}
-
-.animate-slide-down {
-  animation: slide-down 0.4s ease-out forwards;
-}
-
-.animate-gradient-slow {
-  background-size: 200% 200%;
-  animation: gradient-slow 15s ease infinite;
-}
+/* ─── Smooth page scroll ─── */
+html { scroll-behavior: smooth; }
 
 /* ROMI theme variables */
 @import "../styles/theme.css";
@@ -114,7 +144,6 @@
     font-feature-settings: normal;
     font-variation-settings: normal;
   }
-  
   * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -126,7 +155,6 @@
   .font-fredoka-one {
     font-family: 'Fredoka One', var(--font-fredoka), 'Fredoka', cursive !important;
   }
-  
   .font-poppins {
     font-family: var(--font-poppins), 'Poppins', sans-serif !important;
   }
