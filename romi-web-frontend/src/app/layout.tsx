@@ -26,7 +26,6 @@ export const metadata = {
   title: "ROMI",
   description: "Servicios Médicos Integrales",
   icons: {
-    icon: "/images/iconoROMI.png",
     apple: "/images/iconoROMI.png",
   },
 };
