@@ -1,444 +1,424 @@
 import {
   BookOpen,
   GraduationCap,
-  Video,
-  Download,
   Calculator,
   Clock3,
   Users,
-  Star,
   CalendarDays,
   PlayCircle,
-  FileText,
-  Headphones,
   Award,
   TrendingUp,
   Layers,
   Sparkles,
-  Compass
+  Compass,
+  ExternalLink,
+  Globe,
+  FlaskConical,
 } from "lucide-react";
 
 export const metadata = {
   title: "ROMI — Formación",
 };
 
-const courses = [
-  {
-    levelTag: "Especialización",
-    levelChip: "Avanzado",
-    title: "Cardiología Avanzada",
-    teacher: "Dr. María González",
-    duration: "8 semanas",
-    students: "245 estudiantes",
-    rating: "4.9",
-    price: "$2,500 MXN",
-  },
-  {
-    levelTag: "Especialización",
-    levelChip: "Intermedio",
-    title: "Oncología Moderna",
-    teacher: "Dr. Carlos Rodríguez",
-    duration: "12 semanas",
-    students: "189 estudiantes",
-    rating: "4.8",
-    price: "$3,200 MXN",
-  },
-  {
-    levelTag: "Actualización",
-    levelChip: "Básico",
-    title: "Diabetes y Endocrinología",
-    teacher: "Dra. Ana Martínez",
-    duration: "6 semanas",
-    students: "312 estudiantes",
-    rating: "4.9",
-    price: "$1,800 MXN",
-  },
-];
+/* ------------------------------------------------------------------ */
+/* DATA                                                                  */
+/* ------------------------------------------------------------------ */
 
-const workshops = [
+const laionVideos = [
   {
-    title: "Taller de Diagnóstico por Imagen",
-    date: "15 Marzo 2024",
-    time: "09:00 - 17:00",
-    mode: "Virtual",
-    spots: "25 cupos disponibles",
-    price: "$800 MXN",
+    title: "Panorama regional de la atención primaria del cáncer en Latinoamérica",
+    duration: "1h 36min",
+    audience: "Para oncólogos",
+    cost: "Sin costo",
+    link: "https://www.youtube.com/watch?v=bTkVX_BJH4o",
+    available: true,
   },
   {
-    title: "Cirugía Mínimamente Invasiva",
-    date: "22 Marzo 2024",
-    time: "08:00 - 16:00",
-    mode: "Ciudad de México",
-    spots: "15 cupos disponibles",
-    price: "$1,200 MXN",
-  },
-];
-
-const resources = [
-  {
-    icon: FileText,
-    title: "Guía Clínica de Hipertensión 2024",
-    info: "1250 descargas",
-    size: "2.5 MB",
-    actionLabel: "Descargar",
+    title: "Conversatorio LAION — Sesión 2",
+    duration: "Por anunciar",
+    audience: "Para oncólogos",
+    cost: "Sin costo",
+    link: null,
+    available: false,
   },
   {
-    icon: PlayCircle,
-    title: "Técnicas de Sutura Avanzadas",
-    info: "3400 visualizaciones · 45 min",
-    size: "",
-    actionLabel: "Acceder",
-  },
-  {
-    icon: Headphones,
-    title: "Medicina Basada en Evidencia",
-    info: "12 episodios · 30 min promedio",
-    size: "",
-    actionLabel: "Acceder",
+    title: "Conversatorio LAION — Sesión 3",
+    duration: "Por anunciar",
+    audience: "Para oncólogos",
+    cost: "Sin costo",
+    link: null,
+    available: false,
   },
 ];
 
 const calculators = [
   {
-    title: "Riesgo Cardiovascular",
-    description: "Calcula el riesgo cardiovascular a 10 años.",
-    fields: ["Edad", "Sexo", "Presión Arterial", "Colesterol", "Diabetes"],
-  },
-  {
-    title: "Índice de Masa Corporal",
-    description: "Calcula el IMC y categoría de peso.",
+    title: "IMC Adultos",
+    description: "Índice de Masa Corporal para adultos.",
     fields: ["Peso (kg)", "Altura (cm)"],
+    link: "https://www.cdc.gov/bmi/es/adult-calculator/index.html",
   },
   {
-    title: "Costos Médicos Atribuibles",
-    description: "Estima costos médicos por condición.",
-    fields: ["Condición", "Edad", "Severidad", "Tratamiento"],
+    title: "IMC Pediátrico",
+    description: "IMC para niños y adolescentes.",
+    fields: ["Peso (kg)", "Altura (cm)", "Edad", "Sexo"],
+    link: "https://www.cdc.gov/bmi/es/child-teen-calculator/index.html",
+  },
+  {
+    title: "Cockcroft-Gault / eGFR",
+    description: "Estimación de la tasa de filtración glomerular.",
+    fields: ["Peso (kg)", "Creatinina sérica", "Edad", "Altura (cm)", "Sexo"],
+    link: "https://www.rccc.eu/geta/IFG.html",
+  },
+  {
+    title: "CHA₂DS₂-VASc",
+    description: "Riesgo cardiovascular y de tromboembolismo (>30 años).",
+    fields: ["Edad", "Sexo", "Presión arterial", "Diabetes", "ICC", "Enfermedad vascular / ACV previo"],
+    link: "https://www.rccc.eu/ppc/guias/FA/CHA2DS2VASc.html",
+  },
+  {
+    title: "Calculadora SOFA",
+    description: "Evaluación de falla orgánica secuencial.",
+    fields: ["PaO₂/FiO₂", "Plaquetas", "PAM", "GCS", "Bilirrubinas", "Creatinina / diuresis"],
+    link: "https://www.rccc.eu/ppc/indicadores/sofa.html",
+  },
+  {
+    title: "Khorana Score (TEP / Cáncer)",
+    description: "Riesgo de tromboembolismo venoso en paciente oncológico.",
+    fields: ["Sitio del tumor", "Plaquetas preQT", "Hemoglobina", "Leucocitos preQT", "IMC"],
+    link: "https://www.mdcalc.com/calc/3315/khorana-risk-score-venous-thromboembolism-cancer-patients",
+  },
+  {
+    title: "Cálculos Hemato-oncológicos",
+    description: "Eritrocitos, reticulocitos, leucocitos, plaquetas, hierro.",
+    fields: ["Eritrocitos", "Reticulocitos", "Leucocitos", "Plaquetas", "Hierro"],
+    link: "https://scymed.com/es/smnxpf/smnxpf.htm",
+  },
+  {
+    title: "Karnofsky / ECOG",
+    description: "Indicador pronóstico funcional y predictor de mortalidad.",
+    fields: ["Estado funcional del paciente"],
+    link: "https://www.rccc.eu/ppc/indicadores/karnofski.html",
   },
 ];
+
+const societies = [
+  {
+    title: "ESMO",
+    subtitle: "European Society for Medical Oncology",
+    link: "https://www.esmo.org/",
+  },
+  {
+    title: "ASCO",
+    subtitle: "American Society of Clinical Oncology",
+    link: "https://www.asco.org/",
+  },
+  {
+    title: "SMEO",
+    subtitle: "Sociedad Mexicana de Oncología",
+    link: "https://www.smeo.org.mx/",
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/* PAGE                                                                  */
+/* ------------------------------------------------------------------ */
 
 export default function FormationPage() {
   return (
     <main className="min-h-screen bg-white">
+
       {/* HERO */}
       <section className="relative left-1/2 -translate-x-1/2 w-screen overflow-hidden">
-        {/* Fondo con capas */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#d58b88] via-[#d79c9c] to-[#dabebd]" />
         <div className="absolute -top-24 -left-24 w-72 h-72 bg-[#edcccc]/40 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#dabebd]/40 rounded-full blur-3xl" />
+
         <div className="relative mx-auto max-w-7xl px-6 pt-28 pb-24">
           <div className="grid md:grid-cols-5 gap-10 items-center">
-            {/* Texto principal */}
             <div className="md:col-span-3 text-white">
               <h1 className="font-fredoka-one text-5xl md:text-6xl leading-tight drop-shadow-sm">
                 Formación Médica <span className="text-[#EBD9D8]">Integral</span>
               </h1>
               <p className="mt-6 text-base md:text-lg text-white/90 font-poppins max-w-xl">
-                Aprende, actualiza y certifica tus habilidades clínicas con contenido curado, casos reales y recursos descargables.
+                Aprende, actualiza y certifica tus habilidades clínicas con contenido curado, casos reales y recursos de primer nivel.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <a href="#cursos" aria-label="Ir a cursos" className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-semibold text-[#d58b88] shadow hover:shadow-lg hover:scale-[1.04] transition">
-                  <BookOpen className="h-5 w-5" /> Cursos
+                <a href="#espacios" aria-label="Ir a espacios académicos" className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-semibold text-[#d58b88] shadow hover:shadow-lg hover:scale-[1.04] transition">
+                  <BookOpen className="h-5 w-5" /> Espacios Académicos
                 </a>
                 <a href="#talleres" aria-label="Ir a talleres" className="inline-flex items-center gap-2 rounded-full bg-white/90 backdrop-blur px-7 py-3 text-sm font-semibold text-[#d58b88] border border-white/50 hover:bg-white transition">
                   <Users className="h-5 w-5" /> Talleres
                 </a>
-                <a href="#recursos" aria-label="Ir a recursos" className="inline-flex items-center gap-2 rounded-full bg-[#c7d68f] px-7 py-3 text-sm font-semibold text-white shadow hover:bg-[#bfcf82] transition">
-                  <Download className="h-5 w-5" /> Recursos
+                <a href="#calculadoras" aria-label="Ir a calculadoras" className="inline-flex items-center gap-2 rounded-full bg-[#c7d68f] px-7 py-3 text-sm font-semibold text-white shadow hover:bg-[#bfcf82] transition">
+                  <Calculator className="h-5 w-5" /> Calculadoras
                 </a>
               </div>
-              {/* Métricas inline */}
               <div className="mt-10 grid grid-cols-3 gap-4 max-w-md">
-                <MiniMetric icon={Award} value="35+" label="Certificaciones" />
+                <MiniMetric icon={Award} value="LAION" label="Programa IA" />
                 <MiniMetric icon={TrendingUp} value="97%" label="Satisfacción" />
-                <MiniMetric icon={Layers} value="1.2K" label="Recursos" />
+                <MiniMetric icon={Layers} value="8" label="Calculadoras" />
               </div>
             </div>
-            {/* Panel lateral navegación */}
+
             <aside className="md:col-span-2">
               <nav aria-label="Categorías" className="rounded-3xl bg-white/80 backdrop-blur border border-[#d58b88]/20 p-6 flex flex-col gap-4 shadow-lg">
-                <h2 className="text-[#d58b88] font-fredoka-one text-xl flex items-center gap-2"><Compass className="h-5 w-5" /> Navegación</h2>
-                <SideLink active icon={BookOpen} label="Cursos" />
-                <SideLink icon={Users} label="Talleres" />
-                <SideLink icon={Download} label="Recursos" />
-                <SideLink icon={Calculator} label="Calculadoras" />
-                <SideLink icon={Video} label="Clases en Vivo" />
-                <SideLink icon={GraduationCap} label="Certificaciones" />
+                <h2 className="text-[#d58b88] font-fredoka-one text-xl flex items-center gap-2">
+                  <Compass className="h-5 w-5" /> Navegación
+                </h2>
+                <SideLink active icon={BookOpen} label="Espacios Académicos" href="#espacios" />
+                <SideLink icon={Users} label="Talleres" href="#talleres" />
+                <SideLink icon={Calculator} label="Calculadoras" href="#calculadoras" />
+                <SideLink icon={Globe} label="Sociedades Médicas" href="#sociedades" />
+                <SideLink icon={GraduationCap} label="Certificaciones" href="#certificaciones" />
               </nav>
             </aside>
           </div>
         </div>
       </section>
 
-      {/* CURSOS ESPECIALIZADOS (v2) */}
-      <section id="cursos" className="relative left-1/2 -translate-x-1/2 w-screen scroll-mt-24 bg-white">
+      {/* ESPACIOS ACADÉMICOS — LAION */}
+      <section id="espacios" className="relative left-1/2 -translate-x-1/2 w-screen scroll-mt-24 bg-white">
         <div className="mx-auto max-w-7xl px-8 py-24 space-y-14">
-        <header className="text-center max-w-3xl mx-auto">
-          <h2 className="text-4xl font-fredoka-one text-[#d58b88] mb-5">Cursos Especializados</h2>
-          <p className="text-base text-gray-600 font-poppins">Programas con enfoque práctico y evidencia actual para elevar tu perfil clínico.</p>
-        </header>
+          <header className="text-center max-w-3xl mx-auto">
+            <p className="inline-flex items-center gap-2 rounded-full bg-[#d58b88]/10 px-4 py-1.5 text-xs font-medium text-[#d58b88] mb-4">
+              <FlaskConical className="h-4 w-4" /> Iniciativa regional
+            </p>
+            <h2 className="text-4xl font-fredoka-one text-[#d58b88] mb-5">Espacios Académicos</h2>
+            <p className="text-base text-gray-600 font-poppins max-w-2xl mx-auto">
+              Contenido académico curado para profesionales de la salud. En este espacio encontrarás recursos del{" "}
+              <strong>Programa Latinoamericano de Inteligencia Artificial en Oncología (LAION)</strong>, una iniciativa
+              regional que busca fortalecer la detección, el manejo y el cuidado integral del cáncer en América Latina
+              mediante la integración responsable de la inteligencia artificial.
+            </p>
+          </header>
 
-        <div className="grid gap-6 md:grid-cols-3">
-          {courses.map((course) => (
-            <article
-              key={course.title}
-              className="group rounded-3xl border border-[#d58b88]/20 bg-white shadow-sm overflow-hidden flex flex-col hover:shadow-2xl hover:-translate-y-1 transition duration-300"
-            >
-              <div className="relative h-36 bg-[#edcccc]">
-              </div>
-              <div className="p-6 flex-1 flex flex-col gap-4 -mt-14 relative">
-                <div className="flex justify-between items-center text-xs">
-                  <span className="inline-flex items-center rounded-full bg-white/90 px-3 py-1 font-medium text-[#d58b88] border border-white shadow-sm">
-                    {course.levelTag}
-                  </span>
-                  <span className="inline-flex items-center rounded-full bg-black/5 px-3 py-1 font-medium text-xs text-foreground">
-                    {course.levelChip}
-                  </span>
+          <div className="grid gap-6 md:grid-cols-3">
+            {laionVideos.map((video) => (
+              <article
+                key={video.title}
+                className="group rounded-3xl border border-[#d58b88]/20 bg-white shadow-sm overflow-hidden flex flex-col hover:shadow-2xl hover:-translate-y-1 transition duration-300"
+              >
+                <div className="relative h-36 bg-gradient-to-br from-[#d58b88] to-[#dabebd] flex items-center justify-center">
+                  <PlayCircle className="h-12 w-12 text-white/70" />
+                  {!video.available && (
+                    <span className="absolute top-3 right-3 rounded-full bg-white/20 backdrop-blur px-3 py-1 text-xs font-medium text-white">
+                      Próximamente
+                    </span>
+                  )}
                 </div>
 
-                <div>
-                  <h3 className="mt-2 text-lg font-semibold text-gray-900 font-poppins">
-                    {course.title}
+                <div className="p-6 flex-1 flex flex-col gap-4">
+                  <h3 className="text-base font-semibold text-gray-900 font-poppins leading-snug">
+                    {video.title}
                   </h3>
-                  <p className="mt-1 text-xs sm:text-sm text-[#d58b88] font-medium">
-                    {course.teacher}
-                  </p>
-                </div>
 
-                <div className="mt-1 space-y-1 text-xs sm:text-sm text-muted-foreground">
-                  <p className="flex items-center gap-2">
-                    <Clock3 className="h-4 w-4 text-[#d58b88]" />
-                    {course.duration}
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <Users className="h-4 w-4 text-[#d58b88]" />
-                    {course.students}
-                  </p>
-                </div>
-
-                <div className="mt-1 flex items-center justify-between">
-                  <div className="flex items-center gap-1 text-xs text-[#e3c094]">
-                    <Star className="h-4 w-4 fill-[#e3c094] text-[#e3c094]" aria-hidden="true" />
-                    <span className="text-gray-700">{course.rating}</span>
+                  <div className="space-y-1 text-xs text-gray-500 font-poppins">
+                    <p className="flex items-center gap-2">
+                      <Clock3 className="h-3.5 w-3.5 text-[#d58b88]" /> {video.duration}
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <Users className="h-3.5 w-3.5 text-[#d58b88]" /> {video.audience}
+                    </p>
+                    <p className="text-[#d58b88] font-medium">{video.cost}</p>
                   </div>
-                  <span className="text-lg font-semibold text-[#d58b88]">{course.price}</span>
+
+                  <div className="mt-auto">
+                    {video.available && video.link ? (
+                      <a
+                        href={video.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Acceder a: ${video.title}`}
+                        className="inline-flex items-center justify-center gap-2 w-full rounded-full bg-[#d58b88] hover:bg-[#c47a77] transition px-5 py-2.5 text-sm font-medium text-white shadow focus:outline-none focus:ring-2 focus:ring-[#d58b88]"
+                      >
+                        <PlayCircle className="h-4 w-4" /> Acceder
+                      </a>
+                    ) : (
+                      <span className="inline-flex items-center justify-center gap-2 w-full rounded-full bg-gray-100 px-5 py-2.5 text-sm font-medium text-gray-400 cursor-not-allowed">
+                        Próximamente
+                      </span>
+                    )}
+                  </div>
                 </div>
-
-                <button aria-label={`Inscribirse al curso ${course.title}`} className="mt-3 inline-flex items-center justify-center rounded-full bg-[#c7d68f] hover:bg-[#b95859] transition px-5 py-2.5 text-xs sm:text-sm font-medium text-white shadow focus:outline-none focus:ring-2 focus:ring-[#d58b88]">
-                  <BookOpen className="h-4 w-4 mr-2" aria-hidden="true" /> Inscribirse
-                </button>
-              </div>
-            </article>
-          ))}
-        </div>
-        </div>
-      </section>
-
-      {/* STRIP CTA (v2 fondo blanco) */}
-      <section className="relative left-1/2 -translate-x-1/2 w-screen py-20 bg-white border-t border-[#edcccc]">
-        <div className="max-w-5xl mx-auto px-6 text-center text-[#2d2d2d] space-y-6">
-          <h2 className="text-3xl md:text-4xl font-fredoka-one text-[#d58b88]">
-            Impulsa tu Carrera Médica Hoy
-          </h2>
-          <p className="text-sm md:text-base font-poppins max-w-2xl mx-auto text-gray-600">
-            Accede a rutas de formación, talleres prácticos y recursos exclusivos que elevan tu perfil profesional.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <button aria-label="Ver rutas" className="inline-flex items-center gap-2 rounded-full bg-[#d58b88] px-8 py-3 text-sm font-semibold text-white shadow hover:shadow-lg hover:scale-[1.04] transition focus:outline-none focus:ring-2 focus:ring-[#d58b88]">
-              <GraduationCap className="h-5 w-5" /> Rutas Formativas
-            </button>
-            <button aria-label="Solicitar asesoría" className="inline-flex items-center gap-2 rounded-full bg-[#c7d68f] px-8 py-3 text-sm font-semibold text-white shadow hover:bg-[#bfcf82] transition focus:outline-none focus:ring-2 focus:ring-[#c7d68f]">
-              <Sparkles className="h-5 w-5" /> Asesoría
-            </button>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* TALLERES Y SIMPOSIOS */}
-      <section id="talleres" className="relative left-1/2 -translate-x-1/2 w-screen scroll-mt-24 bg-white">
-        <div className="mx-auto max-w-7xl px-8 py-20 space-y-10">
-        <header className="text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-fredoka-one text-[#d58b88] mb-4">Talleres y Simposios</h2>
-          <p className="text-sm md:text-base text-gray-600 font-poppins">Eventos presenciales y virtuales para intercambio de conocimiento.</p>
-        </header>
+      {/* CTA — Impulsa tu Carrera + entrENARMe */}
+      <section className="relative left-1/2 -translate-x-1/2 w-screen py-20 bg-white border-t border-[#edcccc]">
+        <div className="max-w-5xl mx-auto px-6 space-y-10">
+          <div className="text-center space-y-6">
+            <h2 className="text-3xl md:text-4xl font-fredoka-one text-[#d58b88]">
+              Impulsa tu Carrera Médica Hoy
+            </h2>
+            <p className="text-sm md:text-base font-poppins max-w-2xl mx-auto text-gray-600">
+              Accede a rutas de formación, espacios académicos y recursos exclusivos que elevan tu perfil profesional.
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <a href="#espacios" aria-label="Ver espacios académicos" className="inline-flex items-center gap-2 rounded-full bg-[#d58b88] px-8 py-3 text-sm font-semibold text-white shadow hover:shadow-lg hover:scale-[1.04] transition focus:outline-none focus:ring-2 focus:ring-[#d58b88]">
+                <GraduationCap className="h-5 w-5" /> Espacios Académicos
+              </a>
+              <a href="#calculadoras" aria-label="Ver calculadoras médicas" className="inline-flex items-center gap-2 rounded-full bg-[#c7d68f] px-8 py-3 text-sm font-semibold text-white shadow hover:bg-[#bfcf82] transition focus:outline-none focus:ring-2 focus:ring-[#c7d68f]">
+                <Sparkles className="h-5 w-5" /> Calculadoras
+              </a>
+            </div>
+          </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          {workshops.map((wk) => (
-            <article
-              key={wk.title}
-              className="rounded-3xl border border-border bg-card shadow-sm p-6 sm:p-7 flex flex-col justify-between"
-            >
-              <div className="space-y-3">
-                <div className="flex items-center justify-between gap-2">
-                  <h3 className="text-base sm:text-lg font-semibold text-foreground">
-                    {wk.title}
-                  </h3>
-                  <span className="text-lg font-semibold text-[#d58b88]">
-                    {wk.price}
-                  </span>
-                </div>
-
-                <div className="space-y-1 text-xs sm:text-sm text-muted-foreground">
-                  <p className="flex items-center gap-2">
-                    <CalendarDays className="h-4 w-4 text-[#d58b88]" />
-                    {wk.date}
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <Clock3 className="h-4 w-4 text-[#d58b88]" />
-                    {wk.time}
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <Users className="h-4 w-4 text-[#d58b88]" />
-                    {wk.spots}
-                  </p>
-                  <p className="text-xs text-[#d58b88] font-medium">
-                    {wk.mode}
-                  </p>
-                </div>
+          {/* entrENARMe */}
+          <div className="rounded-3xl border border-[#d58b88]/20 bg-gradient-to-br from-[#d58b88]/5 to-[#dabebd]/10 p-8 flex flex-col md:flex-row items-start md:items-center gap-6">
+            <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-[#d58b88] flex items-center justify-center shadow">
+              <GraduationCap className="h-7 w-7 text-white" />
+            </div>
+            <div className="flex-1">
+              <div className="flex flex-wrap items-center gap-3 mb-2">
+                <h3 className="text-lg font-semibold text-[#2d2d2d] font-poppins">entrENARMe</h3>
+                <span className="rounded-full bg-[#d58b88]/10 px-3 py-0.5 text-xs font-medium text-[#d58b88]">Próximamente</span>
               </div>
-
-              <button aria-label={`Reservar taller ${wk.title}`} className="mt-5 inline-flex items-center justify-center rounded-full bg-[#c7d68f] hover:bg-[#b95859] transition px-6 py-2 text-xs sm:text-sm font-medium text-white shadow focus:outline-none focus:ring-2 focus:ring-[#d58b88]">
-                <Users className="h-4 w-4 mr-2" aria-hidden="true" /> Reservar
-              </button>
-            </article>
-          ))}
-        </div>
+              <p className="text-sm text-gray-600 font-poppins leading-relaxed">
+                Accede al simulador de entrenamiento para el ENARM y fortalece tu preparación con una experiencia
+                práctica, enfocada y alineada con tus objetivos.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* BIBLIOTECA DE RECURSOS */}
-      <section id="recursos" className="relative left-1/2 -translate-x-1/2 w-screen scroll-mt-24 border-y border-[#d58b88]/20 bg-[#FDFBFA]">
+      {/* TALLERES Y SIMPOSIOS — COMING SOON */}
+      <section id="talleres" className="relative left-1/2 -translate-x-1/2 w-screen scroll-mt-24 bg-white border-t border-[#edcccc]">
         <div className="mx-auto max-w-7xl px-8 py-20 space-y-10">
           <header className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-fredoka-one text-[#d58b88] mb-4">Biblioteca de Recursos</h2>
-            <p className="text-sm md:text-base text-gray-600 font-poppins">Guías, videos, podcasts y material educativo siempre actualizado.</p>
+            <h2 className="text-3xl md:text-4xl font-fredoka-one text-[#d58b88] mb-4">Cursos y Talleres Virtuales</h2>
+            <p className="text-sm md:text-base text-gray-600 font-poppins">
+              Eventos virtuales para el intercambio de conocimiento médico.
+            </p>
           </header>
 
-          <div className="grid gap-5">
-            {resources.map((res) => {
-              const Icon = res.icon;
-              return (
-                <article
-                  key={res.title}
-                  className="rounded-2xl border border-border bg-card shadow-sm p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-4 justify-between"
-                >
-                  <div className="flex items-start gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#d58b88]/10">
-                      <Icon className="h-5 w-5 text-[#d58b88]" />
-                    </div>
-                    <div>
-                      <h3 className="text-sm sm:text-base font-semibold text-foreground">
-                        {res.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-muted-foreground">
-                        {res.info}
-                      </p>
-                      {res.size && (
-                        <p className="mt-1 text-xs text-muted-foreground">
-                          {res.size}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  <button aria-label={`${res.actionLabel} recurso ${res.title}`} className="mt-5 inline-flex items-center justify-center rounded-full bg-[#c7d68f] hover:bg-[#b95859] transition px-6 py-2 text-xs sm:text-sm font-medium text-white shadow focus:outline-none focus:ring-2 focus:ring-[#d58b88]">
-                    <Download className="h-4 w-4 mr-2" aria-hidden="true" /> {res.actionLabel}
-                  </button>
-                </article>
-              );
-            })}
+          <div className="rounded-3xl border-2 border-dashed border-[#d58b88]/30 bg-[#fdfbfa] p-12 flex flex-col items-center gap-4 text-center">
+            <CalendarDays className="h-12 w-12 text-[#d58b88]/40" />
+            <p className="text-lg font-semibold text-gray-700 font-poppins">
+              Cursos y talleres virtuales para el intercambio de conocimiento
+            </p>
+            <p className="text-2xl font-fredoka-one text-[#d58b88]">Próximamente</p>
+            <p className="text-sm text-gray-500 font-poppins max-w-md">
+              Estamos desarrollando talleres especializados. Si LAION desarrolla este formato, lo encontrarás aquí.
+            </p>
           </div>
         </div>
       </section>
 
       {/* CALCULADORAS MÉDICAS */}
-      <section id="calculadoras" className="relative left-1/2 -translate-x-1/2 w-screen scroll-mt-24 bg-white">
+      <section id="calculadoras" className="relative left-1/2 -translate-x-1/2 w-screen scroll-mt-24 bg-[#FDFBFA] border-t border-[#d58b88]/20">
         <div className="mx-auto max-w-7xl px-8 py-20">
-        <header className="text-center max-w-3xl mx-auto mb-8">
-          <h2 className="text-3xl md:text-4xl font-fredoka-one text-[#d58b88] mb-4">Calculadoras Médicas</h2>
-          <p className="text-sm md:text-base text-gray-600 font-poppins">Herramientas interactivas para cálculos clínicos y apoyo diagnóstico.</p>
-        </header>
+          <header className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-3xl md:text-4xl font-fredoka-one text-[#d58b88] mb-4">Calculadoras Médicas</h2>
+            <p className="text-sm md:text-base text-gray-600 font-poppins">
+              Herramientas de apoyo clínico validadas. Cada calculadora abre en una nueva pestaña con el recurso externo oficial.
+            </p>
+          </header>
 
-        <div className="grid gap-6 md:grid-cols-3">
-          {calculators.map((calc) => (
-            <article
-              key={calc.title}
-              className="rounded-3xl border border-border bg-card shadow-sm p-6 sm:p-7 flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#d58b88] to-[#e3c094] mb-4">
-                  <Calculator className="h-5 w-5 text-white" />
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {calculators.map((calc) => (
+              <article
+                key={calc.title}
+                className="rounded-3xl border border-border bg-white shadow-sm p-6 flex flex-col justify-between hover:shadow-lg hover:-translate-y-0.5 transition duration-300"
+              >
+                <div>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#d58b88] to-[#e3c094] mb-4">
+                    <Calculator className="h-5 w-5 text-white" />
+                  </div>
+                  <h3 className="text-sm font-semibold text-gray-900 font-poppins">
+                    {calc.title}
+                  </h3>
+                  <p className="mt-2 text-xs text-gray-500 font-poppins leading-relaxed">
+                    {calc.description}
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {calc.fields.map((f) => (
+                      <span
+                        key={f}
+                        className="rounded-full bg-[#d58b88]/8 border border-[#d58b88]/20 px-2 py-0.5 text-[10px] font-medium text-gray-600"
+                      >
+                        {f}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <h3 className="text-base sm:text-lg font-semibold text-foreground">
-                  {calc.title}
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  {calc.description}
-                </p>
-                <p className="mt-3 text-xs font-semibold text-foreground">
-                  Campos requeridos:
-                </p>
-                <div className="mt-2 flex flex-wrap gap-1.5">
-                  {calc.fields.map((f) => (
-                    <span
-                      key={f}
-                      className="rounded-full bg-[#c7d68f]/15 border border-[#c7d68f]/60 px-2.5 py-1 text-[11px] font-medium text-foreground"
-                    >
-                      {f}
-                    </span>
-                  ))}
-                </div>
-              </div>
 
-              <button aria-label={`Usar calculadora ${calc.title}`} className="mt-5 inline-flex items-center justify-center rounded-full bg-[#c7d68f] hover:bg-[#b95859] transition px-6 py-2 text-xs sm:text-sm font-medium text-white shadow focus:outline-none focus:ring-2 focus:ring-[#d58b88]">
-                <Calculator className="h-4 w-4 mr-2" aria-hidden="true" /> Usar
-              </button>
-            </article>
-          ))}
-        </div>
+                <a
+                  href={calc.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Abrir calculadora: ${calc.title}`}
+                  className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-[#d58b88] hover:bg-[#c47a77] transition px-5 py-2 text-xs font-medium text-white shadow focus:outline-none focus:ring-2 focus:ring-[#d58b88]"
+                >
+                  <ExternalLink className="h-3.5 w-3.5" /> Abrir calculadora
+                </a>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
+
+      {/* SOCIEDADES MÉDICAS */}
+      <section id="sociedades" className="relative left-1/2 -translate-x-1/2 w-screen scroll-mt-24 bg-white border-t border-[#d58b88]/20">
+        <div className="mx-auto max-w-7xl px-8 py-20">
+          <header className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-3xl md:text-4xl font-fredoka-one text-[#d58b88] mb-4">Sociedades Médicas</h2>
+            <p className="text-sm md:text-base text-gray-600 font-poppins">
+              Referencias a las principales sociedades médicas especializadas a nivel internacional.
+            </p>
+          </header>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {societies.map((item) => (
+              <div
+                key={item.title}
+                className="rounded-2xl border border-[#d58b88]/20 bg-white p-6 shadow-sm text-center hover:shadow-md transition"
+              >
+                <div className="w-12 h-12 mx-auto rounded-full bg-[#d58b88]/10 flex items-center justify-center mb-4">
+                  <Globe className="h-6 w-6 text-[#d58b88]" />
+                </div>
+                <h3 className="font-semibold text-lg text-[#2d2d2d] font-fredoka-one">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-gray-600 font-poppins mb-4">
+                  {item.subtitle}
+                </p>
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visitar sitio de ${item.title}`}
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-[#d58b88] text-white text-sm rounded-full hover:bg-[#c47a77] transition font-poppins shadow"
+                >
+                  Visitar sitio <ExternalLink className="h-3.5 w-3.5" />
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
     </main>
   );
 }
 
-/* ---------- Componentes pequeños reutilizables ---------- */
+/* ------------------------------------------------------------------ */
+/* Helper components                                                     */
+/* ------------------------------------------------------------------ */
 
-function TabPill({
+function MiniMetric({
   icon: Icon,
+  value,
   label,
-  active = false,
 }: {
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  value: string;
   label: string;
-  active?: boolean;
 }) {
-  const base = "inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium border transition focus:outline-none focus:ring-2 focus:ring-[#d58b88]";
-  if (active) {
-    return (
-      <button role="tab" aria-selected="true" className={`${base} bg-white text-[#d58b88] border-[#d58b88]/40 shadow-md`}>
-        <Icon className="h-4 w-4" aria-hidden="true" /> {label}
-      </button>
-    );
-  }
-  return (
-    <button role="tab" aria-selected="false" className={`${base} bg-white/70 text-gray-600 border-border hover:bg-white shadow-sm`}>
-      <Icon className="h-4 w-4" aria-hidden="true" /> {label}
-    </button>
-  );
-}
-
-function Metric({ icon: Icon, label, value }: { icon: React.ComponentType<React.SVGProps<SVGSVGElement>>; label: string; value: string }) {
-  return (
-    <div className="rounded-2xl bg-white/20 backdrop-blur-sm border border-white/30 py-6 px-4 flex flex-col items-center text-white">
-      <Icon className="h-6 w-6 mb-2" aria-hidden="true" />
-      <span className="text-xl font-semibold font-fredoka-one">{value}</span>
-      <span className="text-xs tracking-wide uppercase opacity-80 font-poppins">{label}</span>
-    </div>
-  );
-}
-
-// Mini metric for inline small stats in hero
-function MiniMetric({ icon: Icon, value, label }: { icon: React.ComponentType<React.SVGProps<SVGSVGElement>>; value: string; label: string }) {
   return (
     <div className="flex flex-col items-start gap-1">
       <div className="flex items-center gap-2">
@@ -450,19 +430,28 @@ function MiniMetric({ icon: Icon, value, label }: { icon: React.ComponentType<Re
   );
 }
 
-// Side navigation link component
-function SideLink({ icon: Icon, label, active = false }: { icon: React.ComponentType<React.SVGProps<SVGSVGElement>>; label: string; active?: boolean }) {
-  const href = `#${label.toLowerCase().split(' ')[0]}`; // cursos, talleres, recursos, calculadoras, etc.
-  const base = "flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition border focus:outline-none focus:ring-2 focus:ring-[#d58b88]";
+function SideLink({
+  icon: Icon,
+  label,
+  href,
+  active = false,
+}: {
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  label: string;
+  href: string;
+  active?: boolean;
+}) {
+  const base =
+    "flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition border focus:outline-none focus:ring-2 focus:ring-[#d58b88]";
   if (active) {
     return (
-      <a href={href} aria-current="page" className={`${base} bg-[#d58b88] text-white border-[#d58b88] shadow-sm hover:shadow-md`}> 
+      <a href={href} aria-current="page" className={`${base} bg-[#d58b88] text-white border-[#d58b88] shadow-sm hover:shadow-md`}>
         <Icon className="h-4 w-4" aria-hidden="true" /> {label}
       </a>
     );
   }
   return (
-    <a href={href} className={`${base} bg-white/80 text-[#2d2d2d] border-[#d58b88]/20 hover:bg-[#edcccc]/60 hover:border-[#d58b88]/40`}> 
+    <a href={href} className={`${base} bg-white/80 text-[#2d2d2d] border-[#d58b88]/20 hover:bg-[#edcccc]/60 hover:border-[#d58b88]/40`}>
       <Icon className="h-4 w-4 text-[#d58b88]" aria-hidden="true" /> {label}
     </a>
   );

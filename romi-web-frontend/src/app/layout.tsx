@@ -1,5 +1,6 @@
 import "./globals.css";
 import Navbar from "@/components/Nav";
+import Footer from "@/components/Footer";
 import { AuthProvider } from "./Auth/contexts/AuthContext";
 import { Fredoka, Poppins } from "next/font/google";
 
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <AuthProvider>
           <Navbar />
           <main className="max-w-6xl mx-auto px-4">{children}</main>
+          <Footer />
         </AuthProvider>
       </body>
     </html>
