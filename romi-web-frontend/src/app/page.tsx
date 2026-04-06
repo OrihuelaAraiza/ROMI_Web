@@ -205,41 +205,73 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Timeline */}
+            {/* Reconocimientos */}
             <div className="mt-16 sm:mt-24 pt-10 sm:pt-12 border-t border-gray-200">
-              <Reveal className="text-center mb-10 sm:mb-12">
-                <h3 className="text-2xl sm:text-3xl text-[#d58b88] font-fredoka-one font-bold mb-4">
-                  Nuestra Historia
+              <Reveal className="text-center mb-10 sm:mb-14">
+                <span className="inline-flex items-center gap-2 rounded-full bg-[#d58b88]/10 px-4 py-1.5 text-xs font-semibold text-[#d58b88] mb-4">
+                  🏆 Logros 2025
+                </span>
+                <h3 className="text-2xl sm:text-3xl text-[#d58b88] font-fredoka-one font-bold mb-3">
+                  Reconocimientos
                 </h3>
-                <p className="text-center text-gray-600 font-poppins text-sm sm:text-base">
-                  Un recorrido de innovación y crecimiento en el sector de la salud digital.
+                <p className="text-gray-600 font-poppins text-sm sm:text-base max-w-xl mx-auto">
+                  Premios y distinciones que avalan nuestro impacto en el ecosistema de salud digital e innovación.
                 </p>
               </Reveal>
 
-              <div className="relative max-w-3xl mx-auto">
-                {/* Desktop: center vertical line */}
-                <div className="pointer-events-none absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-[#d58b88]/30 hidden md:block" />
-                {/* Mobile: left vertical line */}
-                <div className="pointer-events-none absolute left-5 top-0 h-full w-px bg-[#d58b88]/30 md:hidden" />
-
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 max-w-4xl mx-auto">
                 {[
-                  { year: "2020", side: "left",  title: "Fundación de HubROMI",    desc: "Inicio de la plataforma con enfoque en telemedicina." },
-                  { year: "2021", side: "right", title: "Lanzamiento de ROMI",     desc: "Primer asistente médico con IA en español." },
-                  { year: "2022", side: "left",  title: "16,000 Chats Atendidos",  desc: "Alcanzamos 16k interacciones con profesionales de la salud." },
-                  { year: "2023", side: "right", title: "Expansión Internacional", desc: "Presencia en 15 países de Latinoamérica." },
-                  { year: "2024", side: "left",  title: "Portal Premium",          desc: "Lanzamiento de servicios especializados." },
-                ].map(({ year, side, title, desc }, i) => (
-                  <Reveal key={year} type={side === "left" ? "left" : "right"} delay={i * 80}>
-                    <div className="relative grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-12 items-start md:items-center">
-                      {/* Mobile: dot on left rail */}
-                      <span className="md:hidden absolute left-5 top-1 h-3 w-3 -translate-x-1/2 rounded-full bg-[#d58b88] ring-4 ring-white z-10" />
-                      {/* Desktop: dot at center */}
-                      <span className="hidden md:block absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d58b88] ring-8 ring-white z-10 transition-transform hover:scale-125" />
-                      <div className={`pl-12 md:pl-0 ${side === "left" ? "md:text-right md:pr-8" : "md:col-start-2 md:pl-8"}`}>
-                        <p className="text-[#d58b88] font-bold text-base sm:text-lg">{year}</p>
-                        <h4 className="text-base sm:text-xl font-semibold text-gray-900">{title}</h4>
-                        <p className="text-gray-600 text-xs sm:text-sm mt-1 sm:mt-2">{desc}</p>
+                  {
+                    emoji: "🚀",
+                    org: "Talent Land",
+                    title: "Ganadores Startup a la Cuesta",
+                    desc: "Reconocidos entre las startups más prometedoras del ecosistema de innovación en México.",
+                    color: "from-[#d58b88]/20 to-[#d79c9c]/10",
+                    badge: "Talent Land 2025",
+                  },
+                  {
+                    emoji: "🌍",
+                    org: "Youth Empowerment Fund",
+                    title: "Ganadores del Grant Internacional",
+                    desc: "Premio internacional por impacto social en salud digital otorgado a nivel global.",
+                    color: "from-[#d79c9c]/20 to-[#dabebd]/10",
+                    badge: "YEF 2025",
+                  },
+                  {
+                    emoji: "🤖",
+                    org: "Intel · Acelerado México con IA",
+                    title: "Top 10 Proyectos de IA",
+                    desc: "Seleccionados entre los 10 mejores proyectos de inteligencia artificial de México.",
+                    color: "from-[#dabebd]/20 to-[#d58b88]/10",
+                    badge: "Intel 2025",
+                  },
+                ].map(({ emoji, org, title, desc, color, badge }, i) => (
+                  <Reveal key={title} type="scale" delay={i * 100}>
+                    <div className={`relative rounded-3xl bg-gradient-to-br ${color} border border-[#d58b88]/25 p-5 sm:p-6 card-premium group h-full flex flex-col`}>
+                      {/* Year badge */}
+                      <span className="absolute top-4 right-4 rounded-full bg-[#d58b88] text-white text-[10px] font-bold px-2.5 py-0.5 tracking-wide">
+                        {badge}
+                      </span>
+
+                      {/* Emoji icon */}
+                      <div className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-3xl mb-4 group-hover:-translate-y-1 transition-transform duration-300">
+                        {emoji}
                       </div>
+
+                      {/* Org */}
+                      <p className="text-xs font-semibold text-[#d58b88] uppercase tracking-wider mb-1 font-poppins">
+                        {org}
+                      </p>
+
+                      {/* Title */}
+                      <h4 className="text-base sm:text-lg font-bold text-gray-900 leading-snug mb-2">
+                        {title}
+                      </h4>
+
+                      {/* Desc */}
+                      <p className="text-xs sm:text-sm text-gray-600 font-poppins leading-relaxed mt-auto pt-2">
+                        {desc}
+                      </p>
                     </div>
                   </Reveal>
                 ))}
