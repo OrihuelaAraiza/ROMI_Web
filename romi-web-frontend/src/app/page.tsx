@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Heart, Lightbulb, Shield, Users, Globe, BookOpen, User, Trophy, Rocket, BrainCircuit } from "lucide-react";
+import { Heart, Lightbulb, Shield, Users, Globe, BookOpen, Trophy, Rocket, BrainCircuit } from "lucide-react";
 import Reveal from "@/components/Reveal";
 
 export default function Home() {
@@ -176,32 +176,102 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Team */}
+            {/* Team – Org Chart */}
             <div className="mt-16 sm:mt-24 pt-10 sm:pt-12 border-t border-gray-200">
-              <Reveal className="text-center mb-10 sm:mb-12">
-                <h3 className="text-2xl sm:text-3xl text-[#d58b88] font-fredoka-one font-bold mb-4">
+              <Reveal className="text-center mb-10 sm:mb-14">
+                <h3 className="text-2xl sm:text-3xl text-[#d58b88] font-fredoka-one font-bold mb-3">
                   Nuestro Equipo
                 </h3>
                 <p className="text-center text-gray-600 font-poppins text-sm sm:text-base">
-                  Profesionales comprometidos con la innovación en salud digital.
+                  El equipo que impulsa la innovación en salud digital.
                 </p>
               </Reveal>
-              <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
-                {[
-                  { name: "Dr. Ivan", role: "Director Médico" },
-                  { name: "Lic. Marisela", role: "Coordinadora Académica" },
-                  { name: "Dra. Maria Jose Borja Nuñez", role: "Consultora en Formación Médica" },
-                ].map(({ name, role }, i) => (
-                  <Reveal key={name} type="scale" delay={i * 100}>
-                    <div className="rounded-2xl bg-gradient-to-br from-[#d58b88]/5 to-[#d79c9c]/5 border border-[#d58b88]/20 p-5 sm:p-6 card-premium text-center w-full sm:w-56">
-                      <div className="w-11 h-11 bg-[#d58b88]/10 rounded-full flex items-center justify-center mb-4 mx-auto icon-lift">
-                        <User className="text-[#d58b88]" size={22} />
-                      </div>
-                      <h4 className="text-sm sm:text-base font-semibold text-gray-900">{name}</h4>
-                      <p className="text-xs sm:text-sm text-[#d58b88] font-poppins mt-1">{role}</p>
+
+              {/* Scrollable wrapper for small screens */}
+              <div className="overflow-x-auto pb-2 -mx-2 px-2">
+                <div className="min-w-[580px] flex flex-col items-center">
+
+                  {/* ── CEO ── */}
+                  <div className="w-48">
+                    <div className="rounded-2xl bg-gradient-to-br from-[#d58b88] to-[#c47a77] text-white shadow-lg shadow-[#d58b88]/30 px-4 py-3 text-center hover:-translate-y-0.5 transition-transform duration-200">
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-white/70 mb-0.5">CEO</p>
+                      <p className="text-sm font-semibold">Kevin Soto</p>
                     </div>
-                  </Reveal>
-                ))}
+                  </div>
+
+                  {/* vertical from CEO */}
+                  <div className="h-6 w-px bg-[#d58b88]/40" />
+
+                  {/* ── Level 2 + 3: 3 columns connected by horizontal bar ── */}
+                  <div className="relative w-full flex items-start">
+                    {/* Horizontal connector bar (left-center to right-center) */}
+                    <div className="absolute top-0 left-[16.67%] right-[16.67%] h-px bg-[#d58b88]/40 pointer-events-none" />
+
+                    {/* ── Column: CAO ── */}
+                    <div className="flex-1 flex flex-col items-center gap-0">
+                      <div className="h-6 w-px bg-[#d58b88]/40" />
+                      {/* CAO card */}
+                      <div className="w-36 rounded-2xl bg-gradient-to-br from-[#d58b88]/20 to-[#d79c9c]/10 border border-[#d58b88]/30 px-3 py-2.5 text-center hover:-translate-y-0.5 transition-transform duration-200">
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-[#d58b88]/70 mb-0.5">CAO</p>
+                        <p className="text-xs font-semibold text-gray-800 leading-tight">Marisela Coyotl</p>
+                      </div>
+                      <div className="h-5 w-px bg-[#d58b88]/40" />
+                      {/* Jr. CAO card */}
+                      <div className="w-36 rounded-2xl bg-gradient-to-br from-[#dabebd]/30 to-white border border-[#d58b88]/20 px-3 py-2.5 text-center hover:-translate-y-0.5 transition-transform duration-200">
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-[#d58b88]/60 mb-0.5">Jr. CAO</p>
+                        <p className="text-xs font-semibold text-gray-700 leading-tight">Rocío Nicanor</p>
+                      </div>
+                    </div>
+
+                    {/* ── Column: Tech (Sr. CTO + Jr. CTO) ── */}
+                    <div className="flex-1 flex flex-col items-center gap-0">
+                      <div className="h-6 w-px bg-[#d58b88]/40" />
+
+                      {/* Sr. CTO group card */}
+                      <div className="w-44 rounded-2xl bg-gradient-to-br from-[#d79c9c]/20 to-[#dabebd]/10 border border-[#d58b88]/25 overflow-hidden hover:-translate-y-0.5 transition-transform duration-200">
+                        <div className="bg-[#d58b88]/15 px-3 py-1.5 text-center">
+                          <p className="text-[10px] font-bold uppercase tracking-widest text-[#d58b88]">Sr. CTO</p>
+                        </div>
+                        {["Juan Pablo Orihuela", "Miguel Ángel Cruz", "Ángel David Morales"].map((n) => (
+                          <p key={n} className="text-[11px] font-semibold text-gray-800 text-center py-1.5 px-3 border-b border-[#d58b88]/10 last:border-0 leading-tight">
+                            {n}
+                          </p>
+                        ))}
+                      </div>
+
+                      <div className="h-5 w-px bg-[#d58b88]/40" />
+
+                      {/* Jr. CTO group card */}
+                      <div className="w-44 rounded-2xl bg-gradient-to-br from-[#dabebd]/30 to-white border border-[#d58b88]/15 overflow-hidden hover:-translate-y-0.5 transition-transform duration-200">
+                        <div className="bg-[#d58b88]/10 px-3 py-1.5 text-center">
+                          <p className="text-[10px] font-bold uppercase tracking-widest text-[#d58b88]">Jr. CTO</p>
+                        </div>
+                        {["Emmanuel Arceo", "José Antonio Díaz", "Ivonne Méndez"].map((n) => (
+                          <p key={n} className="text-[11px] font-semibold text-gray-700 text-center py-1.5 px-3 border-b border-[#d58b88]/10 last:border-0 leading-tight">
+                            {n}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* ── Column: CMO ── */}
+                    <div className="flex-1 flex flex-col items-center gap-0">
+                      <div className="h-6 w-px bg-[#d58b88]/40" />
+                      {/* CMO card */}
+                      <div className="w-36 rounded-2xl bg-gradient-to-br from-[#d58b88]/20 to-[#d79c9c]/10 border border-[#d58b88]/30 px-3 py-2.5 text-center hover:-translate-y-0.5 transition-transform duration-200">
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-[#d58b88]/70 mb-0.5">CMO</p>
+                        <p className="text-xs font-semibold text-gray-800 leading-tight">Dr. Abraham Castro</p>
+                      </div>
+                      <div className="h-5 w-px bg-[#d58b88]/40" />
+                      {/* Jr. CMO card */}
+                      <div className="w-36 rounded-2xl bg-gradient-to-br from-[#dabebd]/30 to-white border border-[#d58b88]/20 px-3 py-2.5 text-center hover:-translate-y-0.5 transition-transform duration-200">
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-[#d58b88]/60 mb-0.5">Jr. CMO</p>
+                        <p className="text-xs font-semibold text-gray-700 leading-tight">María José Borja</p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
               </div>
             </div>
 
