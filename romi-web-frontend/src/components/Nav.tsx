@@ -16,7 +16,6 @@ const LINKS = [
   { href: "/Formation", label: "Formación" },
   { href: "/Investigation", label: "Investigación" },
   { href: "/Speciality", label: "Especialidades" },
-  { href: "/Events", label: "Eventos" },
   { href: "/Contact", label: "Contacto" },
 ];
 
