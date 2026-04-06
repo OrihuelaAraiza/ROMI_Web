@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Heart, Lightbulb, Shield, Users, Globe, BookOpen, User } from "lucide-react";
+import { Heart, Lightbulb, Shield, Users, Globe, BookOpen, User, Trophy, Rocket, BrainCircuit } from "lucide-react";
 import Reveal from "@/components/Reveal";
 
 export default function Home() {
@@ -209,7 +209,7 @@ export default function Home() {
             <div className="mt-16 sm:mt-24 pt-10 sm:pt-12 border-t border-gray-200">
               <Reveal className="text-center mb-10 sm:mb-14">
                 <span className="inline-flex items-center gap-2 rounded-full bg-[#d58b88]/10 px-4 py-1.5 text-xs font-semibold text-[#d58b88] mb-4">
-                  🏆 Logros 2025
+                  <Trophy size={13} /> Logros 2025
                 </span>
                 <h3 className="text-2xl sm:text-3xl text-[#d58b88] font-fredoka-one font-bold mb-3">
                   Reconocimientos
@@ -220,55 +220,50 @@ export default function Home() {
               </Reveal>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 max-w-4xl mx-auto">
-                {[
-                  {
-                    emoji: "🚀",
-                    org: "Talent Land",
-                    title: "Ganadores Startup a la Cuesta",
-                    desc: "Reconocidos entre las startups más prometedoras del ecosistema de innovación en México.",
-                    color: "from-[#d58b88]/20 to-[#d79c9c]/10",
-                    badge: "Talent Land 2025",
-                  },
-                  {
-                    emoji: "🌍",
-                    org: "Youth Empowerment Fund",
-                    title: "Ganadores del Grant Internacional",
-                    desc: "Premio internacional por impacto social en salud digital otorgado a nivel global.",
-                    color: "from-[#d79c9c]/20 to-[#dabebd]/10",
-                    badge: "YEF 2025",
-                  },
-                  {
-                    emoji: "🤖",
-                    org: "Intel · Acelerado México con IA",
-                    title: "Top 10 Proyectos de IA",
-                    desc: "Seleccionados entre los 10 mejores proyectos de inteligencia artificial de México.",
-                    color: "from-[#dabebd]/20 to-[#d58b88]/10",
-                    badge: "Intel 2025",
-                  },
-                ].map(({ emoji, org, title, desc, color, badge }, i) => (
+                {(
+                  [
+                    {
+                      Icon: Rocket,
+                      org: "Talent Land",
+                      title: "Ganadores Startup a la Cuesta",
+                      desc: "Reconocidos entre las startups más prometedoras del ecosistema de innovación en México.",
+                      color: "from-[#d58b88]/20 to-[#d79c9c]/10",
+                      badge: "Talent Land 2025",
+                    },
+                    {
+                      Icon: Globe,
+                      org: "Youth Empowerment Fund",
+                      title: "Ganadores del Grant Internacional",
+                      desc: "Premio internacional por impacto social en salud digital otorgado a nivel global.",
+                      color: "from-[#d79c9c]/20 to-[#dabebd]/10",
+                      badge: "YEF 2025",
+                    },
+                    {
+                      Icon: BrainCircuit,
+                      org: "Intel · Acelerado México con IA",
+                      title: "Top 10 Proyectos de IA",
+                      desc: "Seleccionados entre los 10 mejores proyectos de inteligencia artificial de México.",
+                      color: "from-[#dabebd]/20 to-[#d58b88]/10",
+                      badge: "Intel 2025",
+                    },
+                  ] as const
+                ).map(({ Icon, org, title, desc, color, badge }, i) => (
                   <Reveal key={title} type="scale" delay={i * 100}>
                     <div className={`relative rounded-3xl bg-gradient-to-br ${color} border border-[#d58b88]/25 p-5 sm:p-6 card-premium group h-full flex flex-col`}>
-                      {/* Year badge */}
                       <span className="absolute top-4 right-4 rounded-full bg-[#d58b88] text-white text-[10px] font-bold px-2.5 py-0.5 tracking-wide">
                         {badge}
                       </span>
 
-                      {/* Emoji icon */}
-                      <div className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-3xl mb-4 group-hover:-translate-y-1 transition-transform duration-300">
-                        {emoji}
+                      <div className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform duration-300">
+                        <Icon size={26} className="text-[#d58b88]" />
                       </div>
 
-                      {/* Org */}
                       <p className="text-xs font-semibold text-[#d58b88] uppercase tracking-wider mb-1 font-poppins">
                         {org}
                       </p>
-
-                      {/* Title */}
                       <h4 className="text-base sm:text-lg font-bold text-gray-900 leading-snug mb-2">
                         {title}
                       </h4>
-
-                      {/* Desc */}
                       <p className="text-xs sm:text-sm text-gray-600 font-poppins leading-relaxed mt-auto pt-2">
                         {desc}
                       </p>
