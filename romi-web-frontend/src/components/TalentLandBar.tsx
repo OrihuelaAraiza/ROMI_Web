@@ -27,7 +27,7 @@ export default function TalentLandBar() {
         {/* Center: message */}
         <p className="hidden sm:block text-[11px] sm:text-xs text-white/75 font-poppins text-center truncate">
           <MapPin className="inline h-3 w-3 mr-1 text-[#d58b88]" />
-          ¡Nos vemos en Guadalajara! Búscanos con nuestra playera ROMI
+          ¡Nos vemos en Expo Santa Fe, CDMX! Búscanos con nuestra playera ROMI
         </p>
 
         {/* Right: link + close */}

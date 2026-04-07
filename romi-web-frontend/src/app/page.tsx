@@ -81,7 +81,7 @@ export default function Home() {
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-[#d58b88]" />
                 </span>
                 <span className="text-[11px] font-bold uppercase tracking-widest text-[#d58b88]">
-                  En vivo · Guadalajara, México
+                  En vivo · Expo Santa Fe, CDMX
                 </span>
               </div>
 
