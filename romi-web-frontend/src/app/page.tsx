@@ -64,6 +64,96 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── Talent Land Section ─── */}
+      <section
+        id="talent-land"
+        className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] scroll-mt-20"
+      >
+        <div className="bg-gradient-to-br from-[#0f1b3d] via-[#1e2f6b] to-[#0f1b3d] px-4 sm:px-8 lg:px-12 py-14 sm:py-20">
+          <div className="max-w-6xl mx-auto">
+
+            {/* Header */}
+            <div className="text-center mb-10 sm:mb-14">
+              {/* Event badge */}
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#d58b88]/40 bg-[#d58b88]/10 px-4 py-1.5 mb-6">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d58b88] opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[#d58b88]" />
+                </span>
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[#d58b88]">
+                  En vivo · Guadalajara, México
+                </span>
+              </div>
+
+              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-fredoka-one text-white mb-4 leading-tight">
+                ¡Nos vemos en{" "}
+                <span className="text-[#d58b88]">Talent Land</span>!
+              </h2>
+
+              {/* Date pills */}
+              <div className="flex items-center justify-center gap-2 sm:gap-3 mb-6">
+                {["7", "8", "9"].map((d) => (
+                  <div
+                    key={d}
+                    className="rounded-xl bg-white/10 border border-white/20 px-4 sm:px-6 py-2 text-white text-center"
+                  >
+                    <p className="text-xl sm:text-3xl font-fredoka-one leading-none">{d}</p>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-white/60 mt-0.5">Abr 2026</p>
+                  </div>
+                ))}
+              </div>
+
+              <p className="text-base sm:text-xl text-white/75 font-poppins max-w-xl mx-auto leading-relaxed">
+                Si nos ves con esta playera,{" "}
+                <span className="text-white font-semibold">¡salúdanos!</span>{" "}
+                Escanea el QR y chatea con ROMI en el momento.
+              </p>
+            </div>
+
+            {/* T-shirt image grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+              {[
+                { src: "/images/talent-land-1.png", alt: "Equipo ROMI en Talent Land — vista trasera con playera", caption: "Nuestro equipo en acción" },
+                { src: "/images/talent-land-2.png", alt: "Playera ROMI — variantes blanca, gris, azul y rosa",      caption: "Diseños disponibles" },
+                { src: "/images/talent-land-3.png", alt: "Playera ROMI — variantes verde, negro, beige y lila",     caption: "Más colores" },
+              ].map(({ src, alt, caption }, i) => (
+                <div
+                  key={src}
+                  className="group relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl hover:-translate-y-2 transition-transform duration-300"
+                  style={{ animationDelay: `${i * 100}ms` }}
+                >
+                  <Image
+                    src={src}
+                    alt={alt}
+                    width={600}
+                    height={600}
+                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  {/* Caption overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent px-4 py-3">
+                    <p className="text-white text-xs sm:text-sm font-semibold font-poppins">{caption}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA */}
+            <div className="text-center mt-10 sm:mt-14">
+              <p className="text-white/60 font-poppins text-sm mb-4">
+                Búscanos por el stand o por los pasillos
+              </p>
+              <a
+                href="/chat"
+                className="inline-flex items-center gap-2 rounded-full bg-[#d58b88] hover:bg-[#c47a77] text-white font-semibold px-7 py-3 shadow-lg shadow-[#d58b88]/30 hover:-translate-y-0.5 hover:shadow-xl transition-all duration-200 font-poppins"
+              >
+                Chatea con ROMI ahora
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* ─── About Section ─── */}
       <section className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mt-8 sm:mt-10">
         <div className="bg-white rounded-t-[3rem] sm:rounded-t-[4rem] px-4 sm:px-8 lg:px-12 pt-10 sm:pt-12 pb-12" style={{ boxShadow: "0 -15px 50px rgba(0,0,0,0.25)" }}>

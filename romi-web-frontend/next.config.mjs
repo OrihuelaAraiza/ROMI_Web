@@ -15,6 +15,11 @@ const nextConfig = {
 
   async rewrites() {
     return [
+      // Los navegadores piden /favicon.ico por defecto; sin esto suelen ver 404 y el icono falla o parpadea.
+      {
+        source: '/favicon.ico',
+        destination: '/images/iconoROMI.png',
+      },
       {
         source: '/auth/:path*',
         destination: `${API_BASE}/auth/:path*`,
