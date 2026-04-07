@@ -113,9 +113,9 @@ export default function Home() {
             {/* T-shirt image grid */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
               {[
-                { src: "/images/talent-land-1.png", alt: "Equipo ROMI en Talent Land — vista trasera con playera", caption: "Nuestro equipo en acción" },
-                { src: "/images/talent-land-2.png", alt: "Playera ROMI — variantes blanca, gris, azul y rosa",      caption: "Diseños disponibles" },
-                { src: "/images/talent-land-3.png", alt: "Playera ROMI — variantes verde, negro, beige y lila",     caption: "Más colores" },
+                { src: "/images/talent-land-1.png", alt: "Equipo ROMI en Talent Land con playera", caption: "Así nos verás en el evento" },
+                { src: "/images/talent-land-2.png", alt: "Playera ROMI usada por el equipo",        caption: "Búscanos con esta playera" },
+                { src: "/images/talent-land-3.png", alt: "Playera ROMI usada por el equipo",        caption: "¡Salúdanos y escanea el QR!" },
               ].map(({ src, alt, caption }, i) => (
                 <div
                   key={src}
