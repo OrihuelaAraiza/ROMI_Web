@@ -41,7 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="es" className={`${fredoka.className} ${fredoka.variable} ${poppins.variable}`}>
       <body className="bg-gradient-to-b from-[#D58B88] to-[#EBD9D8] overflow-x-hidden">
         <MedicalBg />
-        <TalentLandBar />
+        {/* <TalentLandBar /> */}
         <AuthProvider>
           <Navbar />
           <main className="relative z-10 max-w-6xl mx-auto px-4">{children}</main>

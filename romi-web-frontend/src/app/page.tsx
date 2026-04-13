@@ -64,8 +64,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── Talent Land Section ─── */}
-      <section
+      {/* ─── Talent Land Section (hidden) ─── */}
+      {false && <section
         id="talent-land"
         className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] scroll-mt-20"
       >
@@ -152,7 +152,7 @@ export default function Home() {
 
           </div>
         </div>
-      </section>
+      </section>}
 
       {/* ─── About Section ─── */}
       <section className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mt-8 sm:mt-10">
