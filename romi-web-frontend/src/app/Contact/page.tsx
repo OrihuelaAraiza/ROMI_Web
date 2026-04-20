@@ -1,9 +1,10 @@
 import Link from "next/link";
 import {
   Mail, Phone, MapPin, HelpCircle, MessageCircle, Headphones,
-  Compass, Send, Clock, ExternalLink,
+  Compass, Clock, ExternalLink,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import ContactForm from "./ContactForm";
 
 export const metadata = { title: "ROMI — Contacto" };
 
@@ -122,34 +123,7 @@ export default function ContactPage() {
 
           <Reveal type="left">
             <article className="rounded-3xl border border-[#d58b88]/20 bg-gradient-to-br from-white to-[#f8f6f6] shadow-sm p-6 sm:p-7 card-premium">
-              <h2 className="text-xl sm:text-2xl font-semibold text-[#2d2d2d] font-fredoka-one mb-4 sm:mb-5">Envíanos un Mensaje</h2>
-              <form className="space-y-4" noValidate>
-                <div>
-                  <label htmlFor="nombre" className="block text-sm font-medium text-[#2d2d2d] font-poppins mb-1">Nombre Completo</label>
-                  <input id="nombre" type="text" autoComplete="name" className={inputClass} placeholder="Escribe tu nombre" />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-[#2d2d2d] font-poppins mb-1">Correo Electrónico</label>
-                  <input id="email" type="email" autoComplete="email" className={inputClass} placeholder="tucorreo@ejemplo.com" />
-                </div>
-                <div>
-                  <label htmlFor="asunto" className="block text-sm font-medium text-[#2d2d2d] font-poppins mb-1">Asunto</label>
-                  <input id="asunto" type="text" className={inputClass} placeholder="¿Sobre qué te gustaría hablar?" />
-                </div>
-                <div>
-                  <label htmlFor="mensaje" className="block text-sm font-medium text-[#2d2d2d] font-poppins mb-1">Mensaje</label>
-                  <textarea id="mensaje" rows={5} className={`${inputClass} resize-none`} placeholder="Cuéntanos con más detalle en qué podemos ayudarte." />
-                </div>
-                <div className="pt-1">
-                  <button
-                    type="submit"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-[#d58b88] px-6 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-[#c47a77] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 font-fredoka-one active:scale-95"
-                  >
-                    <Send className="h-4 w-4" />
-                    Enviar Mensaje
-                  </button>
-                </div>
-              </form>
+              <ContactForm inputClass={inputClass} />
             </article>
           </Reveal>
 

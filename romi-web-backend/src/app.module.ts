@@ -14,6 +14,12 @@ import { RealtimeModule } from './realtime/realtime.module';
 import { CronModule } from './cron/cron.module';
 import { ClinicalNotesModule } from './clinical-notes/clinical-notes.module';
 import { HealthModule } from "./health/health.module";
+import { ContactModule } from './contact/contact.module';
+
+const syncEnv = process.env.DB_SYNC?.toLowerCase();
+const shouldSynchronize =
+  syncEnv === 'true' ||
+  (syncEnv !== 'false' && process.env.NODE_ENV !== 'production');
 
 @Module({
   imports: [
@@ -35,7 +41,7 @@ import { HealthModule } from "./health/health.module";
           : undefined,
       autoLoadEntities: true,
       // Never auto-sync schema in production – run migrations instead
-      synchronize: process.env.NODE_ENV !== 'production',
+      synchronize: shouldSynchronize,
     }),
     RolesModule,
     UsersModule,
@@ -44,6 +50,7 @@ import { HealthModule } from "./health/health.module";
     CallModule,
     ChatModule,
     NotificationsModule,
+    ContactModule,
     RealtimeModule,
     CronModule,
     ClinicalNotesModule,
