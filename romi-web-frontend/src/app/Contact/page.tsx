@@ -244,7 +244,7 @@ export default function ContactPage() {
                 icon: MessageCircle,
                 title: "Chat ROMI",
                 desc: "Comunícate con ROMI por WhatsApp.",
-                cta: { href: "https://wa.me/522224335093", label: "Abrir WhatsApp", external: true },
+                cta: { href: "https://wa.me/522213716632", label: "Abrir WhatsApp", external: true },
               },
               {
                 icon: Headphones,
