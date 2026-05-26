@@ -6,17 +6,17 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       {/* ─── Hero Section ─── */}
-      <section className="relative overflow-hidden pt-4 pb-8 mt-8 sm:mt-14 lg:mt-20">
+      <section className="relative overflow-hidden rounded-b-[2rem] romi-hero-gradient pt-8 pb-10 mt-6 sm:mt-10 lg:mt-14 shadow-[0_24px_80px_rgba(26,18,17,0.18)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Mobile: stacked ROMI (< 768px) */}
           <div className="flex flex-col items-center gap-0 md:hidden">
-            <h1 className="text-[68px] font-bold text-white tracking-widest leading-none font-fredoka-one drop-shadow-lg animate-fade-in-up">
+            <h1 className="text-[68px] font-bold text-[var(--hero-text)] tracking-widest leading-none font-fredoka-one drop-shadow-lg animate-fade-in-up">
               ROMI
             </h1>
             <div className="relative w-56 aspect-square">
               <Image
-                src="/images/imagen_bienvenida.png"
+                src="/images/romi-hero.png"
                 alt="ROMI - Asistente Médico"
                 width={800}
                 height={800}
@@ -29,14 +29,14 @@ export default function Home() {
           {/* Desktop: flanked letters layout (≥ 768px) */}
           <div className="hidden md:grid grid-cols-3 gap-0 items-center min-h-[340px] lg:min-h-[380px]">
             <div className="flex items-center justify-end">
-              <h1 className="text-[80px] lg:text-[100px] font-bold text-white tracking-widest leading-none -mr-10 lg:-mr-11 font-fredoka-one animate-fade-in-up drop-shadow-lg">
+              <h1 className="text-[80px] lg:text-[100px] font-bold text-[var(--hero-text)] tracking-widest leading-none -mr-10 lg:-mr-11 font-fredoka-one animate-fade-in-up drop-shadow-lg">
                 RO
               </h1>
             </div>
             <div className="flex items-center justify-center">
               <div className="relative w-full aspect-square max-w-[280px] lg:max-w-xs">
                 <Image
-                  src="/images/imagen_bienvenida.png"
+                  src="/images/romi-hero.png"
                   alt="ROMI - Asistente Médico"
                   width={800}
                   height={800}
@@ -46,17 +46,17 @@ export default function Home() {
               </div>
             </div>
             <div className="flex items-center justify-start">
-              <h1 className="text-[80px] lg:text-[100px] font-bold text-white tracking-widest leading-none -ml-5 lg:-ml-6 font-fredoka-one animate-fade-in-up drop-shadow-lg">
+              <h1 className="text-[80px] lg:text-[100px] font-bold text-[var(--hero-text)] tracking-widest leading-none -ml-5 lg:-ml-6 font-fredoka-one animate-fade-in-up drop-shadow-lg">
                 MI
               </h1>
             </div>
           </div>
 
           <div className="text-center mt-4 md:-mt-4 animate-fade-in-up" style={{ animationDelay: "200ms" }}>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl text-white mb-3 font-fredoka-one">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl text-[var(--hero-text)] mb-3 font-fredoka-one">
               Formación Médica Integral
             </h2>
-            <p className="text-sm sm:text-base md:text-lg text-white/90 max-w-2xl mx-auto font-poppins px-2">
+            <p className="text-sm sm:text-base md:text-lg text-[var(--hero-text-muted)] max-w-2xl mx-auto font-poppins px-2">
               Soluciones con tecnologías avanzadas para transformar la atención médica
               y mejorar los resultados de salud
             </p>
@@ -156,28 +156,28 @@ export default function Home() {
 
       {/* ─── About Section ─── */}
       <section className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mt-8 sm:mt-10">
-        <div className="bg-white rounded-t-[3rem] sm:rounded-t-[4rem] px-4 sm:px-8 lg:px-12 pt-10 sm:pt-12 pb-12" style={{ boxShadow: "0 -15px 50px rgba(0,0,0,0.25)" }}>
+        <div className="bg-[var(--surface)] rounded-t-[3rem] sm:rounded-t-[4rem] px-4 sm:px-8 lg:px-12 pt-10 sm:pt-12 pb-12" style={{ boxShadow: "0 -15px 50px rgba(0,0,0,0.25)" }}>
           <div className="max-w-7xl mx-auto">
 
             {/* ¿Quiénes somos? */}
             <Reveal className="text-center mb-12 sm:mb-16">
-              <h2 className="text-3xl sm:text-4xl text-[#d58b88] mb-4 font-fredoka-one font-semibold">
+              <h2 className="text-3xl sm:text-4xl text-primary mb-4 font-fredoka-one font-semibold">
                 ¿Quiénes somos?
               </h2>
-              <p className="text-sm sm:text-base text-gray-600 max-w-3xl mx-auto font-poppins px-2">
+              <p className="text-sm sm:text-base text-[var(--text-body)] max-w-3xl mx-auto font-poppins px-2">
                 Somos una plataforma integral que conecta profesionales de la salud con tecnología avanzada para mejorar la atención médica en todo el mundo.
               </p>
             </Reveal>
 
             <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center mb-12 sm:mb-16">
               <Reveal type="left" className="space-y-4">
-                <p className="text-sm sm:text-base text-gray-700 font-poppins leading-relaxed">
+                <p className="text-sm sm:text-base text-[var(--text-secondary)] font-poppins leading-relaxed">
                   HubROMI nació de la visión de democratizar el acceso a la salud a través de la tecnología. Somos un equipo multidisciplinario de médicos, ingenieros y especialistas en salud digital.
                 </p>
-                <p className="text-sm sm:text-base text-gray-700 font-poppins leading-relaxed">
+                <p className="text-sm sm:text-base text-[var(--text-secondary)] font-poppins leading-relaxed">
                   Nuestra plataforma integra inteligencia artificial, telemedicina, educación médica continua y herramientas de gestión clínica en un ecosistema completo que empodera a los profesionales de la salud.
                 </p>
-                <p className="text-sm sm:text-base text-gray-700 font-poppins leading-relaxed">
+                <p className="text-sm sm:text-base text-[var(--text-secondary)] font-poppins leading-relaxed">
                   Con presencia en más de 15 países y una comunidad activa de profesionales de la salud, continuamos innovando para hacer que la medicina sea más accesible, eficiente y efectiva.
                 </p>
               </Reveal>
@@ -201,9 +201,9 @@ export default function Home() {
                 { value: "100%", label: "Dedicación" },
               ].map((stat, i) => (
                 <Reveal key={stat.label} type="scale" delay={i * 80}>
-                  <div className="text-center rounded-2xl bg-gradient-to-br from-[#d58b88]/10 to-[#d79c9c]/10 border border-[#d58b88]/20 p-5 sm:p-6 card-premium">
-                    <p className="text-2xl sm:text-3xl font-bold text-[#d58b88] font-fredoka-one">{stat.value}</p>
-                    <p className="text-xs sm:text-sm text-gray-600 font-poppins mt-1">{stat.label}</p>
+                  <div className="text-center rounded-2xl bg-[var(--surface-card-soft)] border border-[var(--surface-card-border)] p-5 sm:p-6 card-premium">
+                    <p className="text-2xl sm:text-3xl font-bold text-primary font-fredoka-one">{stat.value}</p>
+                    <p className="text-xs sm:text-sm text-[var(--text-body)] font-poppins mt-1">{stat.label}</p>
                   </div>
                 </Reveal>
               ))}
@@ -224,14 +224,14 @@ export default function Home() {
                 },
               ].map(({ icon: Icon, title, text }, i) => (
                 <Reveal key={title} type={i === 0 ? "left" : "right"}>
-                  <div className="bg-gradient-to-br from-[#d58b88]/10 to-[#d79c9c]/10 rounded-2xl p-6 sm:p-8 border border-[#d58b88]/20 card-premium h-full">
+                  <div className="bg-[var(--surface-card-soft)] rounded-2xl p-6 sm:p-8 border border-[var(--surface-card-border)] card-premium h-full">
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="w-11 h-11 sm:w-12 sm:h-12 bg-[#d58b88] rounded-lg flex items-center justify-center icon-lift">
+                      <div className="w-11 h-11 sm:w-12 sm:h-12 bg-primary rounded-lg flex items-center justify-center icon-lift">
                         <Icon className="text-white" size={22} />
                       </div>
-                      <h3 className="text-xl sm:text-2xl text-[#d58b88] font-fredoka-one font-semibold">{title}</h3>
+                      <h3 className="text-xl sm:text-2xl text-primary font-fredoka-one font-semibold">{title}</h3>
                     </div>
-                    <p className="text-sm sm:text-base text-gray-700 font-poppins leading-relaxed">{text}</p>
+                    <p className="text-sm sm:text-base text-[var(--text-secondary)] font-poppins leading-relaxed">{text}</p>
                   </div>
                 </Reveal>
               ))}
@@ -240,7 +240,7 @@ export default function Home() {
             {/* Values */}
             <div>
               <Reveal className="text-center mb-10 sm:mb-12">
-                <h3 className="text-2xl sm:text-3xl text-[#d58b88] font-fredoka-one font-bold">
+                <h3 className="text-2xl sm:text-3xl text-primary font-fredoka-one font-bold">
                   Nuestros Valores
                 </h3>
               </Reveal>
@@ -254,12 +254,12 @@ export default function Home() {
                   { icon: BookOpen,  title: "Rigor",       text: "Promovemos contenidos, recursos y decisiones sustentados en criterios sólidos y enfoque profesional." },
                 ].map(({ icon: Icon, title, text }, i) => (
                   <Reveal key={title} type="scale" delay={i * 70}>
-                    <div className="rounded-2xl bg-white border border-[#d58b88]/20 p-5 sm:p-6 card-premium group h-full">
-                      <div className="w-11 h-11 bg-[#d58b88]/10 rounded-lg flex items-center justify-center mb-4 icon-lift">
-                        <Icon className="text-[#d58b88]" size={22} />
+                    <div className="rounded-2xl bg-[var(--surface-card)] border border-[var(--surface-card-border)] p-5 sm:p-6 card-premium group h-full">
+                      <div className="w-11 h-11 bg-primary/10 rounded-lg flex items-center justify-center mb-4 icon-lift">
+                        <Icon className="text-primary" size={22} />
                       </div>
-                      <h4 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">{title}</h4>
-                      <p className="text-xs sm:text-sm text-gray-600">{text}</p>
+                      <h4 className="text-base sm:text-lg font-semibold text-[var(--text-primary)] mb-2">{title}</h4>
+                      <p className="text-xs sm:text-sm text-[var(--text-body)]">{text}</p>
                     </div>
                   </Reveal>
                 ))}
@@ -267,15 +267,15 @@ export default function Home() {
             </div>
 
             {/* Reconocimientos */}
-            <div className="mt-16 sm:mt-24 pt-10 sm:pt-12 border-t border-gray-200">
+            <div className="mt-16 sm:mt-24 pt-10 sm:pt-12 border-t border-[var(--surface-card-border)]">
               <Reveal className="text-center mb-10 sm:mb-14">
-                <span className="inline-flex items-center gap-2 rounded-full bg-[#d58b88]/10 px-4 py-1.5 text-xs font-semibold text-[#d58b88] mb-4">
+                <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary mb-4">
                   <Trophy size={13} /> Logros 2025
                 </span>
-                <h3 className="text-2xl sm:text-3xl text-[#d58b88] font-fredoka-one font-bold mb-3">
+                <h3 className="text-2xl sm:text-3xl text-primary font-fredoka-one font-bold mb-3">
                   Reconocimientos
                 </h3>
-                <p className="text-gray-600 font-poppins text-sm sm:text-base max-w-xl mx-auto">
+                <p className="text-[var(--text-body)] font-poppins text-sm sm:text-base max-w-xl mx-auto">
                   Premios y distinciones que avalan nuestro impacto en el ecosistema de salud digital e innovación.
                 </p>
               </Reveal>
@@ -288,7 +288,7 @@ export default function Home() {
                       org: "Talent Land",
                       title: "Ganadores Startup a la Cuesta",
                       desc: "Reconocidos entre las startups más prometedoras del ecosistema de innovación en México.",
-                      color: "from-[#d58b88]/20 to-[#d79c9c]/10",
+                      color: "from-primary/20 to-primary/10",
                       badge: "Talent Land 2025",
                     },
                     {
@@ -296,7 +296,7 @@ export default function Home() {
                       org: "Youth Empowerment Fund",
                       title: "Ganadores del Grant Internacional",
                       desc: "Premio internacional por impacto social en salud digital otorgado a nivel global.",
-                      color: "from-[#d79c9c]/20 to-[#dabebd]/10",
+                      color: "from-primary/15 to-secondary/10",
                       badge: "YEF 2025",
                     },
                     {
@@ -304,28 +304,28 @@ export default function Home() {
                       org: "Intel · Acelerado México con IA",
                       title: "Top 10 Proyectos de IA",
                       desc: "Seleccionados entre los 10 mejores proyectos de inteligencia artificial de México.",
-                      color: "from-[#dabebd]/20 to-[#d58b88]/10",
+                      color: "from-secondary/20 to-primary/10",
                       badge: "Intel 2025",
                     },
                   ] as const
                 ).map(({ Icon, org, title, desc, color, badge }, i) => (
                   <Reveal key={title} type="scale" delay={i * 100}>
-                    <div className={`relative rounded-3xl bg-gradient-to-br ${color} border border-[#d58b88]/25 p-5 sm:p-6 card-premium group h-full flex flex-col`}>
-                      <span className="absolute top-4 right-4 rounded-full bg-[#d58b88] text-white text-[10px] font-bold px-2.5 py-0.5 tracking-wide">
+                    <div className={`relative rounded-3xl bg-gradient-to-br ${color} border border-[var(--surface-card-border)] p-5 sm:p-6 card-premium group h-full flex flex-col`}>
+                      <span className="absolute top-4 right-4 rounded-full bg-primary text-white text-[10px] font-bold px-2.5 py-0.5 tracking-wide">
                         {badge}
                       </span>
 
-                      <div className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform duration-300">
-                        <Icon size={26} className="text-[#d58b88]" />
+                      <div className="w-14 h-14 rounded-2xl bg-[var(--surface-card)] shadow-sm flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform duration-300">
+                        <Icon size={26} className="text-primary" />
                       </div>
 
-                      <p className="text-xs font-semibold text-[#d58b88] uppercase tracking-wider mb-1 font-poppins">
+                      <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-1 font-poppins">
                         {org}
                       </p>
-                      <h4 className="text-base sm:text-lg font-bold text-gray-900 leading-snug mb-2">
+                      <h4 className="text-base sm:text-lg font-bold text-[var(--text-primary)] leading-snug mb-2">
                         {title}
                       </h4>
-                      <p className="text-xs sm:text-sm text-gray-600 font-poppins leading-relaxed mt-auto pt-2">
+                      <p className="text-xs sm:text-sm text-[var(--text-body)] font-poppins leading-relaxed mt-auto pt-2">
                         {desc}
                       </p>
                     </div>

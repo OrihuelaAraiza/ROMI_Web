@@ -2,20 +2,30 @@
    BREAKING: Replaces previous OKLCH variables with fixed ROMI palette.
    Foregrounds adjusted to ensure AA contrast over brand backgrounds. */
 
-:root {
+:root,
+:root[data-theme="light"] {
+  color-scheme: light;
+
   /* Core brand */
   --primary: #d58b88; /* PRIMARY_ROSE */
-  --primary-foreground: #363434; /* BLACK for contrast */
+  --primary-foreground: #ffffff;
 
-  --secondary: #E3C094; /* SECONDARY_BEIGE */
-  --secondary-foreground: #ffffff; /* BLACK */
+  --secondary: #e4c095; /* SECONDARY_BEIGE */
+  --secondary-foreground: #201f1f;
 
-  --accent: #C7D68F; /* SECONDARY_OLIVE */
-  --accent-foreground: #ffffff; /* BLACK */
+  --accent: #c8d790; /* SECONDARY_OLIVE */
+  --accent-foreground: #201f1f;
 
   /* Base */
-  --background: #FFFFFF;
+  --background: #ffffff;
   --foreground: #201f1f;
+  --page-bg: linear-gradient(180deg, #bf6360 0%, #d07a78 22%, #d58b88 44%, #da9e9e 68%, #ebd9d8 100%);
+  --hero-start: #bf6360;
+  --hero-mid-1: #d07a78;
+  --hero-mid-2: #d58b88;
+  --hero-mid-3: #da9e9e;
+  --hero-mid-4: #e5c3c2;
+  --hero-end: #ebd9d8;
 
   /* Surfaces */
   --card: var(--background);
@@ -24,8 +34,8 @@
   --popover-foreground: var(--foreground);
 
   /* Feedback */
-  --muted: #F7ECEA; /* soft tint derived from primary */
-  --muted-foreground: #000000;
+  --muted: #f7ecea; /* soft tint derived from primary */
+  --muted-foreground: #6b7280;
 
   --success: #C7D68F; /* maps to SECONDARY_OLIVE */
   --success-foreground: #000000;
@@ -39,9 +49,22 @@
 
   /* System */
   --destructive: #B00020; /* unchanged brand; used for errors */
-  --border: #E5E5E5;
-  --input: #E5E5E5;
-  --ring: #D58B88; /* primary ring */
+  --border: #e5e5e5;
+  --input: #e5e5e5;
+  --ring: #d58b88; /* primary ring */
+
+  /* Marketing surfaces */
+  --surface: #ffffff;
+  --surface-alt: #f7ecea;
+  --surface-card: #ffffff;
+  --surface-card-soft: rgba(213, 139, 136, 0.1);
+  --surface-card-border: rgba(213, 139, 136, 0.2);
+  --text-primary: #201f1f;
+  --text-body: #6b7280;
+  --text-secondary: #4b5563;
+  --hero-text: #ffffff;
+  --hero-text-muted: rgba(255, 255, 255, 0.9);
+  --footer-bg: #1a1211;
 
   /* Sidebar (optional) */
   --sidebar: #FFFFFF;
@@ -57,11 +80,91 @@
   --radius: 0.625rem;
 }
 
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --primary: #d58b88;
+  --primary-foreground: #ffffff;
+  --secondary: #e4c095;
+  --secondary-foreground: #1a1211;
+  --accent: #c8d790;
+  --accent-foreground: #1a1211;
+
+  --background: #fafafa;
+  --foreground: #201f1f;
+  --page-bg: linear-gradient(180deg, #0d0810 0%, #160f12 48%, #1a1211 100%);
+  --hero-start: #0d0810;
+  --hero-mid-1: #120c10;
+  --hero-mid-2: #1a1211;
+  --hero-mid-3: #2a1e1f;
+  --hero-mid-4: rgba(213, 139, 136, 0.18);
+  --hero-end: rgba(213, 139, 136, 0.1);
+
+  --card: #ffffff;
+  --card-foreground: #201f1f;
+  --popover: #ffffff;
+  --popover-foreground: #201f1f;
+  --muted: #fafafa;
+  --muted-foreground: #6b7280;
+  --success: #c8d790;
+  --success-foreground: #1a1211;
+  --warning: #e4c095;
+  --warning-foreground: #1a1211;
+  --info: #e1b1b8;
+  --info-foreground: #1a1211;
+  --destructive: #b00020;
+  --border: #eee7e6;
+  --input: #eee7e6;
+  --ring: #d58b88;
+
+  --surface: #fafafa;
+  --surface-alt: #ffffff;
+  --surface-card: #ffffff;
+  --surface-card-soft: rgba(213, 139, 136, 0.1);
+  --surface-card-border: rgba(213, 139, 136, 0.24);
+  --text-primary: #201f1f;
+  --text-body: #6b7280;
+  --text-secondary: #4b5563;
+  --hero-text: #ffffff;
+  --hero-text-muted: rgba(255, 255, 255, 0.78);
+  --footer-bg: #0d0810;
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: #201f1f;
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--accent-foreground);
+  --sidebar-border: #eee7e6;
+  --sidebar-ring: var(--ring);
+}
+
+.romi-app-shell {
+  background: var(--page-bg);
+  color: var(--foreground);
+  transition: background 260ms ease, color 260ms ease;
+}
+
+.romi-hero-gradient {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.18), transparent 28%),
+    radial-gradient(circle at 80% 28%, rgba(228, 192, 149, 0.2), transparent 24%),
+    linear-gradient(
+      120deg,
+      var(--hero-start) 0%,
+      var(--hero-mid-1) 22%,
+      var(--hero-mid-2) 42%,
+      var(--hero-mid-3) 63%,
+      var(--hero-mid-4) 82%,
+      var(--hero-end) 100%
+    );
+}
+
 /* Gradients */
 .bg-gradient-romi {
-  background: linear-gradient(90deg, #da4a45f3 0%, #fd7171a8 100%);
+  background: linear-gradient(90deg, var(--hero-start) 0%, var(--primary) 100%);
 }
 .bg-gradient-romi-variant {
-  background: linear-gradient(90deg, #E3C094 0%, #C7D68F 100%);
+  background: linear-gradient(90deg, var(--secondary) 0%, var(--accent) 100%);
 }
 

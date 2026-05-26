@@ -38,8 +38,22 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${fredoka.className} ${fredoka.variable} ${poppins.variable}`}>
-      <body className="bg-gradient-to-b from-[#D58B88] to-[#EBD9D8] overflow-x-hidden">
+    <html lang="es" suppressHydrationWarning className={`${fredoka.className} ${fredoka.variable} ${poppins.variable}`}>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var theme = localStorage.getItem("romi-theme") || "light";
+                document.documentElement.dataset.theme = theme;
+              } catch (_) {
+                document.documentElement.dataset.theme = "light";
+              }
+            `,
+          }}
+        />
+      </head>
+      <body className="romi-app-shell overflow-x-hidden">
         <MedicalBg />
         {/* <TalentLandBar /> */}
         <AuthProvider>
