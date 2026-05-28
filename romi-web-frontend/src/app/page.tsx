@@ -7,6 +7,17 @@ export default function Home() {
     <main className="min-h-screen">
       {/* ─── Hero Section ─── */}
       <section className="relative overflow-hidden rounded-b-[2rem] romi-hero-gradient pt-8 pb-10 mt-6 sm:mt-10 lg:mt-14 shadow-[0_24px_80px_rgba(26,18,17,0.18)]">
+        <div className="romi-hero-ambient" aria-hidden="true">
+          <span className="romi-hero-orb romi-hero-orb-a" />
+          <span className="romi-hero-orb romi-hero-orb-b" />
+          <span className="romi-hero-orb romi-hero-orb-c" />
+          <span className="romi-hero-cross romi-hero-cross-a" />
+          <span className="romi-hero-cross romi-hero-cross-b" />
+          <span className="romi-hero-cross romi-hero-cross-c" />
+          <svg className="romi-hero-ekg" viewBox="0 0 960 120" preserveAspectRatio="none">
+            <path d="M0 62H155l18-18 18 38 18-20h92l18-48 22 92 20-44h138l18-18 18 38 18-20h92l18-48 22 92 20-44h255" />
+          </svg>
+        </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Mobile: stacked ROMI (< 768px) */}

@@ -41,6 +41,27 @@
   50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+@keyframes romiHeroMesh {
+  0%   { transform: translate3d(-2%, -1%, 0) scale(1); }
+  50%  { transform: translate3d(3%, 2%, 0) scale(1.04); }
+  100% { transform: translate3d(-1%, 3%, 0) scale(1.02); }
+}
+@keyframes romiHeroSpin {
+  from { transform: rotate(0deg) scale(1.08); }
+  to   { transform: rotate(360deg) scale(1.08); }
+}
+@keyframes romiHeroFloat {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(12px, -18px, 0); }
+}
+@keyframes romiHeroTwinkle {
+  0%, 100% { transform: rotate(0deg) scale(0.88); opacity: 0.36; }
+  50%      { transform: rotate(10deg) scale(1.1); opacity: 0.72; }
+}
+@keyframes romiHeroEkg {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
 
 .animate-float          { animation: float 6s ease-in-out infinite; }
 .animate-float-delayed  { animation: float-delayed 8s ease-in-out infinite; }
@@ -302,6 +323,16 @@ body {
     margin-left: 0;
     margin-right: 0;
     transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .romi-hero-ambient::before,
+  .romi-hero-ambient::after,
+  .romi-hero-orb,
+  .romi-hero-cross,
+  .romi-hero-ekg {
+    animation: none !important;
   }
 }
 
