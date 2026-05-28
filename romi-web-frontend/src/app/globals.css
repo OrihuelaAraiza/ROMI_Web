@@ -357,6 +357,11 @@ body {
   color: var(--primary);
 }
 
+.romi-user-map .leaflet-tile {
+  max-width: none !important;
+  max-height: none !important;
+}
+
 .romi-user-map .leaflet-control-attribution {
   border-top-left-radius: 8px;
   background: var(--surface-card);
