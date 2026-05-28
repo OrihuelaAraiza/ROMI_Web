@@ -53,7 +53,7 @@ export default function Footer() {
   return (
     <footer className="bg-[var(--footer-bg)] text-white border-t-[2.5px] border-[var(--surface-card-border)]">
       {/* Main grid */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14 grid gap-8 sm:gap-10 sm:grid-cols-2 md:grid-cols-3">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14 grid gap-8 sm:gap-10 sm:grid-cols-2 lg:grid-cols-4">
 
         {/* Column 1 — Horario + contacto */}
         <div className="space-y-4">
@@ -110,7 +110,7 @@ export default function Footer() {
         </div>
 
         {/* Column 3 — Dirección */}
-        <div className="space-y-4 sm:col-span-2 md:col-span-1">
+        <div className="space-y-4">
           <h3 className="text-base sm:text-lg font-fredoka-one text-[var(--accent)]">Dirección</h3>
           <address className="not-italic text-sm font-poppins text-white/70 flex items-start gap-2 leading-relaxed">
             <MapPin className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
@@ -122,6 +122,28 @@ export default function Footer() {
               Puebla, Pue.
             </span>
           </address>
+        </div>
+
+        {/* Column 4 — Legal */}
+        <div className="space-y-4 sm:col-span-2 lg:col-span-1">
+          <h3 className="text-base sm:text-lg font-fredoka-one text-[var(--accent)]">Información legal</h3>
+          <p className="text-xs text-white/55 font-poppins leading-relaxed">
+            Consulta las condiciones de uso y el tratamiento de datos personales de ROMI.
+          </p>
+          <div className="flex flex-col gap-2.5">
+            <Link
+              href="/terminos-condiciones"
+              className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-white/80 transition-all duration-200 hover:bg-primary hover:text-white"
+            >
+              Términos y condiciones
+            </Link>
+            <Link
+              href="/aviso-privacidad"
+              className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-white/80 transition-all duration-200 hover:bg-primary hover:text-white"
+            >
+              Política de privacidad
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -136,12 +158,14 @@ export default function Footer() {
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/55 font-poppins">
           <p className="text-center sm:text-left">© 2026 Red de Optimización Médica Inteligente. Todos los derechos reservados.</p>
-          <Link
-            href="/aviso-privacidad"
-            className="hover:text-primary transition-colors duration-200 whitespace-nowrap"
-          >
-            Aviso de Privacidad
-          </Link>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link href="/terminos-condiciones" className="hover:text-primary transition-colors duration-200 whitespace-nowrap">
+              Términos
+            </Link>
+            <Link href="/aviso-privacidad" className="hover:text-primary transition-colors duration-200 whitespace-nowrap">
+              Privacidad
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
