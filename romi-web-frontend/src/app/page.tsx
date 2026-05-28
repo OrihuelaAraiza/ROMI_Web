@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Heart, Lightbulb, Shield, Users, Globe, BookOpen, Trophy, Rocket, BrainCircuit } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import UserMapSection from "@/components/UserMapSection";
 
 export default function Home() {
   return (
@@ -220,8 +221,10 @@ export default function Home() {
               ))}
             </div>
 
+            <UserMapSection />
+
             {/* Mission & Vision */}
-            <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 mb-16 sm:mb-20">
+            <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 mt-16 sm:mt-20 mb-16 sm:mb-20">
               {[
                 {
                   icon: Heart,

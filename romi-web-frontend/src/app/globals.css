@@ -316,6 +316,59 @@ body {
   font-weight: 700;
 }
 
+.romi-user-map {
+  height: 420px;
+  min-height: 100%;
+  width: 100%;
+  background: var(--surface-alt);
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+}
+
+.romi-user-map .leaflet-control-zoom a {
+  border: 0;
+  color: var(--text-primary);
+  font-family: var(--font-fredoka), 'Fredoka', cursive;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.romi-user-map .leaflet-control-zoom {
+  border: 2.5px solid var(--surface-card-border);
+  border-radius: 10px;
+  box-shadow: 4px 4px 0 var(--shadow-ink);
+  overflow: hidden;
+}
+
+.romi-user-map .leaflet-popup-content-wrapper {
+  border: 2px solid var(--surface-card-border);
+  border-radius: 16px;
+  background: var(--surface-card);
+  box-shadow: 4px 4px 0 var(--shadow-ink);
+  color: var(--text-primary);
+}
+
+.romi-user-map .leaflet-popup-tip {
+  background: var(--surface-card);
+  border-bottom: 2px solid var(--surface-card-border);
+  border-right: 2px solid var(--surface-card-border);
+}
+
+.romi-user-map .leaflet-container a {
+  color: var(--primary);
+}
+
+.romi-user-map .leaflet-control-attribution {
+  border-top-left-radius: 8px;
+  background: var(--surface-card);
+  color: var(--text-body);
+}
+
+@media (min-width: 640px) {
+  .romi-user-map {
+    height: 520px;
+  }
+}
+
 @media (max-width: 640px) {
   .romi-app-shell main > section.w-screen {
     left: auto;
