@@ -16,8 +16,8 @@ export default function TalentLandBar() {
         <div className="flex items-center gap-2 flex-shrink-0">
           {/* Live pulse dot */}
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d58b88] opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-[#d58b88]" />
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--primary)] opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--primary)]" />
           </span>
           <span className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-white/90 whitespace-nowrap">
             Talent Land · 7–9 Abr 2026
@@ -26,7 +26,7 @@ export default function TalentLandBar() {
 
         {/* Center: message */}
         <p className="hidden sm:block text-[11px] sm:text-xs text-white/75 font-poppins text-center truncate">
-          <MapPin className="inline h-3 w-3 mr-1 text-[#d58b88]" />
+          <MapPin className="inline h-3 w-3 mr-1 text-[var(--primary)]" />
           ¡Nos vemos en Expo Santa Fe, CDMX! Búscanos con nuestra playera ROMI
         </p>
 
@@ -34,7 +34,7 @@ export default function TalentLandBar() {
         <div className="flex items-center gap-3 flex-shrink-0">
           <Link
             href="/#talent-land"
-            className="text-[11px] sm:text-xs font-semibold text-[#d58b88] hover:text-white underline underline-offset-2 transition-colors duration-200 whitespace-nowrap"
+            className="text-[11px] sm:text-xs font-semibold text-[var(--primary)] hover:text-white underline underline-offset-2 transition-colors duration-200 whitespace-nowrap"
           >
             Ver playera
           </Link>

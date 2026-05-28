@@ -71,7 +71,7 @@ function EkgTile() {
       <path
         d={path}
         fill="none"
-        stroke="white"
+        stroke="var(--primary)"
         strokeWidth="1.6"
         strokeOpacity="0.28"
         strokeLinecap="round"
@@ -83,7 +83,6 @@ function EkgTile() {
 
 /* Medical "+" cross rendered as two overlapping rects */
 function Cross({ size }: { size: number }) {
-  const thick = Math.max(2, Math.round(size * 0.22));
   return (
     <svg
       width={size}
@@ -92,8 +91,8 @@ function Cross({ size }: { size: number }) {
       aria-hidden="true"
       className="block"
     >
-      <rect x="8" y="1" width="4" height="18" rx="1" fill="white" fillOpacity="0.55" />
-      <rect x="1" y="8" width="18" height="4" rx="1" fill="white" fillOpacity="0.55" />
+      <rect x="8" y="1" width="4" height="18" rx="1" fill="var(--primary)" fillOpacity="0.32" />
+      <rect x="1" y="8" width="18" height="4" rx="1" fill="var(--primary)" fillOpacity="0.32" />
     </svg>
   );
 }
@@ -108,7 +107,7 @@ export default function MedicalBg() {
       {CELLS.map((c, i) => (
         <div
           key={`cell-${i}`}
-          className="absolute rounded-full border border-white/25 bg-white/5"
+          className="absolute rounded-full border border-[var(--surface-card-border-soft)] bg-[var(--surface-card-soft)]"
           style={{
             left: c.left,
             top: c.top,
@@ -123,7 +122,7 @@ export default function MedicalBg() {
       {PULSES.map((p, i) => (
         <div
           key={`pulse-${i}`}
-          className="absolute rounded-full border border-white/30"
+          className="absolute rounded-full border border-[var(--surface-card-border-soft)]"
           style={{
             left: p.left,
             top: p.top,

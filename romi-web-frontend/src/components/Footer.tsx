@@ -51,14 +51,14 @@ const SOCIAL_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[var(--footer-bg)] text-white">
+    <footer className="bg-[var(--footer-bg)] text-white border-t-[2.5px] border-[var(--surface-card-border)]">
       {/* Main grid */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14 grid gap-8 sm:gap-10 sm:grid-cols-2 md:grid-cols-3">
 
         {/* Column 1 — Horario + contacto */}
         <div className="space-y-4">
-          <h3 className="text-base sm:text-lg font-fredoka-one text-[#e5c3c2]">Horario de Atención</h3>
-          <ul className="space-y-2 text-sm font-poppins text-gray-300">
+          <h3 className="text-base sm:text-lg font-fredoka-one text-[var(--accent)]">Horario de Atención</h3>
+          <ul className="space-y-2 text-sm font-poppins text-white/70">
             <li className="flex items-center gap-2">
               <Clock className="h-4 w-4 text-primary flex-shrink-0" />
               <span><strong className="text-white">Lun – Vie:</strong> 9:00 AM – 6:00 PM (GMT-6)</span>
@@ -69,7 +69,7 @@ export default function Footer() {
             </li>
           </ul>
 
-          <div className="pt-2 space-y-2 text-sm font-poppins text-gray-300">
+          <div className="pt-2 space-y-2 text-sm font-poppins text-white/70">
             <a
               href="mailto:contacto@romiai.com.mx"
               className="flex items-center gap-2 hover:text-primary transition-colors duration-200 group"
@@ -89,8 +89,8 @@ export default function Footer() {
 
         {/* Column 2 — Redes sociales */}
         <div className="space-y-4">
-          <h3 className="text-base sm:text-lg font-fredoka-one text-[#e5c3c2]">Síguenos</h3>
-          <p className="text-xs text-gray-400 font-poppins leading-relaxed">
+          <h3 className="text-base sm:text-lg font-fredoka-one text-[var(--accent)]">Síguenos</h3>
+          <p className="text-xs text-white/55 font-poppins leading-relaxed">
             Entérate de nuestras novedades, próximas actualizaciones y datos curiosos.
           </p>
           <div className="flex flex-wrap gap-2.5 sm:gap-3">
@@ -101,7 +101,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`ROMI en ${s.label}`}
-                className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-white/10 hover:bg-primary hover:scale-110 hover:shadow-lg hover:shadow-[#d58b88]/30 transition-all duration-200 text-gray-300 hover:text-white active:scale-95"
+                className="inline-flex items-center justify-center h-10 w-10 rounded-full border border-white/10 bg-white/10 hover:bg-primary hover:scale-110 transition-all duration-200 text-white/70 hover:text-white active:scale-95 shadow-[3px_3px_0_rgba(0,0,0,0.24)]"
               >
                 {s.icon}
               </a>
@@ -111,8 +111,8 @@ export default function Footer() {
 
         {/* Column 3 — Dirección */}
         <div className="space-y-4 sm:col-span-2 md:col-span-1">
-          <h3 className="text-base sm:text-lg font-fredoka-one text-[#e5c3c2]">Dirección</h3>
-          <address className="not-italic text-sm font-poppins text-gray-300 flex items-start gap-2 leading-relaxed">
+          <h3 className="text-base sm:text-lg font-fredoka-one text-[var(--accent)]">Dirección</h3>
+          <address className="not-italic text-sm font-poppins text-white/70 flex items-start gap-2 leading-relaxed">
             <MapPin className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
             <span>
               Hospital Ángeles Puebla<br />
@@ -126,8 +126,15 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-400 font-poppins">
+      <div className="relative border-t border-white/10 overflow-hidden">
+        <div className="pointer-events-none absolute top-0 left-0 flex w-[1600px] opacity-35" style={{ animation: "ekg-march 8s linear infinite" }}>
+          {Array.from({ length: 4 }).map((_, i) => (
+            <svg key={i} viewBox="0 0 400 42" width="400" height="42" aria-hidden="true">
+              <path d="M0 21H64l8-8 8 16 8-8h42l8-14 10 28 8-14h244" fill="none" stroke="currentColor" strokeWidth="1.4" className="text-primary" />
+            </svg>
+          ))}
+        </div>
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/55 font-poppins">
           <p className="text-center sm:text-left">© 2026 Red de Optimización Médica Inteligente. Todos los derechos reservados.</p>
           <Link
             href="/aviso-privacidad"

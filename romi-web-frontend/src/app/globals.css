@@ -8,6 +8,14 @@
   0%, 100% { transform: translateY(0px); }
   50%       { transform: translateY(-20px); }
 }
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-14px); }
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.5; transform: scale(0.72); }
+}
 @keyframes float-delayed {
   0%, 100% { transform: translateY(0px); }
   50%       { transform: translateY(20px); }
@@ -46,8 +54,8 @@
 .reveal {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
@@ -77,14 +85,19 @@
 
 /* ─── Premium card hover ─── */
 .card-premium {
+  border: 2.5px solid var(--surface-card-border);
+  border-radius: 20px;
+  background: var(--surface-card);
+  box-shadow: 4px 4px 0 var(--shadow-ink);
   transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.32s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.32s ease;
+              border-color 0.32s ease,
+              background 0.32s ease;
 }
 .card-premium:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 24px 64px rgba(213, 139, 136, 0.18), 0 8px 24px rgba(0, 0, 0, 0.08);
-  border-color: rgba(213, 139, 136, 0.45);
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px 0 var(--shadow-ink-strong);
+  border-color: var(--primary);
 }
 
 /* ─── Icon lift on card hover ─── */
@@ -95,17 +108,24 @@
 
 /* ─── Button glow ─── */
 .btn-glow {
+  border: 2.5px solid var(--surface-card-border);
+  background: var(--primary);
+  color: var(--primary-foreground);
+  box-shadow: 4px 4px 0 var(--shadow-ink);
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.25s ease;
+              box-shadow 0.25s ease,
+              background 0.25s ease;
 }
 .btn-glow:hover {
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 8px 28px rgba(213, 139, 136, 0.4);
+  transform: translate(-2px, -2px);
+  background: var(--primary-hover);
+  box-shadow: 6px 6px 0 var(--shadow-ink-strong);
 }
 
 /* ─── Nav link underline slide ─── */
 .nav-underline {
   position: relative;
+  border-radius: 9999px;
 }
 .nav-underline::after {
   content: '';
@@ -119,6 +139,9 @@
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-underline:hover {
+  background: var(--chip-bg);
 }
 .nav-underline:hover::after { transform: scaleX(1); }
 .nav-underline.nav-active::after { transform: scaleX(1); }
@@ -134,6 +157,110 @@
 
 /* ─── Smooth page scroll ─── */
 html { scroll-behavior: smooth; }
+
+body {
+  background: var(--page-bg);
+}
+
+::selection {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.kawaii-card {
+  border: 2.5px solid var(--surface-card-border);
+  border-radius: 20px;
+  background: var(--surface-card);
+  box-shadow: 4px 4px 0 var(--shadow-ink);
+}
+
+.kawaii-glass {
+  border: 1px solid var(--surface-card-border);
+  background: var(--surface-card-soft);
+  backdrop-filter: blur(14px);
+}
+
+.kawaii-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1.5px solid var(--chip-border);
+  border-radius: 9999px;
+  background: var(--chip-bg);
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.kawaii-chip::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: currentColor;
+  animation: pulseDot 2s ease-in-out infinite;
+}
+
+.kawaii-button {
+  border: 2.5px solid var(--surface-card-border);
+  border-radius: 9999px;
+  box-shadow: 4px 4px 0 var(--shadow-ink);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s ease,
+              background 0.25s ease,
+              color 0.25s ease;
+}
+
+.kawaii-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--shadow-ink-strong);
+}
+
+.kawaii-button-primary {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.kawaii-button-primary:hover {
+  background: var(--primary-hover);
+}
+
+.kawaii-section {
+  background: var(--surface);
+  color: var(--text-primary);
+}
+
+.kawaii-section-alt {
+  background: var(--surface-alt);
+  color: var(--text-primary);
+}
+
+.kawaii-title {
+  color: var(--primary);
+}
+
+.kawaii-body {
+  color: var(--text-body);
+}
+
+.kawaii-muted {
+  color: var(--text-muted);
+}
+
+.animate-float-y {
+  animation: floatY 5s ease-in-out infinite;
+}
+
+@media (max-width: 640px) {
+  .romi-app-shell main > section.w-screen {
+    left: auto;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    transform: none;
+  }
+}
 
 /* ─── Medical background animations ─── */
 @keyframes med-cell-float {
@@ -173,6 +300,7 @@ html { scroll-behavior: smooth; }
   * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    min-width: 0;
   }
 }
 

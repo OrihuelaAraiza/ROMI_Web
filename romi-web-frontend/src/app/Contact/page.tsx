@@ -60,7 +60,7 @@ function SideLink({ href, title, active = false }: { href: string; title: string
     <Link
       href={href}
       className={`flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-200 active:scale-[0.98] ${
-        active ? "bg-[#d58b88]/10 text-[#d58b88] font-semibold" : "text-gray-700 hover:bg-gray-100"
+        active ? "bg-[var(--chip-bg)] text-[var(--primary)] font-semibold" : "text-[var(--text-primary)] hover:bg-[var(--surface-alt)]"
       }`}
     >
       {title}
@@ -69,22 +69,22 @@ function SideLink({ href, title, active = false }: { href: string; title: string
 }
 
 const inputClass =
-  "w-full rounded-xl border border-[#d58b88]/30 bg-white px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#d58b88]/60 focus:border-[#d58b88]/60 font-poppins transition-all duration-200 hover:border-[#d58b88]/50 placeholder:text-gray-400";
+  "w-full rounded-xl border border-[var(--surface-card-border-soft)] bg-[var(--surface)] px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--chip-border)] focus:border-[var(--chip-border)] font-poppins transition-all duration-200 hover:border-[var(--chip-border)] placeholder:text-[var(--text-muted)]";
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-[var(--surface)]">
 
       {/* HERO */}
       <section className="relative left-1/2 -translate-x-1/2 w-screen overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#d58b88] via-[#d79c9c] to-[#dabebd]" />
-        <div className="absolute -top-24 -left-24 w-64 sm:w-72 h-64 sm:h-72 bg-[#edcccc]/40 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-72 sm:w-80 h-72 sm:h-80 bg-[#dabebd]/40 rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[var(--primary)] via-[var(--accent)] to-[var(--secondary)]" />
+        <div className="absolute -top-24 -left-24 w-64 sm:w-72 h-64 sm:h-72 bg-[var(--hero-glow-one)] rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-72 sm:w-80 h-72 sm:h-80 bg-[var(--hero-glow-one)] rounded-full blur-3xl" />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 lg:pt-28 pb-16 sm:pb-20 lg:pb-24">
           <div className="grid md:grid-cols-5 gap-8 lg:gap-10 items-center">
             <div className="md:col-span-3 text-white">
-              <p className="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur px-4 py-1.5 text-xs font-medium mb-5 sm:mb-6">
+              <p className="inline-flex items-center gap-2 rounded-full bg-[var(--chip-bg)] backdrop-blur px-4 py-1.5 text-xs font-medium mb-5 sm:mb-6">
                 <MessageCircle className="h-4 w-4" /> Estamos aquí para ayudarte
               </p>
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-fredoka-one drop-shadow-sm mb-5 sm:mb-6">Contáctanos</h1>
@@ -102,8 +102,8 @@ export default function ContactPage() {
             </div>
 
             <aside className="md:col-span-2">
-              <nav className="rounded-3xl bg-white/80 backdrop-blur border border-white/50 p-5 sm:p-6 flex flex-col gap-3 sm:gap-4 shadow-lg">
-                <h2 className="text-[#d58b88] font-fredoka-one text-xl flex items-center gap-2">
+              <nav className="rounded-3xl bg-[var(--surface-card-soft)] backdrop-blur border border-[var(--surface-card-border-soft)] p-5 sm:p-6 flex flex-col gap-3 sm:gap-4 shadow-lg">
+                <h2 className="text-[var(--primary)] font-fredoka-one text-xl flex items-center gap-2">
                   <Compass className="h-5 w-5" /> Navegación
                 </h2>
                 <SideLink href="#formulario" title="Enviar Mensaje" active />
@@ -117,33 +117,33 @@ export default function ContactPage() {
       </section>
 
       {/* FORM + CONTACT INFO */}
-      <section id="formulario" className="relative left-1/2 -translate-x-1/2 w-screen scroll-mt-24 bg-white">
+      <section id="formulario" className="relative left-1/2 -translate-x-1/2 w-screen scroll-mt-24 bg-[var(--surface)]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 grid gap-6 sm:gap-8 md:grid-cols-[1.3fr,1fr]">
 
           <Reveal type="left">
-            <article className="rounded-3xl border border-[#d58b88]/20 bg-gradient-to-br from-white to-[#f8f6f6] shadow-sm p-6 sm:p-7 card-premium">
-              <h2 className="text-xl sm:text-2xl font-semibold text-[#2d2d2d] font-fredoka-one mb-4 sm:mb-5">Envíanos un Mensaje</h2>
+            <article className="rounded-3xl border border-[var(--surface-card-border-soft)] bg-gradient-to-br from-[var(--surface-card)] to-[var(--surface-alt)] shadow-sm p-6 sm:p-7 card-premium">
+              <h2 className="text-xl sm:text-2xl font-semibold text-[var(--text-primary)] font-fredoka-one mb-4 sm:mb-5">Envíanos un Mensaje</h2>
               <form className="space-y-4" noValidate>
                 <div>
-                  <label htmlFor="nombre" className="block text-sm font-medium text-[#2d2d2d] font-poppins mb-1">Nombre Completo</label>
+                  <label htmlFor="nombre" className="block text-sm font-medium text-[var(--text-primary)] font-poppins mb-1">Nombre Completo</label>
                   <input id="nombre" type="text" autoComplete="name" className={inputClass} placeholder="Escribe tu nombre" />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-[#2d2d2d] font-poppins mb-1">Correo Electrónico</label>
+                  <label htmlFor="email" className="block text-sm font-medium text-[var(--text-primary)] font-poppins mb-1">Correo Electrónico</label>
                   <input id="email" type="email" autoComplete="email" className={inputClass} placeholder="tucorreo@ejemplo.com" />
                 </div>
                 <div>
-                  <label htmlFor="asunto" className="block text-sm font-medium text-[#2d2d2d] font-poppins mb-1">Asunto</label>
+                  <label htmlFor="asunto" className="block text-sm font-medium text-[var(--text-primary)] font-poppins mb-1">Asunto</label>
                   <input id="asunto" type="text" className={inputClass} placeholder="¿Sobre qué te gustaría hablar?" />
                 </div>
                 <div>
-                  <label htmlFor="mensaje" className="block text-sm font-medium text-[#2d2d2d] font-poppins mb-1">Mensaje</label>
+                  <label htmlFor="mensaje" className="block text-sm font-medium text-[var(--text-primary)] font-poppins mb-1">Mensaje</label>
                   <textarea id="mensaje" rows={5} className={`${inputClass} resize-none`} placeholder="Cuéntanos con más detalle en qué podemos ayudarte." />
                 </div>
                 <div className="pt-1">
                   <button
                     type="submit"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-[#d58b88] px-6 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-[#c47a77] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 font-fredoka-one active:scale-95"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-6 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-[var(--primary-hover)] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 font-fredoka-one active:scale-95"
                   >
                     <Send className="h-4 w-4" />
                     Enviar Mensaje
@@ -155,19 +155,19 @@ export default function ContactPage() {
 
           <div id="info" className="space-y-5 sm:space-y-6 scroll-mt-24">
             <Reveal type="right">
-              <article className="rounded-3xl border border-[#d58b88]/20 bg-white shadow-sm p-5 sm:p-7 card-premium">
-                <h2 className="text-base sm:text-xl font-semibold text-[#2d2d2d] font-fredoka-one mb-4">Información de Contacto</h2>
-                <ul className="space-y-4 text-sm text-gray-600 font-poppins">
+              <article className="rounded-3xl border border-[var(--surface-card-border-soft)] bg-[var(--surface)] shadow-sm p-5 sm:p-7 card-premium">
+                <h2 className="text-base sm:text-xl font-semibold text-[var(--text-primary)] font-fredoka-one mb-4">Información de Contacto</h2>
+                <ul className="space-y-4 text-sm text-[var(--text-body)] font-poppins">
                   {[
-                    { icon: Mail,   label: "Correo",    content: <a href="mailto:contacto@romiai.com.mx" className="text-[#d58b88] hover:underline transition-colors">contacto@romiai.com.mx</a> },
-                    { icon: Phone,  label: "Teléfono",  content: <a href="tel:+522224335093" className="text-[#d58b88] hover:underline transition-colors">22 24 33 50 93</a> },
+                    { icon: Mail,   label: "Correo",    content: <a href="mailto:contacto@romiai.com.mx" className="text-[var(--primary)] hover:underline transition-colors">contacto@romiai.com.mx</a> },
+                    { icon: Phone,  label: "Teléfono",  content: <a href="tel:+522224335093" className="text-[var(--primary)] hover:underline transition-colors">22 24 33 50 93</a> },
                     { icon: MapPin, label: "Dirección", content: <p className="leading-relaxed">Hospital Ángeles Puebla<br />Av. Kepler No. 2143, Torre de Especialidades IV<br />Consultorio 3800, CP 72820<br />Reserva Territorial Atlixcáyotl, Puebla, Pue.</p> },
                   ].map(({ icon: Icon, label, content }) => (
                     <li key={label} className="flex items-start gap-3">
-                      <span className="mt-0.5 inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#d58b88]/10 flex-shrink-0 icon-lift">
-                        <Icon className="h-4 w-4 text-[#d58b88]" />
+                      <span className="mt-0.5 inline-flex h-9 w-9 items-center justify-center rounded-full bg-[var(--chip-bg)] flex-shrink-0 icon-lift">
+                        <Icon className="h-4 w-4 text-[var(--primary)]" />
                       </span>
-                      <div><p className="font-medium text-[#2d2d2d]">{label}</p>{content}</div>
+                      <div><p className="font-medium text-[var(--text-primary)]">{label}</p>{content}</div>
                     </li>
                   ))}
                 </ul>
@@ -175,13 +175,13 @@ export default function ContactPage() {
             </Reveal>
 
             <Reveal type="right" delay={100}>
-              <article className="rounded-3xl border border-[#d58b88]/20 bg-gradient-to-br from-[#EBD9D8]/20 to-white shadow-sm p-5 sm:p-7 text-sm text-gray-600 font-poppins card-premium">
-                <h2 className="text-base sm:text-xl font-semibold text-[#2d2d2d] font-fredoka-one mb-3 flex items-center gap-2">
-                  <Clock className="h-5 w-5 text-[#d58b88]" /> Horario de Atención
+              <article className="rounded-3xl border border-[var(--surface-card-border-soft)] bg-gradient-to-br from-[var(--surface-card-soft)] to-[var(--surface-card)] shadow-sm p-5 sm:p-7 text-sm text-[var(--text-body)] font-poppins card-premium">
+                <h2 className="text-base sm:text-xl font-semibold text-[var(--text-primary)] font-fredoka-one mb-3 flex items-center gap-2">
+                  <Clock className="h-5 w-5 text-[var(--primary)]" /> Horario de Atención
                 </h2>
-                <p><span className="font-semibold text-[#2d2d2d]">Lunes a Viernes:</span> 9:00 AM – 6:00 PM (GMT-6)</p>
-                <p><span className="font-semibold text-[#2d2d2d]">Sábados:</span> 10:00 AM – 2:00 PM (GMT-6)</p>
-                <p><span className="font-semibold text-[#2d2d2d]">Domingos y Feriados:</span> Cerrado</p>
+                <p><span className="font-semibold text-[var(--text-primary)]">Lunes a Viernes:</span> 9:00 AM – 6:00 PM (GMT-6)</p>
+                <p><span className="font-semibold text-[var(--text-primary)]">Sábados:</span> 10:00 AM – 2:00 PM (GMT-6)</p>
+                <p><span className="font-semibold text-[var(--text-primary)]">Domingos y Feriados:</span> Cerrado</p>
                 <p className="mt-3 text-xs">Nuestro asistente virtual ROMI está disponible 24/7 para resolver tus dudas.</p>
               </article>
             </Reveal>
@@ -190,11 +190,11 @@ export default function ContactPage() {
       </section>
 
       {/* REDES SOCIALES */}
-      <section id="redes" className="relative left-1/2 -translate-x-1/2 w-screen scroll-mt-24 bg-gradient-to-br from-[#d58b88]/5 to-[#dabebd]/10 border-t border-[#d58b88]/20">
+      <section id="redes" className="relative left-1/2 -translate-x-1/2 w-screen scroll-mt-24 bg-gradient-to-br from-[var(--surface-card-soft)] to-[var(--surface-card-soft)] border-t border-[var(--surface-card-border-soft)]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
           <Reveal className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-fredoka-one text-[#d58b88] mb-3">Síguenos en Redes Sociales</h2>
-            <p className="text-sm sm:text-base text-gray-600 font-poppins">Síguenos para enterarte de nuestras novedades, próximas actualizaciones y datos curiosos.</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-fredoka-one text-[var(--primary)] mb-3">Síguenos en Redes Sociales</h2>
+            <p className="text-sm sm:text-base text-[var(--text-body)] font-poppins">Síguenos para enterarte de nuestras novedades, próximas actualizaciones y datos curiosos.</p>
           </Reveal>
 
           <div className="grid gap-3 sm:gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
@@ -205,16 +205,16 @@ export default function ContactPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Seguir a ROMI en ${s.label}`}
-                  className="flex flex-col items-center gap-3 rounded-2xl border border-[#d58b88]/20 bg-white p-4 sm:p-5 shadow-sm card-premium text-center group"
+                  className="flex flex-col items-center gap-3 rounded-2xl border border-[var(--surface-card-border-soft)] bg-[var(--surface)] p-4 sm:p-5 shadow-sm card-premium text-center group"
                 >
-                  <span className="inline-flex h-11 sm:h-12 w-11 sm:w-12 items-center justify-center rounded-full bg-[#d58b88]/10 text-[#d58b88] group-hover:bg-[#d58b88] group-hover:text-white transition-all duration-300 icon-lift">
+                  <span className="inline-flex h-11 sm:h-12 w-11 sm:w-12 items-center justify-center rounded-full bg-[var(--chip-bg)] text-[var(--primary)] group-hover:bg-[var(--primary)] group-hover:text-white transition-all duration-300 icon-lift">
                     {s.icon}
                   </span>
                   <div>
-                    <p className="font-semibold text-sm text-[#2d2d2d] font-poppins">{s.label}</p>
-                    <p className="text-xs text-gray-500 font-poppins mt-0.5">{s.handle}</p>
+                    <p className="font-semibold text-sm text-[var(--text-primary)] font-poppins">{s.label}</p>
+                    <p className="text-xs text-[var(--text-muted)] font-poppins mt-0.5">{s.handle}</p>
                   </div>
-                  <span className="inline-flex items-center gap-1 text-xs text-[#d58b88] font-medium group-hover:gap-2 transition-all duration-200">
+                  <span className="inline-flex items-center gap-1 text-xs text-[var(--primary)] font-medium group-hover:gap-2 transition-all duration-200">
                     Seguir <ExternalLink className="h-3 w-3" />
                   </span>
                 </a>
@@ -225,11 +225,11 @@ export default function ContactPage() {
       </section>
 
       {/* SOPORTE */}
-      <section id="soporte" className="relative left-1/2 -translate-x-1/2 w-screen scroll-mt-24 border-t border-[#d58b88]/20 bg-[#f8f6f6]">
+      <section id="soporte" className="relative left-1/2 -translate-x-1/2 w-screen scroll-mt-24 border-t border-[var(--surface-card-border-soft)] bg-[var(--surface-alt)]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
           <Reveal className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-fredoka-one text-[#d58b88] mb-4">Opciones de Soporte</h2>
-            <p className="text-sm sm:text-base text-gray-600 font-poppins">Encuentra la ayuda que necesitas a través de nuestros canales de soporte.</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-fredoka-one text-[var(--primary)] mb-4">Opciones de Soporte</h2>
+            <p className="text-sm sm:text-base text-[var(--text-body)] font-poppins">Encuentra la ayuda que necesitas a través de nuestros canales de soporte.</p>
           </Reveal>
 
           <div className="grid gap-4 sm:gap-6 sm:grid-cols-3">
@@ -254,16 +254,16 @@ export default function ContactPage() {
               },
             ].map(({ icon: Icon, title, desc, cta }, i) => (
               <Reveal key={title} type="scale" delay={i * 80}>
-                <article className="rounded-2xl border border-[#d58b88]/20 bg-white p-5 sm:p-6 shadow-sm text-center card-premium">
-                  <div className="mx-auto mb-3 flex h-11 sm:h-12 w-11 sm:w-12 items-center justify-center rounded-full bg-[#d58b88]/10 icon-lift">
-                    <Icon className="h-5 sm:h-6 w-5 sm:w-6 text-[#d58b88]" />
+                <article className="rounded-2xl border border-[var(--surface-card-border-soft)] bg-[var(--surface)] p-5 sm:p-6 shadow-sm text-center card-premium">
+                  <div className="mx-auto mb-3 flex h-11 sm:h-12 w-11 sm:w-12 items-center justify-center rounded-full bg-[var(--chip-bg)] icon-lift">
+                    <Icon className="h-5 sm:h-6 w-5 sm:w-6 text-[var(--primary)]" />
                   </div>
-                  <h3 className="text-base sm:text-lg font-semibold text-[#2d2d2d] font-fredoka-one">{title}</h3>
-                  <p className="mt-2 text-sm text-gray-600 font-poppins">{desc}</p>
+                  <h3 className="text-base sm:text-lg font-semibold text-[var(--text-primary)] font-fredoka-one">{title}</h3>
+                  <p className="mt-2 text-sm text-[var(--text-body)] font-poppins">{desc}</p>
                   <a
                     href={cta.href}
                     {...(cta.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    className="mt-4 inline-flex items-center justify-center rounded-full border border-[#d58b88]/30 px-4 py-1.5 text-xs font-medium text-[#d58b88] hover:bg-[#d58b88] hover:text-white hover:border-[#d58b88] transition-all duration-200 font-poppins active:scale-95"
+                    className="mt-4 inline-flex items-center justify-center rounded-full border border-[var(--surface-card-border-soft)] px-4 py-1.5 text-xs font-medium text-[var(--primary)] hover:bg-[var(--primary)] hover:text-white hover:border-[var(--primary)] transition-all duration-200 font-poppins active:scale-95"
                   >
                     {cta.label}
                   </a>
@@ -275,10 +275,10 @@ export default function ContactPage() {
       </section>
 
       {/* MAPA */}
-      <section className="relative left-1/2 -translate-x-1/2 w-screen bg-white">
+      <section className="relative left-1/2 -translate-x-1/2 w-screen bg-[var(--surface)]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
           <Reveal type="scale">
-            <div className="rounded-3xl overflow-hidden border border-[#d58b88]/20 shadow-sm h-56 sm:h-72 hover:shadow-md transition-shadow duration-300">
+            <div className="rounded-3xl overflow-hidden border border-[var(--surface-card-border-soft)] shadow-sm h-56 sm:h-72 hover:shadow-md transition-shadow duration-300">
               <iframe
                 title="Ubicación Hospital Ángeles Puebla"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.4!2d-98.2523!3d19.0245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cfc0e392b1d97d%3A0x7e5af4f88736e5a2!2sHospital%20%C3%81ngeles%20Puebla!5e0!3m2!1ses!2smx!4v1680000000000!5m2!1ses!2smx"
@@ -288,7 +288,7 @@ export default function ContactPage() {
               />
             </div>
           </Reveal>
-          <p className="mt-3 text-xs text-gray-400 text-center font-poppins">
+          <p className="mt-3 text-xs text-[var(--text-muted)] text-center font-poppins">
             Av. Kepler No. 2143, Torre de Especialidades IV, Consultorio 3800 — Hospital Ángeles Puebla
           </p>
         </div>

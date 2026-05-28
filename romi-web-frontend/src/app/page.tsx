@@ -75,19 +75,19 @@ export default function Home() {
             {/* Header */}
             <div className="text-center mb-10 sm:mb-14">
               {/* Event badge */}
-              <div className="inline-flex items-center gap-2 rounded-full border border-[#d58b88]/40 bg-[#d58b88]/10 px-4 py-1.5 mb-6">
+              <div className="inline-flex items-center gap-2 rounded-full border border-[var(--chip-border)] bg-[var(--chip-bg)] px-4 py-1.5 mb-6">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d58b88] opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[#d58b88]" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--primary)] opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--primary)]" />
                 </span>
-                <span className="text-[11px] font-bold uppercase tracking-widest text-[#d58b88]">
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[var(--primary)]">
                   En vivo · Expo Santa Fe, CDMX
                 </span>
               </div>
 
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-fredoka-one text-white mb-4 leading-tight">
                 ¡Nos vemos en{" "}
-                <span className="text-[#d58b88]">Talent Land</span>!
+                <span className="text-[var(--primary)]">Talent Land</span>!
               </h2>
 
               {/* Date pills */}
@@ -144,7 +144,7 @@ export default function Home() {
               </p>
               <a
                 href="/chat"
-                className="inline-flex items-center gap-2 rounded-full bg-[#d58b88] hover:bg-[#c47a77] text-white font-semibold px-7 py-3 shadow-lg shadow-[#d58b88]/30 hover:-translate-y-0.5 hover:shadow-xl transition-all duration-200 font-poppins"
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white font-semibold px-7 py-3 shadow-lg shadow-[var(--surface-card-border-soft)] hover:-translate-y-0.5 hover:shadow-xl transition-all duration-200 font-poppins"
               >
                 Chatea con ROMI ahora
               </a>

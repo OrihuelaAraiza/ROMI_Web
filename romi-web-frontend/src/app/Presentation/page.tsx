@@ -28,7 +28,7 @@ const history = [
 
 export default function Page() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-[var(--surface)]">
 
       {/* HERO */}
       <section className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen bg-gradient-romi">
@@ -51,7 +51,7 @@ export default function Page() {
 
         <section className="mt-8 sm:mt-10 grid md:grid-cols-2 gap-6">
           <Reveal type="left">
-            <div className="rounded-2xl border border-[#d58b88]/20 p-5 sm:p-6 card-premium">
+            <div className="rounded-2xl border border-[var(--surface-card-border-soft)] p-5 sm:p-6 card-premium">
               <p className="text-sm sm:text-base text-zinc-600 mt-2">
                 HubROMI nació de la visión de democratizar el acceso a la salud a través de la tecnología. Somos un equipo multidisciplinario de médicos, ingenieros y especialistas en salud digital.
               </p>
@@ -65,7 +65,7 @@ export default function Page() {
           </Reveal>
 
           <Reveal type="right">
-            <div className="rounded-2xl border border-[#d58b88]/20 p-5 sm:p-6 overflow-hidden card-premium">
+            <div className="rounded-2xl border border-[var(--surface-card-border-soft)] p-5 sm:p-6 overflow-hidden card-premium">
               <img
                 src="images/doctor.jpg"
                 alt="Doctor escribiendo"
@@ -89,11 +89,11 @@ export default function Page() {
             { icon: Target,    title: "Visión", desc: "Ser la plataforma líder mundial en salud digital, transformando la medicina a través de la inteligencia artificial y la telemedicina, creando un futuro donde la atención médica de excelencia sea accesible para todos." },
           ].map(({ icon: Icon, title, desc }, i) => (
             <Reveal key={title} type={i === 0 ? "left" : "right"}>
-              <div className="rounded-2xl border border-[#d58b88]/20 p-5 sm:p-6 text-center space-y-3 card-premium">
-                <div className="w-12 h-12 mx-auto rounded-xl bg-[#d58b88]/10 flex items-center justify-center icon-lift">
+              <div className="rounded-2xl border border-[var(--surface-card-border-soft)] p-5 sm:p-6 text-center space-y-3 card-premium">
+                <div className="w-12 h-12 mx-auto rounded-xl bg-[var(--chip-bg)] flex items-center justify-center icon-lift">
                   <Icon className="w-6 h-6 text-primary" />
                 </div>
-                <h2 className="font-semibold text-lg sm:text-xl text-[#2d2d2d]">{title}</h2>
+                <h2 className="font-semibold text-lg sm:text-xl text-[var(--text-primary)]">{title}</h2>
                 <p className="text-sm text-zinc-600 font-poppins">{desc}</p>
               </div>
             </Reveal>
@@ -108,11 +108,11 @@ export default function Page() {
         <section className="mt-8 sm:mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-4">
           {values.map(({ icon: Icon, title, desc }, i) => (
             <Reveal key={title} type="scale" delay={i * 60}>
-              <div className="rounded-3xl border border-[#d58b88]/20 p-5 sm:p-6 text-center card-premium group">
-                <div className="w-12 h-12 mx-auto rounded-xl bg-[#d58b88]/10 flex items-center justify-center mb-4 icon-lift">
+              <div className="rounded-3xl border border-[var(--surface-card-border-soft)] p-5 sm:p-6 text-center card-premium group">
+                <div className="w-12 h-12 mx-auto rounded-xl bg-[var(--chip-bg)] flex items-center justify-center mb-4 icon-lift">
                   <Icon className="w-6 h-6 text-primary" />
                 </div>
-                <h2 className="font-semibold text-base sm:text-xl text-[#2d2d2d]">{title}</h2>
+                <h2 className="font-semibold text-base sm:text-xl text-[var(--text-primary)]">{title}</h2>
                 <p className="text-sm text-zinc-600 mt-2 font-poppins">{desc}</p>
               </div>
             </Reveal>
@@ -130,11 +130,11 @@ export default function Page() {
         <section className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-4">
           {team.map(({ name, role }, i) => (
             <Reveal key={name} type="scale" delay={i * 60}>
-              <div className="rounded-2xl border border-[#d58b88]/20 p-4 sm:p-6 text-center card-premium">
-                <div className="w-11 h-11 mx-auto rounded-full bg-[#d58b88]/10 flex items-center justify-center mb-3 icon-lift">
+              <div className="rounded-2xl border border-[var(--surface-card-border-soft)] p-4 sm:p-6 text-center card-premium">
+                <div className="w-11 h-11 mx-auto rounded-full bg-[var(--chip-bg)] flex items-center justify-center mb-3 icon-lift">
                   <User className="w-5 h-5 text-primary" />
                 </div>
-                <h2 className="font-semibold text-sm sm:text-base text-[#2d2d2d]">{name}</h2>
+                <h2 className="font-semibold text-sm sm:text-base text-[var(--text-primary)]">{name}</h2>
                 <p className="text-xs sm:text-sm text-zinc-600 mt-1 font-poppins">{role}</p>
               </div>
             </Reveal>
@@ -151,22 +151,22 @@ export default function Page() {
 
         <section className="relative max-w-3xl mx-auto pb-16">
           {/* Desktop: center line */}
-          <div className="pointer-events-none absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-[#d58b88]/30 hidden md:block" />
+          <div className="pointer-events-none absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-[var(--primary)] hidden md:block" />
           {/* Mobile: left line */}
-          <div className="pointer-events-none absolute left-5 top-0 h-full w-px bg-[#d58b88]/30 md:hidden" />
+          <div className="pointer-events-none absolute left-5 top-0 h-full w-px bg-[var(--primary)] md:hidden" />
 
           {history.map(({ year, side, title, desc }, i) => (
             <Reveal key={year} type={side === "left" ? "left" : "right"} delay={i * 70}>
               <div className="relative grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-12 items-start md:items-center">
                 {/* Mobile dot – left rail */}
-                <span className="md:hidden absolute left-5 top-4 h-3 w-3 -translate-x-1/2 rounded-full bg-[#d58b88] ring-4 ring-white z-10" />
+                <span className="md:hidden absolute left-5 top-4 h-3 w-3 -translate-x-1/2 rounded-full bg-[var(--primary)] ring-4 ring-white z-10" />
                 {/* Desktop dot – center */}
-                <span className="hidden md:block absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d58b88] ring-8 ring-white z-10 hover:scale-125 transition-transform" />
+                <span className="hidden md:block absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--primary)] ring-8 ring-white z-10 hover:scale-125 transition-transform" />
 
                 <div className={`pl-12 md:pl-0 ${side === "left" ? "md:text-right md:pr-10" : "md:col-start-2 md:pl-10"}`}>
-                  <div className="rounded-2xl bg-white p-4 sm:p-6 shadow-md ring-1 ring-[#d58b88]/10 card-premium">
-                    <p className="text-[#d58b88] font-bold text-base sm:text-lg">{year}</p>
-                    <h3 className="mt-1 text-base sm:text-xl font-semibold text-gray-900">{title}</h3>
+                  <div className="rounded-2xl bg-[var(--surface)] p-4 sm:p-6 shadow-md ring-1 ring-[var(--surface-card-border-soft)] card-premium">
+                    <p className="text-[var(--primary)] font-bold text-base sm:text-lg">{year}</p>
+                    <h3 className="mt-1 text-base sm:text-xl font-semibold text-[var(--text-primary)]">{title}</h3>
                     <p className="mt-2 text-xs sm:text-sm text-zinc-600 font-poppins">{desc}</p>
                   </div>
                 </div>

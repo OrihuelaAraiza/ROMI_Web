@@ -72,10 +72,10 @@ export default function Nav() {
   return (
     <>
       <nav
-        className={`sticky top-0 z-50 border-b border-[var(--surface-card-border)] bg-[var(--surface-card)] transition-all duration-300 ${
+        className={`sticky top-0 z-50 border-b-[2.5px] border-[var(--surface-card-border)] bg-[var(--surface-card)] transition-all duration-300 ${
           scrolled
-            ? "shadow-[0_4px_24px_rgba(0,0,0,0.10)] backdrop-blur-md"
-            : "shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
+            ? "shadow-[4px_4px_0_var(--shadow-ink)] backdrop-blur-md"
+            : "shadow-[0_2px_0_var(--shadow-ink)]"
         }`}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center gap-4 lg:gap-6">
@@ -99,7 +99,7 @@ export default function Nav() {
                 href={l.href}
                 className={`nav-underline relative px-3 py-2 text-sm font-medium transition-colors duration-200 ${
                   isActive(l.href)
-                    ? "text-primary nav-active"
+                    ? "text-primary nav-active bg-primary/10"
                     : "text-[var(--text-body)] hover:text-[var(--text-primary)]"
                 }`}
               >
@@ -115,7 +115,7 @@ export default function Nav() {
             {isLoggedIn && showDoctorArea && (
               <Link
                 href={doctorDashboardHref}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-primary/30 bg-[var(--surface-card)] px-3 py-2 text-sm font-medium text-primary hover:bg-primary/5 hover:border-primary/60 whitespace-nowrap transition-all duration-200"
+                className="inline-flex items-center gap-1.5 rounded-full border-[2px] border-[var(--surface-card-border)] bg-[var(--surface-card)] px-3 py-2 text-sm font-medium text-primary hover:bg-primary/10 whitespace-nowrap transition-all duration-200 shadow-[3px_3px_0_var(--shadow-ink)] hover:-translate-y-0.5"
               >
                 <LayoutDashboard className="h-4 w-4" />
                 <span>Dashboard</span>
@@ -125,7 +125,7 @@ export default function Nav() {
             {isLoggedIn && isPatient && (
               <Link
                 href={patientDashboardHref}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-primary/30 bg-[var(--surface-card)] px-3 py-2 text-sm font-medium text-primary hover:bg-primary/5 hover:border-primary/60 whitespace-nowrap transition-all duration-200"
+                className="inline-flex items-center gap-1.5 rounded-full border-[2px] border-[var(--surface-card-border)] bg-[var(--surface-card)] px-3 py-2 text-sm font-medium text-primary hover:bg-primary/10 whitespace-nowrap transition-all duration-200 shadow-[3px_3px_0_var(--shadow-ink)] hover:-translate-y-0.5"
               >
                 <CalendarDays className="h-4 w-4" />
                 <span>Mis citas</span>
@@ -136,7 +136,7 @@ export default function Nav() {
             <div className="relative">
               <Link
                 href="/chat"
-                className="px-4 py-2.5 rounded-full bg-gradient-to-r from-[#d58b88] via-[#d79c9c] to-[#dabebd] text-white text-sm font-medium whitespace-nowrap shadow-md btn-glow"
+                className="px-4 py-2.5 rounded-full text-sm font-medium whitespace-nowrap btn-glow"
               >
                 Chat ROMI
               </Link>
@@ -151,14 +151,14 @@ export default function Nav() {
             {isLoggedIn ? (
               <button
                 onClick={handleLogout}
-                className="px-4 py-2.5 rounded-full bg-gradient-to-r from-[#d58b88] via-[#d79c9c] to-[#dabebd] text-white text-sm font-medium whitespace-nowrap shadow-md btn-glow"
+                className="px-4 py-2.5 rounded-full text-sm font-medium whitespace-nowrap btn-glow"
               >
                 Cerrar sesión
               </button>
             ) : (
               <Link
                 href="/Auth/Login"
-                className="px-4 py-2.5 rounded-full text-sm font-medium border-2 border-primary text-primary bg-[var(--surface-card)] hover:bg-primary hover:text-white whitespace-nowrap transition-all duration-300 hover:shadow-lg hover:shadow-[#d58b88]/25"
+                className="px-4 py-2.5 rounded-full text-sm font-medium border-[2.5px] border-[var(--surface-card-border)] text-primary bg-[var(--surface-card)] hover:bg-primary hover:text-white whitespace-nowrap transition-all duration-300 shadow-[3px_3px_0_var(--shadow-ink)] hover:-translate-y-0.5"
               >
                 Iniciar sesión
               </Link>
@@ -168,7 +168,7 @@ export default function Nav() {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden ml-auto p-2 rounded-lg text-[var(--text-primary)] hover:bg-primary/10 active:scale-95 transition-all duration-200"
+            className="md:hidden ml-auto p-2 rounded-full border-2 border-[var(--surface-card-border)] text-[var(--text-primary)] hover:bg-primary/10 active:scale-95 transition-all duration-200 shadow-[2px_2px_0_var(--shadow-ink)]"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
           >
@@ -187,7 +187,7 @@ export default function Nav() {
 
         {/* Mobile menu */}
         {open && (
-          <div className="md:hidden border-t border-[var(--surface-card-border)] bg-[var(--surface-card)]/95 backdrop-blur-sm animate-mobile-nav-in">
+          <div className="md:hidden border-t-[2.5px] border-[var(--surface-card-border)] bg-[var(--surface-card)] backdrop-blur-sm animate-mobile-nav-in">
             <div className="px-4 py-4 flex flex-col gap-1.5">
               {LINKS.map((l, i) => (
                 <Link
@@ -197,7 +197,7 @@ export default function Nav() {
                   style={{ animationDelay: `${i * 35}ms` }}
                   className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
                     isActive(l.href)
-                      ? "text-primary bg-[#d58b88]/10 font-semibold"
+                      ? "text-primary bg-primary/10 font-semibold"
                       : "text-[var(--text-body)] hover:text-[var(--text-primary)] hover:bg-primary/5 active:scale-[0.98]"
                   }`}
                 >
@@ -209,7 +209,7 @@ export default function Nav() {
                 <Link
                   href={doctorDashboardHref}
                   onClick={() => setOpen(false)}
-                  className="mt-1 px-4 py-2.5 rounded-xl text-sm border border-primary/30 bg-[var(--surface-card)] text-primary flex items-center gap-2 hover:bg-primary/5 transition-all duration-200"
+                  className="mt-1 px-4 py-2.5 rounded-full text-sm border-2 border-[var(--surface-card-border)] bg-[var(--surface-card)] text-primary flex items-center gap-2 hover:bg-primary/10 transition-all duration-200"
                 >
                   <LayoutDashboard className="h-4 w-4" />
                   <span>Dashboard</span>
@@ -220,7 +220,7 @@ export default function Nav() {
                 <Link
                   href={patientDashboardHref}
                   onClick={() => setOpen(false)}
-                  className="mt-1 px-4 py-2.5 rounded-xl text-sm border border-primary/30 bg-[var(--surface-card)] text-primary flex items-center gap-2 hover:bg-primary/5 transition-all duration-200"
+                  className="mt-1 px-4 py-2.5 rounded-full text-sm border-2 border-[var(--surface-card-border)] bg-[var(--surface-card)] text-primary flex items-center gap-2 hover:bg-primary/10 transition-all duration-200"
                 >
                   <CalendarDays className="h-4 w-4" />
                   <span>Mis citas</span>
@@ -234,7 +234,7 @@ export default function Nav() {
                 <Link
                   href="/chat"
                   onClick={() => setOpen(false)}
-                  className="block px-4 py-3 rounded-full bg-gradient-to-r from-[#d58b88] via-[#d79c9c] to-[#dabebd] text-white text-sm text-center font-medium shadow-md active:scale-[0.98] transition-all duration-200"
+                  className="block px-4 py-3 rounded-full text-sm text-center font-medium active:scale-[0.98] transition-all duration-200 btn-glow"
                 >
                   Chat ROMI
                 </Link>
@@ -248,7 +248,7 @@ export default function Nav() {
               {isLoggedIn ? (
                 <button
                   onClick={handleLogout}
-                  className="w-full px-4 py-3 rounded-full bg-gradient-to-r from-[#d58b88] via-[#d79c9c] to-[#dabebd] text-white text-sm font-medium shadow-md active:scale-[0.98] transition-all duration-200"
+                  className="w-full px-4 py-3 rounded-full text-sm font-medium active:scale-[0.98] transition-all duration-200 btn-glow"
                 >
                   Cerrar sesión
                 </button>
@@ -256,7 +256,7 @@ export default function Nav() {
                 <Link
                   href="/Auth/Login"
                   onClick={() => setOpen(false)}
-                  className="block px-4 py-3 rounded-full text-sm font-medium border-2 border-primary text-primary bg-[var(--surface-card)] hover:bg-primary hover:text-white text-center transition-all duration-300"
+                  className="block px-4 py-3 rounded-full text-sm font-medium border-[2.5px] border-[var(--surface-card-border)] text-primary bg-[var(--surface-card)] hover:bg-primary hover:text-white text-center transition-all duration-300 shadow-[3px_3px_0_var(--shadow-ink)]"
                 >
                   Iniciar sesión
                 </Link>
