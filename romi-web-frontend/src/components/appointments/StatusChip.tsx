@@ -1,4 +1,5 @@
 import type { AppointmentStatus } from '@/lib/types';
+import { useTranslations } from 'next-intl';
 
 const map: Record<AppointmentStatus, string> = {
   requested: 'bg-amber-50 text-amber-700 border-amber-200',
@@ -9,11 +10,20 @@ const map: Record<AppointmentStatus, string> = {
   no_show: 'bg-zinc-100 text-zinc-700 border-zinc-200',
 };
 
+const labelKeys: Record<AppointmentStatus, "PENDING" | "ACCEPTED" | "REJECTED" | "IN_PROGRESS" | "COMPLETED" | "NO_SHOW"> = {
+  requested: "PENDING",
+  accepted: "ACCEPTED",
+  rejected: "REJECTED",
+  in_progress: "IN_PROGRESS",
+  completed: "COMPLETED",
+  no_show: "NO_SHOW",
+};
+
 export default function StatusChip({ value }: { value: AppointmentStatus }) {
+  const t = useTranslations('status');
   return (
     <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs border ${map[value]}`}>
-      {value.replace('_', ' ')}
+      {t(labelKeys[value])}
     </span>
   );
 }
-

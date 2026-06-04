@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { CalendarHeart, Sparkles, Video } from "lucide-react";
+import { getLocale } from "next-intl/server";
+import EnglishPublicPage from "@/components/EnglishPublicPage";
 
-export const metadata = { title: "ROMI - Telesalud" };
-
-export default function Page() {
+export default async function Page() {
+  if (await getLocale() === "en") return <EnglishPublicPage kind="telehealth" />;
   return (
     <main className="romi-page mx-auto flex max-w-4xl items-center">
       <section className="card-premium w-full overflow-hidden p-6 text-center sm:p-10">

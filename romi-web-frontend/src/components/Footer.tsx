@@ -1,5 +1,8 @@
-import Link from "next/link";
+"use client";
+
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { useTranslations } from "next-intl";
+import Link from "@/i18n/LocalizedLink";
 
 const SOCIAL_LINKS = [
   {
@@ -50,6 +53,7 @@ const SOCIAL_LINKS = [
 ];
 
 export default function Footer() {
+  const t = useTranslations("footer");
   return (
     <footer className="romi-footer bg-[var(--footer-bg)] text-white border-t-[3px] border-[var(--surface-card-border)]">
       {/* Main grid */}
@@ -57,15 +61,15 @@ export default function Footer() {
 
         {/* Column 1 — Horario + contacto */}
         <div className="space-y-4">
-          <h3 className="text-base sm:text-lg font-fredoka-one text-[var(--accent)]">Horario de Atención</h3>
+          <h3 className="text-base sm:text-lg font-fredoka-one text-[var(--accent)]">{t("hours")}</h3>
           <ul className="space-y-2 text-sm font-poppins text-white/70">
             <li className="flex items-center gap-2">
               <Clock className="h-4 w-4 text-primary flex-shrink-0" />
-              <span><strong className="text-white">Lun – Vie:</strong> 9:00 AM – 6:00 PM (GMT-6)</span>
+              <span><strong className="text-white">{t("weekdays")}</strong> 9:00 AM - 6:00 PM (GMT-6)</span>
             </li>
             <li className="flex items-center gap-2">
               <Clock className="h-4 w-4 text-primary flex-shrink-0" />
-              <span><strong className="text-white">Sáb:</strong> 10:00 AM – 2:00 PM (GMT-6)</span>
+              <span><strong className="text-white">{t("saturday")}</strong> 10:00 AM - 2:00 PM (GMT-6)</span>
             </li>
           </ul>
 
@@ -89,9 +93,9 @@ export default function Footer() {
 
         {/* Column 2 — Redes sociales */}
         <div className="space-y-4">
-          <h3 className="text-base sm:text-lg font-fredoka-one text-[var(--accent)]">Síguenos</h3>
+          <h3 className="text-base sm:text-lg font-fredoka-one text-[var(--accent)]">{t("follow")}</h3>
           <p className="text-xs text-white/55 font-poppins leading-relaxed">
-            Entérate de nuestras novedades, próximas actualizaciones y datos curiosos.
+            {t("followText")}
           </p>
           <div className="flex flex-wrap gap-2.5 sm:gap-3">
             {SOCIAL_LINKS.map((s) => (
@@ -111,7 +115,7 @@ export default function Footer() {
 
         {/* Column 3 — Dirección */}
         <div className="space-y-4">
-          <h3 className="text-base sm:text-lg font-fredoka-one text-[var(--accent)]">Dirección</h3>
+          <h3 className="text-base sm:text-lg font-fredoka-one text-[var(--accent)]">{t("address")}</h3>
           <address className="not-italic text-sm font-poppins text-white/70 flex items-start gap-2 leading-relaxed">
             <MapPin className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
             <span>
@@ -126,22 +130,22 @@ export default function Footer() {
 
         {/* Column 4 — Legal */}
         <div className="space-y-4 sm:col-span-2 lg:col-span-1">
-          <h3 className="text-base sm:text-lg font-fredoka-one text-[var(--accent)]">Información legal</h3>
+          <h3 className="text-base sm:text-lg font-fredoka-one text-[var(--accent)]">{t("legal")}</h3>
           <p className="text-xs text-white/55 font-poppins leading-relaxed">
-            Consulta las condiciones de uso y el tratamiento de datos personales de ROMI.
+            {t("legalText")}
           </p>
           <div className="flex flex-col gap-2.5">
             <Link
               href="/terminos-condiciones"
               className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-white/80 transition-all duration-200 hover:bg-primary hover:text-white"
             >
-              Términos y condiciones
+              {t("terms")}
             </Link>
             <Link
               href="/aviso-privacidad"
               className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-white/80 transition-all duration-200 hover:bg-primary hover:text-white"
             >
-              Política de privacidad
+              {t("privacy")}
             </Link>
           </div>
         </div>
@@ -157,13 +161,13 @@ export default function Footer() {
           ))}
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/55 font-poppins">
-          <p className="text-center sm:text-left">© 2026 Red de Optimización Médica Inteligente. Todos los derechos reservados.</p>
+          <p className="text-center sm:text-left">{t("rights")}</p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link href="/terminos-condiciones" className="hover:text-primary transition-colors duration-200 whitespace-nowrap">
-              Términos
+              {t("terms")}
             </Link>
             <Link href="/aviso-privacidad" className="hover:text-primary transition-colors duration-200 whitespace-nowrap">
-              Privacidad
+              {t("privacy")}
             </Link>
           </div>
         </div>

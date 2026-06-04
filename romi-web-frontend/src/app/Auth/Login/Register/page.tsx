@@ -2,12 +2,13 @@
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
 import { useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { getToken } from "@/lib/auth";
-import { useRouter } from "next/navigation";
+import { useLocalizedRouter } from "@/i18n/useLocalizedRouter";
 import { apiFetch, endpoints } from "@/lib/api";
 import { errMsg } from "@/lib/errors";
+import Link from "@/i18n/LocalizedLink";
 const numberInput = z
   .string()
   .optional()
@@ -36,7 +37,8 @@ const schema = z
   });
 type FormData = z.infer<typeof schema>;
 export default function RegisterPage() {
-  const router = useRouter();
+  const t = useTranslations("auth");
+  const router = useLocalizedRouter();
   const {
     register,
     handleSubmit,
@@ -113,16 +115,16 @@ export default function RegisterPage() {
               </svg>
             </div>
             <h1 className="text-3xl  text-[var(--text-primary)] font-fredoka-one mb-2">
-              Crear cuenta
+              {t("createAccount")}
             </h1>
             <p className="text-sm text-[var(--text-body)] font-poppins">
-              Únete a ROMI hoy
+              {t("join")}
             </p>
           </div>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <div>
           <label className="block text-sm font-medium text-[var(--text-primary)] font-poppins mb-1.5">
-            Nombre
+            {t("name")}
           </label>
           <input
             type="text"
@@ -138,7 +140,7 @@ export default function RegisterPage() {
         </div>
         <div>
           <label className="block text-sm font-medium text-[var(--text-primary)] font-poppins mb-2">
-            Soy un
+            {t("role")}
           </label>
           <div className="flex items-center gap-x-6">
             <label className="flex items-center gap-x-2 cursor-pointer group">
@@ -149,7 +151,7 @@ export default function RegisterPage() {
                 defaultChecked
                 className="w-5 h-5 text-primary border-2 border-[var(--primary)]/30 focus:ring-2 focus:ring-[var(--primary)]/60 transition-all cursor-pointer"
               />
-              <span className="text-sm font-medium text-[var(--text-primary)] font-poppins group-hover:text-primary transition-colors">Paciente</span>
+              <span className="text-sm font-medium text-[var(--text-primary)] font-poppins group-hover:text-primary transition-colors">{t("patient")}</span>
             </label>
             <label className="flex items-center gap-x-2 cursor-pointer group">
               <input
@@ -158,7 +160,7 @@ export default function RegisterPage() {
                 {...register("role")}
                 className="w-5 h-5 text-primary border-2 border-[var(--primary)]/30 focus:ring-2 focus:ring-[var(--primary)]/60 transition-all cursor-pointer"
               />
-              <span className="text-sm font-medium text-[var(--text-primary)] font-poppins group-hover:text-primary transition-colors">Doctor</span>
+              <span className="text-sm font-medium text-[var(--text-primary)] font-poppins group-hover:text-primary transition-colors">{t("doctor")}</span>
             </label>
           </div>
           {errors.role && (
@@ -260,11 +262,11 @@ export default function RegisterPage() {
         )}
         <div>
           <label className="block text-sm font-medium text-[var(--text-primary)] font-poppins mb-1.5">
-            Correo
+            {t("email")}
           </label>
           <input
             type="email"
-            placeholder="Correo"
+            placeholder={t("email")}
             className="romi-field font-poppins text-sm"
             {...register("email")}
           />
@@ -277,11 +279,11 @@ export default function RegisterPage() {
 
         <div>
           <label className="block text-sm font-medium text-[var(--text-primary)] font-poppins mb-1.5">
-            Contraseña
+            {t("password")}
           </label>
           <input
             type="password"
-            placeholder="Contraseña"
+            placeholder={t("password")}
             className="romi-field font-poppins text-sm"
             {...register("password")}
           />
@@ -294,11 +296,11 @@ export default function RegisterPage() {
 
         <div>
           <label className="block text-sm font-medium text-[var(--text-primary)] font-poppins mb-1.5">
-            Confirmar contraseña
+            {t("confirmPassword")}
           </label>
           <input
             type="password"
-            placeholder="Conirmar contraseña"
+            placeholder={t("confirmPassword")}
             className="romi-field font-poppins text-sm"
             {...register("confirm")}
           />
@@ -328,14 +330,14 @@ export default function RegisterPage() {
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                Creando cuenta...
+                {t("creating")}
               </>
             ) : (
               <>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                Crear cuenta
+                {t("createAccount")}
                 <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
@@ -347,9 +349,9 @@ export default function RegisterPage() {
 
       <div className="mt-8 pt-6 border-t border-[var(--surface-card-border-soft)]">
         <p className="text-sm text-[var(--text-body)] font-poppins text-center">
-          ¿Ya tienes cuenta?{" "}
+          {t("haveAccount")}{" "}
           <Link href="/Auth/Login" className="text-primary font-semibold hover:text-[var(--primary-hover)] transition-colors duration-300 relative group">
-            Inicia sesión
+            {t("loginAction")}
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[var(--primary)] to-[var(--primary-hover)] group-hover:w-full transition-all duration-300"></span>
           </Link>
         </p>
@@ -359,5 +361,3 @@ export default function RegisterPage() {
     </main>
   );
 }
-
-

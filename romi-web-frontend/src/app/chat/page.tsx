@@ -6,10 +6,13 @@ import { useSearchParams } from "next/navigation";
 import { getToken } from "@/lib/auth";
 import { apiFetch } from "@/lib/api";
 import { useRealtime } from "@/hooks/useRealtime";
+import { useFormatter, useTranslations } from "next-intl";
 
 type ChatMessage = { from: "user" | "bot"; text: string };
 
 function ChatPageInner() {
+  const t = useTranslations("chat");
+  const format = useFormatter();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const wsRef = useRef<WebSocket | null>(null);
@@ -108,21 +111,21 @@ function ChatPageInner() {
     <main className="romi-page">
       <div className="max-w-3xl mx-auto px-0 sm:px-4 space-y-5">
         <header className="romi-page-header">
-          <h1 className="font-fredoka-one text-3xl text-primary">Chat con ROMI</h1>
-          <p className="mt-1 text-sm text-[var(--text-body)]">Un espacio claro para conversar y dar seguimiento.</p>
+          <h1 className="font-fredoka-one text-3xl text-primary">{t("title")}</h1>
+          <p className="mt-1 text-sm text-[var(--text-body)]">{t("subtitle")}</p>
         </header>
 
         {appointmentId && (
           <section className="romi-panel space-y-3">
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-medium">Chat de la cita</h2>
+              <h2 className="text-lg font-medium">{t("appointment")}</h2>
               <span className="text-xs text-muted-foreground">ID: {appointmentId}</span>
             </div>
 
             <div className="h-60 overflow-y-auto rounded-2xl border-2 border-[var(--surface-card-border-soft)] bg-[var(--surface-alt)] p-3">
               {realtimeThread.length === 0 && (
                 <p className="text-sm text-muted-foreground">
-                  Sin mensajes todavía. Empieza la conversación.
+                  {t("empty")}
                 </p>
               )}
 
@@ -141,8 +144,8 @@ function ChatPageInner() {
                     }`}
                   >
                     <p className="text-xs text-muted-foreground">
-                      {msg.authorId === userId ? "Tú" : "Participante"} ·{" "}
-                      {new Date(msg.createdAt).toLocaleTimeString()}
+                      {msg.authorId === userId ? t("you") : t("participant")} ·{" "}
+                      {format.dateTime(new Date(msg.createdAt), {hour: "numeric", minute: "2-digit"})}
                     </p>
                     <p>{msg.text}</p>
                   </div>
@@ -153,7 +156,7 @@ function ChatPageInner() {
             <div className="flex gap-2">
               <input
                 className="romi-field min-w-0 flex-1"
-                placeholder="Mensaje para la cita"
+                placeholder={t("appointmentPlaceholder")}
                 value={appointmentInput}
                 onChange={(e) => setAppointmentInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && sendAppointmentMessage()}
@@ -162,7 +165,7 @@ function ChatPageInner() {
                 className="romi-action"
                 onClick={sendAppointmentMessage}
               >
-                Enviar
+                {t("send")}
               </button>
             </div>
           </section>
@@ -208,7 +211,7 @@ function ChatPageInner() {
         <div className="flex gap-2">
           <input
             className="romi-field min-w-0 flex-1"
-            placeholder="Escribe tu mensaje…"
+            placeholder={t("placeholder")}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && send()}
@@ -217,7 +220,7 @@ function ChatPageInner() {
             className="romi-action"
             onClick={send}
           >
-            Enviar
+            {t("send")}
           </button>
         </div>
       </div>

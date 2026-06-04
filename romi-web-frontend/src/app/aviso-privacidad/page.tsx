@@ -1,4 +1,5 @@
 import LegalDocument from "@/components/LegalDocument";
+import { EnglishPrivacyContent } from "@/components/EnglishLegalContent";
 
 export const metadata = {
   title: "ROMI - Aviso de Privacidad",
@@ -8,7 +9,10 @@ export default function PrivacyPage() {
   return (
     <LegalDocument
       title="Aviso de Privacidad"
+      englishTitle="Privacy Notice"
       updated="Fecha de ultima actualizacion: febrero 2025"
+      englishUpdated="Last updated: February 2025"
+      englishChildren={<EnglishPrivacyContent />}
       actions={
         <div className="flex flex-col gap-3 sm:flex-row">
           <a

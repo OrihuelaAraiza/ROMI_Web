@@ -2,8 +2,12 @@ import Image from "next/image";
 import { Heart, Lightbulb, Shield, Users, Globe, BookOpen, Trophy, Rocket, BrainCircuit } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import UserMapSection from "@/components/UserMapSection";
+import { getLocale, getTranslations } from "next-intl/server";
+import EnglishHomePage from "@/components/EnglishHomePage";
 
-export default function Home() {
+export default async function Home() {
+  if (await getLocale() === "en") return <EnglishHomePage />;
+  const t = await getTranslations("home");
   return (
     <main className="min-h-screen">
       {/* ─── Hero Section ─── */}
@@ -29,7 +33,7 @@ export default function Home() {
             <div className="relative w-56 aspect-square">
               <Image
                 src="/images/romi-hero.png"
-                alt="ROMI - Asistente Médico"
+                alt="ROMI"
                 width={800}
                 height={800}
                 priority
@@ -49,7 +53,7 @@ export default function Home() {
               <div className="relative w-full aspect-square max-w-[280px] lg:max-w-xs">
                 <Image
                   src="/images/romi-hero.png"
-                  alt="ROMI - Asistente Médico"
+                  alt="ROMI"
                   width={800}
                   height={800}
                   priority
@@ -66,11 +70,10 @@ export default function Home() {
 
           <div className="text-center mt-4 md:-mt-4 animate-fade-in-up" style={{ animationDelay: "200ms" }}>
             <h2 className="text-2xl sm:text-3xl md:text-4xl text-[var(--hero-text)] mb-3 font-fredoka-one">
-              Formación Médica Integral
+              {t("tagline")}
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-[var(--hero-text-muted)] max-w-2xl mx-auto font-poppins px-2">
-              Soluciones con tecnologías avanzadas para transformar la atención médica
-              y mejorar los resultados de salud
+              {t("description")}
             </p>
           </div>
         </div>
@@ -174,10 +177,10 @@ export default function Home() {
             {/* ¿Quiénes somos? */}
             <Reveal className="text-center mb-12 sm:mb-16">
               <h2 className="text-3xl sm:text-4xl text-primary mb-4 font-fredoka-one font-semibold">
-                ¿Quiénes somos?
+                {t("who")}
               </h2>
               <p className="text-sm sm:text-base text-[var(--text-body)] max-w-3xl mx-auto font-poppins px-2">
-                Somos una plataforma integral que conecta profesionales de la salud con tecnología avanzada para mejorar la atención médica en todo el mundo.
+                {t("whoText")}
               </p>
             </Reveal>
 

@@ -4,8 +4,8 @@ import {
   Globe, FlaskConical,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
-
-export const metadata = { title: "ROMI — Formación" };
+import { getLocale } from "next-intl/server";
+import EnglishPublicPage from "@/components/EnglishPublicPage";
 
 /* ─── Data ─── */
 
@@ -34,7 +34,8 @@ const societies = [
 
 /* ─── Page ─── */
 
-export default function FormationPage() {
+export default async function FormationPage() {
+  if (await getLocale() === "en") return <EnglishPublicPage kind="education" />;
   return (
     <main className="min-h-screen bg-[var(--surface)]">
 

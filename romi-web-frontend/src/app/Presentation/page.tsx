@@ -1,7 +1,8 @@
-export const metadata = { title: "ROMI — Presentación" };
 import Image from "next/image";
 import { Target, Handshake, Heart, Lightbulb, Shield, Users, Globe, Zap, User } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import { getLocale } from "next-intl/server";
+import EnglishPublicPage from "@/components/EnglishPublicPage";
 
 const values = [
   { icon: Heart,     title: "Compromiso con la Salud",  desc: "Dedicados a mejorar la calidad de vida de las personas a través de la innovación médica." },
@@ -27,7 +28,8 @@ const history = [
   { year: "2024", side: "left",  title: "Portal Premium",             desc: "Lanzamiento de servicios especializados." },
 ];
 
-export default function Page() {
+export default async function Page() {
+  if (await getLocale() === "en") return <EnglishPublicPage kind="about" />;
   return (
     <main className="min-h-screen bg-[var(--surface)]">
 

@@ -5,6 +5,7 @@ import DoctorsHero from "./DoctorHero";
 import DoctorCard, { Doctor } from "./DoctorCard";
 import { apiFetchAuth, endpoints } from "@/lib/api";
 import { errMsg } from "@/lib/errors";
+import { useLocale, useTranslations } from "next-intl";
 
 type ApiDoctorRow = {
   id: number | string;
@@ -40,6 +41,8 @@ function nkey(s?: string) {
 }
 
 export default function DoctorsBrowser() {
+  const t = useTranslations("doctors");
+  const locale = useLocale();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [doctors, setDoctors] = useState<Doctor[]>([]);
@@ -66,7 +69,7 @@ export default function DoctorsBrowser() {
             rating: x.rating ?? 4.8,
             years_exp: x.years_exp ?? 10,
             next_available: x.next_available ?? "Hoy 3:00 PM",
-            languages: x.languages ?? ["Español"],
+            languages: x.languages ?? [locale === "en" ? "Spanish" : "Español"],
             is_available: x.is_available ?? true,
           }))
         );
@@ -80,7 +83,7 @@ export default function DoctorsBrowser() {
     return () => {
       alive = false;
     };
-  }, []);
+  }, [locale]);
 
   const chips = useMemo(() => {
     const labelByKey = new Map<string, string>();
@@ -90,8 +93,8 @@ export default function DoctorsBrowser() {
       if (key) labelByKey.set(key, label);
     }
     const entries = Array.from(labelByKey.entries()).sort((a, b) => a[1].localeCompare(b[1], "es"));
-    return [{ key: "todas", label: "Todas las especialidades" }, ...entries.map(([key, label]) => ({ key, label }))];
-  }, [doctors]);
+    return [{ key: "todas", label: t("all") }, ...entries.map(([key, label]) => ({ key, label }))];
+  }, [doctors, t]);
 
   const filtered = useMemo(() => {
     const q = normalize(query);
@@ -157,13 +160,13 @@ export default function DoctorsBrowser() {
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Buscar por nombre, ciudad o especialidad…"
+            placeholder={t("search")}
             className="romi-field md:w-80"
           />
         </div>
 
         <div className="mt-3 text-sm text-[var(--text-muted)]">
-          {filtered.length} especialista{filtered.length === 1 ? "" : "s"} encontrado{filtered.length === 1 ? "" : "s"}
+          {t("found", {count: filtered.length})}
           {spec !== "todas" && (
             <span>
               {" "}• Filtro: <span className="font-medium text-[var(--text-primary)]">{chips.find((c) => c.key === spec)?.label}</span>
@@ -179,7 +182,7 @@ export default function DoctorsBrowser() {
 
         {!filtered.length && (
           <div className="romi-empty mt-8">
-            No encontramos especialistas con esos filtros.
+            {t("none")}
           </div>
         )}
       </div>

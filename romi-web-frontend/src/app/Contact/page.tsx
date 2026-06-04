@@ -4,8 +4,8 @@ import {
   Compass, Send, Clock, ExternalLink,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
-
-export const metadata = { title: "ROMI — Contacto" };
+import { getLocale } from "next-intl/server";
+import EnglishPublicPage from "@/components/EnglishPublicPage";
 
 const SOCIAL_LINKS = [
   {
@@ -71,7 +71,8 @@ function SideLink({ href, title, active = false }: { href: string; title: string
 const inputClass =
   "w-full rounded-xl border border-[var(--surface-card-border-soft)] bg-[var(--surface)] px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--chip-border)] focus:border-[var(--chip-border)] font-poppins transition-all duration-200 hover:border-[var(--chip-border)] placeholder:text-[var(--text-muted)]";
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  if (await getLocale() === "en") return <EnglishPublicPage kind="contact" />;
   return (
     <main className="min-h-screen bg-[var(--surface)]">
 

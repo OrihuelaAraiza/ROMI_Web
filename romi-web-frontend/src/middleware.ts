@@ -1,5 +1,13 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import {
+  getPathLocale,
+  internalizePath,
+  localeCookie,
+  localeFromAcceptLanguage,
+  localizePath,
+  type Locale,
+} from '@/i18n/routing';
 
 export function middleware(req: NextRequest) {
   const token = req.cookies.get('access_token')?.value || req.headers.get('authorization');
@@ -15,16 +23,40 @@ export function middleware(req: NextRequest) {
     }
   }
 
+  const pathLocale = getPathLocale(pathname);
+  const preferred = req.cookies.get(localeCookie)?.value;
+  const locale: Locale = pathLocale ?? (preferred === 'en' || preferred === 'es'
+    ? preferred
+    : localeFromAcceptLanguage(req.headers.get('accept-language')));
+
+  if (!pathLocale) {
+    const url = req.nextUrl.clone();
+    url.pathname = localizePath(pathname, locale);
+    const response = NextResponse.redirect(url);
+    response.cookies.set(localeCookie, locale, { maxAge: 60 * 60 * 24 * 365, sameSite: 'lax', path: '/' });
+    return response;
+  }
+
+  const internalPath = internalizePath(pathname, locale);
   const protectedPrefixes = ['/appointments', '/dashboard', '/chat', '/doctor', '/patient', '/Seguimiento'];
 
-  if (protectedPrefixes.some(p => pathname.startsWith(p)) && !token) {
+  if (protectedPrefixes.some(p => internalPath === p || internalPath.startsWith(`${p}/`)) && !token) {
     const url = req.nextUrl.clone();
-    url.pathname = '/Auth/Login'; // respeta mayúsculas de tu ruta real
+    url.pathname = localizePath('/Auth/Login', locale);
     url.search = `?next=${encodeURIComponent(pathname)}`;
-    return NextResponse.redirect(url);
+    const response = NextResponse.redirect(url);
+    response.cookies.set(localeCookie, locale, { maxAge: 60 * 60 * 24 * 365, sameSite: 'lax', path: '/' });
+    return response;
   }
-  
-  return NextResponse.next();
+
+  const headers = new Headers(req.headers);
+  headers.set('x-romi-locale', locale);
+  headers.set('x-romi-internal-path', internalPath);
+  const url = req.nextUrl.clone();
+  url.pathname = internalPath;
+  const response = NextResponse.rewrite(url, { request: { headers } });
+  response.cookies.set(localeCookie, locale, { maxAge: 60 * 60 * 24 * 365, sameSite: 'lax', path: '/' });
+  return response;
 }
 
 // Configurar matcher para evitar interferir con archivos estáticos y rutas legacy
@@ -38,6 +70,6 @@ export const config = {
      * - files with extensions (images, css, js, etc.)
      * - legacy static sites (excluidos explícitamente)
      */
-    '/((?!api|_next/static|_next/image|favicon.ico|Edu|efysia|NutriSnap|OncoPro|RejuvIA|ROMIMED|.*\\..*).*)',
+    '/((?!api|auth|api-romi|_next/static|_next/image|favicon.ico|Edu|efysia|NutriSnap|OncoPro|RejuvIA|ROMIMED|.*\\..*).*)',
   ],
 };

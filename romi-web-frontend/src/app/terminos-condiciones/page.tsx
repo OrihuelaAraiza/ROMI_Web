@@ -1,4 +1,5 @@
 import LegalDocument from "@/components/LegalDocument";
+import { EnglishTermsContent } from "@/components/EnglishLegalContent";
 
 export const metadata = {
   title: "ROMI - Terminos y Condiciones",
@@ -6,7 +7,11 @@ export const metadata = {
 
 export default function TermsPage() {
   return (
-    <LegalDocument title="Terminos y Condiciones de Uso de los Asistentes Virtuales Basados en IA">
+    <LegalDocument
+      title="Terminos y Condiciones de Uso de los Asistentes Virtuales Basados en IA"
+      englishTitle="Terms and Conditions for AI-Based Virtual Assistants"
+      englishChildren={<EnglishTermsContent />}
+    >
       <p>
         Los presentes Terminos y Condiciones regulan el uso de los tres Asistentes Virtuales basados en Inteligencia
         Artificial (IA), creados bajo la direccion y supervision del Dr. Ivan Romarico Gonzalez Espinoza. Estos

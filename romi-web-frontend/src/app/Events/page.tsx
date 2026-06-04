@@ -5,8 +5,8 @@ import {
   Compass, Calendar, Globe,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
-
-export const metadata = { title: "ROMI — Eventos Médicos" };
+import { getLocale } from "next-intl/server";
+import EnglishPublicPage from "@/components/EnglishPublicPage";
 
 const events = [
   {
@@ -50,7 +50,8 @@ function SideLink({ href, title, active = false }: { href: string; title: string
   );
 }
 
-export default function EventsPage() {
+export default async function EventsPage() {
+  if (await getLocale() === "en") return <EnglishPublicPage kind="events" />;
   return (
     <main className="min-h-screen bg-[var(--surface)]">
 

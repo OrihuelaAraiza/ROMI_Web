@@ -4,8 +4,8 @@ import {
   CalendarClock, Compass,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
-
-export const metadata = { title: "ROMI — Especialidades" };
+import { getLocale } from "next-intl/server";
+import EnglishPublicPage from "@/components/EnglishPublicPage";
 
 const specialties = [
   { icon: Brain,         name: "Psicología clínica",            description: "Atención a adultos con enfoque en salud mental, trastornos del estado de ánimo, ansiedad y procesos emocionales complejos.", focus: "Evaluación, intervención y seguimiento terapéutico." },
@@ -35,7 +35,8 @@ function SideLink({ href, title, active = false }: { href: string; title: string
   );
 }
 
-export default function SpecialityPage() {
+export default async function SpecialityPage() {
+  if (await getLocale() === "en") return <EnglishPublicPage kind="specialties" />;
   return (
     <main className="min-h-screen bg-[var(--surface)]">
 

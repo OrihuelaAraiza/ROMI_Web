@@ -1,6 +1,10 @@
 import "./globals.css";
 import "leaflet/dist/leaflet.css";
 import type { Metadata } from "next";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages, getTranslations } from "next-intl/server";
+import { headers } from "next/headers";
+import { localizePath, type Locale } from "@/i18n/routing";
 import Navbar from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { AuthProvider } from "./Auth/contexts/AuthContext";
@@ -26,19 +30,30 @@ const poppins = Poppins({
 
 const iconPath = "/images/iconoROMI.png";
 
-export const metadata: Metadata = {
-  title: "ROMI",
-  description: "Servicios Médicos Integrales",
-  icons: {
-    icon: [{ url: iconPath, type: "image/png" }],
-    apple: [{ url: iconPath, type: "image/png" }],
-    shortcut: iconPath,
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("meta");
+  const locale = await getLocale() as Locale;
+  const internalPath = headers().get("x-romi-internal-path") ?? "/";
+  return {
+    title: t("title"),
+    description: t("description"),
+    alternates: {
+      canonical: localizePath(internalPath, locale),
+      languages: { es: localizePath(internalPath, "es"), en: localizePath(internalPath, "en") },
+    },
+    icons: {
+      icon: [{ url: iconPath, type: "image/png" }],
+      apple: [{ url: iconPath, type: "image/png" }],
+      shortcut: iconPath,
+    },
+  };
+}
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const locale = await getLocale();
+  const messages = await getMessages();
   return (
-    <html lang="es" suppressHydrationWarning className={`${fredoka.className} ${fredoka.variable} ${poppins.variable}`}>
+    <html lang={locale} suppressHydrationWarning className={`${fredoka.className} ${fredoka.variable} ${poppins.variable}`}>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -54,13 +69,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="romi-app-shell overflow-x-hidden">
-        <MedicalBg />
-        {/* <TalentLandBar /> */}
-        <AuthProvider>
-          <Navbar />
-          <main className="relative z-10 max-w-6xl mx-auto px-4">{children}</main>
-          <Footer />
-        </AuthProvider>
+        <NextIntlClientProvider messages={messages}>
+          <MedicalBg />
+          <AuthProvider>
+            <Navbar />
+            <main className="relative z-10 max-w-6xl mx-auto px-4">{children}</main>
+            <Footer />
+          </AuthProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

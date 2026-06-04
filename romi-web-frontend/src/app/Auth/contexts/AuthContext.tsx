@@ -1,7 +1,8 @@
 "use client";
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { decodeJwt, getToken, clearToken, setToken } from "@/lib/auth";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { useLocalizedRouter } from "@/i18n/useLocalizedRouter";
 
 type Role = "DOCTOR" | "PATIENT" | "ADMIN";
 type Decoded = { sub: string; role?: Role | Role[]; roles?: (Role | string)[]; exp?: number };
@@ -32,7 +33,7 @@ function parseRoles(decoded: Decoded | null): Role[] {
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [ready, setReady] = useState(false);
-  const router = useRouter();
+  const router = useLocalizedRouter();
   const pathname = usePathname();
 
   const boot = useCallback(() => {

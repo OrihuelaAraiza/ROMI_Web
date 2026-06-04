@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { Suspense } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,6 +9,8 @@ import { apiFetch } from "@/lib/api";
 import { setAuthToken } from "@/lib/authToken";
 import { useAuth } from "@/app/Auth/contexts/AuthContext";
 import { errMsg } from "@/lib/errors";
+import Link from "@/i18n/LocalizedLink";
+import { localizePath, type Locale } from "@/i18n/routing";
 
 const schema = z.object({
   email: z.string().email("Correo inválido"),
@@ -18,6 +20,8 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 function LoginInner() {
+  const t = useTranslations("auth");
+  const locale = useLocale() as Locale;
   const { login } = useAuth();
   const { register, handleSubmit, formState: { errors, isSubmitting }, setError } =
     useForm<FormData>({ resolver: zodResolver(schema), defaultValues: { remember: true } });
@@ -40,11 +44,11 @@ function LoginInner() {
           : roles.includes('PATIENT')
             ? '/appointments'
             : '/dashboard';
-        window.location.href = dest;
+        window.location.href = localizePath(dest, locale);
         return;
       } catch {}
 
-      window.location.href = '/dashboard';
+      window.location.href = localizePath('/dashboard', locale);
     } catch (err: unknown) {
       const message = errMsg(err, "Correo o contraseña incorrectos.");
       setError("root", { message });
@@ -70,21 +74,21 @@ function LoginInner() {
               </svg>
             </div>
             <h1 className="text-3xl text-[var(--text-primary)] font-fredoka-one mb-2">
-              ¡Bienvenido!
+              {t("welcome")}
             </h1>
             <p className="text-sm text-[var(--text-body)] font-poppins">
-              Inicia sesión en ROMI
+              {t("loginSubtitle")}
             </p>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <div>
               <label className="block text-sm font-medium text-[var(--text-primary)] font-poppins mb-1.5">
-                Correo
+                {t("email")}
               </label>
               <input
                 type="email"
-                placeholder="Correo"
+                placeholder={t("email")}
                 className="romi-field font-poppins text-sm"
                 {...register("email")}
               />
@@ -97,11 +101,11 @@ function LoginInner() {
 
             <div>
               <label className="block text-sm font-medium text-[var(--text-primary)] font-poppins mb-1.5">
-                Contraseña
+                {t("password")}
               </label>
               <input
                 type="password"
-                placeholder="Contraseña"
+                placeholder={t("password")}
                 className="romi-field font-poppins text-sm"
                 {...register("password")}
               />
@@ -131,11 +135,11 @@ function LoginInner() {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    Entrando...
+                    {t("entering")}
                   </>
                 ) : (
                   <>
-                    Entrar
+                    {t("enter")}
                     <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
@@ -147,9 +151,9 @@ function LoginInner() {
 
           <div className="mt-8 pt-6 border-t border-[var(--surface-card-border-soft)]">
             <p className="text-sm text-[var(--text-body)] font-poppins text-center">
-              ¿No tienes cuenta?{" "}
+              {t("noAccount")}{" "}
               <Link href="/Auth/Login/Register" className="text-primary font-semibold hover:text-[var(--primary-hover)] transition-colors duration-300 relative group">
-                Crear cuenta
+                {t("createAccount")}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[var(--primary)] to-[var(--primary-hover)] group-hover:w-full transition-all duration-300"></span>
               </Link>
             </p>

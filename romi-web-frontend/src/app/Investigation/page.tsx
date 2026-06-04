@@ -3,8 +3,8 @@ import {
   FileText, Sparkles, Compass, Layers, Award, TrendingUp
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
-
-export const metadata = { title: "ROMI — Investigación" };
+import { getLocale } from "next-intl/server";
+import EnglishPublicPage from "@/components/EnglishPublicPage";
 
 const researchLines = [
   { title: "Salud mental y bienestar digital",     description: "Estudio del impacto de ROMI en la reducción de síntomas, adherencia al tratamiento y bienestar percibido." },
@@ -38,7 +38,8 @@ const publications = [
   { year: "Próximamente",   title: "Impacto de ROMI en la organización de la consulta psicológica",   type: "Estudio observacional" },
 ];
 
-export default function InvestigationPage() {
+export default async function InvestigationPage() {
+  if (await getLocale() === "en") return <EnglishPublicPage kind="research" />;
   return (
     <main className="min-h-screen bg-[var(--surface)]">
 

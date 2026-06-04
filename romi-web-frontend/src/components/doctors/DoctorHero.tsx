@@ -1,32 +1,33 @@
 ﻿"use client";
 
 import { ShieldCheck, Video, Clock3 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function DoctorsHero() {
+  const t = useTranslations("doctors");
   return (
     <>
       <section className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen bg-gradient-romi">
         <div className="mx-auto max-w-6xl px-4 py-16 text-center text-white">
           <h1 className="font-fredoka-one text-4xl md:text-5xl font-extrabold tracking-tight">
-            Telemedicina Avanzada
+            {t("hero")}
           </h1>
           <p className="mt-3 text-base md:text-lg opacity-90">
-            Conecta con especialistas de primer nivel desde la comodidad de tu hogar.
-            Consultas seguras, diagnosticos precisos y seguimiento personalizado.
+            {t("heroText")}
           </p>
 
           <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/90 text-[var(--romi-navy)] px-3 py-1.5 text-sm shadow-sm">
               <Video className="w-4 h-4 text-primary" />
-              Consultas HD
+              {t("hd")}
             </span>
             <span className="inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/90 text-[var(--romi-navy)] px-3 py-1.5 text-sm shadow-sm">
               <ShieldCheck className="w-4 h-4 text-emerald-600" />
-              100% Seguro
+              {t("secure")}
             </span>
             <span className="inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/90 text-[var(--romi-navy)] px-3 py-1.5 text-sm shadow-sm">
               <Clock3 className="w-4 h-4 text-primary" />
-              24/7 Disponible
+              {t("available247")}
             </span>
           </div>
         </div>
@@ -34,10 +35,10 @@ export default function DoctorsHero() {
 
       <div className="mx-auto max-w-6xl px-4 pt-10">
         <h2 className="font-fredoka-one text-2xl md:text-3xl font-extrabold text-center text-primary">
-          Encuentra tu Especialista
+          {t("find")}
         </h2>
         <p className="mt-3 text-[var(--text-body)] text-center">
-          Selecciona la especialidad o busca por nombre/ciudad y elige con quien consultar.
+          {t("findText")}
         </p>
       </div>
     </>

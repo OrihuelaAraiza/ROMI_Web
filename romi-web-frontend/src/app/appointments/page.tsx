@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useLocalizedRouter } from "@/i18n/useLocalizedRouter";
 import { apiFetchAuth, endpoints } from "@/lib/api";
 import { errMsg } from "@/lib/errors";
 import {
@@ -11,6 +11,7 @@ import {
   Stethoscope,
   PlusCircle,
 } from "lucide-react";
+import { useFormatter, useTranslations } from "next-intl";
 
 type Appointment = {
   id: string;
@@ -25,13 +26,16 @@ type PatientAppointmentsRes = Appointment[] | { items: Appointment[] };
 type TabKey = "upcoming" | "history" | "all";
 
 export default function PatientAppointmentsPage() {
+  const t = useTranslations("appointments");
+  const statusT = useTranslations("status");
+  const format = useFormatter();
   const [items, setItems] = useState<Appointment[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   const [tab, setTab] = useState<TabKey>("upcoming");
 
-  const router = useRouter();
+  const router = useLocalizedRouter();
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -106,10 +110,10 @@ export default function PatientAppointmentsPage() {
   }, [tab, upcoming, history, items]);
 
   const tabLabel = useMemo(() => {
-    if (tab === "upcoming") return "Próximas";
-    if (tab === "history") return "Historial";
-    return "Todas";
-  }, [tab]);
+    if (tab === "upcoming") return t("upcoming");
+    if (tab === "history") return t("history");
+    return t("all");
+  }, [tab, t]);
 
   if (loading)
     return (
@@ -128,10 +132,10 @@ export default function PatientAppointmentsPage() {
     return (
       <main className="romi-page max-w-5xl mx-auto space-y-4">
         <p className="text-sm text-red-600">
-          Ocurrió un error al cargar tus citas: {error}
+          {t("loadError", {error})}
         </p>
         <button onClick={fetchData} className="px-3 py-2 rounded border text-sm">
-          Reintentar
+          {t("retry")}
         </button>
       </main>
     );
@@ -140,9 +144,9 @@ export default function PatientAppointmentsPage() {
     <main className="romi-page max-w-5xl mx-auto space-y-6">
       <header className="romi-page-header flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-          <h1 className="text-3xl font-fredoka-one text-primary">Mis citas</h1>
+          <h1 className="text-3xl font-fredoka-one text-primary">{t("title")}</h1>
           <p className="text-sm text-muted-foreground">
-            Revisa tus próximas consultas, historial y gestiona tus citas.
+            {t("subtitle")}
           </p>
         </div>
 
@@ -151,7 +155,7 @@ export default function PatientAppointmentsPage() {
           className="romi-action"
         >
           <PlusCircle className="w-4 h-4" />
-          Agendar nueva cita
+          {t("new")}
         </button>
       </header>
 
@@ -162,7 +166,7 @@ export default function PatientAppointmentsPage() {
             <CalendarDays className="w-5 h-5 text-blue-600" />
           </div>
           <div>
-            <div className="text-xs text-muted-foreground">Próximas</div>
+            <div className="text-xs text-muted-foreground">{t("upcoming")}</div>
             <div className="text-2xl font-semibold">{stats.proximas}</div>
           </div>
         </div>
@@ -172,7 +176,7 @@ export default function PatientAppointmentsPage() {
             <Stethoscope className="w-5 h-5 text-emerald-600" />
           </div>
           <div>
-            <div className="text-xs text-muted-foreground">Realizadas</div>
+            <div className="text-xs text-muted-foreground">{t("completed")}</div>
             <div className="text-2xl font-semibold">{stats.realizadas}</div>
           </div>
         </div>
@@ -182,7 +186,7 @@ export default function PatientAppointmentsPage() {
             <Clock3 className="w-5 h-5 text-slate-700" />
           </div>
           <div>
-            <div className="text-xs text-muted-foreground">Total</div>
+            <div className="text-xs text-muted-foreground">{t("total")}</div>
             <div className="text-2xl font-semibold">{stats.total}</div>
           </div>
         </div>
@@ -196,7 +200,7 @@ export default function PatientAppointmentsPage() {
             tab === "upcoming" ? "bg-primary text-primary-foreground border-[var(--surface-card-border)]" : "bg-[var(--surface-card)] text-[var(--text-primary)]"
           }`}
         >
-          Próximas ({upcoming.length})
+          {t("upcoming")} ({upcoming.length})
         </button>
 
         <button
@@ -205,7 +209,7 @@ export default function PatientAppointmentsPage() {
             tab === "history" ? "bg-primary text-primary-foreground border-[var(--surface-card-border)]" : "bg-[var(--surface-card)] text-[var(--text-primary)]"
           }`}
         >
-          Historial ({history.length})
+          {t("history")} ({history.length})
         </button>
 
         <button
@@ -214,7 +218,7 @@ export default function PatientAppointmentsPage() {
             tab === "all" ? "bg-primary text-primary-foreground border-[var(--surface-card-border)]" : "bg-[var(--surface-card)] text-[var(--text-primary)]"
           }`}
         >
-          Todas ({items.length})
+          {t("all")} ({items.length})
         </button>
       </section>
 
@@ -224,7 +228,7 @@ export default function PatientAppointmentsPage() {
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-medium">{tabLabel}</h2>
             <button onClick={fetchData} className="px-3 py-1.5 rounded border text-xs">
-              Actualizar
+              {t("refresh")}
             </button>
           </div>
 
@@ -237,11 +241,11 @@ export default function PatientAppointmentsPage() {
               <table className="min-w-[720px] w-full text-sm">
                 <thead className="bg-[var(--surface-alt)]">
                   <tr>
-                    <th className="text-left p-3">Médico</th>
-                    <th className="text-left p-3">Fecha / Hora</th>
-                    <th className="text-left p-3">Motivo</th>
-                    <th className="text-left p-3">Estatus</th>
-                    <th className="text-right p-3">Acciones</th>
+                    <th className="text-left p-3">{t("doctor")}</th>
+                    <th className="text-left p-3">{t("date")}</th>
+                    <th className="text-left p-3">{t("reason")}</th>
+                    <th className="text-left p-3">{t("status")}</th>
+                    <th className="text-right p-3">{t("actions")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -251,16 +255,16 @@ export default function PatientAppointmentsPage() {
                         {ap.doctor?.name || ap.doctor?.email || "Médico asignado"}
                       </td>
                       <td className="p-3">
-                        {new Date(ap.scheduledAt).toLocaleString()}
+                        {format.dateTime(new Date(ap.scheduledAt), "appointment")}
                       </td>
                       <td className="p-3">{ap.reason || "—"}</td>
-                      <td className="p-3 text-xs">{ap.status}</td>
+                      <td className="p-3 text-xs">{statusT(ap.status)}</td>
                       <td className="p-3 text-right space-x-2">
                         <button
                           onClick={() => router.push(`/patient/appointments/${ap.id}`)}
                           className="px-3 py-1 rounded border text-xs"
                         >
-                          Detalles
+                          {t("details")}
                         </button>
 
                         {(ap.status === "PENDING" || ap.status === "CANCELLED") && (
@@ -284,7 +288,7 @@ export default function PatientAppointmentsPage() {
 
       {!items.length && (
         <section className="romi-empty text-sm">
-          <p>No tienes citas por ahora.</p>
+          <p>{t("empty")}</p>
           <p className="text-muted-foreground">
             Puedes agendar tu primera cita desde el botón{" "}
             <span className="font-medium">“Agendar nueva cita”</span> arriba.

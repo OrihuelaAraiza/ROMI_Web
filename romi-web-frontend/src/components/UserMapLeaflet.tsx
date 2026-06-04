@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { CircleMarker, MapContainer, Popup, TileLayer, ZoomControl, useMap } from "react-leaflet";
 import L from "leaflet";
 import Reveal from "@/components/Reveal";
+import { useTranslations } from "next-intl";
 
 type Region = "all" | "mx" | "ec" | "usa" | "rest";
 
@@ -55,13 +56,7 @@ const REGION_SUMMARY = [
   { id: "rest" as const, label: "Resto", share: "20%", users: 2020 },
 ];
 
-const FILTERS = [
-  { id: "all" as const, label: "Global" },
-  { id: "mx" as const, label: "Mexico" },
-  { id: "ec" as const, label: "Ecuador" },
-  { id: "usa" as const, label: "USA" },
-  { id: "rest" as const, label: "Resto" },
-];
+const FILTERS = ["all", "mx", "ec", "usa", "rest"] as const;
 
 function radiusForUsers(users: number) {
   return Math.max(7, Math.min(34, Math.sqrt(users) * 0.74));
@@ -84,6 +79,8 @@ function FitBounds({ points, region }: { points: UserPoint[]; region: Region }) 
 }
 
 export default function UserMapSection() {
+  const t = useTranslations("map");
+  const common = useTranslations("common");
   const [region, setRegion] = useState<Region>("all");
   const visiblePoints = region === "all" ? USER_POINTS : USER_POINTS.filter((point) => point.region === region);
   const totalUsers = 10100;
@@ -91,12 +88,12 @@ export default function UserMapSection() {
   return (
     <section className="mt-16 sm:mt-24">
       <Reveal className="text-center mb-8 sm:mb-10">
-        <span className="kawaii-chip px-4 py-1.5 text-xs">Comunidad global</span>
+        <span className="kawaii-chip px-4 py-1.5 text-xs">{t("chip")}</span>
         <h3 className="mt-4 text-3xl sm:text-4xl text-primary font-fredoka-one font-bold">
-          Mapa de usuarios de ROMI
+          {t("title")}
         </h3>
         <p className="mt-3 text-sm sm:text-base text-[var(--text-body)] font-poppins max-w-2xl mx-auto">
-          Distribucion estimada de interacciones y usuarios activos por region.
+          {t("description")}
         </p>
       </Reveal>
 
@@ -141,7 +138,7 @@ export default function UserMapSection() {
                         <p className="font-bold text-[var(--text-primary)]">{point.city}</p>
                         <p className="text-xs text-[var(--text-body)]">{point.country}</p>
                         <p className="mt-2 text-sm font-semibold text-[var(--primary)]">
-                          {point.users.toLocaleString("es-MX")} usuarios estimados
+                          {common("estimatedUsers", {count: point.users})}
                         </p>
                         <p className="mt-1 text-xs text-[var(--text-body)]">{point.note}</p>
                       </div>
@@ -155,25 +152,25 @@ export default function UserMapSection() {
             <aside className="border-t-[2.5px] border-[var(--surface-card-border)] bg-[var(--surface-alt)] p-5 sm:p-6 lg:border-l-[2.5px] lg:border-t-0">
               <div className="mb-5 rounded-2xl border-2 border-[var(--surface-card-border)] bg-[var(--surface-card)] p-4 shadow-[3px_3px_0_var(--shadow-ink)]">
                 <p className="font-fredoka-one text-xl text-[var(--text-primary)]">
-                  {totalUsers.toLocaleString("es-MX")} usuarios ROMI
+                  {t("summary", {count: totalUsers})}
                 </p>
                 <p className="mt-1 text-xs font-semibold text-[var(--text-body)]">
-                  Explora la comunidad por región
+                  {t("explore")}
                 </p>
               </div>
               <div className="flex flex-wrap gap-2">
                 {FILTERS.map((filter) => (
                   <button
-                    key={filter.id}
+                    key={filter}
                     type="button"
-                    onClick={() => setRegion(filter.id)}
+                    onClick={() => setRegion(filter)}
                     className={`rounded-full border-[2px] px-4 py-2 text-sm font-semibold transition-all duration-200 ${
-                      region === filter.id
+                      region === filter
                         ? "border-[var(--surface-card-border)] bg-[var(--primary)] text-white shadow-[3px_3px_0_var(--shadow-ink)]"
                         : "border-[var(--surface-card-border-soft)] bg-[var(--surface-card)] text-[var(--text-primary)] hover:bg-[var(--chip-bg)]"
                     }`}
                   >
-                    {filter.label}
+                    {t(filter === "mx" ? "mexico" : filter === "ec" ? "ecuador" : filter)}
                   </button>
                 ))}
               </div>
@@ -191,14 +188,14 @@ export default function UserMapSection() {
                       <div className="h-full rounded-full bg-[var(--primary)]" style={{ width: item.share }} />
                     </div>
                     <p className="mt-2 text-sm text-[var(--text-body)]">
-                      {item.users.toLocaleString("es-MX")} usuarios estimados
+                      {common("estimatedUsers", {count: item.users})}
                     </p>
                   </div>
                 ))}
               </div>
 
               <p className="mt-6 text-xs leading-relaxed text-[var(--text-muted)]">
-                Los puntos representan ubicaciones agregadas para visualizacion. Usa zoom, arrastra el mapa o filtra por region.
+                {t("note")}
               </p>
             </aside>
           </div>

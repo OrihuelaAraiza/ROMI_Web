@@ -1,5 +1,3 @@
-export const metadata = { title: "Cita creada — ROMI" };
-
 export default function Page({ searchParams }: { searchParams: { id?: string; doctorId?: string } }) {
   const { id, doctorId } = searchParams || {};
   return (

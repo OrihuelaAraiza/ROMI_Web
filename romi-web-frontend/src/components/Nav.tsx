@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { Menu, X, LayoutDashboard, CalendarDays } from "lucide-react";
 import { useAuth } from "@/app/Auth/contexts/AuthContext";
 import Image from "next/image";
@@ -10,18 +10,23 @@ import { useRealtime } from "@/hooks/useRealtime";
 import { apiFetchAuth, endpoints } from "@/lib/api";
 import type { NotificationDTO } from "@/types/notifications";
 import ThemeToggle from "@/components/ThemeToggle";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import Link from "@/i18n/LocalizedLink";
+import { internalizePath, type Locale } from "@/i18n/routing";
 
 const LINKS = [
-  { href: "/", label: "Inicio" },
-  { href: "/Services", label: "Servicios" },
-  { href: "/Formation", label: "Formación" },
-  { href: "/Investigation", label: "Investigación" },
-  { href: "/Speciality", label: "Especialidades" },
-  { href: "/Contact", label: "Contacto" },
-];
+  { href: "/", label: "home" },
+  { href: "/Services", label: "services" },
+  { href: "/Formation", label: "education" },
+  { href: "/Investigation", label: "research" },
+  { href: "/Speciality", label: "specialties" },
+  { href: "/Contact", label: "contact" },
+] as const;
 
 export default function Nav() {
   const pathname = usePathname();
+  const locale = useLocale() as Locale;
+  const t = useTranslations("nav");
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { user, logout } = useAuth();
@@ -55,8 +60,9 @@ export default function Nav() {
   /* ─── Close on route change ─── */
   useEffect(() => { setOpen(false); }, [pathname]);
 
+  const internalPathname = internalizePath(pathname, locale);
   const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname?.startsWith(href);
+    href === "/" ? internalPathname === "/" : internalPathname.startsWith(href);
 
   const handleLogout = () => { logout(); setOpen(false); };
 
@@ -103,7 +109,7 @@ export default function Nav() {
                     : "text-[var(--text-body)] hover:text-[var(--text-primary)]"
                 }`}
               >
-                {l.label}
+                {t(l.label)}
               </Link>
             ))}
           </div>
@@ -118,7 +124,7 @@ export default function Nav() {
                 className="inline-flex items-center gap-1.5 rounded-full border-[2px] border-[var(--surface-card-border)] bg-[var(--surface-card)] px-3 py-2 text-sm font-medium text-primary hover:bg-primary/10 whitespace-nowrap transition-all duration-200 shadow-[3px_3px_0_var(--shadow-ink)] hover:-translate-y-0.5"
               >
                 <LayoutDashboard className="h-4 w-4" />
-                <span>Dashboard</span>
+                <span>{t("dashboard")}</span>
               </Link>
             )}
 
@@ -128,7 +134,7 @@ export default function Nav() {
                 className="inline-flex items-center gap-1.5 rounded-full border-[2px] border-[var(--surface-card-border)] bg-[var(--surface-card)] px-3 py-2 text-sm font-medium text-primary hover:bg-primary/10 whitespace-nowrap transition-all duration-200 shadow-[3px_3px_0_var(--shadow-ink)] hover:-translate-y-0.5"
               >
                 <CalendarDays className="h-4 w-4" />
-                <span>Mis citas</span>
+                <span>{t("appointments")}</span>
               </Link>
             )}
 
@@ -138,7 +144,7 @@ export default function Nav() {
                 href="/chat"
                 className="px-4 py-2.5 rounded-full text-sm font-medium whitespace-nowrap btn-glow"
               >
-                Chat ROMI
+                {t("chat")}
               </Link>
               {unread > 0 && (
                 <span className="absolute -top-2 -right-2 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-rose-600 px-1 text-[10px] font-semibold text-white">
@@ -153,16 +159,17 @@ export default function Nav() {
                 onClick={handleLogout}
                 className="px-4 py-2.5 rounded-full text-sm font-medium whitespace-nowrap btn-glow"
               >
-                Cerrar sesión
+                {t("logout")}
               </button>
             ) : (
               <Link
                 href="/Auth/Login"
                 className="px-4 py-2.5 rounded-full text-sm font-medium border-[2.5px] border-[var(--surface-card-border)] text-primary bg-[var(--surface-card)] hover:bg-primary hover:text-white whitespace-nowrap transition-all duration-300 shadow-[3px_3px_0_var(--shadow-ink)] hover:-translate-y-0.5"
               >
-                Iniciar sesión
+                {t("login")}
               </Link>
             )}
+            <LanguageSwitcher />
             <ThemeToggle />
           </div>
 
@@ -170,7 +177,7 @@ export default function Nav() {
           <button
             className="xl:hidden ml-auto grid h-11 w-11 place-items-center rounded-xl border-2 border-[var(--surface-card-border)] bg-[var(--romi-yellow)] text-[var(--romi-ink)] hover:bg-primary/10 active:scale-95 transition-all duration-200 shadow-[3px_3px_0_var(--shadow-ink)]"
             onClick={() => setOpen((v) => !v)}
-            aria-label="Toggle menu"
+            aria-label={open ? t("closeMenu") : t("openMenu")}
           >
             <span
               className={`block transition-all duration-300 ${open ? "rotate-90 opacity-0 absolute" : "rotate-0 opacity-100"}`}
@@ -201,7 +208,7 @@ export default function Nav() {
                       : "text-[var(--text-body)] hover:text-[var(--text-primary)] hover:bg-primary/5 active:scale-[0.98]"
                   }`}
                 >
-                  {l.label}
+                  {t(l.label)}
                 </Link>
               ))}
 
@@ -212,7 +219,7 @@ export default function Nav() {
                   className="mt-1 px-4 py-2.5 rounded-full text-sm border-2 border-[var(--surface-card-border)] bg-[var(--surface-card)] text-primary flex items-center gap-2 hover:bg-primary/10 transition-all duration-200"
                 >
                   <LayoutDashboard className="h-4 w-4" />
-                  <span>Dashboard</span>
+                  <span>{t("dashboard")}</span>
                 </Link>
               )}
 
@@ -223,7 +230,7 @@ export default function Nav() {
                   className="mt-1 px-4 py-2.5 rounded-full text-sm border-2 border-[var(--surface-card-border)] bg-[var(--surface-card)] text-primary flex items-center gap-2 hover:bg-primary/10 transition-all duration-200"
                 >
                   <CalendarDays className="h-4 w-4" />
-                  <span>Mis citas</span>
+                  <span>{t("appointments")}</span>
                 </Link>
               )}
 
@@ -236,7 +243,7 @@ export default function Nav() {
                   onClick={() => setOpen(false)}
                   className="block px-4 py-3 rounded-full text-sm text-center font-medium active:scale-[0.98] transition-all duration-200 btn-glow"
                 >
-                  Chat ROMI
+                  {t("chat")}
                 </Link>
                 {unread > 0 && (
                   <span className="absolute -top-1 -right-1 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-rose-600 px-1 text-[10px] font-semibold text-white">
@@ -250,7 +257,7 @@ export default function Nav() {
                   onClick={handleLogout}
                   className="w-full px-4 py-3 rounded-full text-sm font-medium active:scale-[0.98] transition-all duration-200 btn-glow"
                 >
-                  Cerrar sesión
+                  {t("logout")}
                 </button>
               ) : (
                 <Link
@@ -258,10 +265,11 @@ export default function Nav() {
                   onClick={() => setOpen(false)}
                   className="block px-4 py-3 rounded-full text-sm font-medium border-[2.5px] border-[var(--surface-card-border)] text-primary bg-[var(--surface-card)] hover:bg-primary hover:text-white text-center transition-all duration-300 shadow-[3px_3px_0_var(--shadow-ink)]"
                 >
-                  Iniciar sesión
+                  {t("login")}
                 </Link>
               )}
-              <div className="flex justify-center pt-2">
+              <div className="flex justify-center gap-3 pt-2">
+                <LanguageSwitcher />
                 <ThemeToggle />
               </div>
             </div>
