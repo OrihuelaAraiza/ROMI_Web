@@ -107,7 +107,7 @@ export default function MedicalBg() {
       {CELLS.map((c, i) => (
         <div
           key={`cell-${i}`}
-          className="absolute rounded-full border border-[var(--surface-card-border-soft)] bg-[var(--surface-card-soft)]"
+          className="romi-doodle-cell absolute rounded-full border-2 border-[var(--surface-card-border-soft)]"
           style={{
             left: c.left,
             top: c.top,

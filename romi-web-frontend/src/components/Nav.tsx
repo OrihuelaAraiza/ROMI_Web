@@ -72,7 +72,7 @@ export default function Nav() {
   return (
     <>
       <nav
-        className={`sticky top-0 z-50 border-b-[2.5px] border-[var(--surface-card-border)] bg-[var(--surface-card)] transition-all duration-300 ${
+        className={`romi-nav sticky top-0 z-50 border-b-[3px] border-[var(--surface-card-border)] bg-[var(--surface-card)] transition-all duration-300 ${
           scrolled
             ? "shadow-[4px_4px_0_var(--shadow-ink)] backdrop-blur-md"
             : "shadow-[0_2px_0_var(--shadow-ink)]"
@@ -168,7 +168,7 @@ export default function Nav() {
 
           {/* Mobile hamburger */}
           <button
-            className="xl:hidden ml-auto grid h-11 w-11 place-items-center rounded-full border-2 border-[var(--surface-card-border)] text-[var(--text-primary)] hover:bg-primary/10 active:scale-95 transition-all duration-200 shadow-[2px_2px_0_var(--shadow-ink)]"
+            className="xl:hidden ml-auto grid h-11 w-11 place-items-center rounded-xl border-2 border-[var(--surface-card-border)] bg-[var(--romi-yellow)] text-[var(--romi-ink)] hover:bg-primary/10 active:scale-95 transition-all duration-200 shadow-[3px_3px_0_var(--shadow-ink)]"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
           >

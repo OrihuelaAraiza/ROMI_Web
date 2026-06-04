@@ -107,7 +107,7 @@ function ServiciosSection() {
             const Icon = c.icon;
             return (
               <Reveal key={c.title} type="scale" delay={i * 80}>
-                <div className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${c.gradient} p-6 sm:p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300`}>
+                <div className={`group relative overflow-hidden rounded-2xl border-[3px] border-[var(--surface-card-border)] bg-gradient-to-br ${c.gradient} p-6 shadow-[6px_6px_0_var(--shadow-ink)] sm:p-8 hover:-translate-y-2 hover:shadow-[9px_9px_0_var(--shadow-ink)] transition-all duration-300`}>
                   <div className="absolute top-0 right-0 w-40 h-40 bg-[var(--surface-card-soft)] rounded-full -mr-20 -mt-20 group-hover:scale-110 transition-transform duration-500" />
                   <div className="relative z-10">
                     <div className="mb-5 sm:mb-6">

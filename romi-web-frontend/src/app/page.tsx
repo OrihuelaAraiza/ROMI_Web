@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       {/* ─── Hero Section ─── */}
-      <section className="relative overflow-hidden rounded-b-[2rem] romi-hero-gradient pt-8 pb-10 mt-6 sm:mt-10 lg:mt-14 shadow-[0_24px_80px_rgba(26,18,17,0.18)]">
+      <section className="romi-home-hero relative overflow-hidden rounded-[1.5rem] romi-hero-gradient pt-8 pb-10 mt-6 sm:mt-10 lg:mt-14">
         <div className="romi-hero-ambient" aria-hidden="true">
           <span className="romi-hero-orb romi-hero-orb-a" />
           <span className="romi-hero-orb romi-hero-orb-b" />
@@ -168,7 +168,7 @@ export default function Home() {
 
       {/* ─── About Section ─── */}
       <section className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mt-8 sm:mt-10">
-        <div className="bg-[var(--surface)] rounded-t-[3rem] sm:rounded-t-[4rem] px-4 sm:px-8 lg:px-12 pt-10 sm:pt-12 pb-12" style={{ boxShadow: "0 -15px 50px rgba(0,0,0,0.25)" }}>
+        <div className="bg-[var(--surface)] rounded-t-[2rem] sm:rounded-t-[3rem] border-t-[3px] border-[var(--surface-card-border)] px-4 sm:px-8 lg:px-12 pt-10 sm:pt-12 pb-12">
           <div className="max-w-7xl mx-auto">
 
             {/* ¿Quiénes somos? */}
@@ -207,7 +207,7 @@ export default function Home() {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-16 sm:mb-20">
+            <div className="romi-pastel-grid grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-16 sm:mb-20">
               {[
                 { value: "16k+", label: "Chats atendidos" },
                 { value: "15+", label: "Países" },
@@ -226,7 +226,7 @@ export default function Home() {
             <UserMapSection />
 
             {/* Mission & Vision */}
-            <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 mt-16 sm:mt-20 mb-16 sm:mb-20">
+            <div className="romi-pastel-grid grid sm:grid-cols-2 gap-6 sm:gap-8 mt-16 sm:mt-20 mb-16 sm:mb-20">
               {[
                 {
                   icon: Heart,

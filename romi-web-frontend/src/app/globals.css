@@ -104,20 +104,20 @@
 }
 .reveal-scale.visible { opacity: 1; transform: scale(1); }
 
-/* ─── Premium card hover ─── */
+/* ─── ROMI doodle cards: this is the default visual language ─── */
 .card-premium {
-  border: 2.5px solid var(--surface-card-border);
-  border-radius: 20px;
+  border: 3px solid var(--surface-card-border);
+  border-radius: 18px;
   background: var(--surface-card);
-  box-shadow: 4px 4px 0 var(--shadow-ink);
+  box-shadow: 5px 5px 0 var(--shadow-ink);
   transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.32s cubic-bezier(0.16, 1, 0.3, 1),
               border-color 0.32s ease,
               background 0.32s ease;
 }
 .card-premium:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 7px 7px 0 var(--shadow-ink-strong);
+  transform: translate(-2px, -2px) rotate(-0.35deg);
+  box-shadow: 8px 8px 0 var(--shadow-ink-strong);
   border-color: var(--primary);
 }
 
@@ -130,6 +130,7 @@
 /* ─── Button glow ─── */
 .btn-glow {
   border: 2.5px solid var(--surface-card-border);
+  border-radius: 14px !important;
   background: var(--primary);
   color: var(--primary-foreground);
   box-shadow: 4px 4px 0 var(--shadow-ink);
@@ -146,7 +147,7 @@
 /* ─── Nav link underline slide ─── */
 .nav-underline {
   position: relative;
-  border-radius: 9999px;
+  border-radius: 10px;
 }
 .nav-underline::after {
   content: '';
@@ -181,12 +182,21 @@ html { scroll-behavior: smooth; }
 
 body {
   background: var(--page-bg);
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  color: var(--text-primary);
 }
 
 html,
 body {
   max-width: 100%;
   overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
 }
 
 button,
@@ -208,10 +218,10 @@ a {
 }
 
 .kawaii-card {
-  border: 2.5px solid var(--surface-card-border);
-  border-radius: 20px;
+  border: 3px solid var(--surface-card-border);
+  border-radius: 18px;
   background: var(--surface-card);
-  box-shadow: 4px 4px 0 var(--shadow-ink);
+  box-shadow: 5px 5px 0 var(--shadow-ink);
 }
 
 .romi-page {
@@ -223,25 +233,25 @@ a {
 .romi-page-header {
   margin-bottom: 1.5rem;
   border: 2.5px solid var(--surface-card-border);
-  border-radius: 24px;
+  border-radius: 18px;
   background: var(--card-gradient);
   padding: 1.25rem;
-  box-shadow: 5px 5px 0 var(--shadow-ink);
+  box-shadow: 7px 7px 0 var(--shadow-ink);
 }
 
 .romi-panel {
-  border: 2px solid var(--surface-card-border-soft);
-  border-radius: 20px;
+  border: 2.5px solid var(--surface-card-border);
+  border-radius: 16px;
   background: var(--surface-card);
   padding: 1rem;
-  box-shadow: 3px 3px 0 var(--shadow-ink);
+  box-shadow: 4px 4px 0 var(--shadow-ink);
 }
 
 .romi-field {
   min-height: 44px;
   width: 100%;
-  border: 2px solid var(--surface-card-border-soft);
-  border-radius: 14px;
+  border: 2.5px solid var(--surface-card-border);
+  border-radius: 12px;
   background: var(--surface-card);
   padding: 0.7rem 0.9rem;
   color: var(--text-primary);
@@ -265,12 +275,12 @@ a {
   justify-content: center;
   gap: 0.5rem;
   border: 2px solid var(--surface-card-border);
-  border-radius: 9999px;
+  border-radius: 14px;
   background: var(--primary);
   padding: 0.65rem 1rem;
   color: var(--primary-foreground);
   font-weight: 700;
-  box-shadow: 3px 3px 0 var(--shadow-ink);
+  box-shadow: 4px 4px 0 var(--shadow-ink);
   transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
@@ -296,16 +306,16 @@ a {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  border: 2px dashed var(--surface-card-border-soft);
-  border-radius: 20px;
-  background: var(--surface-card-soft);
+  border: 2.5px dashed var(--surface-card-border);
+  border-radius: 16px;
+  background: var(--romi-butter);
   padding: 1.5rem;
   color: var(--text-muted);
   text-align: center;
 }
 
 .kawaii-glass {
-  border: 1px solid var(--surface-card-border);
+  border: 2.5px solid var(--surface-card-border);
   background: var(--surface-card-soft);
   backdrop-filter: blur(14px);
 }
@@ -314,7 +324,7 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  border: 1.5px solid var(--chip-border);
+  border: 2px solid var(--chip-border);
   border-radius: 9999px;
   background: var(--chip-bg);
   color: var(--primary);
@@ -334,7 +344,7 @@ a {
 
 .kawaii-button {
   border: 2.5px solid var(--surface-card-border);
-  border-radius: 9999px;
+  border-radius: 14px;
   box-shadow: 4px 4px 0 var(--shadow-ink);
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.25s ease,
@@ -368,6 +378,7 @@ a {
 
 .kawaii-title {
   color: var(--primary);
+  font-family: 'Fredoka One', var(--font-fredoka), 'Fredoka', cursive;
 }
 
 .kawaii-body {
@@ -472,9 +483,56 @@ a {
 }
 
 .romi-user-map .leaflet-control-attribution {
-  border-top-left-radius: 8px;
+  border: 1.5px solid var(--surface-card-border);
+  border-bottom: 0;
+  border-right: 0;
+  border-top-left-radius: 10px;
   background: var(--surface-card);
   color: var(--text-body);
+}
+
+/* Alternating candy surfaces keep repeated cards playful without local CSS. */
+.romi-pastel-grid > :nth-child(6n + 1),
+[data-slot="card"]:nth-child(6n + 1) { background: var(--romi-pink-soft); }
+.romi-pastel-grid > :nth-child(6n + 2),
+[data-slot="card"]:nth-child(6n + 2) { background: var(--romi-butter); }
+.romi-pastel-grid > :nth-child(6n + 3),
+[data-slot="card"]:nth-child(6n + 3) { background: var(--romi-mint-soft); }
+.romi-pastel-grid > :nth-child(6n + 4),
+[data-slot="card"]:nth-child(6n + 4) { background: var(--romi-lilac-soft); }
+.romi-pastel-grid > :nth-child(6n + 5),
+[data-slot="card"]:nth-child(6n + 5) { background: var(--romi-peach-soft); }
+
+.romi-doodle-cell:nth-child(3n + 1) { background: var(--romi-pink-soft); }
+.romi-doodle-cell:nth-child(3n + 2) { background: var(--romi-lilac-soft); }
+.romi-doodle-cell:nth-child(3n) { background: var(--romi-mint-soft); }
+
+.romi-footer {
+  position: relative;
+  box-shadow: 0 -5px 0 var(--romi-yellow);
+}
+
+.romi-nav::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -7px;
+  left: 0;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--romi-yellow) 0 48px,
+    var(--romi-pink) 48px 96px,
+    var(--romi-mint) 96px 144px,
+    var(--romi-lilac) 144px 192px
+  );
+}
+
+.romi-footer a:focus-visible,
+.romi-app-shell a:focus-visible,
+.romi-app-shell button:focus-visible {
+  outline: 3px solid var(--romi-yellow);
+  outline-offset: 3px;
 }
 
 @media (min-width: 640px) {
@@ -484,13 +542,30 @@ a {
 }
 
 @media (max-width: 767px) {
-  .romi-app-shell section.w-screen {
+  .romi-app-shell section.w-screen,
+  .romi-app-shell main.w-screen {
     left: 50% !important;
     right: auto !important;
     width: 100vw !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
     transform: translateX(-50%) !important;
+  }
+
+  .romi-home-hero {
+    width: calc(100vw - 2rem);
+    max-width: calc(100vw - 2rem);
+    margin-inline: auto;
+  }
+
+  .romi-app-shell main.w-screen > .relative.z-10 {
+    width: 100%;
+    max-width: calc(100vw - 2rem);
+  }
+
+  .romi-home-hero h2,
+  .romi-home-hero p {
+    overflow-wrap: anywhere;
   }
 
   .romi-page {

@@ -51,7 +51,7 @@ const SOCIAL_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[var(--footer-bg)] text-white border-t-[2.5px] border-[var(--surface-card-border)]">
+    <footer className="romi-footer bg-[var(--footer-bg)] text-white border-t-[3px] border-[var(--surface-card-border)]">
       {/* Main grid */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14 grid gap-8 sm:gap-10 sm:grid-cols-2 lg:grid-cols-4">
 

@@ -1,19 +1,34 @@
-/* ROMI Kawaii Medical Theme Tokens */
+/*
+ * ROMI Kawaii Medical Theme Tokens
+ * Visual invariant: warm paper, playful pastel surfaces, dark ink outlines and
+ * solid offset shadows. New UI must use these semantic tokens instead of
+ * introducing isolated neutral/tech palettes.
+ */
 
 :root,
 :root[data-theme="light"] {
   color-scheme: light;
 
-  --romi-cream: #f5eeea;
+  --romi-cream: #fdf6ec;
   --romi-white: #ffffff;
-  --romi-coral: #cf5f5c;
-  --romi-coral-hover: #b84d4a;
-  --romi-peach: #f5c5a8;
-  --romi-peach-deep: #edb99a;
-  --romi-navy: #2b2950;
-  --romi-body: #4a4460;
-  --romi-muted: #9087a0;
-  --romi-soft-gray: #ece8e5;
+  --romi-ink: #252238;
+  --romi-coral: #f05f73;
+  --romi-coral-hover: #dc4961;
+  --romi-yellow: #ffd972;
+  --romi-pink: #ffafcc;
+  --romi-pink-soft: #ffe1ed;
+  --romi-lilac: #c8b6ff;
+  --romi-lilac-soft: #ebe5ff;
+  --romi-mint: #a8e6cf;
+  --romi-mint-soft: #d9f5e8;
+  --romi-peach: #ffb4a2;
+  --romi-peach-soft: #ffe5dd;
+  --romi-butter: #fff1c2;
+  --romi-peach-deep: #ff9f88;
+  --romi-navy: var(--romi-ink);
+  --romi-body: #4f4a61;
+  --romi-muted: #777083;
+  --romi-soft-gray: #f2ebe4;
 
   --primary: var(--romi-coral);
   --primary-hover: var(--romi-coral-hover);
@@ -33,7 +48,7 @@
 
   --muted: var(--romi-soft-gray);
   --muted-foreground: var(--romi-muted);
-  --success: #b9c978;
+  --success: var(--romi-mint);
   --success-foreground: var(--romi-navy);
   --warning: var(--romi-peach-deep);
   --warning-foreground: var(--romi-navy);
@@ -47,9 +62,9 @@
   --surface: var(--romi-cream);
   --surface-alt: var(--romi-soft-gray);
   --surface-card: var(--romi-white);
-  --surface-card-soft: rgba(255, 255, 255, 0.74);
+  --surface-card-soft: rgba(255, 255, 255, 0.84);
   --surface-card-border: var(--romi-navy);
-  --surface-card-border-soft: rgba(43, 41, 80, 0.2);
+  --surface-card-border-soft: rgba(37, 34, 56, 0.32);
   --text-primary: var(--romi-navy);
   --text-body: var(--romi-body);
   --text-secondary: var(--romi-body);
@@ -57,14 +72,14 @@
   --hero-text: var(--romi-navy);
   --hero-text-muted: var(--romi-body);
   --footer-bg: var(--romi-navy);
-  --shadow-ink: rgba(43, 41, 80, 0.2);
-  --shadow-ink-strong: rgba(43, 41, 80, 0.28);
-  --chip-bg: rgba(207, 95, 92, 0.18);
-  --chip-border: rgba(207, 95, 92, 0.45);
-  --hero-glow-one: rgba(245, 197, 168, 0.68);
-  --hero-glow-two: rgba(207, 95, 92, 0.18);
-  --card-gradient: linear-gradient(145deg, #ffffff 0%, #fff8f4 100%);
-  --accent-gradient: linear-gradient(135deg, #cf5f5c 0%, #edb99a 100%);
+  --shadow-ink: var(--romi-ink);
+  --shadow-ink-strong: var(--romi-ink);
+  --chip-bg: var(--romi-pink-soft);
+  --chip-border: var(--romi-ink);
+  --hero-glow-one: rgba(255, 217, 114, 0.72);
+  --hero-glow-two: rgba(200, 182, 255, 0.46);
+  --card-gradient: linear-gradient(145deg, var(--romi-white) 0%, var(--romi-pink-soft) 100%);
+  --accent-gradient: linear-gradient(135deg, var(--romi-coral) 0%, var(--romi-peach-deep) 100%);
 
   --sidebar: var(--romi-white);
   --sidebar-foreground: var(--romi-navy);
@@ -81,65 +96,73 @@
 :root[data-theme="dark"] {
   color-scheme: dark;
 
-  --color-purple-deep: #6d28d9;
-  --color-purple: #8b5cf6;
-  --color-purple-mid: #a78bfa;
-  --color-purple-light: #c4b5fd;
-  --color-purple-tint: #ddd6fe;
+  --romi-ink: #181522;
+  --romi-coral: #ff7589;
+  --romi-coral-hover: #ff8fa1;
+  --romi-yellow: #f6cf68;
+  --romi-pink: #d98fae;
+  --romi-pink-soft: #4a2e3d;
+  --romi-lilac: #b7a5eb;
+  --romi-lilac-soft: #39324e;
+  --romi-mint: #8ccfb8;
+  --romi-mint-soft: #293f3a;
+  --romi-peach: #e9a18f;
+  --romi-peach-soft: #49332f;
+  --romi-butter: #4a422e;
 
-  --primary: var(--color-purple);
-  --primary-hover: var(--color-purple-deep);
-  --primary-foreground: #ffffff;
-  --secondary: #d5b8b8;
-  --secondary-foreground: #0b0718;
-  --accent: var(--color-purple-mid);
-  --accent-foreground: #0b0718;
+  --primary: var(--romi-coral);
+  --primary-hover: var(--romi-coral-hover);
+  --primary-foreground: #181522;
+  --secondary: var(--romi-yellow);
+  --secondary-foreground: #181522;
+  --accent: var(--romi-lilac);
+  --accent-foreground: #181522;
 
-  --background: #0b0718;
-  --foreground: #f0eeff;
-  --page-bg: #0b0718;
-  --card: rgba(255, 255, 255, 0.04);
-  --card-foreground: #f0eeff;
-  --popover: #100b28;
-  --popover-foreground: #f0eeff;
+  --background: #211d2b;
+  --foreground: #fff8ee;
+  --page-bg: #211d2b;
+  --card: #302a3b;
+  --card-foreground: #fff8ee;
+  --popover: #302a3b;
+  --popover-foreground: #fff8ee;
 
-  --muted: #0a0818;
-  --muted-foreground: rgba(255, 255, 255, 0.52);
-  --success: #a7f3d0;
-  --success-foreground: #0b0718;
-  --warning: #f5c5a8;
-  --warning-foreground: #0b0718;
-  --info: var(--color-purple-mid);
-  --info-foreground: #0b0718;
+  --muted: #3a3344;
+  --muted-foreground: #c9c0cc;
+  --success: var(--romi-mint);
+  --success-foreground: #181522;
+  --warning: var(--romi-yellow);
+  --warning-foreground: #181522;
+  --info: var(--romi-lilac);
+  --info-foreground: #181522;
   --destructive: #fb7185;
-  --border: rgba(139, 92, 246, 0.22);
-  --input: rgba(139, 92, 246, 0.34);
-  --ring: var(--color-purple-mid);
+  --border: #181522;
+  --input: #181522;
+  --ring: var(--romi-yellow);
 
-  --surface: #0b0718;
-  --surface-alt: #0a0818;
-  --surface-card: rgba(255, 255, 255, 0.04);
-  --surface-card-soft: rgba(255, 255, 255, 0.07);
-  --surface-card-border: rgba(139, 92, 246, 0.22);
-  --surface-card-border-soft: rgba(139, 92, 246, 0.22);
-  --text-primary: #f0eeff;
-  --text-body: rgba(255, 255, 255, 0.62);
-  --text-secondary: rgba(255, 255, 255, 0.72);
-  --text-muted: rgba(255, 255, 255, 0.52);
-  --hero-text: #f0eeff;
-  --hero-text-muted: rgba(255, 255, 255, 0.7);
-  --footer-bg: #07040f;
-  --shadow-ink: rgba(0, 0, 0, 0.36);
-  --shadow-ink-strong: rgba(0, 0, 0, 0.56);
-  --chip-bg: rgba(139, 92, 246, 0.18);
-  --chip-border: rgba(167, 139, 250, 0.44);
-  --hero-glow-one: rgba(139, 92, 246, 0.2);
-  --hero-glow-two: rgba(213, 184, 184, 0.1);
-  --card-gradient: linear-gradient(145deg, rgba(255,255,255,0.07) 0%, rgba(139,92,246,0.08) 100%);
-  --accent-gradient: linear-gradient(135deg, #8b5cf6 0%, #d5b8b8 100%);
+  --surface: #211d2b;
+  --surface-alt: #292331;
+  --surface-card: #302a3b;
+  --surface-card-soft: #393244;
+  --surface-card-border: #181522;
+  --surface-card-border-soft: #181522;
+  --text-primary: #fff8ee;
+  --text-body: #ddd4df;
+  --text-secondary: #e8dfe8;
+  --text-muted: #b8afbd;
+  --hero-text: #fff8ee;
+  --hero-text-muted: #e5dbe5;
+  --footer-bg: #181522;
+  --shadow-ink: #100d17;
+  --shadow-ink-strong: #100d17;
+  --chip-bg: var(--romi-pink-soft);
+  --chip-border: #100d17;
+  --hero-glow-one: rgba(246, 207, 104, 0.18);
+  --hero-glow-two: rgba(183, 165, 235, 0.18);
+  --card-gradient: linear-gradient(145deg, #302a3b 0%, #4a2e3d 100%);
+  --accent-gradient: linear-gradient(135deg, var(--romi-coral) 0%, var(--romi-peach) 100%);
 
-  --sidebar: #100b28;
-  --sidebar-foreground: #f0eeff;
+  --sidebar: #302a3b;
+  --sidebar-foreground: #fff8ee;
   --sidebar-primary: var(--primary);
   --sidebar-primary-foreground: var(--primary-foreground);
   --sidebar-accent: var(--accent);
@@ -149,7 +172,12 @@
 }
 
 .romi-app-shell {
-  background: var(--page-bg);
+  background:
+    radial-gradient(circle at 8% 8%, var(--romi-pink-soft) 0 3px, transparent 4px),
+    radial-gradient(circle at 94% 16%, var(--romi-lilac-soft) 0 4px, transparent 5px),
+    radial-gradient(circle at 14% 92%, var(--romi-mint-soft) 0 3px, transparent 4px),
+    var(--page-bg);
+  background-size: 110px 110px, 150px 150px, 130px 130px, auto;
   color: var(--foreground);
   overflow-wrap: break-word;
   transition: background 260ms ease, color 260ms ease;
@@ -160,15 +188,16 @@
   background:
     radial-gradient(circle at 15% 18%, var(--hero-glow-one), transparent 30%),
     radial-gradient(circle at 85% 25%, var(--hero-glow-two), transparent 32%),
-    linear-gradient(135deg, var(--secondary) 0%, var(--surface) 42%, var(--primary) 100%);
+    linear-gradient(135deg, var(--romi-butter) 0%, var(--romi-pink-soft) 48%, var(--romi-lilac-soft) 100%);
+  border: 3px solid var(--surface-card-border);
+  box-shadow: 8px 8px 0 var(--shadow-ink);
 }
 
 :root[data-theme="dark"] .romi-hero-gradient {
   background:
-    radial-gradient(circle at 12% 18%, rgba(139, 92, 246, 0.32), transparent 28%),
-    radial-gradient(circle at 88% 20%, rgba(213, 184, 184, 0.12), transparent 28%),
-    radial-gradient(circle at 50% 110%, rgba(167, 139, 250, 0.18), transparent 36%),
-    #0b0718;
+    radial-gradient(circle at 12% 18%, var(--hero-glow-one), transparent 28%),
+    radial-gradient(circle at 88% 20%, var(--hero-glow-two), transparent 28%),
+    linear-gradient(135deg, #392f34 0%, #302a3b 52%, #332e47 100%);
 }
 
 .bg-gradient-romi,
