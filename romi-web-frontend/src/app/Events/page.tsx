@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   CalendarDays, Clock3, MapPin, ExternalLink,
-  PlayCircle, Compass, Calendar, Globe,
+  Compass, Calendar, Globe,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
 

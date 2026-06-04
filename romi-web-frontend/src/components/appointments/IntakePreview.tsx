@@ -2,7 +2,7 @@ import type { AiIntakeSummary } from '@/lib/types';
 
 export default function IntakePreview({ data }: { data: AiIntakeSummary }) {
   return (
-    <aside className="w-full md:w-96 border-l md:sticky md:top-4 h-fit rounded-xl md:rounded-none md:border bg-card p-4">
+    <aside className="romi-panel h-fit w-full md:sticky md:top-20">
       <h3 className="font-semibold mb-2">Resumen IA</h3>
       <p className="text-sm text-muted-foreground mb-3">{data.summary}</p>
       <ul className="list-disc ml-5 space-y-1 text-sm">
@@ -18,4 +18,3 @@ export default function IntakePreview({ data }: { data: AiIntakeSummary }) {
     </aside>
   );
 }
-

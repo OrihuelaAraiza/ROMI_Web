@@ -1,13 +1,30 @@
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
-import { ImportIcon } from "lucide-react";
+import { CalendarHeart, Sparkles, Video } from "lucide-react";
+
+export const metadata = { title: "ROMI - Telesalud" };
+
 export default function Page() {
   return (
-    <div className="flex gap-[2%] flex-wrap content-start">
-      <div className="w-full h-[5%]">Header</div>
-      <div className="w-1/4 h-3/4">Sidebar</div>
-      <div className="grow h-3/4">Content</div>
-      <div className="w-full h-[5%]">Footer</div>
-    </div>
+    <main className="romi-page mx-auto flex max-w-4xl items-center">
+      <section className="card-premium w-full overflow-hidden p-6 text-center sm:p-10">
+        <div className="mx-auto grid h-20 w-20 place-items-center rounded-full border-2 border-[var(--surface-card-border)] bg-[var(--chip-bg)] shadow-[4px_4px_0_var(--shadow-ink)]">
+          <Video className="h-9 w-9 text-primary" />
+        </div>
+        <span className="kawaii-chip mt-6 px-4 py-1.5 text-xs">Próximamente</span>
+        <h1 className="mt-4 font-fredoka-one text-4xl text-primary sm:text-5xl">Telesalud ROMI</h1>
+        <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-[var(--text-body)] sm:text-base">
+          Estamos preparando una experiencia de consulta remota más clara, cálida y segura.
+          Mientras tanto, puedes explorar especialistas y solicitar una cita.
+        </p>
+        <div className="mt-8 grid gap-3 sm:grid-cols-2">
+          <Link href="/doctores" className="romi-action">
+            <CalendarHeart className="h-5 w-5" /> Ver especialistas
+          </Link>
+          <Link href="/Services" className="romi-action romi-action-secondary">
+            <Sparkles className="h-5 w-5" /> Explorar servicios
+          </Link>
+        </div>
+      </section>
+    </main>
   );
 }

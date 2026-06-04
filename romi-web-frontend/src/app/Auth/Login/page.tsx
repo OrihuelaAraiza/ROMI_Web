@@ -52,41 +52,40 @@ function LoginInner() {
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center relative left-1/2 -translate-x-1/2 w-screen overflow-hidden">
+    <main className="relative left-1/2 flex min-h-[calc(100dvh-4rem)] w-screen -translate-x-1/2 items-center justify-center overflow-hidden px-4 py-10">
       {/* Full-screen gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#d58b88] via-[#d79c9c] to-[#dabebd] animate-gradient-slow" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[var(--primary)] via-[var(--accent)] to-[var(--secondary)] animate-gradient-slow" />
 
       {/* Blur circles with animations */}
-      <div className="absolute -top-24 -left-24 w-72 h-72 bg-[#edcccc]/40 rounded-full blur-3xl animate-float" />
-      <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-[#edcccc]/40 rounded-full blur-3xl animate-float-delayed" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse-slow" />
+      <div className="absolute -top-24 -left-24 w-72 h-72 bg-[var(--surface-card-soft)] rounded-full blur-3xl animate-float" />
+      <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-[var(--surface-card-soft)] rounded-full blur-3xl animate-float-delayed" />
 
       {/* Login Card */}
-      <div className="relative z-10 w-full max-w-md mx-4 animate-fade-in-up">
-        <div className="rounded-3xl bg-white/90 backdrop-blur-xl border border-white/60 shadow-2xl hover:shadow-[#d58b88]/20 hover:shadow-3xl p-8 transition-all duration-500">
+      <div className="relative z-10 w-full max-w-md animate-fade-in-up">
+        <div className="card-premium bg-[var(--surface-card)]/95 p-5 backdrop-blur-xl sm:p-8">
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#d58b88] to-[#d79c9c] mb-4 shadow-lg animate-bounce-slow">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-romi mb-4 border-2 border-[var(--surface-card-border)] shadow-[4px_4px_0_var(--shadow-ink)] animate-bounce-slow">
               <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
             </div>
-            <h1 className="text-3xl  text-[#2d2d2d] font-fredoka-one mb-2">
+            <h1 className="text-3xl text-[var(--text-primary)] font-fredoka-one mb-2">
               ¡Bienvenido!
             </h1>
-            <p className="text-sm text-[#2d2d2d]/70 font-poppins">
+            <p className="text-sm text-[var(--text-body)] font-poppins">
               Inicia sesión en ROMI
             </p>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <div>
-              <label className="block text-sm font-medium text-[#2d2d2d] font-poppins mb-1.5">
+              <label className="block text-sm font-medium text-[var(--text-primary)] font-poppins mb-1.5">
                 Correo
               </label>
               <input
                 type="email"
                 placeholder="Correo"
-                className="w-full rounded-xl border-2 border-[#d58b88]/20 bg-white/50 px-4 py-3 text-sm focus:outline-none focus:border-[#d58b88] focus:bg-white focus:shadow-lg focus:shadow-[#d58b88]/10 font-poppins transition-all duration-300 hover:border-[#d58b88]/40 hover:bg-white"
+                className="romi-field font-poppins text-sm"
                 {...register("email")}
               />
               {errors.email && (
@@ -97,13 +96,13 @@ function LoginInner() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[#2d2d2d] font-poppins mb-1.5">
+              <label className="block text-sm font-medium text-[var(--text-primary)] font-poppins mb-1.5">
                 Contraseña
               </label>
               <input
                 type="password"
                 placeholder="Contraseña"
-                className="w-full rounded-xl border-2 border-[#d58b88]/20 bg-white/50 px-4 py-3 text-sm focus:outline-none focus:border-[#d58b88] focus:bg-white focus:shadow-lg focus:shadow-[#d58b88]/10 font-poppins transition-all duration-300 hover:border-[#d58b88]/40 hover:bg-white"
+                className="romi-field font-poppins text-sm"
                 {...register("password")}
               />
               {errors.password && (
@@ -121,7 +120,7 @@ function LoginInner() {
 
             <button
               type="submit"
-              className="group relative w-full bg-gradient-to-r from-[#d58b88] to-[#d79c9c] hover:from-[#d79c9c] hover:to-[#dabebd] text-white font-fredoka-one py-3.5 rounded-xl mt-2 transition-all duration-500 shadow-lg hover:shadow-2xl hover:shadow-[#d58b88]/50 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98] overflow-hidden"
+              className="romi-action mt-2 w-full font-fredoka-one disabled:cursor-not-allowed disabled:opacity-50"
               disabled={isSubmitting}
             >
               <span className="absolute inset-0 w-full h-full bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></span>
@@ -146,12 +145,12 @@ function LoginInner() {
             </button>
           </form>
 
-          <div className="mt-8 pt-6 border-t border-[#d58b88]/10">
-            <p className="text-sm text-[#2d2d2d]/70 font-poppins text-center">
+          <div className="mt-8 pt-6 border-t border-[var(--surface-card-border-soft)]">
+            <p className="text-sm text-[var(--text-body)] font-poppins text-center">
               ¿No tienes cuenta?{" "}
-              <Link href="/Auth/Login/Register" className="text-[#d58b88] font-semibold hover:text-[#d79c9c] transition-colors duration-300 relative group">
+              <Link href="/Auth/Login/Register" className="text-primary font-semibold hover:text-[var(--primary-hover)] transition-colors duration-300 relative group">
                 Crear cuenta
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d58b88] to-[#d79c9c] group-hover:w-full transition-all duration-300"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[var(--primary)] to-[var(--primary-hover)] group-hover:w-full transition-all duration-300"></span>
               </Link>
             </p>
           </div>
@@ -164,7 +163,7 @@ function LoginInner() {
 export default function LoginPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-[#d58b88] via-[#d79c9c] to-[#dabebd]">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-romi">
         <div className="text-white font-poppins">Cargando…</div>
       </div>
     }>

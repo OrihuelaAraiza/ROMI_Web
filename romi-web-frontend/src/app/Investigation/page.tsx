@@ -1,6 +1,6 @@
 import {
   Beaker, BookOpenCheck, LineChart, ShieldCheck, Users,
-  FileText, Sparkles, Compass, Download, BookOpen, Layers, Award, TrendingUp
+  FileText, Sparkles, Compass, Layers, Award, TrendingUp
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
 

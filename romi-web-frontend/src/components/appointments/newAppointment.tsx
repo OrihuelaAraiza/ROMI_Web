@@ -91,7 +91,7 @@ export default function NewAppointment({ doctorId }: { doctorId: string }) {
 
   if (!token) {
     return (
-      <div className="max-w-md mx-auto p-6 mt-10 border rounded-xl bg-warning/15 text-warning-foreground text-center">
+      <div className="romi-panel max-w-md mx-auto mt-10 text-center">
         <p>Necesitas iniciar sesión para agendar una cita.</p>
         <Link
           href={`/Auth/Login?next=/appointments/new?doctorId=${doctorId}`}
@@ -103,19 +103,19 @@ export default function NewAppointment({ doctorId }: { doctorId: string }) {
     );
   }
 
-  if (loading) return <div className="animate-pulse h-40 bg-zinc-100 rounded-xl" />;
-  if (error) return <div className="text-destructive p-4">{error}</div>;
+  if (loading) return <div className="romi-panel animate-pulse h-40" />;
+  if (error) return <div className="romi-panel text-destructive">{error}</div>;
 
   return (
     <div className="max-w-xl mx-auto mt-10">
-      <div className="rounded-xl border shadow-sm bg-white p-5 flex gap-4 items-center">
+      <div className="romi-panel flex gap-4 items-center">
         <div className="h-14 w-14 bg-primary/15 text-primary flex items-center justify-center rounded-full">
           <User className="w-7 h-7" />
         </div>
         <div>
-          <h2 className="font-semibold text-lg text-zinc-800">{doctor?.name}</h2>
-          <p className="text-sm text-zinc-500">{doctor?.specialty}</p>
-          <div className="flex items-center text-xs text-zinc-400 gap-1">
+          <h2 className="font-semibold text-lg text-[var(--text-primary)]">{doctor?.name}</h2>
+          <p className="text-sm text-[var(--text-body)]">{doctor?.specialty}</p>
+          <div className="flex items-center text-xs text-[var(--text-muted)] gap-1">
             <Star className="w-3 h-3 text-accent" /> 4.8 / {doctor?.years_exp ?? 10} años exp.
           </div>
         </div>
@@ -123,36 +123,36 @@ export default function NewAppointment({ doctorId }: { doctorId: string }) {
 
       <form
         onSubmit={handleSubmit}
-        className="mt-6 rounded-xl border shadow-sm bg-white p-6 space-y-4"
+        className="romi-panel mt-6 space-y-4"
       >
         <h3 className="text-primary font-semibold flex items-center gap-2">
           <CalendarDays className="w-5 h-5" /> Detalles de la cita
         </h3>
 
         <div>
-          <label className="block text-sm font-medium text-zinc-700">Fecha</label>
+          <label className="block text-sm font-medium text-[var(--text-primary)]">Fecha</label>
           <input
             type="date"
-            className="mt-1 w-full rounded-lg border px-3 py-2"
+            className="romi-field mt-1"
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-zinc-700">Hora</label>
+          <label className="block text-sm font-medium text-[var(--text-primary)]">Hora</label>
           <input
             type="time"
-            className="mt-1 w-full rounded-lg border px-3 py-2"
+            className="romi-field mt-1"
             value={time}
             onChange={(e) => setTime(e.target.value)}
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-zinc-700">Motivo</label>
+          <label className="block text-sm font-medium text-[var(--text-primary)]">Motivo</label>
           <textarea
-            className="mt-1 w-full rounded-lg border px-3 py-2"
+            className="romi-field mt-1"
             rows={3}
             placeholder="Describe brevemente tu motivo"
             value={reason}
@@ -169,7 +169,7 @@ export default function NewAppointment({ doctorId }: { doctorId: string }) {
         <button
           type="submit"
           disabled={sending}
-          className="w-full py-3 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-semibold transition"
+          className="romi-action w-full"
         >
           {sending ? "Agendando..." : "Confirmar cita"}
         </button>

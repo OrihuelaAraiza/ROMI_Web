@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CircleMarker, ImageOverlay, MapContainer, Popup, ZoomControl, useMap } from "react-leaflet";
+import { CircleMarker, MapContainer, Popup, TileLayer, ZoomControl, useMap } from "react-leaflet";
 import L from "leaflet";
 import Reveal from "@/components/Reveal";
 
@@ -63,30 +63,6 @@ const FILTERS = [
   { id: "rest" as const, label: "Resto" },
 ];
 
-const WORLD_MAP_SVG = encodeURIComponent(`
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500">
-  <rect width="1000" height="500" fill="#add8e3"/>
-  <g fill="#f7f1ea" stroke="#e1d8cf" stroke-width="1.2">
-    <path d="M104 68 C142 42 197 42 228 73 C255 100 253 135 233 160 C215 183 181 188 165 214 C148 242 161 278 144 304 C128 329 94 332 72 315 C50 298 47 265 61 241 C74 218 102 209 99 184 C96 158 66 146 63 119 C60 97 78 82 104 68 Z"/>
-    <path d="M198 198 C226 186 258 197 270 224 C283 251 270 281 248 299 C232 313 220 331 225 352 C230 376 254 391 251 417 C248 446 217 462 193 448 C174 438 170 414 176 393 C184 366 172 347 153 328 C131 307 128 276 143 252 C155 228 173 210 198 198 Z"/>
-    <path d="M376 116 C406 96 447 101 473 125 C493 144 503 171 492 194 C477 224 438 226 414 212 C388 197 363 201 348 181 C334 162 349 134 376 116 Z"/>
-    <path d="M475 210 C514 192 565 205 588 244 C611 284 598 337 568 369 C543 396 508 405 478 388 C448 371 432 335 438 300 C444 263 445 224 475 210 Z"/>
-    <path d="M545 92 C594 58 671 59 724 88 C773 115 801 161 795 208 C789 253 753 282 710 282 C669 282 640 256 603 263 C565 271 532 306 495 291 C464 278 459 238 478 210 C496 184 530 176 535 146 C538 126 528 106 545 92 Z"/>
-    <path d="M735 216 C769 204 806 214 825 241 C844 267 835 305 805 321 C779 335 746 327 728 304 C707 278 706 232 735 216 Z"/>
-    <path d="M760 346 C798 329 848 335 874 364 C897 390 889 425 857 439 C825 452 780 444 756 419 C731 393 728 361 760 346 Z"/>
-    <path d="M884 150 C916 128 960 135 979 165 C998 196 980 234 946 241 C913 248 876 224 870 191 C867 174 872 159 884 150 Z"/>
-    <path d="M313 112 C327 101 348 102 360 115 C371 129 366 149 350 157 C334 165 313 158 306 143 C301 131 304 120 313 112 Z"/>
-    <path d="M676 313 C695 302 723 308 734 327 C746 347 733 373 710 378 C686 384 664 367 661 343 C660 331 665 320 676 313 Z"/>
-  </g>
-  <g fill="none" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1">
-    <path d="M0 250H1000"/>
-    <path d="M500 0V500"/>
-  </g>
-</svg>
-`);
-
-const WORLD_MAP_URL = `data:image/svg+xml;charset=utf-8,${WORLD_MAP_SVG}`;
-
 function radiusForUsers(users: number) {
   return Math.max(7, Math.min(34, Math.sqrt(users) * 0.74));
 }
@@ -126,8 +102,8 @@ export default function UserMapSection() {
 
       <Reveal type="scale">
         <div className="card-premium overflow-hidden bg-[var(--surface-card)]">
-          <div className="grid gap-0 lg:grid-cols-[1fr_320px]">
-            <div className="relative min-h-[420px] sm:min-h-[520px]">
+          <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_320px]">
+            <div className="relative min-w-0">
               <MapContainer
                 center={[18, -45]}
                 zoom={2}
@@ -135,12 +111,17 @@ export default function UserMapSection() {
                 maxZoom={6}
                 scrollWheelZoom
                 zoomControl={false}
-                attributionControl={false}
+                attributionControl
                 className="romi-user-map"
                 worldCopyJump
               >
                 <ZoomControl position="topleft" />
-                <ImageOverlay url={WORLD_MAP_URL} bounds={[[-85, -180], [85, 180]]} opacity={1} zIndex={1} />
+                <TileLayer
+                  attribution="&copy; OpenStreetMap contributors &copy; CARTO"
+                  url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+                  subdomains="abcd"
+                  maxZoom={20}
+                />
                 <FitBounds points={visiblePoints} region={region} />
                 {visiblePoints.map((point) => (
                   <CircleMarker
@@ -169,20 +150,17 @@ export default function UserMapSection() {
                 ))}
               </MapContainer>
 
-              <div className="absolute right-4 top-4 z-[500] max-w-[calc(100%-2rem)] rounded-2xl border-[2px] border-[var(--surface-card-border)] bg-[var(--surface-card)]/95 px-4 py-3 text-right shadow-[4px_4px_0_var(--shadow-ink)] backdrop-blur">
-                <p className="font-fredoka-one text-lg text-[var(--text-primary)]">
-                  Usuarios ROMI: {totalUsers.toLocaleString("es-MX")}
-                </p>
-                <p className="mt-1 text-xs sm:text-sm font-semibold text-[var(--text-body)]">
-                  MX 50% · EC 20% · USA 10% · Resto 20%
-                </p>
-              </div>
-              <div className="absolute bottom-2 left-3 z-[500] rounded-full bg-[var(--surface-card)]/90 px-3 py-1 text-[10px] font-semibold text-[var(--text-muted)] shadow-sm">
-                Leaflet · ROMI basemap
-              </div>
             </div>
 
             <aside className="border-t-[2.5px] border-[var(--surface-card-border)] bg-[var(--surface-alt)] p-5 sm:p-6 lg:border-l-[2.5px] lg:border-t-0">
+              <div className="mb-5 rounded-2xl border-2 border-[var(--surface-card-border)] bg-[var(--surface-card)] p-4 shadow-[3px_3px_0_var(--shadow-ink)]">
+                <p className="font-fredoka-one text-xl text-[var(--text-primary)]">
+                  {totalUsers.toLocaleString("es-MX")} usuarios ROMI
+                </p>
+                <p className="mt-1 text-xs font-semibold text-[var(--text-body)]">
+                  Explora la comunidad por región
+                </p>
+              </div>
               <div className="flex flex-wrap gap-2">
                 {FILTERS.map((filter) => (
                   <button

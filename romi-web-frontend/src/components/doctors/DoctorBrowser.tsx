@@ -114,9 +114,9 @@ export default function DoctorsBrowser() {
     return (
       <>
         <DoctorsHero />
-        <div className="mx-auto max-w-6xl px-4 mt-6 grid gap-4 md:grid-cols-3 ">
+        <div className="mx-auto max-w-6xl px-4 mt-6 grid gap-4 md:grid-cols-3">
           {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="h-48 rounded-xl bg-zinc-100 animate-pulse" />
+            <div key={i} className="romi-panel h-48 animate-pulse" />
           ))}
         </div>
       </>
@@ -128,7 +128,7 @@ export default function DoctorsBrowser() {
       <>
         <DoctorsHero />
         <div className="mx-auto max-w-6xl px-4">
-          <div className="mt-6 rounded-xl border bg-red-50 text-red-700 p-4 ">{error}</div>
+          <div className="romi-panel mt-6 border-[var(--destructive)] text-[var(--destructive)]">{error}</div>
         </div>
       </>
     );
@@ -145,8 +145,8 @@ export default function DoctorsBrowser() {
               <button
                 key={c.key}
                 onClick={() => setSpec(c.key)}
-                className={`px-3 py-2 rounded-lg text-sm border whitespace-nowrap ${
-                  spec === c.key ? "bg-cyan-600 text-white border-cyan-600" : "bg-white hover:bg-zinc-50"
+                className={`min-h-11 rounded-full border-2 px-4 py-2 text-sm font-semibold whitespace-nowrap transition ${
+                  spec === c.key ? "border-[var(--surface-card-border)] bg-primary text-white shadow-[2px_2px_0_var(--shadow-ink)]" : "border-[var(--surface-card-border-soft)] bg-[var(--surface-card)] text-[var(--text-primary)] hover:bg-[var(--chip-bg)]"
                 }`}
               >
                 {c.label}
@@ -158,15 +158,15 @@ export default function DoctorsBrowser() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Buscar por nombre, ciudad o especialidad…"
-            className="w-full md:w-80 rounded-lg border px-3 py-2"
+            className="romi-field md:w-80"
           />
         </div>
 
-        <div className="mt-3 text-sm text-zinc-500">
+        <div className="mt-3 text-sm text-[var(--text-muted)]">
           {filtered.length} especialista{filtered.length === 1 ? "" : "s"} encontrado{filtered.length === 1 ? "" : "s"}
           {spec !== "todas" && (
             <span>
-              {" "}• Filtro: <span className="font-medium text-zinc-700">{chips.find((c) => c.key === spec)?.label}</span>
+              {" "}• Filtro: <span className="font-medium text-[var(--text-primary)]">{chips.find((c) => c.key === spec)?.label}</span>
             </span>
           )}
         </div>
@@ -178,9 +178,9 @@ export default function DoctorsBrowser() {
         </div>
 
         {!filtered.length && (
-          <p className="text-center text-zinc-500 mt-8">
+          <div className="romi-empty mt-8">
             No encontramos especialistas con esos filtros.
-          </p>
+          </div>
         )}
       </div>
     </>

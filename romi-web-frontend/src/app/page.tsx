@@ -194,11 +194,13 @@ export default function Home() {
                 </p>
               </Reveal>
               <Reveal type="right">
-                <div className="rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-500">
-                  <img
+                <div className="relative h-64 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-500 sm:h-80 md:h-96">
+                  <Image
                     src="/images/doctor.jpg"
                     alt="Doctor escribiendo"
-                    className="w-full h-64 sm:h-80 md:h-96 object-cover transition-transform duration-700 hover:scale-105"
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-700 hover:scale-105"
                   />
                 </div>
               </Reveal>

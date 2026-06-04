@@ -22,8 +22,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
             {...rest}
             type={isPassword && show ? "text" : rest.type}
             ref={ref}
-            className={`w-full rounded-md border px-3 py-2 outline-none bg-white
-              ${error ? "border-red-400" : "border-input focus:ring-2 focus:ring-cyan-500/40"}`}
+            className={`romi-field ${error ? "border-[var(--destructive)]" : ""}`}
           />
           {isPassword && (
             <button

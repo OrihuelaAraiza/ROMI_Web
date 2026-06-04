@@ -4,11 +4,7 @@ export const metadata = { title: "ROMI — Doctores" };
 
 export default function Page() {
   return (
-    <main className="max-w-6xl mx-auto px-4 py-10">
-      <header className="mb-6">
-        
-      </header>
-
+    <main className="max-w-6xl mx-auto py-6 sm:py-10">
       <DoctorsBrowser />
     </main>
   );

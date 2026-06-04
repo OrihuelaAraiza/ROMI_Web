@@ -3,17 +3,17 @@ export const metadata = { title: "Cita creada — ROMI" };
 export default function Page({ searchParams }: { searchParams: { id?: string; doctorId?: string } }) {
   const { id, doctorId } = searchParams || {};
   return (
-    <main className="max-w-xl mx-auto px-4 py-10">
-      <div className="rounded-xl border p-6 bg-emerald-50 border-emerald-200">
-        <h1 className="text-2xl font-bold text-emerald-800">¡Cita creada correctamente!</h1>
-        <p className="mt-2 text-emerald-900">
+    <main className="romi-page max-w-xl mx-auto">
+      <div className="card-premium p-6">
+        <h1 className="font-fredoka-one text-3xl font-bold text-primary">¡Cita creada correctamente!</h1>
+        <p className="mt-2 text-[var(--text-body)]">
           Tu solicitud quedó registrada {id ? <>con el folio <span className="font-semibold">{id}</span></> : null}.
         </p>
-        <div className="mt-6 space-x-3">
-          <a href="/appointments" className="px-4 py-2 rounded bg-emerald-600 text-white hover:bg-emerald-700">
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+          <a href="/appointments" className="romi-action">
             Ver mis citas
           </a>
-          <a href={`/doctores${doctorId ? `?pref=${doctorId}` : ""}`} className="px-4 py-2 rounded border hover:bg-zinc-50">
+          <a href={`/doctores${doctorId ? `?pref=${doctorId}` : ""}`} className="romi-action romi-action-secondary">
             Agendar otra
           </a>
         </div>
@@ -21,4 +21,3 @@ export default function Page({ searchParams }: { searchParams: { id?: string; do
     </main>
   );
 }
-

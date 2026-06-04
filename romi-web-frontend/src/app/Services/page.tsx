@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Smartphone, Brain, Video, Activity, Zap, Shield, MessageSquare, Clock, Heart, ArrowRight, Compass } from "lucide-react";
+import { Smartphone, Brain, Video, Activity, Zap, Shield, Heart, ArrowRight, Compass } from "lucide-react";
 import Reveal from "@/components/Reveal";
 
 export const metadata = { title: "ROMI — Servicios" };

@@ -18,9 +18,9 @@ export type Doctor = {
 
 export default function DoctorCard({ d }: { d: Doctor }) {
   return (
-    <div className="rounded-xl border bg-white shadow-sm hover:shadow-md transition">
+    <div className="card-premium h-full">
       <div className="p-5">
-        <div className="flex items-start justify-between">
+        <div className="flex items-start justify-between gap-3">
           <div>
             <h3 className="text-lg font-semibold">{d.name}</h3>
             <Link href="#" className="text-sm text-primary hover:underline">
@@ -34,12 +34,12 @@ export default function DoctorCard({ d }: { d: Doctor }) {
           </span>
         </div>
 
-        <div className="mt-3 space-y-2 text-sm text-zinc-600">
+        <div className="mt-3 space-y-2 text-sm text-[var(--text-body)]">
           <div className="flex items-center gap-2">
             <Star className="w-4 h-4" />
             <span>
               {d.rating?.toFixed(1) ?? "4.8"}{" "}
-              <span className="text-zinc-400">({d.years_exp ?? 10} años)</span>
+              <span className="text-[var(--text-muted)]">({d.years_exp ?? 10} años)</span>
             </span>
           </div>
           {d.city && (
@@ -62,28 +62,19 @@ export default function DoctorCard({ d }: { d: Doctor }) {
           )}
         </div>
 
-        <div className="mt-4 flex items-center justify-between">
-          <div className="text-cyan-700 font-bold">
+        <div className="mt-5 flex flex-col gap-3">
+          <div className="font-bold text-primary">
             {typeof d.price === "number" ? `$${d.price} MXN` : "$800 MXN"}
-            <span className="ml-1 text-xs text-zinc-400 font-normal">por consulta</span>
+            <span className="ml-1 text-xs text-[var(--text-muted)] font-normal">por consulta</span>
           </div>
-          <div className="flex gap-2">
-            <Link
-              href={`/appointments/new?doctorId=${d.id}`}
-              className="px-6 py-1 rounded bg-gradient-romi text-white text-center hover:bg-rose-700"
-            >
-              Agendar Cita
-            </Link>
-            <Link
-              href={`/doctores/${d.id}`}
-              className="px-3 py-2 rounded-lg border text-sm hover:bg-zinc-50 text-center"
-            >
-              Ver perfil
-            </Link>
-          </div>
+          <Link
+            href={`/appointments/new?doctorId=${d.id}`}
+            className="romi-action w-full"
+          >
+            Agendar cita
+          </Link>
         </div>
       </div>
     </div>
   );
 }
-

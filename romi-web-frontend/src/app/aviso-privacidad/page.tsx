@@ -28,7 +28,7 @@ export default function PrivacyPage() {
     >
       <p>
         El Centro de Innovacion y Desarrollo Integral, empresa de la cual depende el modelo de asistencia virtual
-        (en adelante, "Romi" o "el Servicio"), con domicilio en Calle Benito Juarez, Reserva Territorial
+        (en adelante, &quot;Romi&quot; o &quot;el Servicio&quot;), con domicilio en Calle Benito Juarez, Reserva Territorial
         Atlixcayotl, 72820 Heroica Puebla de Zaragoza, Pue., correo electronico de contacto{" "}
         <strong>contacto@romiai.com.mx</strong> y telefono <strong>222 921 5715</strong>, actua como Responsable del
         tratamiento de sus datos personales conforme a las leyes de proteccion de datos aplicables. En cumplimiento

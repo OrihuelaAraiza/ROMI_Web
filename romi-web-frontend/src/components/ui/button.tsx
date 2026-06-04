@@ -6,8 +6,7 @@ export default function Button({ loading, className = "", children, ...rest }: P
     <button
       {...rest}
       disabled={loading || rest.disabled}
-      className={`inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium
-        bg-cyan-600 text-white hover:bg-cyan-700 disabled:opacity-60 ${className}`}
+      className={`romi-action disabled:opacity-60 ${className}`}
     >
       {loading ? "Procesando..." : children}
     </button>

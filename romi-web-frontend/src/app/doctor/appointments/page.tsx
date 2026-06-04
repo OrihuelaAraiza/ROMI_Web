@@ -24,17 +24,17 @@ export default function DoctorAppointmentsPage() {
   const preview = openId ? getAiIntakeSummary(openId) : null;
 
   return (
-    <main className="max-w-6xl mx-auto p-6">
-      <header className="flex items-center gap-3 mb-4">
-        <h1 className="text-2xl font-semibold">Mis Citas</h1>
-        <div className="ml-auto flex items-center gap-2 text-sm">
+    <main className="romi-page max-w-6xl mx-auto">
+      <header className="romi-page-header flex flex-col gap-3 sm:flex-row sm:items-center">
+        <h1 className="text-3xl font-fredoka-one text-primary">Mis citas</h1>
+        <div className="flex flex-wrap items-center gap-2 text-sm sm:ml-auto">
           <span>Vista:</span>
-          <button onClick={() => setMode('cards')} className={`px-3 py-1 rounded-lg border ${mode==='cards'?'bg-cyan-600 text-white border-cyan-600':''}`}>Cards</button>
-          <button onClick={() => setMode('compact')} className={`px-3 py-1 rounded-lg border ${mode==='compact'?'bg-cyan-600 text-white border-cyan-600':''}`}>Compacto</button>
+          <button onClick={() => setMode('cards')} className={`min-h-11 rounded-full border-2 px-4 ${mode==='cards'?'border-[var(--surface-card-border)] bg-primary text-white':'bg-[var(--surface-card)]'}`}>Tarjetas</button>
+          <button onClick={() => setMode('compact')} className={`min-h-11 rounded-full border-2 px-4 ${mode==='compact'?'border-[var(--surface-card-border)] bg-primary text-white':'bg-[var(--surface-card)]'}`}>Compacto</button>
         </div>
       </header>
 
-      <div className="grid md:grid-cols-[1fr_380px] gap-4">
+      <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px]">
         <section className="space-y-3">
           {mode === 'cards' ? (
             items.map(a => (
@@ -57,4 +57,3 @@ export default function DoctorAppointmentsPage() {
     </main>
   );
 }
-

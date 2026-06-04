@@ -113,7 +113,7 @@ export default function PatientAppointmentsPage() {
 
   if (loading)
     return (
-      <main className="max-w-5xl mx-auto p-6 space-y-4">
+      <main className="romi-page max-w-5xl mx-auto space-y-4">
         <div className="h-6 w-40 bg-gray-100 animate-pulse rounded" />
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="h-24 bg-gray-100 rounded-xl animate-pulse" />
@@ -126,7 +126,7 @@ export default function PatientAppointmentsPage() {
 
   if (error)
     return (
-      <main className="max-w-5xl mx-auto p-6 space-y-4">
+      <main className="romi-page max-w-5xl mx-auto space-y-4">
         <p className="text-sm text-red-600">
           Ocurrió un error al cargar tus citas: {error}
         </p>
@@ -137,10 +137,10 @@ export default function PatientAppointmentsPage() {
     );
 
   return (
-    <main className="max-w-5xl mx-auto p-6 space-y-6">
-      <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+    <main className="romi-page max-w-5xl mx-auto space-y-6">
+      <header className="romi-page-header flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-semibold">Mis citas</h1>
+          <h1 className="text-3xl font-fredoka-one text-primary">Mis citas</h1>
           <p className="text-sm text-muted-foreground">
             Revisa tus próximas consultas, historial y gestiona tus citas.
           </p>
@@ -148,7 +148,7 @@ export default function PatientAppointmentsPage() {
 
         <button
           onClick={() => router.push("/doctores")}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm hover:bg-primary/90"
+          className="romi-action"
         >
           <PlusCircle className="w-4 h-4" />
           Agendar nueva cita
@@ -157,7 +157,7 @@ export default function PatientAppointmentsPage() {
 
       {/* Cards (no repiten) */}
       <section className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="rounded-2xl border bg-card p-4 flex items-center gap-3">
+        <div className="romi-panel flex items-center gap-3">
           <div className="p-2 rounded-full bg-blue-50">
             <CalendarDays className="w-5 h-5 text-blue-600" />
           </div>
@@ -167,7 +167,7 @@ export default function PatientAppointmentsPage() {
           </div>
         </div>
 
-        <div className="rounded-2xl border bg-card p-4 flex items-center gap-3">
+        <div className="romi-panel flex items-center gap-3">
           <div className="p-2 rounded-full bg-emerald-50">
             <Stethoscope className="w-5 h-5 text-emerald-600" />
           </div>
@@ -177,7 +177,7 @@ export default function PatientAppointmentsPage() {
           </div>
         </div>
 
-        <div className="rounded-2xl border bg-card p-4 flex items-center gap-3">
+        <div className="romi-panel flex items-center gap-3">
           <div className="p-2 rounded-full bg-slate-50">
             <Clock3 className="w-5 h-5 text-slate-700" />
           </div>
@@ -193,7 +193,7 @@ export default function PatientAppointmentsPage() {
         <button
           onClick={() => setTab("upcoming")}
           className={`px-4 py-2 rounded-full border text-sm ${
-            tab === "upcoming" ? "bg-primary text-primary-foreground border-primary" : "bg-white"
+            tab === "upcoming" ? "bg-primary text-primary-foreground border-[var(--surface-card-border)]" : "bg-[var(--surface-card)] text-[var(--text-primary)]"
           }`}
         >
           Próximas ({upcoming.length})
@@ -202,7 +202,7 @@ export default function PatientAppointmentsPage() {
         <button
           onClick={() => setTab("history")}
           className={`px-4 py-2 rounded-full border text-sm ${
-            tab === "history" ? "bg-primary text-primary-foreground border-primary" : "bg-white"
+            tab === "history" ? "bg-primary text-primary-foreground border-[var(--surface-card-border)]" : "bg-[var(--surface-card)] text-[var(--text-primary)]"
           }`}
         >
           Historial ({history.length})
@@ -211,7 +211,7 @@ export default function PatientAppointmentsPage() {
         <button
           onClick={() => setTab("all")}
           className={`px-4 py-2 rounded-full border text-sm ${
-            tab === "all" ? "bg-primary text-primary-foreground border-primary" : "bg-white"
+            tab === "all" ? "bg-primary text-primary-foreground border-[var(--surface-card-border)]" : "bg-[var(--surface-card)] text-[var(--text-primary)]"
           }`}
         >
           Todas ({items.length})
@@ -233,9 +233,9 @@ export default function PatientAppointmentsPage() {
               No hay citas para mostrar en “{tabLabel}”.
             </div>
           ) : (
-            <div className="overflow-x-auto border rounded">
-              <table className="w-full text-sm">
-                <thead className="bg-gray-50">
+            <div className="romi-panel overflow-x-auto p-0">
+              <table className="min-w-[720px] w-full text-sm">
+                <thead className="bg-[var(--surface-alt)]">
                   <tr>
                     <th className="text-left p-3">Médico</th>
                     <th className="text-left p-3">Fecha / Hora</th>
@@ -283,7 +283,7 @@ export default function PatientAppointmentsPage() {
       )}
 
       {!items.length && (
-        <section className="p-6 border rounded-2xl bg-card text-sm space-y-2">
+        <section className="romi-empty text-sm">
           <p>No tienes citas por ahora.</p>
           <p className="text-muted-foreground">
             Puedes agendar tu primera cita desde el botón{" "}

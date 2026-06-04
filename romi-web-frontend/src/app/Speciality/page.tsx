@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import {
   Brain, HeartPulse, Baby, Users, MessageCircle, Stethoscope,
-  CalendarClock, Sparkles, CheckCircle2, Compass, UserCheck, Network,
+  CalendarClock, Compass,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
 

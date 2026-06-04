@@ -11,19 +11,19 @@ type Props = {
 function Group({ title, items, onOpen }: { title: string; items: Appointment[]; onOpen?: (id: string) => void }) {
   if (!items.length) return null;
   return (
-    <details className="rounded-xl border bg-card p-3" open>
+    <details className="romi-panel" open>
       <summary className="cursor-pointer select-none font-medium">{title} <span className="text-xs text-muted-foreground">({items.length})</span></summary>
       <ul className="mt-2 divide-y">
         {items.map(a => (
-          <li key={a.id} className="py-2 flex items-center justify-between">
+          <li key={a.id} className="py-3 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-3">
-              <span className="w-8 h-8 rounded-full bg-cyan-100 text-cyan-900 flex items-center justify-center text-sm font-semibold">{a.patient.initials}</span>
+              <span className="w-8 h-8 rounded-full bg-[var(--chip-bg)] text-primary flex items-center justify-center text-sm font-semibold">{a.patient.initials}</span>
               <div className="text-sm">
                 <div className="font-medium">{a.patient.name} <StatusChip value={a.status}/></div>
                 <div className="text-muted-foreground">{a.specialty} · {formatLocal(a.startUTC, a.tz)}</div>
               </div>
             </div>
-            <button onClick={() => onOpen?.(a.id)} className="px-3 py-2 rounded-lg border text-sm hover:bg-accent">Ver</button>
+            <button onClick={() => onOpen?.(a.id)} className="romi-action romi-action-secondary w-full text-sm sm:w-auto">Ver</button>
           </li>
         ))}
       </ul>
@@ -45,4 +45,3 @@ export default function AppointmentAccordion({ items, onOpen }: Props) {
     </div>
   );
 }
-

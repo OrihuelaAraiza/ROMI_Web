@@ -8,7 +8,7 @@ export default function Page({ searchParams }: { searchParams: { doctorId?: stri
   if (!doctorId) redirect("/doctores?reason=pick-doctor");
 
   return (
-    <main className="max-w-4xl mx-auto px-4 py-10">
+    <main className="romi-page max-w-4xl mx-auto">
       <NewAppointment doctorId={doctorId} />
     </main>
   );

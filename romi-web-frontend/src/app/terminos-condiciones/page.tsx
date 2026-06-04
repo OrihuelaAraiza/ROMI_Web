@@ -88,7 +88,7 @@ export default function TermsPage() {
       <p><strong>4.1</strong> El idioma disponible para la celebracion del contrato es el Espanol.</p>
       <p>
         <strong>4.2</strong> Guardamos el texto del contrato y le proporcionamos los detalles de sus compras de fichas.
-        Puede verlos en nuestra plataforma en la opcion de menu "Mi cuenta", donde se enumeran los detalles de cada
+        Puede verlos en nuestra plataforma en la opcion de menu &quot;Mi cuenta&quot;, donde se enumeran los detalles de cada
         compra, incluido el numero de fichas, el importe pagado, el ID de pago, el estado y la fecha de la compra.
       </p>
 

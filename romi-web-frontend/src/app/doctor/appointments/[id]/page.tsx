@@ -141,7 +141,7 @@ export default function AppointmentDetailPage() {
       </header>
 
       {/* Info cita */}
-      <div className="border rounded-xl p-4 space-y-2 bg-white">
+      <div className="border rounded-xl p-4 space-y-2 bg-[var(--surface-card)]">
         <p>
           <b>Paciente:</b> {data.patient?.email ?? "—"}
         </p>
@@ -161,7 +161,7 @@ export default function AppointmentDetailPage() {
       </div>
 
       {/* PRE-CONSULTA */}
-      <section className="border rounded-xl p-4 space-y-3 bg-white">
+      <section className="border rounded-xl p-4 space-y-3 bg-[var(--surface-card)]">
         <div className="flex items-center justify-between">
           <h2 className="font-semibold">Pre-consulta del paciente</h2>
           <span className="text-sm text-gray-500">
@@ -218,7 +218,7 @@ export default function AppointmentDetailPage() {
       </section>
 
       {/* NOTAS CLÍNICAS */}
-      <section className="border rounded-xl p-4 space-y-3 bg-white">
+      <section className="border rounded-xl p-4 space-y-3 bg-[var(--surface-card)]">
         <div className="flex items-center justify-between">
           <h2 className="font-semibold">Notas clínicas</h2>
           <span className="text-sm text-gray-500">{notes.length} registradas</span>

@@ -92,7 +92,7 @@ export default function Nav() {
           </Link>
 
           {/* Desktop nav links */}
-          <div className="hidden md:flex items-center gap-0.5">
+          <div className="hidden xl:flex items-center gap-0.5">
             {LINKS.map((l) => (
               <Link
                 key={l.href}
@@ -111,7 +111,7 @@ export default function Nav() {
           <div className="flex-1" />
 
           {/* Desktop actions */}
-          <div className="hidden md:flex items-center gap-2 lg:gap-3">
+          <div className="hidden xl:flex items-center gap-2 lg:gap-3">
             {isLoggedIn && showDoctorArea && (
               <Link
                 href={doctorDashboardHref}
@@ -168,7 +168,7 @@ export default function Nav() {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden ml-auto p-2 rounded-full border-2 border-[var(--surface-card-border)] text-[var(--text-primary)] hover:bg-primary/10 active:scale-95 transition-all duration-200 shadow-[2px_2px_0_var(--shadow-ink)]"
+            className="xl:hidden ml-auto grid h-11 w-11 place-items-center rounded-full border-2 border-[var(--surface-card-border)] text-[var(--text-primary)] hover:bg-primary/10 active:scale-95 transition-all duration-200 shadow-[2px_2px_0_var(--shadow-ink)]"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
           >
@@ -187,8 +187,8 @@ export default function Nav() {
 
         {/* Mobile menu */}
         {open && (
-          <div className="md:hidden border-t-[2.5px] border-[var(--surface-card-border)] bg-[var(--surface-card)] backdrop-blur-sm animate-mobile-nav-in">
-            <div className="px-4 py-4 flex flex-col gap-1.5">
+          <div className="xl:hidden max-h-[calc(100dvh-4rem)] overflow-y-auto border-t-[2.5px] border-[var(--surface-card-border)] bg-[var(--surface-card)] backdrop-blur-sm animate-mobile-nav-in">
+            <div className="mx-auto max-w-2xl px-4 py-4 flex flex-col gap-1.5">
               {LINKS.map((l, i) => (
                 <Link
                   key={l.href}

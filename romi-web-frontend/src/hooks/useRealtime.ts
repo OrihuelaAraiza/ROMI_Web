@@ -29,6 +29,7 @@ export function useRealtime(options: { userId?: string | null; appointmentIds?: 
     }
 
     const socket = io(url, { auth: { token } });
+    const joined = joinedAppointments.current;
     socketRef.current = socket;
 
     socket.on("connect", () => {
@@ -47,13 +48,13 @@ export function useRealtime(options: { userId?: string | null; appointmentIds?: 
     });
 
     socket.on("disconnect", () => {
-      joinedAppointments.current.clear();
+      joined.clear();
     });
 
     return () => {
       socket.disconnect();
       socketRef.current = null;
-      joinedAppointments.current.clear();
+      joined.clear();
     };
   }, [userId]);
 

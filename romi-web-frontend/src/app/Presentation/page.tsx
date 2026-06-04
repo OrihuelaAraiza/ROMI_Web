@@ -1,4 +1,5 @@
 export const metadata = { title: "ROMI — Presentación" };
+import Image from "next/image";
 import { Target, Handshake, Heart, Lightbulb, Shield, Users, Globe, Zap, User } from "lucide-react";
 import Reveal from "@/components/Reveal";
 
@@ -52,24 +53,26 @@ export default function Page() {
         <section className="mt-8 sm:mt-10 grid md:grid-cols-2 gap-6">
           <Reveal type="left">
             <div className="rounded-2xl border border-[var(--surface-card-border-soft)] p-5 sm:p-6 card-premium">
-              <p className="text-sm sm:text-base text-zinc-600 mt-2">
+              <p className="text-sm sm:text-base text-[var(--text-body)] mt-2">
                 HubROMI nació de la visión de democratizar el acceso a la salud a través de la tecnología. Somos un equipo multidisciplinario de médicos, ingenieros y especialistas en salud digital.
               </p>
-              <p className="text-sm sm:text-base text-zinc-600 mt-4">
+              <p className="text-sm sm:text-base text-[var(--text-body)] mt-4">
                 Nuestra plataforma integra inteligencia artificial, telemedicina, educación médica continua y herramientas de gestión clínica en un ecosistema completo que empodera a los profesionales de la salud.
               </p>
-              <p className="text-sm sm:text-base text-zinc-600 mt-4">
+              <p className="text-sm sm:text-base text-[var(--text-body)] mt-4">
                 Con presencia en más de 15 países y una comunidad de más de 10,000 profesionales, continuamos innovando para hacer que la medicina sea más accesible, eficiente y efectiva.
               </p>
             </div>
           </Reveal>
 
           <Reveal type="right">
-            <div className="rounded-2xl border border-[var(--surface-card-border-soft)] p-5 sm:p-6 overflow-hidden card-premium">
-              <img
-                src="images/doctor.jpg"
+            <div className="relative h-56 overflow-hidden rounded-2xl border border-[var(--surface-card-border-soft)] p-5 card-premium sm:h-80 sm:p-6 md:h-[400px]">
+              <Image
+                src="/images/doctor.jpg"
                 alt="Doctor escribiendo"
-                className="rounded-xl shadow-lg object-cover w-full h-56 sm:h-80 md:h-[400px] hover:scale-105 transition-transform duration-500"
+                fill
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="rounded-xl object-cover transition-transform duration-500 hover:scale-105"
               />
             </div>
           </Reveal>
@@ -78,7 +81,7 @@ export default function Page() {
         {/* Misión y Visión */}
         <Reveal className="text-center mt-12 sm:mt-16">
           <h1 className="text-2xl sm:text-3xl font-bold text-primary">Nuestra Misión y Visión</h1>
-          <p className="text-center text-sm sm:text-base text-zinc-600 mt-2 font-poppins">
+          <p className="text-center text-sm sm:text-base text-[var(--text-body)] mt-2 font-poppins">
             Los principios que guían cada decisión y acción en HubROMImedia.
           </p>
         </Reveal>
@@ -94,7 +97,7 @@ export default function Page() {
                   <Icon className="w-6 h-6 text-primary" />
                 </div>
                 <h2 className="font-semibold text-lg sm:text-xl text-[var(--text-primary)]">{title}</h2>
-                <p className="text-sm text-zinc-600 font-poppins">{desc}</p>
+                <p className="text-sm text-[var(--text-body)] font-poppins">{desc}</p>
               </div>
             </Reveal>
           ))}
@@ -113,7 +116,7 @@ export default function Page() {
                   <Icon className="w-6 h-6 text-primary" />
                 </div>
                 <h2 className="font-semibold text-base sm:text-xl text-[var(--text-primary)]">{title}</h2>
-                <p className="text-sm text-zinc-600 mt-2 font-poppins">{desc}</p>
+                <p className="text-sm text-[var(--text-body)] mt-2 font-poppins">{desc}</p>
               </div>
             </Reveal>
           ))}
@@ -122,7 +125,7 @@ export default function Page() {
         {/* Equipo */}
         <Reveal className="text-center mt-12 sm:mt-16">
           <h1 className="text-2xl sm:text-3xl font-bold text-primary">Nuestro Equipo</h1>
-          <p className="text-center text-sm sm:text-base text-zinc-600 mt-2 font-poppins">
+          <p className="text-center text-sm sm:text-base text-[var(--text-body)] mt-2 font-poppins">
             Profesionales excepcionales comprometidos con la innovación médica.
           </p>
         </Reveal>
@@ -135,7 +138,7 @@ export default function Page() {
                   <User className="w-5 h-5 text-primary" />
                 </div>
                 <h2 className="font-semibold text-sm sm:text-base text-[var(--text-primary)]">{name}</h2>
-                <p className="text-xs sm:text-sm text-zinc-600 mt-1 font-poppins">{role}</p>
+                <p className="text-xs sm:text-sm text-[var(--text-body)] mt-1 font-poppins">{role}</p>
               </div>
             </Reveal>
           ))}
@@ -144,7 +147,7 @@ export default function Page() {
         {/* Historia */}
         <Reveal className="text-center mt-12 sm:mt-16">
           <h1 className="text-2xl sm:text-3xl font-bold text-primary">Nuestra Historia</h1>
-          <p className="text-center text-sm sm:text-base text-zinc-600 mt-2 mb-10 sm:mb-12 font-poppins">
+          <p className="text-center text-sm sm:text-base text-[var(--text-body)] mt-2 mb-10 sm:mb-12 font-poppins">
             Un recorrido de innovación y crecimiento en el sector de la salud digital.
           </p>
         </Reveal>
@@ -167,7 +170,7 @@ export default function Page() {
                   <div className="rounded-2xl bg-[var(--surface)] p-4 sm:p-6 shadow-md ring-1 ring-[var(--surface-card-border-soft)] card-premium">
                     <p className="text-[var(--primary)] font-bold text-base sm:text-lg">{year}</p>
                     <h3 className="mt-1 text-base sm:text-xl font-semibold text-[var(--text-primary)]">{title}</h3>
-                    <p className="mt-2 text-xs sm:text-sm text-zinc-600 font-poppins">{desc}</p>
+                    <p className="mt-2 text-xs sm:text-sm text-[var(--text-body)] font-poppins">{desc}</p>
                   </div>
                 </div>
               </div>

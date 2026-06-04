@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { apiFetchAuth, endpoints } from "@/lib/api";
 import { getToken } from "@/lib/auth";
 import { useRouter } from "next/navigation";
@@ -16,7 +16,7 @@ export default function DoctorDashboard() {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const router = useRouter();
 
-  async function loadAppointments() {
+  const loadAppointments = useCallback(async () => {
     try {
       const token = getToken();
       if (!token) {
@@ -31,30 +31,32 @@ export default function DoctorDashboard() {
     } catch (err) {
       console.error("Error loading doctor appointments:", err);
     }
-  }
+  }, [router]);
 
   useEffect(() => {
     loadAppointments();
-  }, []);
+  }, [loadAppointments]);
 
   return (
-    <div className="p-8">
-      <h1 className="text-3xl font-bold mb-4">Panel del Doctor</h1>
-      <p className="text-gray-600 mb-6">
+    <main className="romi-page mx-auto max-w-4xl">
+      <header className="romi-page-header">
+      <h1 className="font-fredoka-one text-3xl text-primary">Panel del doctor</h1>
+      <p className="mt-2 text-[var(--text-body)]">
         Aquí puedes ver y gestionar las citas que te han sido asignadas.
       </p>
+      </header>
 
       <div className="space-y-4">
-        {appointments.length === 0 && <p>No tienes citas pendientes.</p>}
+        {appointments.length === 0 && <div className="romi-empty">No tienes citas pendientes.</div>}
 
         {appointments.map((a) => (
-          <div key={a.id} className="border p-4 rounded-md shadow-sm flex justify-between items-center">
+          <div key={a.id} className="romi-panel flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
             <div>
               <p><b>Paciente:</b> {a.patient?.email}</p>
               <p><b>Fecha:</b> {new Date(a.scheduledAt).toLocaleString()}</p>
               <p><b>Motivo:</b> {a.reason ?? "No especificado"}</p>
             </div>
-            <div className="space-x-2">
+            <div className="flex flex-wrap gap-2">
               {a.status === "PENDING" && (
                 <>
                   <button
@@ -62,7 +64,7 @@ export default function DoctorDashboard() {
                       method: "PATCH",
                       body: JSON.stringify({ status: "ACCEPTED" }),
                     }).then(loadAppointments)}
-                    className="bg-green-600 text-white px-3 py-1 rounded"
+                    className="romi-action"
                   >
                     Aceptar
                   </button>
@@ -71,19 +73,19 @@ export default function DoctorDashboard() {
                       method: "PATCH",
                       body: JSON.stringify({ status: "CANCELED" }),
                     }).then(loadAppointments)}
-                    className="bg-red-600 text-white px-3 py-1 rounded"
+                    className="romi-action romi-action-secondary text-[var(--destructive)]"
                   >
                     Rechazar
                   </button>
                 </>
               )}
               {a.status !== "PENDING" && (
-                <span className="text-sm italic text-gray-500">{a.status}</span>
+                <span className="kawaii-chip px-3 py-1 text-xs">{a.status}</span>
               )}
             </div>
           </div>
         ))}
       </div>
-    </div>
+    </main>
   );
 }

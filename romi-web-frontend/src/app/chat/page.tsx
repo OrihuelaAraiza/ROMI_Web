@@ -105,18 +105,21 @@ function ChatPageInner() {
   };
 
   return (
-    <main className="min-h-screen bg-white">
-      <div className="max-w-3xl mx-auto p-4 space-y-6">
-        <h1 className="text-xl font-semibold">Chat con ROMI</h1>
+    <main className="romi-page">
+      <div className="max-w-3xl mx-auto px-0 sm:px-4 space-y-5">
+        <header className="romi-page-header">
+          <h1 className="font-fredoka-one text-3xl text-primary">Chat con ROMI</h1>
+          <p className="mt-1 text-sm text-[var(--text-body)]">Un espacio claro para conversar y dar seguimiento.</p>
+        </header>
 
         {appointmentId && (
-          <section className="rounded-2xl border bg-card p-4 space-y-3">
+          <section className="romi-panel space-y-3">
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-medium">Chat de la cita</h2>
               <span className="text-xs text-muted-foreground">ID: {appointmentId}</span>
             </div>
 
-            <div className="border rounded-xl p-3 h-60 overflow-y-auto bg-white">
+            <div className="h-60 overflow-y-auto rounded-2xl border-2 border-[var(--surface-card-border-soft)] bg-[var(--surface-alt)] p-3">
               {realtimeThread.length === 0 && (
                 <p className="text-sm text-muted-foreground">
                   Sin mensajes todavía. Empieza la conversación.
@@ -134,7 +137,7 @@ function ChatPageInner() {
                     className={`px-3 py-2 rounded-xl max-w-[80%] ${
                       msg.authorId === userId
                         ? "bg-primary text-primary-foreground"
-                        : "bg-zinc-100"
+                        : "bg-[var(--surface-card)] text-[var(--text-primary)]"
                     }`}
                   >
                     <p className="text-xs text-muted-foreground">
@@ -149,14 +152,14 @@ function ChatPageInner() {
 
             <div className="flex gap-2">
               <input
-                className="flex-1 border rounded-xl px-3 py-2"
+                className="romi-field min-w-0 flex-1"
                 placeholder="Mensaje para la cita"
                 value={appointmentInput}
                 onChange={(e) => setAppointmentInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && sendAppointmentMessage()}
               />
               <button
-                className="px-4 py-2 rounded-xl bg-cyan-700 text-white hover:bg-cyan-800"
+                className="romi-action"
                 onClick={sendAppointmentMessage}
               >
                 Enviar
@@ -165,7 +168,7 @@ function ChatPageInner() {
           </section>
         )}
 
-        <section className="rounded-2xl border bg-muted p-3 h-[60vh] overflow-y-auto">
+        <section className="romi-panel h-[55vh] overflow-y-auto bg-[var(--surface-alt)]">
           {messages.map((m, i) => (
             <div
               key={i}
@@ -182,7 +185,7 @@ function ChatPageInner() {
                 className={`px-3 py-2 rounded-xl max-w-[80%] ${
                   m.from === "user"
                     ? "bg-primary text-primary-foreground"
-                    : "bg-white border"
+                    : "border-2 border-[var(--surface-card-border-soft)] bg-[var(--surface-card)] text-[var(--text-primary)]"
                 }`}
               >
                 {m.text}
@@ -204,14 +207,14 @@ function ChatPageInner() {
 
         <div className="flex gap-2">
           <input
-            className="flex-1 border rounded-xl px-3 py-2"
+            className="romi-field min-w-0 flex-1"
             placeholder="Escribe tu mensaje…"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && send()}
           />
           <button
-            className="px-4 py-2 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90"
+            className="romi-action"
             onClick={send}
           >
             Enviar

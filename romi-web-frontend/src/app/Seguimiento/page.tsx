@@ -32,13 +32,13 @@ export default function PatientDashboard() {
           reason,
         }),
       });
-      alert("Cita solicitada correctamente ✅");
+      alert("Cita solicitada correctamente");
       setSelected("");
       setReason("");
       setDate("");
     } catch (err) {
       console.error("Error creando cita:", err);
-      alert("Error al crear la cita ❌");
+      alert("Error al crear la cita");
     }
   }
 
@@ -47,13 +47,17 @@ export default function PatientDashboard() {
   }, []);
 
   return (
-    <div className="p-8">
-      <h1 className="text-3xl font-bold mb-4">Panel del Paciente</h1>
-      <form onSubmit={submitAppointment} className="grid gap-4 max-w-md">
-        <label>
-          <span>Médico:</span>
+    <main className="romi-page mx-auto max-w-3xl">
+      <header className="romi-page-header">
+        <span className="kawaii-chip px-3 py-1 text-[10px]">Seguimiento</span>
+        <h1 className="mt-3 text-3xl font-fredoka-one text-primary">Solicita una cita</h1>
+        <p className="mt-2 text-sm text-[var(--text-body)]">Elige al profesional y cuéntanos brevemente qué necesitas.</p>
+      </header>
+      <form onSubmit={submitAppointment} className="romi-panel grid gap-5">
+        <label className="grid gap-2 text-sm font-semibold text-[var(--text-primary)]">
+          <span>Médico</span>
           <select
-            className="border p-2 w-full rounded"
+            className="romi-field"
             value={selected}
             onChange={(e) => setSelected(e.target.value)}
           >
@@ -65,19 +69,19 @@ export default function PatientDashboard() {
             ))}
           </select>
         </label>
-        <label>
-          <span>Fecha y hora:</span>
+        <label className="grid gap-2 text-sm font-semibold text-[var(--text-primary)]">
+          <span>Fecha y hora</span>
           <input
             type="datetime-local"
-            className="border p-2 w-full rounded"
+            className="romi-field"
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
         </label>
-        <label>
-          <span>Motivo:</span>
+        <label className="grid gap-2 text-sm font-semibold text-[var(--text-primary)]">
+          <span>Motivo</span>
           <textarea
-            className="border p-2 w-full rounded"
+            className="romi-field min-h-32"
             value={reason}
             onChange={(e) => setReason(e.target.value)}
             placeholder="Describe el motivo de tu consulta"
@@ -85,11 +89,11 @@ export default function PatientDashboard() {
         </label>
         <button
           type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          className="romi-action w-full sm:w-fit"
         >
           Confirmar Cita
         </button>
       </form>
-    </div>
+    </main>
   );
 }

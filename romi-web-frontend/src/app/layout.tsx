@@ -5,7 +5,6 @@ import Navbar from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { AuthProvider } from "./Auth/contexts/AuthContext";
 import MedicalBg from "@/components/MedicalBg";
-import TalentLandBar from "@/components/TalentLandBar";
 import { Fredoka, Poppins } from "next/font/google";
 
 const fredoka = Fredoka({

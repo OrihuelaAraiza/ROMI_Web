@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { apiFetchAuth, endpoints } from "@/lib/api";
 import StatusChip from "@/components/appointments/StatusChip";
 import { CalendarClock, Stethoscope } from "lucide-react";
@@ -28,7 +28,7 @@ export default function PatientAppointmentsListPage() {
 
   const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const card = (x: Item) => (
-    <div key={x.id} className="rounded-2xl border bg-card p-4 shadow-sm">
+    <div key={x.id} className="romi-panel">
       <div className="flex items-center justify-between">
         <div className="space-y-1">
           <div className="flex items-center gap-2 text-sm text-muted-foreground"><Stethoscope className="w-4 h-4"/> Consulta médica</div>
@@ -40,7 +40,7 @@ export default function PatientAppointmentsListPage() {
         <div className="mt-3 flex justify-end">
           <button
             onClick={() => (window.location.href = `/patient/appointments/${x.id}/call`)}
-            className="px-3 py-2 rounded-lg bg-cyan-700 text-white hover:bg-cyan-800 text-sm"
+            className="romi-action text-sm"
           >
             Unirme a consulta
           </button>
@@ -49,12 +49,12 @@ export default function PatientAppointmentsListPage() {
     </div>
   );
 
-  if (loading) return <div className="p-6">Cargando…</div>;
+  if (loading) return <div className="romi-page">Cargando…</div>;
 
   return (
-    <main className="max-w-4xl mx-auto p-6 space-y-6">
-      <header>
-        <h1 className="text-2xl font-semibold">Mis Citas</h1>
+    <main className="romi-page max-w-4xl mx-auto space-y-6">
+      <header className="romi-page-header">
+        <h1 className="font-fredoka-one text-3xl text-primary">Mis citas</h1>
       </header>
 
       {!!pending.length && (
@@ -72,7 +72,7 @@ export default function PatientAppointmentsListPage() {
       )}
 
       {!pending.length && !accepted.length && (
-        <p className="text-muted-foreground">No tienes citas pendientes ni confirmadas.</p>
+        <div className="romi-empty">No tienes citas pendientes ni confirmadas.</div>
       )}
     </main>
   );
