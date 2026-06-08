@@ -12,6 +12,10 @@ import {
   PlusCircle,
 } from "lucide-react";
 import { useFormatter, useTranslations } from "next-intl";
+import PageShell from "@/components/PageShell";
+import PageState from "@/components/PageState";
+import Panel from "@/components/Panel";
+import ConfirmDialog from "@/components/ConfirmDialog";
 
 type Appointment = {
   id: string;
@@ -27,11 +31,14 @@ type TabKey = "upcoming" | "history" | "all";
 
 export default function PatientAppointmentsPage() {
   const t = useTranslations("appointments");
+  const commonT = useTranslations("common");
   const statusT = useTranslations("status");
   const format = useFormatter();
   const [items, setItems] = useState<Appointment[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [actionError, setActionError] = useState<string | null>(null);
+  const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
 
   const [tab, setTab] = useState<TabKey>("upcoming");
 
@@ -58,17 +65,17 @@ export default function PatientAppointmentsPage() {
     fetchData().catch(() => setLoading(false));
   }, [fetchData]);
 
-  const deleteAppointment = async (id: string) => {
-    const ok = confirm("¿Seguro que deseas eliminar esta cita?");
-    if (!ok) return;
-
+  const confirmDeleteAppointment = async () => {
+    if (!pendingDeleteId) return;
+    setActionError(null);
     try {
-      await apiFetchAuth(endpoints.appointments.delete(id), {
+      await apiFetchAuth(endpoints.appointments.delete(pendingDeleteId), {
         method: "DELETE",
       });
+      setPendingDeleteId(null);
       fetchData();
     } catch (err: unknown) {
-      alert("Error al eliminar la cita: " + errMsg(err));
+      setActionError(t("deleteError", { error: errMsg(err) }));
     }
   };
 
@@ -117,31 +124,34 @@ export default function PatientAppointmentsPage() {
 
   if (loading)
     return (
-      <main className="romi-page max-w-5xl mx-auto space-y-4">
-        <div className="h-6 w-40 bg-gray-100 animate-pulse rounded" />
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="h-24 bg-gray-100 rounded-xl animate-pulse" />
-          <div className="h-24 bg-gray-100 rounded-xl animate-pulse" />
-          <div className="h-24 bg-gray-100 rounded-xl animate-pulse" />
-        </div>
-        <div className="h-40 bg-gray-100 rounded-xl animate-pulse" />
-      </main>
+      <PageShell>
+        <PageState
+          type="loading"
+          title={t("loadingTitle")}
+          description={t("loadingDescription")}
+        />
+      </PageShell>
     );
 
   if (error)
     return (
-      <main className="romi-page max-w-5xl mx-auto space-y-4">
-        <p className="text-sm text-red-600">
-          {t("loadError", {error})}
-        </p>
-        <button onClick={fetchData} className="px-3 py-2 rounded border text-sm">
-          {t("retry")}
-        </button>
-      </main>
+      <PageShell>
+        <PageState
+          type="error"
+          title={commonT("error")}
+          description={t("loadError", {error})}
+          action={
+            <button onClick={fetchData} className="romi-action">
+              {t("retry")}
+            </button>
+          }
+        />
+      </PageShell>
     );
 
   return (
-    <main className="romi-page max-w-5xl mx-auto space-y-6">
+    <>
+    <PageShell>
       <header className="romi-page-header flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
           <h1 className="text-3xl font-fredoka-one text-primary">{t("title")}</h1>
@@ -159,9 +169,23 @@ export default function PatientAppointmentsPage() {
         </button>
       </header>
 
+      {actionError && (
+        <PageState
+          type="error"
+          title={commonT("error")}
+          description={actionError}
+          action={
+            <button onClick={() => setActionError(null)} className="romi-action romi-action-secondary">
+              {commonT("cancel")}
+            </button>
+          }
+          className="min-h-0"
+        />
+      )}
+
       {/* Cards (no repiten) */}
       <section className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="romi-panel flex items-center gap-3">
+        <Panel className="flex items-center gap-3">
           <div className="p-2 rounded-full bg-blue-50">
             <CalendarDays className="w-5 h-5 text-blue-600" />
           </div>
@@ -169,9 +193,9 @@ export default function PatientAppointmentsPage() {
             <div className="text-xs text-muted-foreground">{t("upcoming")}</div>
             <div className="text-2xl font-semibold">{stats.proximas}</div>
           </div>
-        </div>
+        </Panel>
 
-        <div className="romi-panel flex items-center gap-3">
+        <Panel className="flex items-center gap-3">
           <div className="p-2 rounded-full bg-emerald-50">
             <Stethoscope className="w-5 h-5 text-emerald-600" />
           </div>
@@ -179,9 +203,9 @@ export default function PatientAppointmentsPage() {
             <div className="text-xs text-muted-foreground">{t("completed")}</div>
             <div className="text-2xl font-semibold">{stats.realizadas}</div>
           </div>
-        </div>
+        </Panel>
 
-        <div className="romi-panel flex items-center gap-3">
+        <Panel className="flex items-center gap-3">
           <div className="p-2 rounded-full bg-slate-50">
             <Clock3 className="w-5 h-5 text-slate-700" />
           </div>
@@ -189,7 +213,7 @@ export default function PatientAppointmentsPage() {
             <div className="text-xs text-muted-foreground">{t("total")}</div>
             <div className="text-2xl font-semibold">{stats.total}</div>
           </div>
-        </div>
+        </Panel>
       </section>
 
       {/* TABS */}
@@ -233,11 +257,9 @@ export default function PatientAppointmentsPage() {
           </div>
 
           {listToShow.length === 0 ? (
-            <div className="p-6 border rounded-2xl bg-card text-sm text-muted-foreground">
-              No hay citas para mostrar en “{tabLabel}”.
-            </div>
+            <PageState type="empty" title={t("emptyFiltered", { tab: tabLabel })} />
           ) : (
-            <div className="romi-panel overflow-x-auto p-0">
+            <Panel className="overflow-x-auto" padded={false}>
               <table className="min-w-[720px] w-full text-sm">
                 <thead className="bg-[var(--surface-alt)]">
                   <tr>
@@ -267,34 +289,39 @@ export default function PatientAppointmentsPage() {
                           {t("details")}
                         </button>
 
-                        {(ap.status === "PENDING" || ap.status === "CANCELLED") && (
-                          <button
-                            onClick={() => deleteAppointment(ap.id)}
-                            className="inline-flex items-center justify-center px-2 py-1 rounded text-xs text-red-600 hover:bg-red-50"
-                            title="Eliminar cita"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
+	                        {(ap.status === "PENDING" || ap.status === "CANCELLED") && (
+	                          <button
+	                            onClick={() => setPendingDeleteId(ap.id)}
+	                            className="inline-flex items-center justify-center px-2 py-1 rounded text-xs text-red-600 hover:bg-red-50"
+	                            title={t("deleteTitle")}
+	                          >
+	                            <Trash2 className="w-4 h-4" />
+	                          </button>
                         )}
                       </td>
                     </tr>
                   ))}
                 </tbody>
-              </table>
-            </div>
-          )}
-        </section>
-      )}
+	              </table>
+	            </Panel>
+	          )}
+	        </section>
+	      )}
 
-      {!items.length && (
-        <section className="romi-empty text-sm">
-          <p>{t("empty")}</p>
-          <p className="text-muted-foreground">
-            Puedes agendar tu primera cita desde el botón{" "}
-            <span className="font-medium">“Agendar nueva cita”</span> arriba.
-          </p>
-        </section>
-      )}
-    </main>
-  );
-}
+	      {!items.length && (
+	        <PageState type="empty" title={t("empty")} />
+	      )}
+	    </PageShell>
+      <ConfirmDialog
+        open={!!pendingDeleteId}
+        title={t("deleteTitle")}
+        description={t("deleteDescription")}
+        confirmLabel={t("deleteConfirm")}
+        cancelLabel={commonT("cancel")}
+        destructive
+        onConfirm={confirmDeleteAppointment}
+        onCancel={() => setPendingDeleteId(null)}
+      />
+    </>
+	  );
+	}

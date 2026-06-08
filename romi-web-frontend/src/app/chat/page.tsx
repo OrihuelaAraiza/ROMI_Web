@@ -181,7 +181,7 @@ function ChatPageInner() {
             >
               {m.from === "bot" && (
                 <div className="mr-2 w-8 h-8 rounded-full overflow-hidden border bg-white flex-shrink-0">
-                  <Image src="/images/asistent.png" alt="ROMI" width={32} height={32} />
+                  <Image src="/images/asistent.webp" alt="ROMI" width={32} height={32} />
                 </div>
               )}
               <div
@@ -199,7 +199,7 @@ function ChatPageInner() {
           {typing && (
             <div className="my-2 flex justify-start items-end">
               <div className="mr-2 w-8 h-8 rounded-full overflow-hidden border bg-white flex-shrink-0">
-                <Image src="/images/asistent.png" alt="ROMI" width={32} height={32} />
+                <Image src="/images/asistent.webp" alt="ROMI" width={32} height={32} />
               </div>
               <div className="px-3 py-2 rounded-xl max-w-[80%] bg-white border">
                 <span className="inline-block animate-pulse">...</span>

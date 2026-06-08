@@ -9,6 +9,7 @@ export default function PatientDashboard() {
   const [selected, setSelected] = useState("");
   const [reason, setReason] = useState("");
   const [date, setDate] = useState("");
+  const [feedback, setFeedback] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
   async function loadDoctors() {
     try {
@@ -23,6 +24,7 @@ export default function PatientDashboard() {
 
   async function submitAppointment(e: React.FormEvent) {
     e.preventDefault();
+    setFeedback(null);
     try {
       await apiFetchAuth(endpoints.appointments.create, {
         method: "POST",
@@ -32,13 +34,13 @@ export default function PatientDashboard() {
           reason,
         }),
       });
-      alert("Cita solicitada correctamente");
+      setFeedback({ type: "success", text: "Cita solicitada correctamente." });
       setSelected("");
       setReason("");
       setDate("");
     } catch (err) {
       console.error("Error creando cita:", err);
-      alert("Error al crear la cita");
+      setFeedback({ type: "error", text: "Error al crear la cita. Intenta de nuevo." });
     }
   }
 
@@ -54,6 +56,18 @@ export default function PatientDashboard() {
         <p className="mt-2 text-sm text-[var(--text-body)]">Elige al profesional y cuéntanos brevemente qué necesitas.</p>
       </header>
       <form onSubmit={submitAppointment} className="romi-panel grid gap-5">
+        {feedback && (
+          <div
+            className={`rounded-xl border px-4 py-3 text-sm ${
+              feedback.type === "success"
+                ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                : "border-red-200 bg-red-50 text-red-700"
+            }`}
+            role={feedback.type === "error" ? "alert" : "status"}
+          >
+            {feedback.text}
+          </div>
+        )}
         <label className="grid gap-2 text-sm font-semibold text-[var(--text-primary)]">
           <span>Médico</span>
           <select

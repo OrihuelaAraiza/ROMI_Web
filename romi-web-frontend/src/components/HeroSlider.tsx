@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { ROMI_CONTACT } from "@/lib/contact";
 
 type Slide = {
   title: string;
@@ -16,7 +17,7 @@ const slides: Slide[] = [
     subtitle: "Inteligencia artificial al servicio de la medicina",
     description: "Obtén respuestas médicas precisas y actualizadas las 24 horas del día",
     ctaText: "Probar ROMI",
-    ctaHref: "/chat",
+    ctaHref: ROMI_CONTACT.whatsapp.url,
   },
   {
     title: "Telemedicina integrada",
@@ -74,10 +75,12 @@ export default function HeroSlider() {
                 )}
                 <div className="mt-8 flex justify-center gap-4">
                   {s.ctaText && s.ctaHref && (
-                    <a
-                      href={s.ctaHref}
-                      className="px-6 py-3 rounded-xl bg-primary text-primary-foreground transition hover:bg-primary/90"
-                    >
+	                    <a
+	                      href={s.ctaHref}
+                        target={s.ctaHref.startsWith("http") ? "_blank" : undefined}
+                        rel={s.ctaHref.startsWith("http") ? "noopener noreferrer" : undefined}
+	                      className="px-6 py-3 rounded-xl bg-primary text-primary-foreground transition hover:bg-primary/90"
+	                    >
                       {s.ctaText} â†’
                     </a>
                   )}

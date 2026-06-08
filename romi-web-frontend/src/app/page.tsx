@@ -4,6 +4,7 @@ import Reveal from "@/components/Reveal";
 import UserMapSection from "@/components/UserMapSection";
 import { getLocale, getTranslations } from "next-intl/server";
 import EnglishHomePage from "@/components/EnglishHomePage";
+import { ROMI_CONTACT } from "@/lib/contact";
 
 export default async function Home() {
   if (await getLocale() === "en") return <EnglishHomePage />;
@@ -32,7 +33,7 @@ export default async function Home() {
             </h1>
             <div className="relative w-56 aspect-square">
               <Image
-                src="/images/romi-hero.png"
+                src="/images/romi-hero.webp"
                 alt="ROMI"
                 width={800}
                 height={800}
@@ -52,7 +53,7 @@ export default async function Home() {
             <div className="flex items-center justify-center">
               <div className="relative w-full aspect-square max-w-[280px] lg:max-w-xs">
                 <Image
-                  src="/images/romi-hero.png"
+                  src="/images/romi-hero.webp"
                   alt="ROMI"
                   width={800}
                   height={800}
@@ -128,9 +129,9 @@ export default async function Home() {
             {/* T-shirt image grid */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
               {[
-                { src: "/images/talent-land-1.png", alt: "Equipo ROMI en Talent Land con playera", caption: "Así nos verás en el evento" },
-                { src: "/images/talent-land-2.png", alt: "Playera ROMI usada por el equipo",        caption: "Búscanos con esta playera" },
-                { src: "/images/talent-land-3.png", alt: "Playera ROMI usada por el equipo",        caption: "¡Salúdanos y escanea el QR!" },
+	                { src: "/images/talent-land-1.webp", alt: "Equipo ROMI en Talent Land con playera", caption: "Así nos verás en el evento" },
+	                { src: "/images/talent-land-2.webp", alt: "Playera ROMI usada por el equipo",        caption: "Búscanos con esta playera" },
+	                { src: "/images/talent-land-3.webp", alt: "Playera ROMI usada por el equipo",        caption: "¡Salúdanos y escanea el QR!" },
               ].map(({ src, alt, caption }, i) => (
                 <div
                   key={src}
@@ -157,10 +158,12 @@ export default async function Home() {
               <p className="text-white/60 font-poppins text-sm mb-4">
                 Búscanos por el stand o por los pasillos
               </p>
-              <a
-                href="/chat"
-                className="inline-flex items-center gap-2 rounded-full bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white font-semibold px-7 py-3 shadow-lg shadow-[var(--surface-card-border-soft)] hover:-translate-y-0.5 hover:shadow-xl transition-all duration-200 font-poppins"
-              >
+	              <a
+	                href={ROMI_CONTACT.whatsapp.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+	                className="inline-flex items-center gap-2 rounded-full bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white font-semibold px-7 py-3 shadow-lg shadow-[var(--surface-card-border-soft)] hover:-translate-y-0.5 hover:shadow-xl transition-all duration-200 font-poppins"
+	              >
                 Chatea con ROMI ahora
               </a>
             </div>
@@ -199,7 +202,7 @@ export default async function Home() {
               <Reveal type="right">
                 <div className="relative h-64 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-500 sm:h-80 md:h-96">
                   <Image
-                    src="/images/doctor.jpg"
+	                    src="/images/doctor.webp"
                     alt="Doctor escribiendo"
                     fill
                     sizes="(min-width: 768px) 50vw, 100vw"

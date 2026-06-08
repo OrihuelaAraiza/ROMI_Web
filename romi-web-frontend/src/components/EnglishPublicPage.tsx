@@ -1,5 +1,6 @@
 import { ArrowRight, Sparkles } from "lucide-react";
 import Link from "@/i18n/LocalizedLink";
+import { ROMI_CONTACT } from "@/lib/contact";
 
 type PageKind = "education" | "research" | "specialties" | "contact" | "events" | "about" | "telehealth";
 
@@ -57,7 +58,7 @@ const content: Record<PageKind, {
       {title: "Location", text: "Hospital Angeles Puebla, Puebla, Mexico."},
     ],
     action: "Chat with ROMI",
-    href: "/chat",
+    href: ROMI_CONTACT.whatsapp.url,
   },
   events: {
     eyebrow: "Medical community",
@@ -116,9 +117,15 @@ export default function EnglishPublicPage({kind}: {kind: PageKind}) {
         ))}
       </section>
       <div className="mx-auto mt-10 flex max-w-5xl justify-center">
-        <Link href={page.href} className="romi-action">
-          {page.action} <ArrowRight className="h-4 w-4" />
-        </Link>
+        {page.href.startsWith("http") ? (
+          <a href={page.href} target="_blank" rel="noopener noreferrer" className="romi-action">
+            {page.action} <ArrowRight className="h-4 w-4" />
+          </a>
+        ) : (
+          <Link href={page.href} className="romi-action">
+            {page.action} <ArrowRight className="h-4 w-4" />
+          </Link>
+        )}
       </div>
     </main>
   );

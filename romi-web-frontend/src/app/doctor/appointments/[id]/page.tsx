@@ -49,6 +49,7 @@ export default function AppointmentDetailPage() {
   });
 
   const [saving, setSaving] = useState(false);
+  const [noteFeedback, setNoteFeedback] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
   const loadAll = async (appointmentId: string) => {
 
@@ -97,6 +98,7 @@ export default function AppointmentDetailPage() {
     if (!params?.id) return;
 
     setSaving(true);
+    setNoteFeedback(null);
     try {
 
       await apiFetchAuth(endpoints.clinicalNotes.create, {
@@ -117,9 +119,10 @@ export default function AppointmentDetailPage() {
         { method: "GET" }
       );
       setNotes(Array.isArray(notesRes) ? notesRes : []);
+      setNoteFeedback({ type: "success", text: "Nota guardada correctamente." });
     } catch (err: unknown) {
       console.error("❌ Error al guardar nota:", err);
-      alert(errMsg(err, "Error al guardar la nota"));
+      setNoteFeedback({ type: "error", text: errMsg(err, "Error al guardar la nota") });
     } finally {
       setSaving(false);
     }
@@ -263,8 +266,20 @@ export default function AppointmentDetailPage() {
           </div>
         )}
 
-        <form onSubmit={submitNote} className="space-y-3 pt-2 border-t">
-          <h3 className="font-medium">Agregar nota</h3>
+	        <form onSubmit={submitNote} className="space-y-3 pt-2 border-t">
+	          <h3 className="font-medium">Agregar nota</h3>
+            {noteFeedback && (
+              <div
+                className={`rounded-xl border px-4 py-3 text-sm ${
+                  noteFeedback.type === "success"
+                    ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                    : "border-red-200 bg-red-50 text-red-700"
+                }`}
+                role={noteFeedback.type === "error" ? "alert" : "status"}
+              >
+                {noteFeedback.text}
+              </div>
+            )}
 
           <div className="space-y-1">
             <label className="text-sm font-medium">Subjetivo</label>

@@ -13,6 +13,12 @@ const nextConfig = {
       { source: '/OncoPro',  destination: '/OncoPro/index.html',  permanent: true },
       { source: '/RejuvIA',  destination: '/RejuvIA/index.html',  permanent: true },
       { source: '/ROMIMED',  destination: '/ROMIMED/index.html',  permanent: true },
+      { source: '/edu',      destination: '/Edu/index.html',      permanent: false },
+      { source: '/nutri',    destination: '/NutriSnap/index.html',permanent: false },
+      { source: '/oncopro',  destination: '/OncoPro/index.html',  permanent: false },
+      { source: '/rejuvia',  destination: '/RejuvIA/index.html',  permanent: false },
+      { source: '/romimed',  destination: '/ROMIMED/index.html',  permanent: false },
+      { source: '/efysia-app', destination: '/efysia/index.html', permanent: false },
     ];
   },
 

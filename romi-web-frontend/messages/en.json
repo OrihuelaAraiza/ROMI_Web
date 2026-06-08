@@ -20,6 +20,7 @@
     "education": "Education",
     "research": "Research",
     "specialties": "Specialties",
+    "apps": "Apps",
     "contact": "Contact",
     "dashboard": "Dashboard",
     "appointments": "My appointments",
@@ -83,8 +84,19 @@
     "different": "Features that set us apart",
     "ctaTitle": "Start Your Health Transformation Today",
     "ctaText": "Access medical AI, specialists and health monitoring in one integrated platform",
-    "try": "Try ROMI Free",
-    "specialists": "View Specialists"
+    "try": "Open WhatsApp",
+    "specialists": "View Specialists",
+    "whatsapp": "Open in WhatsApp",
+    "legacyTitle": "ROMI apps and demos",
+    "legacyText": "Access the available interactive experiences while the full clinical platform is being prepared.",
+    "legacyCta": "Open app",
+    "legacyAll": "View all apps"
+  },
+  "apps": {
+    "title": "ROMI apps and demos",
+    "description": "Legacy experiences available to explore nutrition, medical education, prevention and clinical prototypes.",
+    "open": "Open app",
+    "shortcuts": "You can also enter directly with paths like /nutri, /edu, /oncopro, /rejuvia and /romimed."
   },
   "chat": {
     "title": "Chat with ROMI",
@@ -114,8 +126,15 @@
     "actions": "Actions",
     "details": "Details",
     "empty": "You do not have any appointments yet.",
+    "emptyFiltered": "There are no appointments to show in {tab}.",
     "loadError": "There was an error loading your appointments: {error}",
-    "retry": "Retry"
+    "retry": "Retry",
+    "loadingTitle": "Loading appointments",
+    "loadingDescription": "We are checking your upcoming appointments.",
+    "deleteTitle": "Delete appointment",
+    "deleteDescription": "This action will remove the appointment from your list. Do you want to continue?",
+    "deleteConfirm": "Delete",
+    "deleteError": "The appointment could not be deleted: {error}"
   },
   "doctors": {
     "hero": "Advanced Telemedicine",

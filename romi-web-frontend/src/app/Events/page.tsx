@@ -11,7 +11,7 @@ import EnglishPublicPage from "@/components/EnglishPublicPage";
 const events = [
   {
     tag: "Congreso",
-    image: "/images/congreso.jpeg",
+    image: "/images/congreso.webp",
     title: "Congreso Internacional de Oncología 2025",
     date: "15–18 Enero 2025",
     time: "09:00 – 18:00",
@@ -21,7 +21,7 @@ const events = [
   },
   {
     tag: "Simposio",
-    image: "/images/congreso2.jpeg",
+    image: "/images/congreso2.webp",
     title: "Simposio de Avances en Cardiología",
     date: "25 Febrero 2025",
     time: "10:00 – 16:00",
@@ -112,10 +112,11 @@ export default async function EventsPage() {
                   <div className="relative w-full h-48 sm:h-56 overflow-hidden">
                     <Image
                       src={ev.image}
-                      alt={ev.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
+	                      alt={ev.title}
+	                      fill
+                        sizes="(min-width: 768px) 50vw, 100vw"
+	                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+	                    />
                     <span className="absolute top-3 left-3 bg-[var(--primary)] text-white text-xs font-medium px-3 py-1 rounded-full shadow font-fredoka-one">
                       {ev.tag}
                     </span>

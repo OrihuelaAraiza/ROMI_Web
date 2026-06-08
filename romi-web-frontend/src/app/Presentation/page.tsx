@@ -70,7 +70,7 @@ export default async function Page() {
           <Reveal type="right">
             <div className="relative h-56 overflow-hidden rounded-2xl border border-[var(--surface-card-border-soft)] p-5 card-premium sm:h-80 sm:p-6 md:h-[400px]">
               <Image
-                src="/images/doctor.jpg"
+                src="/images/doctor.webp"
                 alt="Doctor escribiendo"
                 fill
                 sizes="(min-width: 768px) 50vw, 100vw"

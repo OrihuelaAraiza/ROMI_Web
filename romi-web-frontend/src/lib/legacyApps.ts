@@ -1,0 +1,51 @@
+export const LEGACY_APPS = [
+  {
+    id: "nutri",
+    name: "NutriSnap",
+    href: "/NutriSnap",
+    shortHref: "/nutri",
+    category: "Nutricion",
+    description: "Demo de analisis nutricional y reporte visual.",
+  },
+  {
+    id: "edu",
+    name: "Edu",
+    href: "/Edu",
+    shortHref: "/edu",
+    category: "Educacion",
+    description: "Experiencia educativa interactiva.",
+  },
+  {
+    id: "oncopro",
+    name: "OncoPro",
+    href: "/OncoPro",
+    shortHref: "/oncopro",
+    category: "Oncologia",
+    description: "Prototipo de apoyo para flujos oncologicos.",
+  },
+  {
+    id: "rejuvia",
+    name: "RejuvIA",
+    href: "/RejuvIA",
+    shortHref: "/rejuvia",
+    category: "Prevencion",
+    description: "Asistente virtual de habitos y seguimiento.",
+  },
+  {
+    id: "romimed",
+    name: "ROMIMED",
+    href: "/ROMIMED",
+    shortHref: "/romimed",
+    category: "Entrenamiento",
+    description: "Simulador y recursos de entrenamiento medico.",
+  },
+  {
+    id: "efysia",
+    name: "Efysia",
+    href: "/efysia",
+    shortHref: "/efysia-app",
+    category: "Proyecto",
+    description: "Micrositio legacy del proyecto EFYSIA.",
+  },
+] as const;
+

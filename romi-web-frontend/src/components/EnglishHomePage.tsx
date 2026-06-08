@@ -26,7 +26,7 @@ export default function EnglishHomePage() {
             </p>
             <Link href="/Services" className="romi-action mt-7">Explore ROMI</Link>
           </div>
-          <Image src="/images/romi-hero.png" alt="ROMI medical assistant" width={600} height={600} priority className="mx-auto w-full max-w-sm object-contain drop-shadow-2xl" />
+          <Image src="/images/romi-hero.webp" alt="ROMI medical assistant" width={600} height={600} priority className="mx-auto w-full max-w-sm object-contain drop-shadow-2xl" />
         </div>
       </section>
 

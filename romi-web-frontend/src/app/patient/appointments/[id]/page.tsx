@@ -33,10 +33,6 @@ type Note = {
   createdAt: string;
 };
 
-const toast = (msg: string) => {
-  alert(msg);
-};
-
 function normalizeStatus(raw: string): AppointmentStatus {
   const upper = raw.toUpperCase();
 
@@ -59,6 +55,7 @@ export default function PatientAppointmentPage() {
   const [aiSummary] = useState<AiIntakeSummary | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [feedback, setFeedback] = useState<string | null>(null);
   const [notes, setNotes] = useState<Note[]>([]);
 
   useEffect(() => {
@@ -142,6 +139,11 @@ export default function PatientAppointmentPage() {
 
   return (
     <main className="max-w-5xl mx-auto p-6 space-y-4">
+      {feedback && (
+        <div className="rounded-xl border border-cyan-200 bg-cyan-50 px-4 py-3 text-sm text-cyan-800" role="status">
+          {feedback}
+        </div>
+      )}
       <header className="space-y-1">
         <h1 className="text-2xl font-semibold">
           Cita {appt.status === "accepted" ? "confirmada" : appt.status}
@@ -165,12 +167,12 @@ export default function PatientAppointmentPage() {
           <p className="text-sm text-muted-foreground">
             Motivo: {appt.reasonRejection || "No disponible"}
           </p>
-          <AltSlots
-            slots={appt.altSlots || []}
-            onSelect={(s) =>
-              toast(`Slot seleccionado: ${new Date(s).toLocaleString()}`)
-            }
-          />
+	          <AltSlots
+	            slots={appt.altSlots || []}
+	            onSelect={(s) =>
+	              setFeedback(`Slot seleccionado: ${new Date(s).toLocaleString()}`)
+	            }
+	          />
         </section>
       ) : (
         <div className="grid md:grid-cols-[1fr_360px] gap-4">
@@ -199,10 +201,10 @@ export default function PatientAppointmentPage() {
             <PreConsultForm appointmentId={appt.id} />
 
             <div>
-              <button
-                onClick={() => toast("Abrir ROMI IA (simulado)")}
-                className="px-4 py-2 rounded-lg bg-cyan-700 text-white"
-              >
+	              <button
+	                onClick={() => setFeedback("ROMI IA interno esta desactivado por ahora. Usa el chat de WhatsApp desde el menu principal.")}
+	                className="px-4 py-2 rounded-lg bg-cyan-700 text-white"
+	              >
                 Hablar con ROMI IA
               </button>
             </div>

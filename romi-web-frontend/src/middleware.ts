@@ -15,7 +15,20 @@ export function middleware(req: NextRequest) {
 
   // Rutas legacy estáticas - EXCLUIR completamente del middleware
   // El matcher ya las excluye, pero por seguridad también las verificamos aquí
-  const legacySites = ['/Edu', '/efysia', '/NutriSnap', '/OncoPro', '/RejuvIA', '/ROMIMED'];
+  const legacySites = [
+    '/Edu',
+    '/efysia',
+    '/NutriSnap',
+    '/OncoPro',
+    '/RejuvIA',
+    '/ROMIMED',
+    '/edu',
+    '/nutri',
+    '/oncopro',
+    '/rejuvia',
+    '/romimed',
+    '/efysia-app',
+  ];
   
   for (const site of legacySites) {
     if (pathname === site || pathname === `${site}/` || pathname.startsWith(`${site}/`)) {
@@ -70,6 +83,6 @@ export const config = {
      * - files with extensions (images, css, js, etc.)
      * - legacy static sites (excluidos explícitamente)
      */
-    '/((?!api|auth|api-romi|_next/static|_next/image|favicon.ico|Edu|efysia|NutriSnap|OncoPro|RejuvIA|ROMIMED|.*\\..*).*)',
+    '/((?!api|auth|api-romi|_next/static|_next/image|favicon.ico|Edu(?:/|$)|efysia(?:/|$)|NutriSnap(?:/|$)|OncoPro(?:/|$)|RejuvIA(?:/|$)|ROMIMED(?:/|$)|edu(?:/|$)|nutri(?:/|$)|oncopro(?:/|$)|rejuvia(?:/|$)|romimed(?:/|$)|efysia-app(?:/|$)|.*\\..*).*)',
   ],
 };

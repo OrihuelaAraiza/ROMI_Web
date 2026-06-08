@@ -13,6 +13,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import Link from "@/i18n/LocalizedLink";
 import { internalizePath, type Locale } from "@/i18n/routing";
+import { ROMI_CONTACT } from "@/lib/contact";
 
 const LINKS = [
   { href: "/", label: "home" },
@@ -20,10 +21,9 @@ const LINKS = [
   { href: "/Formation", label: "education" },
   { href: "/Investigation", label: "research" },
   { href: "/Speciality", label: "specialties" },
+  { href: "/apps", label: "apps" },
   { href: "/Contact", label: "contact" },
 ] as const;
-
-const WHATSAPP_CHAT_URL = "https://wa.me/522213716632";
 
 export default function Nav() {
   const pathname = usePathname();
@@ -91,7 +91,7 @@ export default function Nav() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
             <Image
-              src="/images/ROMO.png"
+              src="/images/ROMO.webp"
               alt="ROMI"
               width={110}
               height={36}
@@ -143,7 +143,7 @@ export default function Nav() {
             {/* Chat ROMI */}
             <div className="relative">
               <a
-                href={WHATSAPP_CHAT_URL}
+                href={ROMI_CONTACT.whatsapp.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2.5 rounded-full text-sm font-medium whitespace-nowrap btn-glow"
@@ -236,7 +236,7 @@ export default function Nav() {
               {/* Chat ROMI mobile */}
               <div className="relative">
                 <a
-                  href={WHATSAPP_CHAT_URL}
+                  href={ROMI_CONTACT.whatsapp.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setOpen(false)}

@@ -20,6 +20,7 @@
     "education": "Formación",
     "research": "Investigación",
     "specialties": "Especialidades",
+    "apps": "Apps",
     "contact": "Contacto",
     "dashboard": "Panel",
     "appointments": "Mis citas",
@@ -83,8 +84,19 @@
     "different": "Características que nos hacen diferente",
     "ctaTitle": "Comienza tu Transformación de Salud Hoy",
     "ctaText": "Acceso a IA médica, especialistas y monitoreo de salud en una plataforma integrada",
-    "try": "Probar ROMI Gratis",
-    "specialists": "Ver Especialistas"
+    "try": "Abrir WhatsApp",
+    "specialists": "Ver Especialistas",
+    "whatsapp": "Abrir en WhatsApp",
+    "legacyTitle": "Apps y demos ROMI",
+    "legacyText": "Accede a las experiencias interactivas disponibles mientras la plataforma clínica completa se prepara.",
+    "legacyCta": "Abrir app",
+    "legacyAll": "Ver todas las apps"
+  },
+  "apps": {
+    "title": "Apps y demos ROMI",
+    "description": "Experiencias legacy disponibles para explorar nutrición, educación médica, prevención y prototipos clínicos.",
+    "open": "Abrir app",
+    "shortcuts": "También puedes entrar directo con rutas como /nutri, /edu, /oncopro, /rejuvia y /romimed."
   },
   "chat": {
     "title": "Chat con ROMI",
@@ -114,8 +126,15 @@
     "actions": "Acciones",
     "details": "Detalles",
     "empty": "No tienes citas por ahora.",
+    "emptyFiltered": "No hay citas para mostrar en {tab}.",
     "loadError": "Ocurrió un error al cargar tus citas: {error}",
-    "retry": "Reintentar"
+    "retry": "Reintentar",
+    "loadingTitle": "Cargando citas",
+    "loadingDescription": "Estamos consultando tus próximas citas.",
+    "deleteTitle": "Eliminar cita",
+    "deleteDescription": "Esta acción quitará la cita de tu lista. ¿Quieres continuar?",
+    "deleteConfirm": "Eliminar",
+    "deleteError": "No se pudo eliminar la cita: {error}"
   },
   "doctors": {
     "hero": "Telemedicina Avanzada",
