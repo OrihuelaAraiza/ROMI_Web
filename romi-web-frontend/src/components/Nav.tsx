@@ -23,6 +23,8 @@ const LINKS = [
   { href: "/Contact", label: "contact" },
 ] as const;
 
+const WHATSAPP_CHAT_URL = "https://wa.me/522213716632";
+
 export default function Nav() {
   const pathname = usePathname();
   const locale = useLocale() as Locale;
@@ -140,12 +142,14 @@ export default function Nav() {
 
             {/* Chat ROMI */}
             <div className="relative">
-              <Link
-                href="/chat"
+              <a
+                href={WHATSAPP_CHAT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-4 py-2.5 rounded-full text-sm font-medium whitespace-nowrap btn-glow"
               >
                 {t("chat")}
-              </Link>
+              </a>
               {unread > 0 && (
                 <span className="absolute -top-2 -right-2 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-rose-600 px-1 text-[10px] font-semibold text-white">
                   {unread > 99 ? "99+" : unread}
@@ -153,21 +157,14 @@ export default function Nav() {
               )}
             </div>
 
-            {/* Login / Logout */}
-            {isLoggedIn ? (
+            {/* Logout */}
+            {isLoggedIn && (
               <button
                 onClick={handleLogout}
                 className="px-4 py-2.5 rounded-full text-sm font-medium whitespace-nowrap btn-glow"
               >
                 {t("logout")}
               </button>
-            ) : (
-              <Link
-                href="/Auth/Login"
-                className="px-4 py-2.5 rounded-full text-sm font-medium border-[2.5px] border-[var(--surface-card-border)] text-primary bg-[var(--surface-card)] hover:bg-primary hover:text-white whitespace-nowrap transition-all duration-300 shadow-[3px_3px_0_var(--shadow-ink)] hover:-translate-y-0.5"
-              >
-                {t("login")}
-              </Link>
             )}
             <LanguageSwitcher />
             <ThemeToggle />
@@ -238,13 +235,15 @@ export default function Nav() {
 
               {/* Chat ROMI mobile */}
               <div className="relative">
-                <Link
-                  href="/chat"
+                <a
+                  href={WHATSAPP_CHAT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setOpen(false)}
                   className="block px-4 py-3 rounded-full text-sm text-center font-medium active:scale-[0.98] transition-all duration-200 btn-glow"
                 >
                   {t("chat")}
-                </Link>
+                </a>
                 {unread > 0 && (
                   <span className="absolute -top-1 -right-1 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-rose-600 px-1 text-[10px] font-semibold text-white">
                     {unread > 99 ? "99+" : unread}
@@ -252,21 +251,13 @@ export default function Nav() {
                 )}
               </div>
 
-              {isLoggedIn ? (
+              {isLoggedIn && (
                 <button
                   onClick={handleLogout}
                   className="w-full px-4 py-3 rounded-full text-sm font-medium active:scale-[0.98] transition-all duration-200 btn-glow"
                 >
                   {t("logout")}
                 </button>
-              ) : (
-                <Link
-                  href="/Auth/Login"
-                  onClick={() => setOpen(false)}
-                  className="block px-4 py-3 rounded-full text-sm font-medium border-[2.5px] border-[var(--surface-card-border)] text-primary bg-[var(--surface-card)] hover:bg-primary hover:text-white text-center transition-all duration-300 shadow-[3px_3px_0_var(--shadow-ink)]"
-                >
-                  {t("login")}
-                </Link>
               )}
               <div className="flex justify-center gap-3 pt-2">
                 <LanguageSwitcher />
