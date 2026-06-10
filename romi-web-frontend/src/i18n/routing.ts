@@ -18,7 +18,7 @@ const routeEntries: RouteEntry[] = [
   { internal: "/Speciality", es: "/especialidades", en: "/specialties" },
   { internal: "/Contact", es: "/contacto", en: "/contact" },
   { internal: "/apps", es: "/apps", en: "/apps" },
-  { internal: "/Presentation", es: "/presentacion", en: "/about" },
+  { internal: "/Presentation", es: "/sobre-nosotros", en: "/about" },
   { internal: "/Events", es: "/eventos", en: "/events" },
   { internal: "/Telesalud", es: "/telesalud", en: "/telehealth" },
   { internal: "/Auth/Login/Register", es: "/registro", en: "/register" },

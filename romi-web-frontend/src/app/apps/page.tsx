@@ -1,4 +1,4 @@
-import { ExternalLink, MonitorSmartphone } from "lucide-react";
+import { ExternalLink, LockKeyhole, MonitorSmartphone, Sparkles } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import SectionHeader from "@/components/SectionHeader";
 import PageShell from "@/components/PageShell";
@@ -27,13 +27,37 @@ export default async function AppsPage() {
               </div>
             </div>
             <p className="text-sm leading-relaxed text-[var(--text-body)]">{app.description}</p>
-            <a
-              href={app.shortHref}
-              className="romi-action mt-auto self-start"
-            >
-              {t("open")}
-              <ExternalLink className="h-4 w-4" />
-            </a>
+            {"access" in app && app.access ? (
+              <div className="rounded-2xl border border-[var(--surface-card-border-soft)] bg-[var(--surface-card-soft)] p-3">
+                <p className="mb-2 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wide text-primary">
+                  <LockKeyhole className="h-3.5 w-3.5" />
+                  Acceso demo
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {app.access.map((item) => (
+                    <span key={item} className="rounded-full bg-[var(--surface)] px-3 py-1 text-xs text-[var(--text-body)] ring-1 ring-[var(--surface-card-border-soft)]">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+            {app.href ? (
+              <a
+                href={app.href}
+                target={app.href.startsWith("http") ? "_blank" : undefined}
+                rel={app.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                className="romi-action mt-auto self-start"
+              >
+                {t("open")}
+                <ExternalLink className="h-4 w-4" />
+              </a>
+            ) : (
+              <div className="mt-auto inline-flex self-start items-center gap-2 rounded-full bg-[var(--chip-bg)] px-4 py-2 text-sm font-semibold text-primary">
+                <Sparkles className="h-4 w-4" />
+                Proximamente
+              </div>
+            )}
           </Panel>
         ))}
       </section>
@@ -44,4 +68,3 @@ export default async function AppsPage() {
     </PageShell>
   );
 }
-

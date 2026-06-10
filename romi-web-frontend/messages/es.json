@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "ROMI - Salud y formación médica",
-    "description": "Servicios médicos integrales, formación y asistencia inteligente."
+    "title": "ROMI - Salud y atención médica integral",
+    "description": "Atención médica integral, demos clínicas y asistencia inteligente."
   },
   "language": {"label": "Seleccionar idioma"},
   "common": {
@@ -16,15 +16,19 @@
   },
   "nav": {
     "home": "Inicio",
-    "services": "Servicios",
-    "education": "Formación",
     "research": "Investigación",
-    "specialties": "Especialidades",
     "apps": "Apps",
+    "about": "Sobre nosotros",
     "contact": "Contacto",
     "dashboard": "Panel",
     "appointments": "Mis citas",
     "chat": "Chat ROMI",
+    "chatPatients": "Chat ROMI para pacientes",
+    "chatClinic": "Chat ROMI para consultorio",
+    "chatFree": "ROMI gratuito",
+    "chatClinicBadge": "Próximamente",
+    "chatClinicText": "Adquiere ROMI para tu consultorio: el asistente de IA que potencia tu conocimiento con información de vanguardia, respaldando siempre tu criterio clínico.",
+    "chatClinicCta": "Registrarme para el lanzamiento",
     "login": "Iniciar sesión",
     "logout": "Cerrar sesión",
     "openMenu": "Abrir menú",
@@ -44,8 +48,8 @@
     "rights": "© 2026 Red de Optimización Médica Inteligente. Todos los derechos reservados."
   },
   "home": {
-    "tagline": "Formación Médica Integral",
-    "description": "Soluciones con tecnologías avanzadas para transformar la atención médica y mejorar los resultados de salud",
+    "tagline": "Atención Médica Integral",
+    "description": "ROMI acompaña a pacientes y consultorios con asistencia virtual, seguimiento y herramientas clínicas pensadas para hacer la salud más cercana.",
     "who": "¿Quiénes somos?",
     "whoText": "Somos una plataforma integral que conecta profesionales de la salud con tecnología avanzada para mejorar la atención médica en todo el mundo."
   },
@@ -94,7 +98,7 @@
   },
   "apps": {
     "title": "Apps y demos ROMI",
-    "description": "Experiencias legacy disponibles para explorar nutrición, educación médica, prevención y prototipos clínicos.",
+    "description": "Demos funcionales de los proyectos ROMI para nutrición, psicología, tanatología, educación oncológica y agenda virtual.",
     "open": "Abrir app",
     "shortcuts": "También puedes entrar directo con rutas como /nutri, /edu, /oncopro, /rejuvia y /romimed."
   },

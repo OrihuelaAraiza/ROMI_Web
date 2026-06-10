@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { Menu, X, LayoutDashboard, CalendarDays } from "lucide-react";
+import { Menu, X, LayoutDashboard, CalendarDays, Bot, Building2, ChevronDown, MessageCircle, Sparkles } from "lucide-react";
 import { useAuth } from "@/app/Auth/contexts/AuthContext";
 import Image from "next/image";
 import { useRealtime } from "@/hooks/useRealtime";
@@ -17,11 +17,9 @@ import { ROMI_CONTACT } from "@/lib/contact";
 
 const LINKS = [
   { href: "/", label: "home" },
-  { href: "/Services", label: "services" },
-  { href: "/Formation", label: "education" },
-  { href: "/Investigation", label: "research" },
-  { href: "/Speciality", label: "specialties" },
   { href: "/apps", label: "apps" },
+  { href: "/Investigation", label: "research" },
+  { href: "/Presentation", label: "about" },
   { href: "/Contact", label: "contact" },
 ] as const;
 
@@ -30,6 +28,8 @@ export default function Nav() {
   const locale = useLocale() as Locale;
   const t = useTranslations("nav");
   const [open, setOpen] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
+  const [clinicPromoOpen, setClinicPromoOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { user, logout } = useAuth();
   const isLoggedIn = !!user;
@@ -60,7 +60,11 @@ export default function Nav() {
   }, [realtimeNotifications]);
 
   /* ─── Close on route change ─── */
-  useEffect(() => { setOpen(false); }, [pathname]);
+  useEffect(() => {
+    setOpen(false);
+    setChatOpen(false);
+    setClinicPromoOpen(false);
+  }, [pathname]);
 
   const internalPathname = internalizePath(pathname, locale);
   const isActive = (href: string) =>
@@ -142,18 +146,51 @@ export default function Nav() {
 
             {/* Chat ROMI */}
             <div className="relative">
-              <a
-                href={ROMI_CONTACT.whatsapp.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2.5 rounded-full text-sm font-medium whitespace-nowrap btn-glow"
+              <button
+                type="button"
+                onClick={() => setChatOpen((value) => !value)}
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-sm font-medium whitespace-nowrap btn-glow"
+                aria-expanded={chatOpen}
               >
                 {t("chat")}
-              </a>
+                <ChevronDown className={`h-4 w-4 transition-transform ${chatOpen ? "rotate-180" : ""}`} />
+              </button>
               {unread > 0 && (
                 <span className="absolute -top-2 -right-2 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-rose-600 px-1 text-[10px] font-semibold text-white">
                   {unread > 99 ? "99+" : unread}
                 </span>
+              )}
+              {chatOpen && (
+                <div className="absolute right-0 top-[calc(100%+0.75rem)] z-50 w-[360px] rounded-3xl border-[2px] border-[var(--surface-card-border)] bg-[var(--surface-card)] p-3 shadow-[5px_5px_0_var(--shadow-ink)]">
+                  <a
+                    href={ROMI_CONTACT.whatsapp.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 rounded-2xl p-3 transition-colors hover:bg-primary/10"
+                  >
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary text-white">
+                      <MessageCircle className="h-5 w-5" />
+                    </span>
+                    <span>
+                      <span className="block text-sm font-semibold text-[var(--text-primary)]">{t("chatPatients")}</span>
+                      <span className="text-xs text-[var(--text-body)]">{t("chatFree")}</span>
+                    </span>
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setClinicPromoOpen((value) => !value)}
+                    className="mt-1 flex w-full items-center gap-3 rounded-2xl p-3 text-left transition-colors hover:bg-primary/10"
+                  >
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[var(--romi-yellow)] text-[var(--romi-ink)]">
+                      <Building2 className="h-5 w-5" />
+                    </span>
+                    <span>
+                      <span className="block text-sm font-semibold text-[var(--text-primary)]">{t("chatClinic")}</span>
+                      <span className="text-xs text-primary">{t("chatClinicBadge")}</span>
+                    </span>
+                  </button>
+                  {clinicPromoOpen && <ClinicPromo t={t} />}
+                </div>
               )}
             </div>
 
@@ -234,16 +271,36 @@ export default function Nav() {
               <div className="h-1.5" />
 
               {/* Chat ROMI mobile */}
-              <div className="relative">
+              <div className="relative rounded-2xl border border-[var(--surface-card-border-soft)] bg-[var(--surface-card-soft)] p-2">
                 <a
                   href={ROMI_CONTACT.whatsapp.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setOpen(false)}
-                  className="block px-4 py-3 rounded-full text-sm text-center font-medium active:scale-[0.98] transition-all duration-200 btn-glow"
+                  className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-[var(--text-primary)] transition-colors hover:bg-primary/10"
                 >
-                  {t("chat")}
+                  <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary text-white">
+                    <MessageCircle className="h-4 w-4" />
+                  </span>
+                  <span>
+                    <span className="block">{t("chatPatients")}</span>
+                    <span className="block text-xs text-[var(--text-body)]">{t("chatFree")}</span>
+                  </span>
                 </a>
+                <button
+                  type="button"
+                  onClick={() => setClinicPromoOpen((value) => !value)}
+                  className="mt-1 flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-medium text-[var(--text-primary)] transition-colors hover:bg-primary/10"
+                >
+                  <span className="grid h-9 w-9 place-items-center rounded-lg bg-[var(--romi-yellow)] text-[var(--romi-ink)]">
+                    <Building2 className="h-4 w-4" />
+                  </span>
+                  <span>
+                    <span className="block">{t("chatClinic")}</span>
+                    <span className="block text-xs text-primary">{t("chatClinicBadge")}</span>
+                  </span>
+                </button>
+                {clinicPromoOpen && <ClinicPromo t={t} compact />}
                 {unread > 0 && (
                   <span className="absolute -top-1 -right-1 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-rose-600 px-1 text-[10px] font-semibold text-white">
                     {unread > 99 ? "99+" : unread}
@@ -269,5 +326,28 @@ export default function Nav() {
       </nav>
       <div className="h-1" />
     </>
+  );
+}
+
+function ClinicPromo({ t, compact = false }: { t: ReturnType<typeof useTranslations>; compact?: boolean }) {
+  return (
+    <div className={`mt-3 rounded-2xl border border-[var(--surface-card-border-soft)] bg-[var(--surface)] ${compact ? "p-3" : "p-4"}`}>
+      <div className="flex gap-3">
+        <div className="relative grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-[var(--chip-bg)]">
+          <Bot className="h-9 w-9 text-primary" />
+          <Sparkles className="absolute right-2 top-2 h-4 w-4 text-[var(--secondary)]" />
+        </div>
+        <div className="min-w-0">
+          <p className="text-[11px] font-bold uppercase tracking-wide text-primary">{t("chatClinicBadge")}</p>
+          <p className="mt-1 text-xs leading-relaxed text-[var(--text-body)]">{t("chatClinicText")}</p>
+        </div>
+      </div>
+      <Link
+        href="/Contact"
+        className="mt-3 inline-flex w-full items-center justify-center rounded-full bg-primary px-4 py-2 text-xs font-semibold text-white transition-all hover:bg-[var(--primary-hover)]"
+      >
+        {t("chatClinicCta")}
+      </Link>
+    </div>
   );
 }

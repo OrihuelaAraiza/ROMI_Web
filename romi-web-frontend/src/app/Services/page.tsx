@@ -217,10 +217,21 @@ function LegacyAppsSection() {
                   </div>
                 </div>
                 <p className="text-sm leading-relaxed text-[var(--text-body)]">{app.description}</p>
-                <a href={app.shortHref} className="romi-action mt-auto self-start">
-                  {t("legacyCta")}
-                  <ExternalLink className="h-4 w-4" />
-                </a>
+                {app.href ? (
+                  <a
+                    href={app.href}
+                    target={app.href.startsWith("http") ? "_blank" : undefined}
+                    rel={app.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="romi-action mt-auto self-start"
+                  >
+                    {t("legacyCta")}
+                    <ExternalLink className="h-4 w-4" />
+                  </a>
+                ) : (
+                  <span className="mt-auto self-start rounded-full bg-[var(--chip-bg)] px-4 py-2 text-sm font-semibold text-primary">
+                    Proximamente
+                  </span>
+                )}
               </Panel>
             </Reveal>
           ))}

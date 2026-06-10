@@ -1,17 +1,41 @@
 import Image from "next/image";
-import { Heart, Lightbulb, Shield, Users, Globe, BookOpen, Trophy, Rocket, BrainCircuit } from "lucide-react";
+import { ArrowRight, Building2, CalendarDays, ClipboardCheck, HeartPulse, MessageCircle, ShieldCheck, Sparkles, Stethoscope } from "lucide-react";
 import Reveal from "@/components/Reveal";
-import UserMapSection from "@/components/UserMapSection";
 import { getLocale, getTranslations } from "next-intl/server";
 import EnglishHomePage from "@/components/EnglishHomePage";
 import { ROMI_CONTACT } from "@/lib/contact";
 
+const carePoints = [
+  {
+    icon: Stethoscope,
+    title: "Orientacion clara",
+    text: "ROMI traduce dudas frecuentes de salud a lenguaje cercano y ayuda a identificar el siguiente paso adecuado.",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "Seguimiento ordenado",
+    text: "Recopila contexto antes de la consulta y facilita que el profesional tenga informacion util desde el inicio.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Criterio clinico al centro",
+    text: "La IA acompana el proceso, pero la decision medica permanece siempre en manos del especialista.",
+  },
+];
+
+const mobilePanelImages = [
+  { src: "/images/talent-land-1.webp", alt: "Equipo ROMI en evento", label: "Comunidad" },
+  { src: "/images/romiportada.webp", alt: "ROMI en portada", label: "Asistente virtual" },
+  { src: "/images/congreso.webp", alt: "ROMI en congreso medico", label: "Evidencia" },
+  { src: "/images/doctor.webp", alt: "Profesional medico usando ROMI", label: "Consultorio" },
+];
+
 export default async function Home() {
   if (await getLocale() === "en") return <EnglishHomePage />;
   const t = await getTranslations("home");
+
   return (
     <main className="min-h-screen">
-      {/* ─── Hero Section ─── */}
       <section className="romi-home-hero relative overflow-hidden rounded-[1.5rem] romi-hero-gradient pt-8 pb-10 mt-6 sm:mt-10 lg:mt-14">
         <div className="romi-hero-ambient" aria-hidden="true">
           <span className="romi-hero-orb romi-hero-orb-a" />
@@ -25,16 +49,37 @@ export default async function Home() {
           </svg>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-8 md:grid-cols-[1fr,0.9fr]">
+            <div className="text-center md:text-left">
+              <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-[var(--hero-text)]">
+                <Sparkles className="h-4 w-4" />
+                ROMI por aqui
+              </p>
+              <h1 className="font-fredoka-one text-[68px] leading-none tracking-widest text-[var(--hero-text)] drop-shadow-lg sm:text-[88px] lg:text-[112px]">
+                ROMI
+              </h1>
+              <h2 className="mt-3 text-2xl text-[var(--hero-text)] font-fredoka-one sm:text-3xl md:text-4xl">
+                {t("tagline")}
+              </h2>
+              <p className="mx-auto mt-4 max-w-2xl px-2 text-sm text-[var(--hero-text-muted)] font-poppins sm:text-base md:mx-0 md:px-0 md:text-lg">
+                {t("description")}
+              </p>
+              <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row md:justify-start">
+                <a href={ROMI_CONTACT.whatsapp.url} target="_blank" rel="noopener noreferrer" className="romi-action">
+                  Probar ROMI gratis
+                  <MessageCircle className="h-4 w-4" />
+                </a>
+                <a href="/apps" className="romi-action romi-action-secondary">
+                  Ver demos ROMI
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
 
-          {/* Mobile: stacked ROMI (< 768px) */}
-          <div className="flex flex-col items-center gap-0 md:hidden">
-            <h1 className="text-[68px] font-bold text-[var(--hero-text)] tracking-widest leading-none font-fredoka-one drop-shadow-lg animate-fade-in-up">
-              ROMI
-            </h1>
-            <div className="relative w-56 aspect-square">
+            <div className="relative mx-auto w-full max-w-sm md:max-w-md">
               <Image
                 src="/images/romi-hero.webp"
-                alt="ROMI"
+                alt="ROMI asistente virtual"
                 width={800}
                 height={800}
                 priority
@@ -42,321 +87,154 @@ export default async function Home() {
               />
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Desktop: flanked letters layout (≥ 768px) */}
-          <div className="hidden md:grid grid-cols-3 gap-0 items-center min-h-[340px] lg:min-h-[380px]">
-            <div className="flex items-center justify-end">
-              <h1 className="text-[80px] lg:text-[100px] font-bold text-[var(--hero-text)] tracking-widest leading-none -mr-10 lg:-mr-11 font-fredoka-one animate-fade-in-up drop-shadow-lg">
-                RO
-              </h1>
-            </div>
-            <div className="flex items-center justify-center">
-              <div className="relative w-full aspect-square max-w-[280px] lg:max-w-xs">
-                <Image
-                  src="/images/romi-hero.webp"
-                  alt="ROMI"
-                  width={800}
-                  height={800}
-                  priority
-                  className="object-contain drop-shadow-2xl"
-                />
-              </div>
-            </div>
-            <div className="flex items-center justify-start">
-              <h1 className="text-[80px] lg:text-[100px] font-bold text-[var(--hero-text)] tracking-widest leading-none -ml-5 lg:-ml-6 font-fredoka-one animate-fade-in-up drop-shadow-lg">
-                MI
-              </h1>
-            </div>
-          </div>
-
-          <div className="text-center mt-4 md:-mt-4 animate-fade-in-up" style={{ animationDelay: "200ms" }}>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl text-[var(--hero-text)] mb-3 font-fredoka-one">
-              {t("tagline")}
+      <section className="relative left-1/2 w-screen -translate-x-1/2 bg-[var(--surface)]">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-18 lg:px-8">
+          <Reveal className="text-center">
+            <p className="text-xs font-bold uppercase tracking-wide text-primary">Escoge tu experiencia</p>
+            <h2 className="mt-2 font-fredoka-one text-3xl text-[var(--primary)] sm:text-4xl">
+              ROMI acompana a pacientes y consultorios
             </h2>
-            <p className="text-sm sm:text-base md:text-lg text-[var(--hero-text-muted)] max-w-2xl mx-auto font-poppins px-2">
-              {t("description")}
+            <p className="mx-auto mt-3 max-w-2xl text-sm text-[var(--text-body)] font-poppins sm:text-base">
+              La misma identidad, dos formas de uso: orientacion gratuita para usuarios y una version de consultorio pensada para potenciar el trabajo clinico.
             </p>
+          </Reveal>
+
+          <div className="mt-9 grid gap-5 lg:grid-cols-2">
+            {[
+              {
+                icon: MessageCircle,
+                eyebrow: "Para pacientes",
+                title: "Chat ROMI gratuito",
+                text: "Resuelve dudas generales, recibe orientacion inicial y encuentra un camino mas claro para cuidar tu salud.",
+                cta: "Chatear ahora",
+                href: ROMI_CONTACT.whatsapp.url,
+                external: true,
+              },
+              {
+                icon: Building2,
+                eyebrow: "Para consultorios",
+                title: "ROMI para tu practica",
+                text: "Un asistente de IA que organiza informacion, acompana el seguimiento y fortalece tu criterio con contenido de vanguardia.",
+                cta: "Registrarme para el lanzamiento",
+                href: "/Contact",
+                external: false,
+              },
+            ].map(({ icon: Icon, eyebrow, title, text, cta, href, external }, i) => (
+              <Reveal key={title} type={i === 0 ? "left" : "right"}>
+                <article className="flex h-full flex-col rounded-3xl border border-[var(--surface-card-border)] bg-[var(--surface-card)] p-5 shadow-sm card-premium sm:p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-primary text-white">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-wide text-primary">{eyebrow}</p>
+                      <h3 className="mt-1 font-fredoka-one text-2xl text-[var(--text-primary)]">{title}</h3>
+                    </div>
+                  </div>
+                  <p className="mt-4 flex-1 text-sm leading-relaxed text-[var(--text-body)] font-poppins sm:text-base">{text}</p>
+                  <a
+                    href={href}
+                    target={external ? "_blank" : undefined}
+                    rel={external ? "noopener noreferrer" : undefined}
+                    className="romi-action mt-5 self-start"
+                  >
+                    {cta}
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+                </article>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ─── Talent Land Section (hidden) ─── */}
-      {false && <section
-        id="talent-land"
-        className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] scroll-mt-20"
-      >
-        <div className="bg-gradient-to-br from-[#0f1b3d] via-[#1e2f6b] to-[#0f1b3d] px-4 sm:px-8 lg:px-12 py-14 sm:py-20">
-          <div className="max-w-6xl mx-auto">
+      <section className="relative left-1/2 w-screen -translate-x-1/2 border-y border-[var(--surface-card-border-soft)] bg-[var(--surface-alt)]">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 sm:py-18 lg:grid-cols-[0.9fr,1.1fr] lg:px-8">
+          <Reveal type="left" className="space-y-4">
+            <p className="text-xs font-bold uppercase tracking-wide text-primary">Atencion medica integral</p>
+            <h2 className="font-fredoka-one text-3xl text-[var(--primary)] sm:text-4xl">
+              Informacion, acompanamiento y herramientas en un mismo ecosistema
+            </h2>
+            <p className="text-sm leading-relaxed text-[var(--text-body)] font-poppins sm:text-base">
+              ROMI no se presenta como reemplazo del medico. Funciona como una capa de apoyo que ayuda al usuario a entender, prepararse y dar seguimiento, mientras el profesional mantiene el control clinico.
+            </p>
+          </Reveal>
 
-            {/* Header */}
-            <div className="text-center mb-10 sm:mb-14">
-              {/* Event badge */}
-              <div className="inline-flex items-center gap-2 rounded-full border border-[var(--chip-border)] bg-[var(--chip-bg)] px-4 py-1.5 mb-6">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--primary)] opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--primary)]" />
-                </span>
-                <span className="text-[11px] font-bold uppercase tracking-widest text-[var(--primary)]">
-                  En vivo · Expo Santa Fe, CDMX
-                </span>
-              </div>
-
-              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-fredoka-one text-white mb-4 leading-tight">
-                ¡Nos vemos en{" "}
-                <span className="text-[var(--primary)]">Talent Land</span>!
-              </h2>
-
-              {/* Date pills */}
-              <div className="flex items-center justify-center gap-2 sm:gap-3 mb-6">
-                {["7", "8", "9"].map((d) => (
-                  <div
-                    key={d}
-                    className="rounded-xl bg-white/10 border border-white/20 px-4 sm:px-6 py-2 text-white text-center"
-                  >
-                    <p className="text-xl sm:text-3xl font-fredoka-one leading-none">{d}</p>
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-white/60 mt-0.5">Abr 2026</p>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {carePoints.map(({ icon: Icon, title, text }, i) => (
+              <Reveal key={title} type="scale" delay={i * 80}>
+                <article className="h-full rounded-3xl border border-[var(--surface-card-border-soft)] bg-[var(--surface)] p-5 card-premium">
+                  <div className="grid h-11 w-11 place-items-center rounded-xl bg-[var(--chip-bg)] text-primary">
+                    <Icon className="h-5 w-5" />
                   </div>
-                ))}
-              </div>
-
-              <p className="text-base sm:text-xl text-white/75 font-poppins max-w-xl mx-auto leading-relaxed">
-                Si nos ves con esta playera,{" "}
-                <span className="text-white font-semibold">¡salúdanos!</span>{" "}
-                Escanea el QR y chatea con ROMI en el momento.
-              </p>
-            </div>
-
-            {/* T-shirt image grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-              {[
-	                { src: "/images/talent-land-1.webp", alt: "Equipo ROMI en Talent Land con playera", caption: "Así nos verás en el evento" },
-	                { src: "/images/talent-land-2.webp", alt: "Playera ROMI usada por el equipo",        caption: "Búscanos con esta playera" },
-	                { src: "/images/talent-land-3.webp", alt: "Playera ROMI usada por el equipo",        caption: "¡Salúdanos y escanea el QR!" },
-              ].map(({ src, alt, caption }, i) => (
-                <div
-                  key={src}
-                  className="group relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl hover:-translate-y-2 transition-transform duration-300"
-                  style={{ animationDelay: `${i * 100}ms` }}
-                >
-                  <Image
-                    src={src}
-                    alt={alt}
-                    width={600}
-                    height={600}
-                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  {/* Caption overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent px-4 py-3">
-                    <p className="text-white text-xs sm:text-sm font-semibold font-poppins">{caption}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* CTA */}
-            <div className="text-center mt-10 sm:mt-14">
-              <p className="text-white/60 font-poppins text-sm mb-4">
-                Búscanos por el stand o por los pasillos
-              </p>
-	              <a
-	                href={ROMI_CONTACT.whatsapp.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-	                className="inline-flex items-center gap-2 rounded-full bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white font-semibold px-7 py-3 shadow-lg shadow-[var(--surface-card-border-soft)] hover:-translate-y-0.5 hover:shadow-xl transition-all duration-200 font-poppins"
-	              >
-                Chatea con ROMI ahora
-              </a>
-            </div>
-
+                  <h3 className="mt-4 text-base font-semibold text-[var(--text-primary)]">{title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[var(--text-body)] font-poppins">{text}</p>
+                </article>
+              </Reveal>
+            ))}
           </div>
         </div>
-      </section>}
+      </section>
 
-      {/* ─── About Section ─── */}
-      <section className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mt-8 sm:mt-10">
-        <div className="bg-[var(--surface)] rounded-t-[2rem] sm:rounded-t-[3rem] border-t-[3px] border-[var(--surface-card-border)] px-4 sm:px-8 lg:px-12 pt-10 sm:pt-12 pb-12">
-          <div className="max-w-7xl mx-auto">
-
-            {/* ¿Quiénes somos? */}
-            <Reveal className="text-center mb-12 sm:mb-16">
-              <h2 className="text-3xl sm:text-4xl text-primary mb-4 font-fredoka-one font-semibold">
-                {t("who")}
-              </h2>
-              <p className="text-sm sm:text-base text-[var(--text-body)] max-w-3xl mx-auto font-poppins px-2">
-                {t("whoText")}
-              </p>
-            </Reveal>
-
-            <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center mb-12 sm:mb-16">
-              <Reveal type="left" className="space-y-4">
-                <p className="text-sm sm:text-base text-[var(--text-secondary)] font-poppins leading-relaxed">
-                  HubROMI nació de la visión de democratizar el acceso a la salud a través de la tecnología. Somos un equipo multidisciplinario de médicos, ingenieros y especialistas en salud digital.
-                </p>
-                <p className="text-sm sm:text-base text-[var(--text-secondary)] font-poppins leading-relaxed">
-                  Nuestra plataforma integra inteligencia artificial, telemedicina, educación médica continua y herramientas de gestión clínica en un ecosistema completo que empodera a los profesionales de la salud.
-                </p>
-                <p className="text-sm sm:text-base text-[var(--text-secondary)] font-poppins leading-relaxed">
-                  Con presencia en más de 15 países y una comunidad activa de profesionales de la salud, continuamos innovando para hacer que la medicina sea más accesible, eficiente y efectiva.
-                </p>
-              </Reveal>
-              <Reveal type="right">
-                <div className="relative h-64 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-500 sm:h-80 md:h-96">
-                  <Image
-	                    src="/images/doctor.webp"
-                    alt="Doctor escribiendo"
-                    fill
-                    sizes="(min-width: 768px) 50vw, 100vw"
-                    className="object-cover transition-transform duration-700 hover:scale-105"
-                  />
-                </div>
-              </Reveal>
-            </div>
-
-            {/* Stats */}
-            <div className="romi-pastel-grid grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-16 sm:mb-20">
-              {[
-                { value: "16k+", label: "Chats atendidos" },
-                { value: "15+", label: "Países" },
-                { value: "24/7", label: "Disponibilidad IA" },
-                { value: "100%", label: "Dedicación" },
-              ].map((stat, i) => (
-                <Reveal key={stat.label} type="scale" delay={i * 80}>
-                  <div className="text-center rounded-2xl bg-[var(--surface-card-soft)] border border-[var(--surface-card-border)] p-5 sm:p-6 card-premium">
-                    <p className="text-2xl sm:text-3xl font-bold text-primary font-fredoka-one">{stat.value}</p>
-                    <p className="text-xs sm:text-sm text-[var(--text-body)] font-poppins mt-1">{stat.label}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-
-            <UserMapSection />
-
-            {/* Mission & Vision */}
-            <div className="romi-pastel-grid grid sm:grid-cols-2 gap-6 sm:gap-8 mt-16 sm:mt-20 mb-16 sm:mb-20">
-              {[
-                {
-                  icon: Heart,
-                  title: "Misión",
-                  text: "Democratizar el acceso a la atención médica de calidad mediante tecnología innovadora, conectando profesionales de la salud con herramientas avanzadas que mejoran los resultados clínicos.",
-                },
-                {
-                  icon: Globe,
-                  title: "Visión",
-                  text: "Ser la plataforma líder en salud digital en Latinoamérica, transformando la medicina a través de la inteligencia artificial y creando un futuro donde la atención médica de excelencia sea accesible para todos.",
-                },
-              ].map(({ icon: Icon, title, text }, i) => (
-                <Reveal key={title} type={i === 0 ? "left" : "right"}>
-                  <div className="bg-[var(--surface-card-soft)] rounded-2xl p-6 sm:p-8 border border-[var(--surface-card-border)] card-premium h-full">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-11 h-11 sm:w-12 sm:h-12 bg-primary rounded-lg flex items-center justify-center icon-lift">
-                        <Icon className="text-white" size={22} />
-                      </div>
-                      <h3 className="text-xl sm:text-2xl text-primary font-fredoka-one font-semibold">{title}</h3>
-                    </div>
-                    <p className="text-sm sm:text-base text-[var(--text-secondary)] font-poppins leading-relaxed">{text}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-
-            {/* Values */}
+      <section className="relative left-1/2 w-screen -translate-x-1/2 bg-[var(--surface)]">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-18 lg:px-8">
+          <Reveal className="mb-7 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <Reveal className="text-center mb-10 sm:mb-12">
-                <h3 className="text-2xl sm:text-3xl text-primary font-fredoka-one font-bold">
-                  Nuestros Valores
-                </h3>
-              </Reveal>
-              <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
-                {[
-                  { icon: Heart,     title: "Compromiso",  text: "Dedicados a mejorar la calidad de vida a través de la innovación médica." },
-                  { icon: Lightbulb, title: "Altruismo",   text: "Impulsamos nuestras acciones con vocación de servicio y sentido de beneficio colectivo." },
-                  { icon: Globe,     title: "Filantropía", text: "Promovemos una visión de impacto social orientada al bien común y al acceso responsable a la innovación en salud." },
-                  { icon: Shield,    title: "Seguridad",   text: "Protegemos la información médica con los más altos estándares de seguridad." },
-                  { icon: Users,     title: "Colaboración",text: "Promovemos el trabajo interdisciplinario como base para transformar la atención y el aprendizaje." },
-                  { icon: BookOpen,  title: "Rigor",       text: "Promovemos contenidos, recursos y decisiones sustentados en criterios sólidos y enfoque profesional." },
-                ].map(({ icon: Icon, title, text }, i) => (
-                  <Reveal key={title} type="scale" delay={i * 70}>
-                    <div className="rounded-2xl bg-[var(--surface-card)] border border-[var(--surface-card-border)] p-5 sm:p-6 card-premium group h-full">
-                      <div className="w-11 h-11 bg-primary/10 rounded-lg flex items-center justify-center mb-4 icon-lift">
-                        <Icon className="text-primary" size={22} />
-                      </div>
-                      <h4 className="text-base sm:text-lg font-semibold text-[var(--text-primary)] mb-2">{title}</h4>
-                      <p className="text-xs sm:text-sm text-[var(--text-body)]">{text}</p>
-                    </div>
-                  </Reveal>
-                ))}
-              </div>
+              <p className="text-xs font-bold uppercase tracking-wide text-primary">ROMI en movimiento</p>
+              <h2 className="mt-2 font-fredoka-one text-3xl text-[var(--primary)] sm:text-4xl">
+                Un panel vivo de comunidad, salud e innovacion
+              </h2>
             </div>
+            <a href="/Presentation" className="romi-action romi-action-secondary self-start sm:self-auto">
+              Conocer el proyecto
+              <HeartPulse className="h-4 w-4" />
+            </a>
+          </Reveal>
 
-            {/* Reconocimientos */}
-            <div className="mt-16 sm:mt-24 pt-10 sm:pt-12 border-t border-[var(--surface-card-border)]">
-              <Reveal className="text-center mb-10 sm:mb-14">
-                <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary mb-4">
-                  <Trophy size={13} /> Logros 2025
-                </span>
-                <h3 className="text-2xl sm:text-3xl text-primary font-fredoka-one font-bold mb-3">
-                  Reconocimientos
-                </h3>
-                <p className="text-[var(--text-body)] font-poppins text-sm sm:text-base max-w-xl mx-auto">
-                  Premios y distinciones que avalan nuestro impacto en el ecosistema de salud digital e innovación.
-                </p>
-              </Reveal>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 max-w-4xl mx-auto">
-                {(
-                  [
-                    {
-                      Icon: Rocket,
-                      org: "Talent Land",
-                      title: "Ganadores Startup a la Cuesta",
-                      desc: "Reconocidos entre las startups más prometedoras del ecosistema de innovación en México.",
-                      color: "from-primary/20 to-primary/10",
-                      badge: "Talent Land 2025",
-                    },
-                    {
-                      Icon: Globe,
-                      org: "Youth Empowerment Fund",
-                      title: "Ganadores del Grant Internacional",
-                      desc: "Premio internacional por impacto social en salud digital otorgado a nivel global.",
-                      color: "from-primary/15 to-secondary/10",
-                      badge: "YEF 2025",
-                    },
-                    {
-                      Icon: BrainCircuit,
-                      org: "Intel · Acelerado México con IA",
-                      title: "Top 10 Proyectos de IA",
-                      desc: "Seleccionados entre los 10 mejores proyectos de inteligencia artificial de México.",
-                      color: "from-secondary/20 to-primary/10",
-                      badge: "Intel 2025",
-                    },
-                  ] as const
-                ).map(({ Icon, org, title, desc, color, badge }, i) => (
-                  <Reveal key={title} type="scale" delay={i * 100}>
-                    <div className={`relative rounded-3xl bg-gradient-to-br ${color} border border-[var(--surface-card-border)] p-5 sm:p-6 card-premium group h-full flex flex-col`}>
-                      <span className="absolute top-4 right-4 rounded-full bg-primary text-white text-[10px] font-bold px-2.5 py-0.5 tracking-wide">
-                        {badge}
-                      </span>
-
-                      <div className="w-14 h-14 rounded-2xl bg-[var(--surface-card)] shadow-sm flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform duration-300">
-                        <Icon size={26} className="text-primary" />
-                      </div>
-
-                      <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-1 font-poppins">
-                        {org}
-                      </p>
-                      <h4 className="text-base sm:text-lg font-bold text-[var(--text-primary)] leading-snug mb-2">
-                        {title}
-                      </h4>
-                      <p className="text-xs sm:text-sm text-[var(--text-body)] font-poppins leading-relaxed mt-auto pt-2">
-                        {desc}
-                      </p>
-                    </div>
-                  </Reveal>
-                ))}
+          <div className="flex snap-x gap-4 overflow-x-auto pb-3 sm:grid sm:grid-cols-4 sm:overflow-visible sm:pb-0">
+            {mobilePanelImages.map(({ src, alt, label }) => (
+              <div key={src} className="group relative h-72 min-w-[78%] snap-center overflow-hidden rounded-3xl border border-[var(--surface-card-border)] bg-[var(--surface-card)] shadow-sm sm:min-w-0">
+                <Image src={src} alt={alt} fill sizes="(min-width: 768px) 25vw, 80vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                  <p className="inline-flex rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-[var(--romi-ink)]">
+                    {label}
+                  </p>
+                </div>
               </div>
-            </div>
-
+            ))}
           </div>
+
+          <div className="mt-9 grid gap-4 sm:grid-cols-3">
+            {[
+              ["16k+", "interacciones atendidas"],
+              ["24/7", "disponibilidad del asistente"],
+              ["IA + clinica", "apoyo sin sustituir al especialista"],
+            ].map(([value, label]) => (
+              <div key={value} className="rounded-3xl border border-[var(--surface-card-border-soft)] bg-[var(--surface-card-soft)] p-5 text-center">
+                <p className="font-fredoka-one text-3xl text-primary">{value}</p>
+                <p className="mt-1 text-sm text-[var(--text-body)] font-poppins">{label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative left-1/2 w-screen -translate-x-1/2 bg-primary">
+        <div className="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-10 text-white sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-wide text-white/70">Proximo paso</p>
+            <h2 className="mt-1 font-fredoka-one text-2xl sm:text-3xl">Explora las demos ROMI</h2>
+            <p className="mt-2 max-w-2xl text-sm text-white/80 font-poppins">
+              Revisa los expedientes, agenda virtual y proyectos educativos que ya estan listos para demostracion.
+            </p>
+          </div>
+          <a href="/apps" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-primary shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-lg">
+            Ir a Apps
+            <CalendarDays className="h-4 w-4" />
+          </a>
         </div>
       </section>
     </main>

@@ -1,186 +1,174 @@
 import Image from "next/image";
-import { Target, Handshake, Heart, Lightbulb, Shield, Users, Globe, Zap, User } from "lucide-react";
+import { BookOpen, BrainCircuit, Globe, Heart, Lightbulb, Rocket, Shield, Trophy, Users } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import UserMapSection from "@/components/UserMapSection";
 import { getLocale } from "next-intl/server";
 import EnglishPublicPage from "@/components/EnglishPublicPage";
 
 const values = [
-  { icon: Heart,     title: "Compromiso con la Salud",  desc: "Dedicados a mejorar la calidad de vida de las personas a través de la innovación médica." },
-  { icon: Lightbulb, title: "Innovación Constante",     desc: "Desarrollamos soluciones tecnológicas avanzadas para los desafíos médicos actuales." },
-  { icon: Shield,    title: "Seguridad y Privacidad",   desc: "Protegemos la información médica con los más altos estándares de seguridad." },
-  { icon: Users,     title: "Colaboración",             desc: "Fomentamos el trabajo en equipo entre profesionales de la salud." },
-  { icon: Globe,     title: "Accesibilidad Global",     desc: "Hacemos que la atención médica de calidad sea accesible en todo el mundo." },
-  { icon: Zap,       title: "Eficiencia",               desc: "Optimizamos los procesos médicos para brindar atención más eficaz." },
+  { icon: Heart, title: "Compromiso", text: "Dedicados a mejorar la calidad de vida a traves de la innovacion medica." },
+  { icon: Lightbulb, title: "Altruismo", text: "Impulsamos nuestras acciones con vocacion de servicio y sentido de beneficio colectivo." },
+  { icon: Globe, title: "Filantropia", text: "Promovemos una vision de impacto social orientada al bien comun y al acceso responsable a la innovacion en salud." },
+  { icon: Shield, title: "Seguridad", text: "Protegemos la informacion medica con altos estandares de seguridad." },
+  { icon: Users, title: "Colaboracion", text: "Promovemos el trabajo interdisciplinario como base para transformar la atencion y el aprendizaje." },
+  { icon: BookOpen, title: "Rigor", text: "Promovemos contenidos, recursos y decisiones sustentados en criterios solidos y enfoque profesional." },
 ];
 
-const team = [
-  { name: "Juan Pérez",    role: "Especialista en telemedicina con más de 10 años de experiencia." },
-  { name: "María López",   role: "Experta en inteligencia artificial aplicada a la salud." },
-  { name: "Carlos García", role: "Ingeniero de software con enfoque en soluciones médicas." },
-  { name: "Ana Martínez",  role: "Coordinadora de proyectos y alianzas estratégicas." },
-];
-
-const history = [
-  { year: "2020", side: "left",  title: "Fundación de HubROMImedia",  desc: "Inicio de la plataforma con enfoque en telemedicina." },
-  { year: "2021", side: "right", title: "Lanzamiento de ROMI",        desc: "Primer asistente médico con IA en español." },
-  { year: "2022", side: "left",  title: "10,000 Profesionales",       desc: "Alcanzamos 10,000 médicos registrados." },
-  { year: "2023", side: "right", title: "Expansión Internacional",    desc: "Presencia en 15 países de Latinoamérica." },
-  { year: "2024", side: "left",  title: "Portal Premium",             desc: "Lanzamiento de servicios especializados." },
-];
+const awards = [
+  {
+    Icon: Rocket,
+    org: "Talent Land",
+    title: "Ganadores Startup a la Cuesta",
+    desc: "Reconocidos entre las startups mas prometedoras del ecosistema de innovacion en Mexico.",
+    badge: "Talent Land 2025",
+  },
+  {
+    Icon: Globe,
+    org: "Youth Empowerment Fund",
+    title: "Ganadores del Grant Internacional",
+    desc: "Premio internacional por impacto social en salud digital otorgado a nivel global.",
+    badge: "YEF 2025",
+  },
+  {
+    Icon: BrainCircuit,
+    org: "Intel · Acelerado Mexico con IA",
+    title: "Top 10 Proyectos de IA",
+    desc: "Seleccionados entre los 10 mejores proyectos de inteligencia artificial de Mexico.",
+    badge: "Intel 2025",
+  },
+] as const;
 
 export default async function Page() {
   if (await getLocale() === "en") return <EnglishPublicPage kind="about" />;
+
   return (
     <main className="min-h-screen bg-[var(--surface)]">
-
-      {/* HERO */}
-      <section className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen bg-gradient-romi">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-24 text-center text-white">
-          <Reveal>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold">Transformando la Medicina del Futuro</h1>
-            <p className="mt-4 sm:mt-8 text-base sm:text-lg text-white/90 max-w-2xl mx-auto font-poppins">
-              Somos una plataforma integral que conecta profesionales de la salud con tecnología avanzada para mejorar la atención médica en todo el mundo.
+      <section className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden bg-gradient-romi">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-16 text-white sm:px-6 sm:py-20 lg:grid-cols-[1fr,0.9fr] lg:px-8">
+          <Reveal type="left" className="self-center">
+            <p className="inline-flex rounded-full border border-white/25 bg-white/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-white/90">
+              Sobre nosotros
             </p>
+            <h1 className="mt-5 font-fredoka-one text-4xl leading-tight sm:text-5xl lg:text-6xl">
+              Tecnologia, medicina y criterio humano para una salud mas cercana
+            </h1>
+            <p className="mt-5 max-w-2xl text-sm leading-relaxed text-white/90 font-poppins sm:text-base">
+              HubROMI nace para democratizar el acceso a la salud mediante inteligencia artificial, educacion medica, telemedicina y herramientas clinicas que fortalecen el trabajo de los profesionales.
+            </p>
+          </Reveal>
+          <Reveal type="right">
+            <div className="relative mx-auto aspect-[4/3] w-full max-w-lg overflow-hidden rounded-3xl border border-white/20 shadow-2xl">
+              <Image src="/images/doctor.webp" alt="Profesional de salud usando tecnologia ROMI" fill priority sizes="(min-width: 1024px) 40vw, 90vw" className="object-cover" />
+            </div>
           </Reveal>
         </div>
       </section>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-
-        {/* ¿Quiénes somos? */}
-        <Reveal className="text-center mt-10 sm:mt-14">
-          <h1 className="font-semibold text-3xl sm:text-4xl text-primary">¿Quiénes somos?</h1>
-        </Reveal>
-
-        <section className="mt-8 sm:mt-10 grid md:grid-cols-2 gap-6">
-          <Reveal type="left">
-            <div className="rounded-2xl border border-[var(--surface-card-border-soft)] p-5 sm:p-6 card-premium">
-              <p className="text-sm sm:text-base text-[var(--text-body)] mt-2">
-                HubROMI nació de la visión de democratizar el acceso a la salud a través de la tecnología. Somos un equipo multidisciplinario de médicos, ingenieros y especialistas en salud digital.
-              </p>
-              <p className="text-sm sm:text-base text-[var(--text-body)] mt-4">
-                Nuestra plataforma integra inteligencia artificial, telemedicina, educación médica continua y herramientas de gestión clínica en un ecosistema completo que empodera a los profesionales de la salud.
-              </p>
-              <p className="text-sm sm:text-base text-[var(--text-body)] mt-4">
-                Con presencia en más de 15 países y una comunidad de más de 10,000 profesionales, continuamos innovando para hacer que la medicina sea más accesible, eficiente y efectiva.
-              </p>
-            </div>
+      <section className="relative left-1/2 w-screen -translate-x-1/2 bg-[var(--surface)]">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-18 lg:px-8">
+          <Reveal className="text-center">
+            <h2 className="font-fredoka-one text-3xl text-primary sm:text-4xl">¿Quienes somos?</h2>
+            <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-[var(--text-body)] font-poppins sm:text-base">
+              Somos un equipo multidisciplinario de medicos, ingenieros y especialistas en salud digital. Integramos inteligencia artificial, telemedicina, educacion medica continua y gestion clinica en un ecosistema que acompana a pacientes y profesionales.
+            </p>
           </Reveal>
 
-          <Reveal type="right">
-            <div className="relative h-56 overflow-hidden rounded-2xl border border-[var(--surface-card-border-soft)] p-5 card-premium sm:h-80 sm:p-6 md:h-[400px]">
-              <Image
-                src="/images/doctor.webp"
-                alt="Doctor escribiendo"
-                fill
-                sizes="(min-width: 768px) 50vw, 100vw"
-                className="rounded-xl object-cover transition-transform duration-500 hover:scale-105"
-              />
-            </div>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { value: "16k+", label: "Chats atendidos" },
+              { value: "15+", label: "Paises" },
+              { value: "24/7", label: "Disponibilidad IA" },
+              { value: "100%", label: "Dedicacion" },
+            ].map((stat, i) => (
+              <Reveal key={stat.label} type="scale" delay={i * 60}>
+                <div className="rounded-3xl border border-[var(--surface-card-border)] bg-[var(--surface-card-soft)] p-6 text-center card-premium">
+                  <p className="font-fredoka-one text-3xl text-primary">{stat.value}</p>
+                  <p className="mt-1 text-sm text-[var(--text-body)] font-poppins">{stat.label}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative left-1/2 w-screen -translate-x-1/2 border-y border-[var(--surface-card-border-soft)] bg-[var(--surface-alt)]">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-18 lg:px-8">
+          <div className="grid gap-6 sm:grid-cols-2">
+            {[
+              {
+                title: "Mision",
+                text: "Democratizar el acceso a la atencion medica de calidad mediante tecnologia innovadora, conectando profesionales de la salud con herramientas avanzadas que mejoran los resultados clinicos.",
+              },
+              {
+                title: "Vision",
+                text: "Ser una plataforma lider en salud digital en Latinoamerica, transformando la medicina a traves de inteligencia artificial y creando un futuro donde la atencion de excelencia sea mas accesible.",
+              },
+            ].map(({ title, text }, i) => (
+              <Reveal key={title} type={i === 0 ? "left" : "right"}>
+                <article className="h-full rounded-3xl border border-[var(--surface-card-border)] bg-[var(--surface)] p-6 card-premium sm:p-8">
+                  <h3 className="font-fredoka-one text-2xl text-primary">{title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[var(--text-body)] font-poppins sm:text-base">{text}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative left-1/2 w-screen -translate-x-1/2 bg-[var(--surface)]">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-18 lg:px-8">
+          <Reveal className="mb-9 text-center">
+            <h2 className="font-fredoka-one text-3xl text-primary sm:text-4xl">Nuestros valores</h2>
           </Reveal>
-        </section>
-
-        {/* Misión y Visión */}
-        <Reveal className="text-center mt-12 sm:mt-16">
-          <h1 className="text-2xl sm:text-3xl font-bold text-primary">Nuestra Misión y Visión</h1>
-          <p className="text-center text-sm sm:text-base text-[var(--text-body)] mt-2 font-poppins">
-            Los principios que guían cada decisión y acción en HubROMImedia.
-          </p>
-        </Reveal>
-
-        <section className="mt-8 sm:mt-10 grid md:grid-cols-2 gap-6">
-          {[
-            { icon: Handshake, title: "Misión", desc: "Democratizar el acceso a la atención médica de calidad mediante tecnología innovadora, conectando profesionales de la salud con herramientas avanzadas que mejoran los resultados clínicos y la experiencia del paciente." },
-            { icon: Target,    title: "Visión", desc: "Ser la plataforma líder mundial en salud digital, transformando la medicina a través de la inteligencia artificial y la telemedicina, creando un futuro donde la atención médica de excelencia sea accesible para todos." },
-          ].map(({ icon: Icon, title, desc }, i) => (
-            <Reveal key={title} type={i === 0 ? "left" : "right"}>
-              <div className="rounded-2xl border border-[var(--surface-card-border-soft)] p-5 sm:p-6 text-center space-y-3 card-premium">
-                <div className="w-12 h-12 mx-auto rounded-xl bg-[var(--chip-bg)] flex items-center justify-center icon-lift">
-                  <Icon className="w-6 h-6 text-primary" />
-                </div>
-                <h2 className="font-semibold text-lg sm:text-xl text-[var(--text-primary)]">{title}</h2>
-                <p className="text-sm text-[var(--text-body)] font-poppins">{desc}</p>
-              </div>
-            </Reveal>
-          ))}
-        </section>
-
-        {/* Valores */}
-        <Reveal className="text-center mt-12 sm:mt-16">
-          <h1 className="text-2xl sm:text-3xl font-bold text-primary">Nuestros Valores</h1>
-        </Reveal>
-
-        <section className="mt-8 sm:mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-4">
-          {values.map(({ icon: Icon, title, desc }, i) => (
-            <Reveal key={title} type="scale" delay={i * 60}>
-              <div className="rounded-3xl border border-[var(--surface-card-border-soft)] p-5 sm:p-6 text-center card-premium group">
-                <div className="w-12 h-12 mx-auto rounded-xl bg-[var(--chip-bg)] flex items-center justify-center mb-4 icon-lift">
-                  <Icon className="w-6 h-6 text-primary" />
-                </div>
-                <h2 className="font-semibold text-base sm:text-xl text-[var(--text-primary)]">{title}</h2>
-                <p className="text-sm text-[var(--text-body)] mt-2 font-poppins">{desc}</p>
-              </div>
-            </Reveal>
-          ))}
-        </section>
-
-        {/* Equipo */}
-        <Reveal className="text-center mt-12 sm:mt-16">
-          <h1 className="text-2xl sm:text-3xl font-bold text-primary">Nuestro Equipo</h1>
-          <p className="text-center text-sm sm:text-base text-[var(--text-body)] mt-2 font-poppins">
-            Profesionales excepcionales comprometidos con la innovación médica.
-          </p>
-        </Reveal>
-
-        <section className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-4">
-          {team.map(({ name, role }, i) => (
-            <Reveal key={name} type="scale" delay={i * 60}>
-              <div className="rounded-2xl border border-[var(--surface-card-border-soft)] p-4 sm:p-6 text-center card-premium">
-                <div className="w-11 h-11 mx-auto rounded-full bg-[var(--chip-bg)] flex items-center justify-center mb-3 icon-lift">
-                  <User className="w-5 h-5 text-primary" />
-                </div>
-                <h2 className="font-semibold text-sm sm:text-base text-[var(--text-primary)]">{name}</h2>
-                <p className="text-xs sm:text-sm text-[var(--text-body)] mt-1 font-poppins">{role}</p>
-              </div>
-            </Reveal>
-          ))}
-        </section>
-
-        {/* Historia */}
-        <Reveal className="text-center mt-12 sm:mt-16">
-          <h1 className="text-2xl sm:text-3xl font-bold text-primary">Nuestra Historia</h1>
-          <p className="text-center text-sm sm:text-base text-[var(--text-body)] mt-2 mb-10 sm:mb-12 font-poppins">
-            Un recorrido de innovación y crecimiento en el sector de la salud digital.
-          </p>
-        </Reveal>
-
-        <section className="relative max-w-3xl mx-auto pb-16">
-          {/* Desktop: center line */}
-          <div className="pointer-events-none absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-[var(--primary)] hidden md:block" />
-          {/* Mobile: left line */}
-          <div className="pointer-events-none absolute left-5 top-0 h-full w-px bg-[var(--primary)] md:hidden" />
-
-          {history.map(({ year, side, title, desc }, i) => (
-            <Reveal key={year} type={side === "left" ? "left" : "right"} delay={i * 70}>
-              <div className="relative grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-12 items-start md:items-center">
-                {/* Mobile dot – left rail */}
-                <span className="md:hidden absolute left-5 top-4 h-3 w-3 -translate-x-1/2 rounded-full bg-[var(--primary)] ring-4 ring-white z-10" />
-                {/* Desktop dot – center */}
-                <span className="hidden md:block absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--primary)] ring-8 ring-white z-10 hover:scale-125 transition-transform" />
-
-                <div className={`pl-12 md:pl-0 ${side === "left" ? "md:text-right md:pr-10" : "md:col-start-2 md:pl-10"}`}>
-                  <div className="rounded-2xl bg-[var(--surface)] p-4 sm:p-6 shadow-md ring-1 ring-[var(--surface-card-border-soft)] card-premium">
-                    <p className="text-[var(--primary)] font-bold text-base sm:text-lg">{year}</p>
-                    <h3 className="mt-1 text-base sm:text-xl font-semibold text-[var(--text-primary)]">{title}</h3>
-                    <p className="mt-2 text-xs sm:text-sm text-[var(--text-body)] font-poppins">{desc}</p>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {values.map(({ icon: Icon, title, text }, i) => (
+              <Reveal key={title} type="scale" delay={i * 60}>
+                <article className="h-full rounded-3xl border border-[var(--surface-card-border)] bg-[var(--surface-card)] p-5 card-premium">
+                  <div className="grid h-11 w-11 place-items-center rounded-xl bg-[var(--chip-bg)] text-primary">
+                    <Icon className="h-5 w-5" />
                   </div>
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </section>
+                  <h3 className="mt-4 text-lg font-semibold text-[var(--text-primary)]">{title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[var(--text-body)] font-poppins">{text}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      </div>
+      <UserMapSection />
+
+      <section className="relative left-1/2 w-screen -translate-x-1/2 bg-[var(--surface)]">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-18 lg:px-8">
+          <Reveal className="mb-10 text-center">
+            <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary">
+              <Trophy size={13} /> Logros 2025
+            </span>
+            <h2 className="font-fredoka-one text-3xl text-primary sm:text-4xl">Reconocimientos</h2>
+            <p className="mx-auto mt-3 max-w-xl text-sm text-[var(--text-body)] font-poppins sm:text-base">
+              Distinciones que respaldan nuestro impacto en salud digital e innovacion.
+            </p>
+          </Reveal>
+
+          <div className="mx-auto grid max-w-5xl gap-5 sm:grid-cols-3">
+            {awards.map(({ Icon, org, title, desc, badge }, i) => (
+              <Reveal key={title} type="scale" delay={i * 80}>
+                <article className="relative flex h-full flex-col rounded-3xl border border-[var(--surface-card-border)] bg-[var(--surface-card-soft)] p-5 card-premium">
+                  <span className="absolute right-4 top-4 rounded-full bg-primary px-2.5 py-0.5 text-[10px] font-bold tracking-wide text-white">
+                    {badge}
+                  </span>
+                  <div className="mb-4 grid h-14 w-14 place-items-center rounded-2xl bg-[var(--surface-card)] text-primary">
+                    <Icon size={26} />
+                  </div>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-primary">{org}</p>
+                  <h3 className="mt-1 text-base font-bold leading-snug text-[var(--text-primary)] sm:text-lg">{title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[var(--text-body)] font-poppins">{desc}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

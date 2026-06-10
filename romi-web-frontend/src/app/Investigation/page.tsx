@@ -1,116 +1,91 @@
-import {
-  Beaker, BookOpenCheck, LineChart, ShieldCheck, Users,
-  FileText, Sparkles, Compass, Layers, Award, TrendingUp
-} from "lucide-react";
+import { Beaker, BookOpenCheck, Brain, FileText, HeartPulse, Microscope, Salad, ShieldCheck, Sparkles, Stethoscope, Users } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { getLocale } from "next-intl/server";
 import EnglishPublicPage from "@/components/EnglishPublicPage";
 
 const researchLines = [
-  { title: "Salud mental y bienestar digital",     description: "Estudio del impacto de ROMI en la reducción de síntomas, adherencia al tratamiento y bienestar percibido." },
-  { title: "Experiencia del paciente",             description: "Análisis de la satisfacción, accesibilidad y percepción de acompañamiento durante y entre consultas." },
-  { title: "Eficiencia clínica",                   description: "Medición del tiempo en consulta, carga administrativa y organización de información clínica." },
+  {
+    title: "Confiabilidad clinica de asistentes virtuales",
+    description: "Evaluacion de respuestas de ROMI ante dudas medicas, con revision de especialistas y criterios de seguridad.",
+  },
+  {
+    title: "Experiencia y percepcion de impacto",
+    description: "Estudio de usabilidad, claridad y valor percibido por usuarios que interactuan con un asistente medico con IA.",
+  },
+  {
+    title: "Respuesta de especialistas",
+    description: "Analisis de como medicos y profesionales de salud integran ROMI en su practica sin desplazar el criterio clinico.",
+  },
+  {
+    title: "Seguimiento y continuidad de atencion",
+    description: "Exploracion de recordatorios, preparacion previa y acompanamiento entre consultas para mejorar adherencia.",
+  },
 ];
 
-const evidenceBlocks = [
-  {
-    tag: "Marco teórico",
-    title: "ROMI se fundamenta en modelos basados en evidencia",
-    points: [
-      "Uso de principios de psicoeducación y acompañamiento continuo.",
-      "Diseño centrado en la relación profesional–paciente.",
-      "Integración con buenas prácticas de seguimiento clínico.",
-    ],
-  },
-  {
-    tag: "Evaluación continua",
-    title: "Medimos, ajustamos y volvemos a medir",
-    points: [
-      "Análisis de uso real de la plataforma en consultas.",
-      "Encuestas a profesionales y pacientes sobre la experiencia.",
-      "Iteración de funcionalidades según hallazgos de investigación.",
-    ],
-  },
+const specialties = [
+  { icon: HeartPulse, title: "Oncologia", text: "Apoyo educativo, preparacion de dudas y seguimiento de informacion para pacientes y equipos clinicos." },
+  { icon: Salad, title: "Nutricion", text: "Expedientes y acompanamiento para habitos, evolucion del paciente y contexto previo a consulta." },
+  { icon: Brain, title: "Psicologia", text: "Organizacion del expediente y seguimiento responsable sin sustituir la relacion terapeutica." },
+  { icon: Stethoscope, title: "Medicina general", text: "Orientacion inicial, identificacion de necesidades y canalizacion adecuada." },
+  { icon: Users, title: "Cuidados paliativos", text: "Acompanamiento sensible para comunicacion, continuidad y soporte del equipo de atencion." },
+  { icon: ShieldCheck, title: "Otras especialidades medicas", text: "Modelo adaptable para contextos clinicos donde la informacion ordenada mejora la consulta." },
 ];
 
 const publications = [
-  { year: "En desarrollo",  title: "Protocolos para evaluar asistentes digitales en salud mental",    type: "Protocolo de estudio" },
-  { year: "Próximamente",   title: "Impacto de ROMI en la organización de la consulta psicológica",   type: "Estudio observacional" },
+  {
+    status: "Previo",
+    title: "User Experience and Perceived Impact of an AI Medical Assistant: A Pilot Study",
+    type: "Estudio mixto expuesto en 2025 SMeO",
+  },
+  {
+    status: "Proximamente",
+    title: "Evaluacion de la confiabilidad clinica de un asistente medico virtual basado en inteligencia artificial en la resolucion de dudas medicas",
+    type: "Estudio observacional",
+  },
 ];
 
 export default async function InvestigationPage() {
   if (await getLocale() === "en") return <EnglishPublicPage kind="research" />;
+
   return (
     <main className="min-h-screen bg-[var(--surface)]">
-
-      {/* HERO */}
-      <section className="relative left-1/2 -translate-x-1/2 w-screen overflow-hidden">
+      <section className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-[var(--primary)] via-[var(--accent)] to-[var(--secondary)]" />
-        <div className="absolute -top-24 -left-24 w-64 sm:w-72 h-64 sm:h-72 bg-[var(--hero-glow-one)] rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-72 sm:w-80 h-72 sm:h-80 bg-[var(--hero-glow-one)] rounded-full blur-3xl" />
-
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-16 sm:pb-24">
-          <div className="grid md:grid-cols-5 gap-8 lg:gap-10 items-start">
-            <div className="md:col-span-3 text-white">
-              <p className="inline-flex items-center gap-2 rounded-full border border-[var(--surface-card-border-soft)] bg-[var(--surface-card-soft)] px-4 py-1 text-xs font-medium text-white/90 mb-4">
-                <Beaker className="h-4 w-4" /> <span>Investigación y evidencia</span>
-              </p>
-              <h1 className="font-fredoka-one text-4xl sm:text-5xl md:text-6xl leading-tight drop-shadow-sm">
-                Investigación basada en <span className="text-[var(--secondary)]">evidencia</span>
-              </h1>
-              <p className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg text-white/90 font-poppins max-w-xl">
-                ROMI evoluciona a partir de datos clínicos reales, colaboración con profesionales y mejora continua enfocada en el bienestar y la práctica terapéutica.
-              </p>
-              <div className="mt-6 sm:mt-8 flex flex-wrap gap-3">
-                <a href="#lineas" className="inline-flex items-center gap-2 rounded-full bg-[var(--surface)] px-5 sm:px-7 py-2.5 sm:py-3 text-sm font-semibold text-[var(--primary)] shadow hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">
-                  <LineChart className="h-4 sm:h-5 w-4 sm:w-5" /> Líneas
-                </a>
-                <a href="#evidencia" className="inline-flex items-center gap-2 rounded-full bg-[var(--surface-card-soft)] backdrop-blur px-5 sm:px-7 py-2.5 sm:py-3 text-sm font-semibold text-[var(--primary)] border border-[var(--surface-card-border-soft)] hover:bg-[var(--surface)] hover:-translate-y-0.5 transition-all duration-200">
-                  <BookOpenCheck className="h-4 sm:h-5 w-4 sm:w-5" /> Evidencia
-                </a>
-                <a href="#publicaciones" className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)] px-5 sm:px-7 py-2.5 sm:py-3 text-sm font-semibold text-white shadow hover:bg-[var(--primary-hover)] hover:-translate-y-0.5 transition-all duration-200">
-                  <FileText className="h-4 sm:h-5 w-4 sm:w-5" /> Publicaciones
-                </a>
-              </div>
-              <div className="mt-8 sm:mt-10 grid grid-cols-3 gap-4 max-w-md">
-                <MiniMetric icon={Award}      value="10+"  label="Estudios" />
-                <MiniMetric icon={TrendingUp} value="97%"  label="Adopción" />
-                <MiniMetric icon={Layers}     value="1.2K" label="Datos analizados" />
-              </div>
-            </div>
-
-            <aside className="md:col-span-2">
-              <nav aria-label="Navegación investigación" className="rounded-3xl bg-[var(--surface-card-soft)] backdrop-blur border border-[var(--surface-card-border-soft)] p-5 sm:p-6 flex flex-col gap-3 sm:gap-4 shadow-lg">
-                <h2 className="text-[var(--primary)] font-fredoka-one text-xl flex items-center gap-2"><Compass className="h-5 w-5" /> Navegación</h2>
-                <SideLink active icon={LineChart}     label="Líneas" />
-                <SideLink       icon={BookOpenCheck}  label="Evidencia" />
-                <SideLink       icon={FileText}       label="Publicaciones" />
-                <SideLink       icon={Users}          label="Colaboración" />
-              </nav>
-            </aside>
-          </div>
+        <div className="relative mx-auto max-w-7xl px-4 py-18 text-white sm:px-6 sm:py-24 lg:px-8">
+          <Reveal className="max-w-3xl">
+            <p className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-white/90">
+              <Beaker className="h-4 w-4" />
+              Investigacion y especialidades
+            </p>
+            <h1 className="mt-5 font-fredoka-one text-4xl leading-tight sm:text-5xl lg:text-6xl">
+              Evidencia publica para construir ROMI con responsabilidad clinica
+            </h1>
+            <p className="mt-5 max-w-2xl text-sm leading-relaxed text-white/90 font-poppins sm:text-base">
+              ROMI se desarrolla con estudios, revision profesional y lineas de investigacion que conectan experiencia de usuario, confiabilidad y aplicacion por especialidad.
+            </p>
+          </Reveal>
         </div>
       </section>
 
-      {/* LÍNEAS DE INVESTIGACIÓN */}
-      <section id="lineas" className="relative left-1/2 -translate-x-1/2 w-screen scroll-mt-24 bg-[var(--surface)]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 space-y-10 sm:space-y-12">
-          <Reveal>
-            <h2 className="text-3xl sm:text-4xl font-fredoka-one text-[var(--primary)]">Líneas de investigación</h2>
-            <p className="mt-4 text-sm sm:text-base text-[var(--text-body)] font-poppins max-w-xl">
-              Exploramos cómo la tecnología apoya la relación terapéutica y potencia la práctica clínica cotidiana sin sustituir el vínculo humano.
+      <section className="relative left-1/2 w-screen -translate-x-1/2 bg-[var(--surface)]">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-18 lg:px-8">
+          <Reveal className="mb-9">
+            <p className="text-xs font-bold uppercase tracking-wide text-primary">Lineas de investigacion</p>
+            <h2 className="mt-2 font-fredoka-one text-3xl text-primary sm:text-4xl">Preguntas que guian la evolucion de ROMI</h2>
+            <p className="mt-3 max-w-2xl text-sm text-[var(--text-body)] font-poppins sm:text-base">
+              Cada linea busca demostrar utilidad real sin perder de vista seguridad, confidencialidad y supervision profesional.
             </p>
           </Reveal>
 
-          <div className="grid gap-5 sm:gap-7 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {researchLines.map((line, i) => (
-              <Reveal key={line.title} type="scale" delay={i * 80}>
-                <article className="rounded-3xl border border-[var(--surface-card-border-soft)] bg-[var(--surface)] shadow-sm p-5 sm:p-6 flex flex-col gap-3 card-premium h-full">
-                  <div className="w-10 h-10 rounded-xl bg-[var(--chip-bg)] flex items-center justify-center icon-lift">
-                    <LineChart className="h-5 w-5 text-[var(--primary)]" />
+              <Reveal key={line.title} type="scale" delay={i * 60}>
+                <article className="h-full rounded-3xl border border-[var(--surface-card-border)] bg-[var(--surface-card)] p-5 card-premium">
+                  <div className="grid h-11 w-11 place-items-center rounded-xl bg-[var(--chip-bg)] text-primary">
+                    <Microscope className="h-5 w-5" />
                   </div>
-                  <h3 className="text-base sm:text-lg font-semibold text-[var(--text-primary)] font-poppins">{line.title}</h3>
-                  <p className="text-sm text-[var(--text-body)] font-poppins">{line.description}</p>
+                  <h3 className="mt-4 text-base font-semibold text-[var(--text-primary)]">{line.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[var(--text-body)] font-poppins">{line.description}</p>
                 </article>
               </Reveal>
             ))}
@@ -118,62 +93,61 @@ export default async function InvestigationPage() {
         </div>
       </section>
 
-      {/* EVIDENCIA Y MÉTODOS */}
-      <section id="evidencia" className="relative left-1/2 -translate-x-1/2 w-screen scroll-mt-24 border-y border-[var(--surface-card-border-soft)] bg-[var(--surface-alt)]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 grid gap-8 sm:gap-12 md:grid-cols-[1.2fr,1fr] items-start">
-          <div className="space-y-6 sm:space-y-8">
-            {evidenceBlocks.map((block, i) => (
-              <Reveal key={block.title} type="left" delay={i * 80}>
-                <article className="rounded-3xl border border-[var(--surface-card-border-soft)] bg-[var(--surface)] p-5 sm:p-6 shadow-sm card-premium">
-                  <p className="text-[11px] font-semibold uppercase tracking-wide text-[var(--primary)] mb-1">{block.tag}</p>
-                  <h3 className="text-sm sm:text-base font-semibold text-[var(--text-primary)] font-poppins">{block.title}</h3>
-                  <ul className="mt-3 space-y-2 text-sm text-[var(--text-body)] font-poppins">
-                    {block.points.map((p) => (
-                      <li key={p} className="flex items-start gap-2">
-                        <Sparkles className="mt-0.5 h-4 w-4 text-[var(--primary)] shrink-0" />
-                        <span>{p}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal type="right">
-            <aside className="rounded-3xl border border-[var(--surface-card-border-soft)] bg-[var(--surface)] p-5 sm:p-6 shadow-sm space-y-4 text-sm text-[var(--text-body)] font-poppins card-premium">
-              <div className="flex items-center gap-2 mb-1">
-                <ShieldCheck className="h-5 w-5 text-[var(--primary)]" />
-                <h3 className="text-sm sm:text-base font-semibold text-[var(--text-primary)] font-poppins">Datos, ética y seguridad</h3>
-              </div>
-              <p>La investigación con ROMI respeta principios éticos, protección de datos y confidencialidad de la información de pacientes y profesionales.</p>
-              <ul className="space-y-2 list-disc pl-5">
-                <li>Uso responsable de datos anonimizados o agregados.</li>
-                <li>Respeto a la normativa y comités correspondientes.</li>
-                <li>Enfoque en beneficio y bienestar de las personas.</li>
-              </ul>
-            </aside>
+      <section className="relative left-1/2 w-screen -translate-x-1/2 border-y border-[var(--surface-card-border-soft)] bg-[var(--surface-alt)]">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 sm:py-18 lg:grid-cols-[0.85fr,1.15fr] lg:px-8">
+          <Reveal type="left" className="space-y-4">
+            <p className="text-xs font-bold uppercase tracking-wide text-primary">Especialidades</p>
+            <h2 className="font-fredoka-one text-3xl text-primary sm:text-4xl">Aplicacion por areas clinicas</h2>
+            <p className="text-sm leading-relaxed text-[var(--text-body)] font-poppins sm:text-base">
+              La plataforma se adapta a distintas necesidades medicas. Psicologia esta presente, pero no domina el enfoque: ROMI tambien crece en oncologia, nutricion y otras areas de atencion.
+            </p>
           </Reveal>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {specialties.map(({ icon: Icon, title, text }, i) => (
+              <Reveal key={title} type="scale" delay={i * 50}>
+                <article className="h-full rounded-3xl border border-[var(--surface-card-border)] bg-[var(--surface)] p-5 card-premium">
+                  <div className="flex items-start gap-3">
+                    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary text-white">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-semibold text-[var(--text-primary)]">{title}</h3>
+                      <p className="mt-1 text-sm leading-relaxed text-[var(--text-body)] font-poppins">{text}</p>
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* PUBLICACIONES */}
-      <section id="publicaciones" className="relative left-1/2 -translate-x-1/2 w-screen scroll-mt-24 bg-[var(--surface)]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 space-y-8 sm:space-y-10">
-          <Reveal>
-            <h2 className="text-3xl sm:text-4xl font-fredoka-one text-[var(--primary)]">Publicaciones y producción</h2>
-            <p className="mt-4 text-sm sm:text-base text-[var(--text-body)] font-poppins max-w-xl">Proyectos y documentos en curso que fortalecen el marco conceptual y clínico de ROMI.</p>
+      <section className="relative left-1/2 w-screen -translate-x-1/2 bg-[var(--surface)]">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-18 lg:px-8">
+          <Reveal className="mb-9">
+            <p className="text-xs font-bold uppercase tracking-wide text-primary">Investigaciones publicas</p>
+            <h2 className="mt-2 font-fredoka-one text-3xl text-primary sm:text-4xl">Produccion academica ROMI</h2>
+            <p className="mt-3 max-w-2xl text-sm text-[var(--text-body)] font-poppins sm:text-base">
+              Estos proyectos documentan avances previos y evaluaciones proximas del asistente medico virtual.
+            </p>
           </Reveal>
 
           <div className="space-y-4">
             {publications.map((pub, i) => (
               <Reveal key={pub.title} delay={i * 80}>
-                <article className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 rounded-3xl border border-[var(--surface-card-border-soft)] bg-[var(--surface)] p-4 sm:p-5 shadow-sm card-premium">
-                  <div>
-                    <p className="text-xs font-semibold text-[var(--primary)]">{pub.year}</p>
-                    <p className="text-sm sm:text-base font-medium text-[var(--text-primary)] font-poppins">{pub.title}</p>
-                    <p className="text-xs sm:text-sm text-[var(--text-body)] font-poppins">{pub.type}</p>
+                <article className="flex flex-col gap-4 rounded-3xl border border-[var(--surface-card-border)] bg-[var(--surface-card)] p-5 card-premium sm:flex-row sm:items-center sm:justify-between">
+                  <div className="flex items-start gap-4">
+                    <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-[var(--chip-bg)] text-primary">
+                      {i === 0 ? <BookOpenCheck className="h-5 w-5" /> : <FileText className="h-5 w-5" />}
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-wide text-primary">{pub.status}</p>
+                      <h3 className="mt-1 text-base font-semibold text-[var(--text-primary)] sm:text-lg">{pub.title}</h3>
+                      <p className="mt-1 text-sm text-[var(--text-body)] font-poppins">{pub.type}</p>
+                    </div>
                   </div>
+                  <Sparkles className="hidden h-5 w-5 text-[var(--secondary)] sm:block" />
                 </article>
               </Reveal>
             ))}
@@ -181,52 +155,20 @@ export default async function InvestigationPage() {
         </div>
       </section>
 
-      {/* CTA FINAL */}
-      <section id="colaboracion" className="relative left-1/2 -translate-x-1/2 w-screen bg-[var(--surface)] border-t border-[var(--secondary)]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 flex flex-col gap-6 sm:gap-8 md:flex-row md:items-center md:justify-between">
-          <Reveal type="left" className="max-w-xl space-y-4">
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-[var(--primary)]">Colaboración</p>
-            <h2 className="text-2xl sm:text-3xl font-fredoka-one text-[var(--primary)]">¿Te interesa investigar con ROMI?</h2>
-            <p className="text-sm sm:text-base text-[var(--text-body)] font-poppins">Exploramos proyectos conjuntos, diseños de estudio y evaluaciones sobre impacto clínico y organizacional del asistente digital en salud mental.</p>
-          </Reveal>
-          <Reveal type="right" className="flex flex-col gap-3 w-full md:w-auto md:min-w-[260px]">
-            <a href="/Contact" className="inline-flex items-center justify-center rounded-full bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-white shadow hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 active:scale-95">
-              Contactar equipo ROMI
-            </a>
-            <p className="text-xs text-[var(--text-body)] font-poppins">Comparte contexto, población y objetivos de investigación.</p>
-          </Reveal>
+      <section className="relative left-1/2 w-screen -translate-x-1/2 bg-primary">
+        <div className="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-10 text-white sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-wide text-white/70">Colaboracion</p>
+            <h2 className="mt-1 font-fredoka-one text-2xl sm:text-3xl">Respuesta de especialistas y nuevas lineas</h2>
+            <p className="mt-2 max-w-2xl text-sm text-white/80 font-poppins">
+              ROMI puede sumar nuevas especialidades cuando exista un marco clinico claro y revision profesional.
+            </p>
+          </div>
+          <a href="/Contact" className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-primary shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-lg">
+            Contactar equipo ROMI
+          </a>
         </div>
       </section>
     </main>
-  );
-}
-
-/* ─── Helpers ─── */
-function MiniMetric({ icon: Icon, value, label }: { icon: React.ComponentType<React.SVGProps<SVGSVGElement>>; value: string; label: string }) {
-  return (
-    <div className="flex flex-col items-start gap-1">
-      <div className="flex items-center gap-2">
-        <Icon className="h-4 w-4 text-white opacity-90" aria-hidden="true" />
-        <span className="text-sm font-semibold text-white font-poppins">{value}</span>
-      </div>
-      <span className="text-[11px] tracking-wide uppercase text-white/70 font-poppins">{label}</span>
-    </div>
-  );
-}
-
-function SideLink({ icon: Icon, label, active = false }: { icon: React.ComponentType<React.SVGProps<SVGSVGElement>>; label: string; active?: boolean }) {
-  const href = `#${label.toLowerCase().split(' ')[0]}`;
-  const base = "flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200 border active:scale-[0.98]";
-  if (active) {
-    return (
-      <a href={href} aria-current="page" className={`${base} bg-[var(--primary)] text-white border-[var(--primary)] shadow-sm hover:shadow-md`}>
-        <Icon className="h-4 w-4" aria-hidden="true" /> {label}
-      </a>
-    );
-  }
-  return (
-    <a href={href} className={`${base} bg-[var(--surface-card-soft)] text-[var(--text-primary)] border-[var(--surface-card-border-soft)] hover:bg-[var(--surface-card-soft)] hover:border-[var(--chip-border)]`}>
-      <Icon className="h-4 w-4 text-[var(--primary)]" aria-hidden="true" /> {label}
-    </a>
   );
 }
