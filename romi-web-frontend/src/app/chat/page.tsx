@@ -7,8 +7,10 @@ import { getToken } from "@/lib/auth";
 import { apiFetch } from "@/lib/api";
 import { useRealtime } from "@/hooks/useRealtime";
 import { useFormatter, useTranslations } from "next-intl";
+import { ROMI_CONTACT } from "@/lib/contact";
 
 type ChatMessage = { from: "user" | "bot"; text: string };
+type ConnectionState = "idle" | "connecting" | "connected" | "fallback";
 
 function ChatPageInner() {
   const t = useTranslations("chat");
@@ -17,10 +19,13 @@ function ChatPageInner() {
   const [input, setInput] = useState("");
   const wsRef = useRef<WebSocket | null>(null);
   const [typing, setTyping] = useState(false);
+  const [connectionState, setConnectionState] = useState<ConnectionState>("idle");
   const searchParams = useSearchParams();
   const appointmentId = searchParams?.get("appointmentId") || null;
   const [userId, setUserId] = useState<string | null>(null);
   const [appointmentInput, setAppointmentInput] = useState("");
+  const fallbackMessage = t("fallbackMessage");
+  const offlineReply = t("offlineReply");
 
   useEffect(() => {
     (async () => {
@@ -39,26 +44,40 @@ function ChatPageInner() {
   const realtimeThread = appointmentId ? chatMessages[appointmentId] ?? [] : [];
 
   useEffect(() => {
-    const apiBase =
+    const configuredBase =
+      process.env.NEXT_PUBLIC_WS_URL ||
       process.env.NEXT_PUBLIC_API_BASE_URL ||
-      process.env.NEXT_PUBLIC_API_URL ||
-      "http://localhost:3001";
+      process.env.NEXT_PUBLIC_API_URL;
 
-    const wsBase = process.env.NEXT_PUBLIC_WS_URL || apiBase.replace(/^http/, "ws");
+    if (!configuredBase) {
+      setConnectionState("fallback");
+      setMessages([{ from: "bot", text: fallbackMessage }]);
+      return;
+    }
+
+    const wsBase = configuredBase.replace(/^http/, "ws");
 
     const url = new URL(`${wsBase}/chat`);
 
     const token = getToken();
     if (token) url.searchParams.set("token", token);
 
-    console.log("WS_URL final:", url.toString());
+    setConnectionState("connecting");
 
     const ws = new WebSocket(url.toString());
     wsRef.current = ws;
 
-    ws.onopen = () => console.log("WS connected:", url.toString());
-    ws.onclose = (e) => console.log("WS closed", e.code, e.reason);
-    ws.onerror = (e) => console.log("WS error", e);
+    ws.onopen = () => setConnectionState("connected");
+    ws.onclose = () => {
+      setConnectionState("fallback");
+      setTyping(false);
+      setMessages((current) => current.length ? current : [{ from: "bot", text: fallbackMessage }]);
+    };
+    ws.onerror = () => {
+      setConnectionState("fallback");
+      setTyping(false);
+      setMessages((current) => current.length ? current : [{ from: "bot", text: fallbackMessage }]);
+    };
 
     ws.onmessage = (ev) => {
       try {
@@ -82,14 +101,20 @@ function ChatPageInner() {
         ws.close();
       } catch {}
     };
-  }, []);
+  }, [fallbackMessage]);
 
   const send = () => {
     const text = input.trim();
     const ws = wsRef.current;
 
-    if (!text || !ws || ws.readyState !== WebSocket.OPEN) {
-      console.warn("WS no abierto aún");
+    if (!text) {
+      return;
+    }
+
+    if (!ws || ws.readyState !== WebSocket.OPEN || connectionState !== "connected") {
+      setMessages((p) => [...p, { from: "user", text }, { from: "bot", text: offlineReply }]);
+      setInput("");
+      setConnectionState("fallback");
       return;
     }
 
@@ -108,12 +133,29 @@ function ChatPageInner() {
   };
 
   return (
-    <main className="romi-page">
+    <main className="romi-page overflow-x-hidden">
       <div className="max-w-3xl mx-auto px-0 sm:px-4 space-y-5">
         <header className="romi-page-header">
           <h1 className="font-fredoka-one text-3xl text-primary">{t("title")}</h1>
           <p className="mt-1 text-sm text-[var(--text-body)]">{t("subtitle")}</p>
         </header>
+
+        {connectionState !== "connected" && (
+          <section className="romi-panel flex flex-col gap-4 border-[var(--surface-card-border-soft)] bg-[var(--surface-card-soft)] sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="font-fredoka-one text-xl text-primary">{t("fallbackTitle")}</p>
+              <p className="mt-1 text-sm leading-relaxed text-[var(--text-body)]">{fallbackMessage}</p>
+            </div>
+            <a
+              href={ROMI_CONTACT.whatsapp.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="romi-action shrink-0"
+            >
+              {t("fallbackCta")}
+            </a>
+          </section>
+        )}
 
         {appointmentId && (
           <section className="romi-panel space-y-3">
@@ -172,6 +214,12 @@ function ChatPageInner() {
         )}
 
         <section className="romi-panel h-[55vh] overflow-y-auto bg-[var(--surface-alt)]">
+          {messages.length === 0 && (
+            <div className="grid h-full place-items-center text-center text-sm text-[var(--text-muted)]">
+              {connectionState === "connecting" ? t("loading") : t("empty")}
+            </div>
+          )}
+
           {messages.map((m, i) => (
             <div
               key={i}

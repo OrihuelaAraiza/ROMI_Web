@@ -63,9 +63,10 @@ function EkgTile() {
   return (
     <svg
       viewBox="0 0 400 60"
-      width={400}
+      width="25%"
       height={60}
-      className="flex-shrink-0"
+      preserveAspectRatio="none"
+      className="min-w-0 flex-1"
       aria-hidden="true"
     >
       <path
@@ -150,15 +151,14 @@ export default function MedicalBg() {
 
       {/* ── Scrolling EKG heartbeat line ── */}
       <div className="absolute bottom-4 left-0 right-0 h-[60px] overflow-hidden">
-        {/* 8 tiles × 400 px = 3200 px → covers any screen + room to march */}
         <div
           style={{
             display: "flex",
-            width: `${8 * 400}px`,
+            width: "100%",
             animation: "ekg-march 6s linear infinite",
           }}
         >
-          {Array.from({ length: 8 }).map((_, i) => (
+          {Array.from({ length: 4 }).map((_, i) => (
             <EkgTile key={i} />
           ))}
         </div>

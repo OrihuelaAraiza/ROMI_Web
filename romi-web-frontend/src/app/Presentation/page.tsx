@@ -38,6 +38,24 @@ const awards = [
   },
 ] as const;
 
+const presenceHighlights = [
+  {
+    icon: Users,
+    title: "Comunidad activa",
+    text: "ROMI crece a partir de interacciones reales, eventos medicos y retroalimentacion de usuarios y profesionales.",
+  },
+  {
+    icon: Globe,
+    title: "Presencia regional",
+    text: "El proyecto conecta Mexico, Latinoamerica y comunidades hispanohablantes que buscan orientacion accesible.",
+  },
+  {
+    icon: BrainCircuit,
+    title: "IA aplicada con criterio",
+    text: "La tecnologia se presenta como apoyo para informar, ordenar y acompanarse de supervision profesional.",
+  },
+];
+
 export default async function Page() {
   if (await getLocale() === "en") return <EnglishPublicPage kind="about" />;
 
@@ -85,6 +103,32 @@ export default async function Page() {
                   <p className="font-fredoka-one text-3xl text-primary">{stat.value}</p>
                   <p className="mt-1 text-sm text-[var(--text-body)] font-poppins">{stat.label}</p>
                 </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative left-1/2 w-screen -translate-x-1/2 bg-[var(--surface)]">
+        <div className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 sm:pb-18 lg:px-8">
+          <Reveal className="mb-8 text-center">
+            <p className="text-xs font-bold uppercase tracking-wide text-primary">Impacto y presencia</p>
+            <h2 className="mt-2 font-fredoka-one text-3xl text-primary sm:text-4xl">Evidencia de quienes somos y que hacemos</h2>
+            <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-[var(--text-body)] font-poppins sm:text-base">
+              La pagina publica debe dejar claro que ROMI no es solo un chatbot: es una red de atencion, educacion e investigacion en salud digital.
+            </p>
+          </Reveal>
+
+          <div className="grid gap-5 sm:grid-cols-3">
+            {presenceHighlights.map(({ icon: Icon, title, text }, i) => (
+              <Reveal key={title} type="scale" delay={i * 60}>
+                <article className="h-full rounded-3xl border border-[var(--surface-card-border)] bg-[var(--surface-card)] p-5 card-premium">
+                  <div className="grid h-11 w-11 place-items-center rounded-xl bg-[var(--chip-bg)] text-primary">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="mt-4 text-lg font-semibold text-[var(--text-primary)]">{title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[var(--text-body)] font-poppins">{text}</p>
+                </article>
               </Reveal>
             ))}
           </div>

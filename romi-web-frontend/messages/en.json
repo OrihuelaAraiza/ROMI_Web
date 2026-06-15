@@ -100,7 +100,7 @@
     "title": "ROMI apps and demos",
     "description": "Functional ROMI demos for nutrition, psychology, thanatology, oncology education and virtual scheduling.",
     "open": "Open app",
-    "shortcuts": "You can also enter directly with paths like /nutri, /edu, /oncopro, /rejuvia and /romimed."
+    "shortcuts": "Demo entries open external platforms or show test credentials. Modules without a public URL remain marked as upcoming launches."
   },
   "chat": {
     "title": "Chat with ROMI",
@@ -111,7 +111,12 @@
     "participant": "Participant",
     "appointmentPlaceholder": "Message about the appointment",
     "placeholder": "Type your message...",
-    "send": "Send"
+    "send": "Send",
+    "loading": "Connecting chat...",
+    "fallbackTitle": "Free ROMI is available on WhatsApp",
+    "fallbackMessage": "The embedded chat will activate when the real-time service is available. For now, you can continue with ROMI on WhatsApp.",
+    "fallbackCta": "Open WhatsApp",
+    "offlineReply": "To continue now, open WhatsApp and ROMI will guide you there."
   },
   "appointments": {
     "title": "My appointments",

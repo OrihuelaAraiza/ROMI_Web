@@ -1,4 +1,4 @@
-import { Beaker, BookOpenCheck, Brain, FileText, HeartPulse, Microscope, Salad, ShieldCheck, Sparkles, Stethoscope, Users } from "lucide-react";
+import { Activity, Beaker, BookOpenCheck, Brain, ClipboardCheck, FileText, HeartPulse, Microscope, Salad, ShieldCheck, Sparkles, Stethoscope, Users } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { getLocale } from "next-intl/server";
 import EnglishPublicPage from "@/components/EnglishPublicPage";
@@ -29,6 +29,24 @@ const specialties = [
   { icon: Stethoscope, title: "Medicina general", text: "Orientacion inicial, identificacion de necesidades y canalizacion adecuada." },
   { icon: Users, title: "Cuidados paliativos", text: "Acompanamiento sensible para comunicacion, continuidad y soporte del equipo de atencion." },
   { icon: ShieldCheck, title: "Otras especialidades medicas", text: "Modelo adaptable para contextos clinicos donde la informacion ordenada mejora la consulta." },
+];
+
+const clinicalPrograms = [
+  {
+    icon: ClipboardCheck,
+    title: "Evaluacion de respuestas clinicas",
+    text: "Revision de claridad, seguridad y limites del asistente ante preguntas frecuentes de salud.",
+  },
+  {
+    icon: Activity,
+    title: "Seguimiento entre consultas",
+    text: "Analisis de recordatorios, preparacion previa y continuidad sin sobrecargar al profesional.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Uso responsable de IA",
+    text: "Criterios de privacidad, comunicacion clara y supervision profesional para escenarios publicos.",
+  },
 ];
 
 const publications = [
@@ -116,6 +134,35 @@ export default async function InvestigationPage() {
                       <p className="mt-1 text-sm leading-relaxed text-[var(--text-body)] font-poppins">{text}</p>
                     </div>
                   </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative left-1/2 w-screen -translate-x-1/2 bg-[var(--surface)]">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-18 lg:px-8">
+          <Reveal className="mb-9">
+            <p className="text-xs font-bold uppercase tracking-wide text-primary">Programas clinicos</p>
+            <h2 className="mt-2 font-fredoka-one text-3xl text-primary sm:text-4xl">Trabajo factible desde el sitio publico</h2>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--text-body)] font-poppins sm:text-base">
+              El PDF plantea flujos amplios de plataforma. En esta primera etapa se muestran como lineas informativas y proximos pasos, sin prometer captura de datos, pagos ni dashboards activos.
+            </p>
+          </Reveal>
+
+          <div className="grid gap-5 sm:grid-cols-3">
+            {clinicalPrograms.map(({ icon: Icon, title, text }, i) => (
+              <Reveal key={title} type="scale" delay={i * 60}>
+                <article className="h-full rounded-3xl border border-[var(--surface-card-border)] bg-[var(--surface-card-soft)] p-5 card-premium">
+                  <div className="grid h-11 w-11 place-items-center rounded-xl bg-[var(--surface)] text-primary">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="mt-4 text-lg font-semibold text-[var(--text-primary)]">{title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[var(--text-body)] font-poppins">{text}</p>
+                  <span className="mt-4 inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                    Frente publico
+                  </span>
                 </article>
               </Reveal>
             ))}

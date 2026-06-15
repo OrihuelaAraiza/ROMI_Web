@@ -101,6 +101,7 @@ export const publicInternalPaths = [
   "/Events",
   "/Telesalud",
   "/doctores",
+  "/chat",
   "/terminos-condiciones",
   "/aviso-privacidad",
 ] as const;

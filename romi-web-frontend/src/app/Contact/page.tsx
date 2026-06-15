@@ -1,11 +1,12 @@
 import Link from "next/link";
 import {
   Mail, Phone, MapPin, HelpCircle, MessageCircle, Headphones,
-  Compass, Send, Clock, ExternalLink,
+  Compass, Send, Clock, ExternalLink, Rocket,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { getLocale } from "next-intl/server";
 import EnglishPublicPage from "@/components/EnglishPublicPage";
+import { ROMI_CONTACT } from "@/lib/contact";
 
 const SOCIAL_LINKS = [
   {
@@ -233,7 +234,7 @@ export default async function ContactPage() {
             <p className="text-sm sm:text-base text-[var(--text-body)] font-poppins">Encuentra la ayuda que necesitas a través de nuestros canales de soporte.</p>
           </Reveal>
 
-          <div className="grid gap-4 sm:gap-6 sm:grid-cols-3">
+          <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
                 icon: HelpCircle,
@@ -245,13 +246,19 @@ export default async function ContactPage() {
                 icon: MessageCircle,
                 title: "Chat ROMI",
                 desc: "Comunícate con ROMI por WhatsApp.",
-                cta: { href: "https://wa.me/522213716632", label: "Abrir WhatsApp", external: true },
+                cta: { href: ROMI_CONTACT.whatsapp.url, label: "Abrir WhatsApp", external: true },
               },
               {
                 icon: Headphones,
                 title: "Soporte Técnico",
                 desc: "Asistencia especializada para profesionales.",
-                cta: { href: "tel:+522224335093", label: "Llamar ahora", external: false },
+                cta: { href: ROMI_CONTACT.phone.href, label: "Llamar ahora", external: false },
+              },
+              {
+                icon: Rocket,
+                title: "Lanzamiento Consultorio",
+                desc: "Registro de interés para ROMI en consulta y próximos módulos premium.",
+                cta: { href: "#formulario", label: "Registrarme", external: false },
               },
             ].map(({ icon: Icon, title, desc, cta }, i) => (
               <Reveal key={title} type="scale" delay={i * 80}>

@@ -5,6 +5,8 @@ import PageShell from "@/components/PageShell";
 import Panel from "@/components/Panel";
 import { LEGACY_APPS } from "@/lib/legacyApps";
 
+const accessLabels = ["Usuario", "Contrasena", "Acceso alterno"];
+
 export default async function AppsPage() {
   const t = await getTranslations("apps");
 
@@ -34,9 +36,10 @@ export default async function AppsPage() {
                   Acceso demo
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {app.access.map((item) => (
-                    <span key={item} className="rounded-full bg-[var(--surface)] px-3 py-1 text-xs text-[var(--text-body)] ring-1 ring-[var(--surface-card-border-soft)]">
-                      {item}
+                  {app.access.map((item, index) => (
+                    <span key={item} className="inline-flex max-w-full flex-col rounded-2xl bg-[var(--surface)] px-3 py-2 text-xs text-[var(--text-body)] ring-1 ring-[var(--surface-card-border-soft)]">
+                      <span className="font-semibold text-primary">{accessLabels[index] ?? "Dato demo"}</span>
+                      <span className="break-all">{item}</span>
                     </span>
                   ))}
                 </div>

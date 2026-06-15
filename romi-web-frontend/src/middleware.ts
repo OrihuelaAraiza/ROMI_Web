@@ -51,9 +51,10 @@ export function middleware(req: NextRequest) {
   }
 
   const internalPath = internalizePath(pathname, locale);
-  const protectedPrefixes = ['/appointments', '/dashboard', '/chat', '/doctor', '/patient', '/Seguimiento'];
+  const protectedPrefixes = ['/appointments', '/dashboard', '/doctor', '/patient', '/Seguimiento'];
+  const protectedChat = internalPath === '/chat' && req.nextUrl.searchParams.has('appointmentId');
 
-  if (protectedPrefixes.some(p => internalPath === p || internalPath.startsWith(`${p}/`)) && !token) {
+  if ((protectedChat || protectedPrefixes.some(p => internalPath === p || internalPath.startsWith(`${p}/`))) && !token) {
     const url = req.nextUrl.clone();
     url.pathname = localizePath('/Auth/Login', locale);
     url.search = `?next=${encodeURIComponent(pathname)}`;

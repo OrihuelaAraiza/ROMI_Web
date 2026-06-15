@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowRight, Building2, CalendarDays, ClipboardCheck, HeartPulse, MessageCircle, ShieldCheck, Sparkles, Stethoscope } from "lucide-react";
+import { ArrowRight, Building2, CalendarDays, ClipboardCheck, GraduationCap, HeartPulse, MessageCircle, Microscope, Share2, ShieldCheck, Sparkles, Stethoscope, Video } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { getLocale, getTranslations } from "next-intl/server";
 import EnglishHomePage from "@/components/EnglishHomePage";
@@ -28,6 +28,38 @@ const mobilePanelImages = [
   { src: "/images/romiportada.webp", alt: "ROMI en portada", label: "Asistente virtual" },
   { src: "/images/congreso.webp", alt: "ROMI en congreso medico", label: "Evidencia" },
   { src: "/images/doctor.webp", alt: "Profesional medico usando ROMI", label: "Consultorio" },
+];
+
+const publicModules = [
+  {
+    icon: MessageCircle,
+    title: "Asistente ROMI",
+    text: "La version gratuita orienta dudas generales y ayuda a decidir el siguiente paso sin sustituir una consulta medica.",
+    href: ROMI_CONTACT.whatsapp.url,
+    cta: "Abrir WhatsApp",
+    external: true,
+  },
+  {
+    icon: Video,
+    title: "Telesalud",
+    text: "Consulta remota, preparacion previa y seguimiento claro cuando el usuario necesita conectar con especialistas.",
+    href: "/Telesalud",
+    cta: "Ver telesalud",
+  },
+  {
+    icon: GraduationCap,
+    title: "Formacion medica",
+    text: "Recursos, espacios academicos y herramientas como LAION para profesionales de salud.",
+    href: "/Formation",
+    cta: "Explorar recursos",
+  },
+  {
+    icon: Microscope,
+    title: "Investigacion",
+    text: "Lineas de evidencia, publicaciones y evaluacion clinica para sostener el desarrollo responsable de ROMI.",
+    href: "/Investigation",
+    cta: "Ver evidencia",
+  },
 ];
 
 export default async function Home() {
@@ -181,6 +213,43 @@ export default async function Home() {
 
       <section className="relative left-1/2 w-screen -translate-x-1/2 bg-[var(--surface)]">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-18 lg:px-8">
+          <Reveal className="mb-9 text-center">
+            <p className="text-xs font-bold uppercase tracking-wide text-primary">Servicios principales</p>
+            <h2 className="mt-2 font-fredoka-one text-3xl text-[var(--primary)] sm:text-4xl">
+              Un ecosistema publico para empezar sin friccion
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-[var(--text-body)] font-poppins sm:text-base">
+              El primer contacto con ROMI puede ser gratuito, informativo o profesional. Cada modulo abre una puerta clara sin obligar al usuario a registrarse antes de entender el valor.
+            </p>
+          </Reveal>
+
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {publicModules.map(({ icon: Icon, title, text, href, cta, external }, i) => (
+              <Reveal key={title} type="scale" delay={i * 60}>
+                <article className="flex h-full flex-col rounded-3xl border border-[var(--surface-card-border)] bg-[var(--surface-card)] p-5 card-premium">
+                  <div className="grid h-11 w-11 place-items-center rounded-xl bg-[var(--chip-bg)] text-primary">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="mt-4 text-lg font-semibold text-[var(--text-primary)]">{title}</h3>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-[var(--text-body)] font-poppins">{text}</p>
+                  <a
+                    href={href}
+                    target={external ? "_blank" : undefined}
+                    rel={external ? "noopener noreferrer" : undefined}
+                    className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-[var(--primary-hover)]"
+                  >
+                    {cta}
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative left-1/2 w-screen -translate-x-1/2 bg-[var(--surface)]">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-18 lg:px-8">
           <Reveal className="mb-7 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-xs font-bold uppercase tracking-wide text-primary">ROMI en movimiento</p>
@@ -219,6 +288,34 @@ export default async function Home() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="relative left-1/2 w-screen -translate-x-1/2 border-y border-[var(--surface-card-border-soft)] bg-[var(--surface-alt)]">
+        <div className="mx-auto grid max-w-7xl gap-6 px-4 py-12 sm:px-6 sm:py-16 md:grid-cols-[0.8fr,1.2fr] lg:px-8">
+          <Reveal type="left" className="flex items-start gap-4">
+            <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-primary text-white">
+              <Share2 className="h-6 w-6" />
+            </div>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wide text-primary">Ayuda a quien lo necesita</p>
+              <h2 className="mt-2 font-fredoka-one text-2xl text-primary sm:text-3xl">Comparte la version gratuita de ROMI</h2>
+              <p className="mt-3 text-sm leading-relaxed text-[var(--text-body)] font-poppins">
+                Cuando una persona no sabe por donde empezar, compartir ROMI puede darle orientacion inicial, lenguaje claro y una ruta segura para buscar apoyo profesional.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal type="right" className="grid gap-3 sm:grid-cols-3">
+            {[
+              "Disponible desde WhatsApp",
+              "Orientacion general 24/7",
+              "Canalizacion hacia especialistas",
+            ].map((item) => (
+              <div key={item} className="rounded-2xl border border-[var(--surface-card-border-soft)] bg-[var(--surface)] p-4 text-sm font-semibold text-[var(--text-primary)] card-premium">
+                {item}
+              </div>
+            ))}
+          </Reveal>
         </div>
       </section>
 
