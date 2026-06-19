@@ -82,11 +82,11 @@ export default function Footer() {
               contacto@romiai.com.mx
             </a>
             <a
-              href="tel:+522224335093"
+              href="tel:+522211938700"
               className="flex items-center gap-2 hover:text-primary transition-colors duration-200 group"
             >
               <Phone className="h-4 w-4 text-primary flex-shrink-0 group-hover:scale-110 transition-transform duration-200" />
-              22 24 33 50 93
+              52 221 193 8700
             </a>
           </div>
         </div>

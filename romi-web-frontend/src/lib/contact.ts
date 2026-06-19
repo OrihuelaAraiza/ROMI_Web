@@ -6,9 +6,8 @@ export const ROMI_CONTACT = {
   },
   email: "contacto@romiai.com.mx",
   phone: {
-    label: "22 24 33 50 93",
-    href: "tel:+522224335093",
+    label: "52 221 193 8700",
+    href: "tel:+522211938700",
   },
   linkedin: "https://mx.linkedin.com/company/romiasistentemedicovirtualinteligente",
 } as const;
-
