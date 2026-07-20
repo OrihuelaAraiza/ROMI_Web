@@ -26,11 +26,10 @@ export const LEGACY_APPS = [
   {
     id: "laion",
     name: "LAION",
-    href: "",
+    href: "https://www.oncolatam.org/",
     category: "Educacion",
     description: "Programa de inteligencia artificial en oncologia para Latinoamerica.",
     access: ["medico.premium@laion.test", "admin@laion.test", "Password123!"],
-    comingSoon: true,
   },
   {
     id: "luma",
