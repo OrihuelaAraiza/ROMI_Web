@@ -10,7 +10,7 @@ export const LEGACY_APPS = [
   {
     id: "romimente",
     name: "ROMImente",
-    href: "https://romiai.info/",
+    href: "https://romimente.web.app/",
     category: "Psicologia",
     description: "Expediente clinico de psicologia para visualizar el flujo del especialista.",
     access: ["doctor@demo.com", "demo1234"],
@@ -18,7 +18,7 @@ export const LEGACY_APPS = [
   {
     id: "romi-tanatologia",
     name: "ROMI Tanatologia",
-    href: "https://romiai.info/",
+    href: "https://tanato-romi.web.app/",
     category: "Psicologia",
     description: "Expediente clinico de tanatologia para acompanamiento y seguimiento.",
     access: ["paliativos@demo.com", "demo1234"],
