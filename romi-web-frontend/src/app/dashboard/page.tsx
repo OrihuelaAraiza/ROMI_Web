@@ -246,7 +246,7 @@ export default function DashboardPage() {
             <Calendar className="h-4 w-4" />
           </div>
           <p className="text-sm font-semibold text-[var(--text-primary)]">Ver Calendario</p>
-          <p className="mt-1 text-xs text-[var(--text-muted)]">Organiza tus espacios del dia</p>
+          <p className="mt-1 text-xs text-[var(--text-muted)]">Organiza tus espacios del día</p>
         </button>
 
         <button
@@ -258,7 +258,7 @@ export default function DashboardPage() {
             <CheckCircle2 className="h-4 w-4" />
           </div>
           <p className="text-sm font-semibold text-[var(--text-primary)]">Completar Cita</p>
-          <p className="mt-1 text-xs text-[var(--text-muted)]">Actualiza atencion y estado</p>
+          <p className="mt-1 text-xs text-[var(--text-muted)]">Actualiza atención y estado</p>
         </button>
 
       </section>

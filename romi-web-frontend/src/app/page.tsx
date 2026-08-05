@@ -8,33 +8,33 @@ import { ROMI_CONTACT } from "@/lib/contact";
 const carePoints = [
   {
     icon: Stethoscope,
-    title: "Orientacion clara",
+    title: "Orientación clara",
     text: "ROMI traduce dudas frecuentes de salud a lenguaje cercano y ayuda a identificar el siguiente paso adecuado.",
   },
   {
     icon: ClipboardCheck,
     title: "Seguimiento ordenado",
-    text: "Recopila contexto antes de la consulta y facilita que el profesional tenga informacion util desde el inicio.",
+    text: "Recopila contexto antes de la consulta y facilita que el profesional tenga información útil desde el inicio.",
   },
   {
     icon: ShieldCheck,
-    title: "Criterio clinico al centro",
-    text: "La IA acompana el proceso, pero la decision medica permanece siempre en manos del especialista.",
+    title: "Criterio clínico al centro",
+    text: "La IA acompaña el proceso, pero la decisión médica permanece siempre en manos del especialista.",
   },
 ];
 
 const mobilePanelImages = [
   { src: "/images/talent-land-1.webp", alt: "Equipo ROMI en evento", label: "Comunidad" },
   { src: "/images/romiportada.webp", alt: "ROMI en portada", label: "Asistente virtual" },
-  { src: "/images/congreso.webp", alt: "ROMI en congreso medico", label: "Evidencia" },
-  { src: "/images/doctor.webp", alt: "Profesional medico usando ROMI", label: "Consultorio" },
+  { src: "/images/congreso.webp", alt: "ROMI en congreso médico", label: "Evidencia" },
+  { src: "/images/doctor.webp", alt: "Profesional médico usando ROMI", label: "Consultorio" },
 ];
 
 const publicModules = [
   {
     icon: MessageCircle,
     title: "Asistente ROMI",
-    text: "La version gratuita orienta dudas generales y ayuda a decidir el siguiente paso sin sustituir una consulta medica.",
+    text: "La versión gratuita orienta dudas generales y ayuda a decidir el siguiente paso sin sustituir una consulta médica.",
     href: ROMI_CONTACT.whatsapp.url,
     cta: "Abrir WhatsApp",
     external: true,
@@ -42,21 +42,21 @@ const publicModules = [
   {
     icon: Video,
     title: "Telesalud",
-    text: "Consulta remota, preparacion previa y seguimiento claro cuando el usuario necesita conectar con especialistas.",
+    text: "Consulta remota, preparación previa y seguimiento claro cuando el usuario necesita conectar con especialistas.",
     href: "/Telesalud",
     cta: "Ver telesalud",
   },
   {
     icon: GraduationCap,
-    title: "Formacion medica",
-    text: "Recursos, espacios academicos y herramientas como LAION para profesionales de salud.",
+    title: "Formación médica",
+    text: "Recursos, espacios académicos y herramientas como LAION para profesionales de salud.",
     href: "/Formation",
     cta: "Explorar recursos",
   },
   {
     icon: Microscope,
-    title: "Investigacion",
-    text: "Lineas de evidencia, publicaciones y evaluacion clinica para sostener el desarrollo responsable de ROMI.",
+    title: "Investigación",
+    text: "Líneas de evidencia, publicaciones y evaluación clínica para sostener el desarrollo responsable de ROMI.",
     href: "/Investigation",
     cta: "Ver evidencia",
   },
@@ -85,7 +85,7 @@ export default async function Home() {
             <div className="text-center md:text-left">
               <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-[var(--hero-text)]">
                 <Sparkles className="h-4 w-4" />
-                ROMI por aqui
+                ROMI por aquí
               </p>
               <h1 className="font-fredoka-one text-[68px] leading-none tracking-widest text-[var(--hero-text)] drop-shadow-lg sm:text-[88px] lg:text-[112px]">
                 ROMI
@@ -127,10 +127,10 @@ export default async function Home() {
           <Reveal className="text-center">
             <p className="text-xs font-bold uppercase tracking-wide text-primary">Escoge tu experiencia</p>
             <h2 className="mt-2 font-fredoka-one text-3xl text-[var(--primary)] sm:text-4xl">
-              ROMI acompana a pacientes y consultorios
+              ROMI acompaña a pacientes y consultorios
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm text-[var(--text-body)] font-poppins sm:text-base">
-              La misma identidad, dos formas de uso: orientacion gratuita para usuarios y una version de consultorio pensada para potenciar el trabajo clinico.
+              La misma identidad, dos formas de uso: orientación gratuita para usuarios y una versión de consultorio pensada para potenciar el trabajo clínico.
             </p>
           </Reveal>
 
@@ -140,7 +140,7 @@ export default async function Home() {
                 icon: MessageCircle,
                 eyebrow: "Para pacientes",
                 title: "Chat ROMI gratuito",
-                text: "Resuelve dudas generales, recibe orientacion inicial y encuentra un camino mas claro para cuidar tu salud.",
+                text: "Resuelve dudas generales, recibe orientación inicial y encuentra un camino más claro para cuidar tu salud.",
                 cta: "Chatear ahora",
                 href: ROMI_CONTACT.whatsapp.url,
                 external: true,
@@ -148,8 +148,8 @@ export default async function Home() {
               {
                 icon: Building2,
                 eyebrow: "Para consultorios",
-                title: "ROMI para tu practica",
-                text: "Un asistente de IA que organiza informacion, acompana el seguimiento y fortalece tu criterio con contenido de vanguardia.",
+                title: "ROMI para tu práctica",
+                text: "Un asistente de IA que organiza información, acompaña el seguimiento y fortalece tu criterio con contenido de vanguardia.",
                 cta: "Registrarme para el lanzamiento",
                 href: "/Contact",
                 external: false,
@@ -186,12 +186,12 @@ export default async function Home() {
       <section className="relative left-1/2 w-screen -translate-x-1/2 border-y border-[var(--surface-card-border-soft)] bg-[var(--surface-alt)]">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 sm:py-18 lg:grid-cols-[0.9fr,1.1fr] lg:px-8">
           <Reveal type="left" className="space-y-4">
-            <p className="text-xs font-bold uppercase tracking-wide text-primary">Atencion medica integral</p>
+            <p className="text-xs font-bold uppercase tracking-wide text-primary">Atención médica integral</p>
             <h2 className="font-fredoka-one text-3xl text-[var(--primary)] sm:text-4xl">
-              Informacion, acompanamiento y herramientas en un mismo ecosistema
+              Información, acompañamiento y herramientas en un mismo ecosistema
             </h2>
             <p className="text-sm leading-relaxed text-[var(--text-body)] font-poppins sm:text-base">
-              ROMI no se presenta como reemplazo del medico. Funciona como una capa de apoyo que ayuda al usuario a entender, prepararse y dar seguimiento, mientras el profesional mantiene el control clinico.
+              ROMI no se presenta como reemplazo del médico. Funciona como una capa de apoyo que ayuda al usuario a entender, prepararse y dar seguimiento, mientras el profesional mantiene el control clínico.
             </p>
           </Reveal>
 
@@ -216,10 +216,10 @@ export default async function Home() {
           <Reveal className="mb-9 text-center">
             <p className="text-xs font-bold uppercase tracking-wide text-primary">Servicios principales</p>
             <h2 className="mt-2 font-fredoka-one text-3xl text-[var(--primary)] sm:text-4xl">
-              Un ecosistema publico para empezar sin friccion
+              Un ecosistema público para empezar sin fricción
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-[var(--text-body)] font-poppins sm:text-base">
-              El primer contacto con ROMI puede ser gratuito, informativo o profesional. Cada modulo abre una puerta clara sin obligar al usuario a registrarse antes de entender el valor.
+              El primer contacto con ROMI puede ser gratuito, informativo o profesional. Cada módulo abre una puerta clara sin obligar al usuario a registrarse antes de entender el valor.
             </p>
           </Reveal>
 
@@ -254,7 +254,7 @@ export default async function Home() {
             <div>
               <p className="text-xs font-bold uppercase tracking-wide text-primary">ROMI en movimiento</p>
               <h2 className="mt-2 font-fredoka-one text-3xl text-[var(--primary)] sm:text-4xl">
-                Un panel vivo de comunidad, salud e innovacion
+                Un panel vivo de comunidad, salud e innovación
               </h2>
             </div>
             <a href="/Presentation" className="romi-action romi-action-secondary self-start sm:self-auto">
@@ -280,7 +280,7 @@ export default async function Home() {
             {[
               ["16k+", "interacciones atendidas"],
               ["24/7", "disponibilidad del asistente"],
-              ["IA + clinica", "apoyo sin sustituir al especialista"],
+              ["IA + clínica", "apoyo sin sustituir al especialista"],
             ].map(([value, label]) => (
               <div key={value} className="rounded-3xl border border-[var(--surface-card-border-soft)] bg-[var(--surface-card-soft)] p-5 text-center">
                 <p className="font-fredoka-one text-3xl text-primary">{value}</p>
@@ -299,17 +299,17 @@ export default async function Home() {
             </div>
             <div>
               <p className="text-xs font-bold uppercase tracking-wide text-primary">Ayuda a quien lo necesita</p>
-              <h2 className="mt-2 font-fredoka-one text-2xl text-primary sm:text-3xl">Comparte la version gratuita de ROMI</h2>
+              <h2 className="mt-2 font-fredoka-one text-2xl text-primary sm:text-3xl">Comparte la versión gratuita de ROMI</h2>
               <p className="mt-3 text-sm leading-relaxed text-[var(--text-body)] font-poppins">
-                Cuando una persona no sabe por donde empezar, compartir ROMI puede darle orientacion inicial, lenguaje claro y una ruta segura para buscar apoyo profesional.
+                Cuando una persona no sabe por dónde empezar, compartir ROMI puede darle orientación inicial, lenguaje claro y una ruta segura para buscar apoyo profesional.
               </p>
             </div>
           </Reveal>
           <Reveal type="right" className="grid gap-3 sm:grid-cols-3">
             {[
               "Disponible desde WhatsApp",
-              "Orientacion general 24/7",
-              "Canalizacion hacia especialistas",
+              "Orientación general 24/7",
+              "Canalización hacia especialistas",
             ].map((item) => (
               <div key={item} className="rounded-2xl border border-[var(--surface-card-border-soft)] bg-[var(--surface)] p-4 text-sm font-semibold text-[var(--text-primary)] card-premium">
                 {item}
@@ -322,10 +322,10 @@ export default async function Home() {
       <section className="relative left-1/2 w-screen -translate-x-1/2 bg-primary">
         <div className="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-10 text-white sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
           <div>
-            <p className="text-xs font-bold uppercase tracking-wide text-white/70">Proximo paso</p>
+            <p className="text-xs font-bold uppercase tracking-wide text-white/70">Próximo paso</p>
             <h2 className="mt-1 font-fredoka-one text-2xl sm:text-3xl">Explora las demos ROMI</h2>
             <p className="mt-2 max-w-2xl text-sm text-white/80 font-poppins">
-              Revisa los expedientes, agenda virtual y proyectos educativos que ya estan listos para demostracion.
+              Revisa los expedientes, agenda virtual y proyectos educativos que ya están listos para demostración.
             </p>
           </div>
           <a href="/apps" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-primary shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-lg">

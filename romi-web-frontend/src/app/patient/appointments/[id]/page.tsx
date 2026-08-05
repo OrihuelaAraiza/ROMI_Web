@@ -202,7 +202,7 @@ export default function PatientAppointmentPage() {
 
             <div>
 	              <button
-	                onClick={() => setFeedback("ROMI IA interno esta desactivado por ahora. Usa el chat de WhatsApp desde el menu principal.")}
+	                onClick={() => setFeedback("ROMI IA interno está desactivado por ahora. Usa el chat de WhatsApp desde el menú principal.")}
 	                className="px-4 py-2 rounded-lg bg-cyan-700 text-white"
 	              >
                 Hablar con ROMI IA

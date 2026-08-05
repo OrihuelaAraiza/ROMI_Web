@@ -5,7 +5,7 @@ import PageShell from "@/components/PageShell";
 import Panel from "@/components/Panel";
 import { LEGACY_APPS } from "@/lib/legacyApps";
 
-const accessLabels = ["Usuario", "Contrasena", "Acceso alterno"];
+const accessLabels = ["Usuario", "Contraseña", "Acceso alterno"];
 
 export default async function AppsPage() {
   const t = await getTranslations("apps");
@@ -58,7 +58,7 @@ export default async function AppsPage() {
             ) : (
               <div className="mt-auto inline-flex self-start items-center gap-2 rounded-full bg-[var(--chip-bg)] px-4 py-2 text-sm font-semibold text-primary">
                 <Sparkles className="h-4 w-4" />
-                Proximamente
+                Próximamente
               </div>
             )}
           </Panel>

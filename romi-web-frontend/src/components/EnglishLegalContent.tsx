@@ -20,7 +20,7 @@ export function EnglishTermsContent() {
       <p>Registration is optional unless a specific service requires an account. Users authorize the secure storage and analysis of their responses according to applicable privacy regulations.</p>
       <p>Users are responsible for protecting their credentials and for activity performed through their account.</p>
       <h2>3) Contracting party and contract formation</h2>
-      <p>Any purchase agreement is entered into with Centro de Innovacion y Desarrollo. A purchase is completed only after the selected payment method confirms payment.</p>
+      <p>Any purchase agreement is entered into with Centro de Innovación y Desarrollo. A purchase is completed only after the selected payment method confirms payment.</p>
       <h2>4) Contract language</h2>
       <p>The legally controlling language for the contract is Spanish. This English translation is informational.</p>
       <h2>5) Digital products</h2>
@@ -45,7 +45,7 @@ export function EnglishPrivacyContent() {
   return (
     <>
       <p>
-        Centro de Innovacion y Desarrollo Integral, which operates ROMI, is responsible for processing personal data
+        Centro de Innovación y Desarrollo Integral, which operates ROMI, is responsible for processing personal data
         under applicable data-protection laws. Contact: <strong>contacto@romiai.com.mx</strong>.
       </p>
       <h2>Identity and address of the controller</h2>

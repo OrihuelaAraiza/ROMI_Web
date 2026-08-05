@@ -17,8 +17,8 @@ const schema = z
   .object({
     name: z.string().min(2, "Nombre muy corto").max(100).optional(),
     email: z.string().email("Correo inválido"),
-    password: z.string().min(6, "minimo 6 caracteres"),
-    confirm: z.string().min(6, "minimo 6 caracteres"),
+    password: z.string().min(6, "mínimo 6 caracteres"),
+    confirm: z.string().min(6, "mínimo 6 caracteres"),
     role: z.enum(["doctor", "patient"], { message: "Debes seleccionar un rol" }),
     specialty: z.string().optional(),
     city: z.string().optional(),

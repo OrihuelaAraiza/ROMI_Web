@@ -229,7 +229,7 @@ function LegacyAppsSection() {
                   </a>
                 ) : (
                   <span className="mt-auto self-start rounded-full bg-[var(--chip-bg)] px-4 py-2 text-sm font-semibold text-primary">
-                    Proximamente
+                    Próximamente
                   </span>
                 )}
               </Panel>

@@ -55,7 +55,7 @@ const content: Record<PageKind, {
     sections: [
       {title: "Email", text: "contacto@romiai.com.mx"},
       {title: "Phone", text: "+52 222 433 5093"},
-      {title: "Location", text: "Hospital Angeles Puebla, Puebla, Mexico."},
+      {title: "Location", text: "Hospital Ángeles Puebla, Puebla, Mexico."},
     ],
     action: "Chat with ROMI",
     href: ROMI_CONTACT.whatsapp.url,
