@@ -121,7 +121,7 @@ export default function Footer() {
             <span>
               Hospital Ángeles Puebla<br />
               Av. Kepler No. 2143<br />
-              Torre de Especialidades IV, Consultorio 3800<br />
+              Torre 1, Consultorio 186<br />
               CP 72820, Reserva Territorial Atlixcáyotl<br />
               Puebla, Pue.
             </span>

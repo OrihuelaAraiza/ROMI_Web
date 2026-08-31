@@ -88,12 +88,56 @@ export default async function EventsPage() {
                 <h2 className="text-[var(--primary)] font-fredoka-one text-xl flex items-center gap-2">
                   <Compass className="h-5 w-5" /> Navegación
                 </h2>
-                <SideLink href="#proximos"        title="Próximos Eventos"             active />
+                <SideLink href="#simposio-cancer" title="IV Simposio contra el Cáncer" active />
+                <SideLink href="#proximos"        title="Próximos Eventos" />
                 <SideLink href="#internacionales" title="Congresos Internacionales" />
                 <SideLink href="#calendario"      title="Ver Calendario" />
               </nav>
             </aside>
           </div>
+        </div>
+      </section>
+
+      {/* FEATURED EVENT */}
+      <section id="simposio-cancer" className="relative left-1/2 w-screen -translate-x-1/2 scroll-mt-24 border-b border-[var(--surface-card-border-soft)] bg-[var(--surface-alt)]">
+        <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[minmax(280px,0.72fr)_1.28fr] lg:px-8">
+          <Reveal type="left">
+            <div className="mx-auto w-full max-w-sm overflow-hidden rounded-3xl border border-[var(--surface-card-border)] bg-white shadow-xl">
+              <Image
+                src="/images/iv-simposio-unidos-contra-el-cancer.png"
+                alt="Flyer del IV Simposio Unidos Contra el Cáncer"
+                width={472}
+                height={832}
+                sizes="(min-width: 1024px) 32vw, (min-width: 640px) 55vw, 92vw"
+                className="h-auto w-full"
+              />
+            </div>
+          </Reveal>
+
+          <Reveal type="right">
+            <article className="rounded-3xl border border-[var(--surface-card-border)] bg-[var(--surface-card)] p-6 card-premium sm:p-8">
+              <p className="inline-flex rounded-full bg-[var(--chip-bg)] px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-primary">
+                Evento gratuito
+              </p>
+              <h2 className="mt-5 font-fredoka-one text-3xl leading-tight text-[var(--primary)] sm:text-4xl">
+                IV Simposio “Unidos Contra el Cáncer”
+              </h2>
+              <div className="mt-5 space-y-3 text-sm leading-relaxed text-[var(--text-body)] font-poppins sm:text-base">
+                <p>Te invitamos a participar en el IV Simposio “Unidos Contra el Cáncer”.</p>
+                <p>Un evento gratuito pensado para pacientes oncológicos y sus familiares.</p>
+                <p className="font-semibold text-[var(--text-primary)]">Tu participación hace la diferencia. ¡Te esperamos!</p>
+              </div>
+              <a
+                href="https://hospitalangeles.com/puebla/unidos-contra-el-cancer"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--primary-hover)] hover:shadow-lg"
+              >
+                Registrarme al simposio
+                <ExternalLink className="h-4 w-4" />
+              </a>
+            </article>
+          </Reveal>
         </div>
       </section>
 

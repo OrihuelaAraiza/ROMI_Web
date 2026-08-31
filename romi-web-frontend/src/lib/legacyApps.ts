@@ -16,14 +16,6 @@ export const LEGACY_APPS = [
     access: ["doctor@demo.com", "demo1234"],
   },
   {
-    id: "romi-tanatologia",
-    name: "ROMI Tanatología",
-    href: "https://tanato-romi.web.app/",
-    category: "Psicología",
-    description: "Expediente clínico de tanatología para acompañamiento y seguimiento.",
-    access: ["paliativos@demo.com", "demo1234"],
-  },
-  {
     id: "laion",
     name: "LAION",
     href: "https://www.oncolatam.org/",

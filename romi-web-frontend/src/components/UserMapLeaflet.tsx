@@ -50,10 +50,10 @@ const USER_POINTS: UserPoint[] = [
 ];
 
 const REGION_SUMMARY = [
-  { id: "mx" as const, label: "MX", share: "50%", users: 5050 },
-  { id: "ec" as const, label: "EC", share: "20%", users: 2020 },
-  { id: "usa" as const, label: "USA", share: "10%", users: 1010 },
-  { id: "rest" as const, label: "Resto", share: "20%", users: 2020 },
+  { id: "mx" as const, label: "MX", share: "50%", users: 13250 },
+  { id: "ec" as const, label: "EC", share: "20%", users: 5300 },
+  { id: "usa" as const, label: "USA", share: "10%", users: 2650 },
+  { id: "rest" as const, label: "Resto", share: "20%", users: 5300 },
 ];
 
 const FILTERS = ["all", "mx", "ec", "usa", "rest"] as const;
@@ -83,7 +83,7 @@ export default function UserMapSection() {
   const common = useTranslations("common");
   const [region, setRegion] = useState<Region>("all");
   const visiblePoints = region === "all" ? USER_POINTS : USER_POINTS.filter((point) => point.region === region);
-  const totalUsers = 10100;
+  const totalUsers = 26500;
 
   return (
     <section className="mt-16 sm:mt-24">

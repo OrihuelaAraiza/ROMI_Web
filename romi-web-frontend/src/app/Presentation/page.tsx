@@ -16,23 +16,37 @@ const values = [
 
 const awards = [
   {
-    Icon: Rocket,
-    org: "Talent Land",
-    title: "Ganadores Startup a la Cuesta",
-    desc: "Reconocidos entre las startups más prometedoras del ecosistema de innovación en México.",
-    badge: "Talent Land 2025",
+    Icon: Lightbulb,
+    org: "ROMI",
+    title: "Inversionista a la Vista",
+    desc: "Reconocimiento a ROMI dentro de la iniciativa Inversionista a la Vista.",
+    badge: "Reconocimiento",
+  },
+  {
+    Icon: Trophy,
+    org: "Global Youth Development Programs 2026",
+    title: "Youth Development Pioneer",
+    desc: "Nombramiento otorgado por la All-China Youth Federation, la WYDF y UNICEF a proyectos seleccionados como promesas globales de impacto e innovación.",
+    badge: "GYDP 2026",
   },
   {
     Icon: Globe,
     org: "Youth Empowerment Fund",
     title: "Ganadores del Grant Internacional",
-    desc: "Premio internacional por impacto social en salud digital otorgado a nivel global.",
+    desc: "Premio internacional por impacto social en salud digital otorgado a nivel global. Demuestra capacidad probada de ejecutar fondos internacionales — el antecedente más relevante frente a este grant.",
     badge: "YEF 2025",
+  },
+  {
+    Icon: Rocket,
+    org: "Talent Land",
+    title: "Reconocimiento de Innovación Nacional, Ganadores Startup a la Cuesta",
+    desc: "Reconocidos entre las startups más prometedoras del ecosistema de innovación en México.",
+    badge: "Talent Land 2025",
   },
   {
     Icon: BrainCircuit,
     org: "Intel · Acelerado México con IA",
-    title: "Top 10 Proyectos de IA",
+    title: "Reconocimiento de Excelencia tecnológica, Top 10 Acelerado México con IA",
     desc: "Seleccionados entre los 10 mejores proyectos de inteligencia artificial de México.",
     badge: "Intel 2025",
   },
@@ -186,7 +200,7 @@ export default async function Page() {
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-18 lg:px-8">
           <Reveal className="mb-10 text-center">
             <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary">
-              <Trophy size={13} /> Logros 2025
+              <Trophy size={13} /> Logros 2025–2026
             </span>
             <h2 className="font-fredoka-one text-3xl text-primary sm:text-4xl">Reconocimientos</h2>
             <p className="mx-auto mt-3 max-w-xl text-sm text-[var(--text-body)] font-poppins sm:text-base">
@@ -194,7 +208,7 @@ export default async function Page() {
             </p>
           </Reveal>
 
-          <div className="mx-auto grid max-w-5xl gap-5 sm:grid-cols-3">
+          <div className="mx-auto grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {awards.map(({ Icon, org, title, desc, badge }, i) => (
               <Reveal key={title} type="scale" delay={i * 80}>
                 <article className="relative flex h-full flex-col rounded-3xl border border-[var(--surface-card-border)] bg-[var(--surface-card-soft)] p-5 card-premium">

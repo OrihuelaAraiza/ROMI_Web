@@ -163,7 +163,7 @@ export default async function ContactPage() {
                   {[
                     { icon: Mail,   label: "Correo",    content: <a href="mailto:contacto@romiai.com.mx" className="text-[var(--primary)] hover:underline transition-colors">contacto@romiai.com.mx</a> },
                     { icon: Phone,  label: "Teléfono",  content: <a href="tel:+522211938700" className="text-[var(--primary)] hover:underline transition-colors">52 221 193 8700</a> },
-                    { icon: MapPin, label: "Dirección", content: <p className="leading-relaxed">Hospital Ángeles Puebla<br />Av. Kepler No. 2143, Torre de Especialidades IV<br />Consultorio 3800, CP 72820<br />Reserva Territorial Atlixcáyotl, Puebla, Pue.</p> },
+                    { icon: MapPin, label: "Dirección", content: <p className="leading-relaxed">Hospital Ángeles Puebla<br />Av. Kepler No. 2143<br />Torre 1, Consultorio 186, CP 72820<br />Reserva Territorial Atlixcáyotl, Puebla, Pue.</p> },
                   ].map(({ icon: Icon, label, content }) => (
                     <li key={label} className="flex items-start gap-3">
                       <span className="mt-0.5 inline-flex h-9 w-9 items-center justify-center rounded-full bg-[var(--chip-bg)] flex-shrink-0 icon-lift">
@@ -297,7 +297,7 @@ export default async function ContactPage() {
             </div>
           </Reveal>
           <p className="mt-3 text-xs text-[var(--text-muted)] text-center font-poppins">
-            Av. Kepler No. 2143, Torre de Especialidades IV, Consultorio 3800 — Hospital Ángeles Puebla
+            Av. Kepler No. 2143, Torre 1, Consultorio 186 — Hospital Ángeles Puebla
           </p>
         </div>
       </section>
