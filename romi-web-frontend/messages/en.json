@@ -44,7 +44,7 @@
     "legal": "Legal information",
     "legalText": "Review ROMI's terms of use and personal data practices.",
     "terms": "Terms and conditions",
-    "privacy": "Privacy policy",
+    "privacy": "Privacy notice",
     "rights": "© 2026 Intelligent Medical Optimization Network. All rights reserved."
   },
   "home": {
@@ -183,9 +183,11 @@
   "legal": {
     "home": "Home",
     "terms": "Terms and conditions",
-    "privacy": "Privacy policy",
+    "privacy": "Privacy notice",
     "label": "ROMI legal",
-    "spanishPrevails": "This translation is provided for informational purposes. If there is any discrepancy, the Spanish version prevails."
+    "spanishOriginal": "The current document is provided in its original Spanish version. The PDF is also available in Spanish.",
+    "openPdf": "Open original PDF",
+    "downloadPdf": "Download PDF"
   },
   "status": {
     "PENDING": "Pending",

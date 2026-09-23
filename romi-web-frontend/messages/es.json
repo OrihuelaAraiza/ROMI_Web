@@ -44,7 +44,7 @@
     "legal": "Información legal",
     "legalText": "Consulta las condiciones de uso y el tratamiento de datos personales de ROMI.",
     "terms": "Términos y condiciones",
-    "privacy": "Política de privacidad",
+    "privacy": "Aviso de privacidad",
     "rights": "© 2026 Red de Optimización Médica Inteligente. Todos los derechos reservados."
   },
   "home": {
@@ -183,9 +183,11 @@
   "legal": {
     "home": "Inicio",
     "terms": "Términos y condiciones",
-    "privacy": "Política de privacidad",
+    "privacy": "Aviso de privacidad",
     "label": "ROMI legal",
-    "spanishPrevails": "Esta traducción se ofrece con fines informativos. En caso de discrepancia, prevalece la versión en español."
+    "spanishOriginal": "Este documento se presenta en su versión original en español.",
+    "openPdf": "Abrir PDF original",
+    "downloadPdf": "Descargar PDF"
   },
   "status": {
     "PENDING": "Pendiente",

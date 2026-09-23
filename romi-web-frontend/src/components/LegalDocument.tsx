@@ -10,8 +10,7 @@ type LegalDocumentProps = {
   updated?: string;
   englishUpdated?: string;
   children: ReactNode;
-  englishChildren?: ReactNode;
-  actions?: ReactNode;
+  pdfHref: string;
 };
 
 export default function LegalDocument({
@@ -20,14 +19,13 @@ export default function LegalDocument({
   updated,
   englishUpdated,
   children,
-  englishChildren,
-  actions,
+  pdfHref,
 }: LegalDocumentProps) {
   const t = useTranslations("legal");
   const locale = useLocale();
   const isEnglish = locale === "en";
   return (
-    <main className="min-h-screen py-10 sm:py-14 lg:py-16">
+    <div className="min-h-screen py-10 sm:py-14 lg:py-16">
       <section className="mx-auto max-w-4xl">
         <div className="mb-6 flex flex-wrap items-center gap-3">
           <Link
@@ -61,21 +59,36 @@ export default function LegalDocument({
                 {isEnglish ? englishUpdated ?? updated : updated}
               </p>
             ) : null}
+            <div className="mt-5 flex flex-wrap gap-3">
+              <a
+                href={pdfHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="kawaii-button inline-flex items-center justify-center rounded-full bg-[var(--primary)] px-5 py-2 text-sm font-semibold text-white"
+              >
+                {t("openPdf")}
+              </a>
+              <a
+                href={pdfHref}
+                download
+                className="kawaii-button inline-flex items-center justify-center rounded-full bg-[var(--surface-card)] px-5 py-2 text-sm font-semibold text-[var(--text-primary)] hover:bg-[var(--chip-bg)]"
+              >
+                {t("downloadPdf")}
+              </a>
+            </div>
           </header>
 
           {locale === "en" ? (
             <p className="mb-6 rounded-xl border-2 border-[var(--surface-card-border)] bg-[var(--romi-butter)] p-4 text-sm font-semibold text-[var(--text-primary)]">
-              {t("spanishPrevails")}
+              {t("spanishOriginal")}
             </p>
           ) : null}
 
-          <div className="legal-copy space-y-6 text-[var(--text-body)]">
-            {isEnglish && englishChildren ? englishChildren : children}
+          <div lang="es" className="legal-copy space-y-6 break-words text-[var(--text-body)]">
+            {children}
           </div>
-
-          {actions ? <div className="mt-10 border-t border-[var(--surface-card-border-soft)] pt-6">{actions}</div> : null}
         </article>
       </section>
-    </main>
+    </div>
   );
 }
