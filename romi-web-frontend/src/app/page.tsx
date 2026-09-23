@@ -110,7 +110,7 @@ export default async function Home() {
 
             <div className="relative mx-auto w-full max-w-sm md:max-w-md">
               <Image
-                src="/images/romi-hero.webp"
+                src="/images/romi-mascot.svg"
                 alt="ROMI asistente virtual"
                 width={800}
                 height={800}
